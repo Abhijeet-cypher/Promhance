@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
-export default function PromptEnhancer() {
+export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { defaultMode?: string }) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [mode, setMode] = useState("LLM Prompt");
+  const [mode, setMode] = useState(defaultMode);
   const [intensity, setIntensity] = useState("medium");
 
   const [isCopied, setIsCopied] = useState(false);
