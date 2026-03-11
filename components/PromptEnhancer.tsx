@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
+import { Bot, Sparkles, Palette, PenTool, Code } from "lucide-react";
 
 export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { defaultMode?: string }) {
   const [input, setInput] = useState("");
@@ -12,17 +13,29 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   const [intensity, setIntensity] = useState("medium");
 
   const [isCopied, setIsCopied] = useState(false);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  const placeholders = [
+    '"Write a YouTube script about AI"',
+    '"Create a fantasy landscape image prompt"',
+    '"Explain recursion in simple terms"',
+    '"Write a product description for a smartwatch"'
+  ];
 
   const modes = [
-    { id: "LLM Prompt", icon: "🤖" },
-    { id: "General", icon: "✨" },
-    { id: "Image Generation", icon: "🎨" },
-    { id: "Creative Writing", icon: "✍️" },
-    { id: "Technical/Code", icon: "💻" }
+    { id: "LLM Prompt", icon: <Bot className="w-4 h-4 text-emerald-400" /> },
+    { id: "General", icon: <Sparkles className="w-4 h-4 text-yellow-400" /> },
+    { id: "Image Generation", icon: <Palette className="w-4 h-4 text-orange-400" /> },
+    { id: "Creative Writing", icon: <PenTool className="w-4 h-4 text-rose-400" /> },
+    { id: "Technical/Code", icon: <Code className="w-4 h-4 text-blue-400" /> }
   ];
 
   useEffect(() => {
     setIsMounted(true);
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleCopy = async () => {
@@ -163,8 +176,8 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
           {/* Text Area */}
           <div className="relative flex-grow flex flex-col overflow-hidden min-h-[160px]">
             <textarea
-              className="w-full h-full bg-zinc-900/50 border border-zinc-800/80 text-zinc-100 rounded-xl p-4 focus:outline-none focus:ring-1 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-zinc-600 resize-none font-sans text-base shadow-inner flex-grow overflow-y-auto"
-              placeholder="e.g. A futuristic city with flying cars at sunset..."
+              className="w-full h-full bg-zinc-900/50 border border-zinc-800/80 text-zinc-100 rounded-xl p-4 focus:outline-none focus:ring-1 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-zinc-500 resize-none font-sans text-base shadow-inner flex-grow overflow-y-auto"
+              placeholder={`e.g. ${placeholders[placeholderIndex]}`}
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
