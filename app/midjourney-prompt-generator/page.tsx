@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Midjourney Prompt Generator - Promhance',
-  description: 'Create stunning, highly-detailed Midjourney prompts. Our tool automatically injects artistic styles, lighting, camera settings, and aspect ratios from your basic ideas.',
+  description: 'Create stunning Midjourney prompts with artistic styles, lighting, camera settings, and aspect ratios — generated from your basic ideas.',
   openGraph: {
     title: 'Midjourney Prompt Generator - Promhance',
     description: 'Transform basic concepts into breathtaking AI image prompts.',
