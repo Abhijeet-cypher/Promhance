@@ -1,4 +1,5 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
+import Footer from "@/components/Footer";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function YouTubePage() {
   return (
-    <main className="relative min-h-screen flex flex-col items-center p-4 overflow-hidden bg-zinc-950 text-zinc-50 selection:bg-purple-500/30">
+    <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-zinc-950 text-zinc-50 selection:bg-purple-500/30 pt-24">
       {/* Background decorations - Modified colors for YouTube/Video theme */}
       <div className="fixed top-[-20%] left-[-10%] w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-red-600/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="fixed bottom-[-20%] right-[-10%] w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-zinc-600/15 rounded-full blur-[150px] pointer-events-none" />
@@ -22,7 +23,7 @@ export default function YouTubePage() {
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col items-center flex-grow mb-12">
         {/* Logo/Header area */}
-        <div className="mb-4 sm:mb-8 text-center space-y-3 pt-6 sm:pt-10">
+        <div className="mb-4 sm:mb-8 text-center space-y-3 pt-12 sm:pt-16">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
             <span className="text-zinc-100 dark:text-white">
               YouTube Prompt Generator
@@ -40,12 +41,7 @@ export default function YouTubePage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="relative text-center w-full z-10 flex justify-center items-center gap-4 mt-auto pb-6">
-        <span className="text-zinc-600 text-xs sm:text-sm font-medium tracking-widest uppercase">
-          &copy; {new Date().getFullYear()} Promhance
-        </span>
-      </div>
+      <Footer />
     </main>
   );
 }
