@@ -1,7 +1,17 @@
 import { MetadataRoute } from 'next'
+import { getAllPosts } from '@/lib/markdown'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.promhance.com'; // Replace with your actual domain
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = 'https://promhance.com';
+
+  // Get all blog posts
+  const posts = await getAllPosts();
+  const blogUrls = posts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
 
   return [
     {
@@ -28,5 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-  ]
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    ...blogUrls,
+  ];
 }

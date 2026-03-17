@@ -1,9 +1,10 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
+import Footer from "@/components/Footer";
 import { Brain, Palette, Code, PenTool, Megaphone, Clapperboard } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col items-center p-4  overflow-hidden bg-zinc-950 text-zinc-50 selection:bg-purple-500/30">
+    <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-zinc-950 text-zinc-50 selection:bg-purple-500/30 pt-24">
       {/* Background decorations - Increased depth and presence */}
       <div className="fixed top-[-20%] left-[-10%] w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-purple-600/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="fixed bottom-[-20%] right-[-10%] w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-indigo-600/15 rounded-full blur-[150px] pointer-events-none" />
@@ -14,7 +15,7 @@ export default function Home() {
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col items-center flex-grow mb-12">
         {/* Logo/Header area */}
-        <div className="mb-4 sm:mb-8 text-center space-y-3 pt-6 sm:pt-10">
+        <div className="mb-4 sm:mb-8 text-center space-y-3 pt-12 sm:pt-16">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
             <span className="text-zinc-100 dark:text-white">
               Prom
@@ -96,19 +97,31 @@ export default function Home() {
             </div>
           </section>
 
-          {/* SEO Paragraph */}
-          <section className="pt-12 pb-8 border-t border-zinc-800/50 text-center sm:text-left">
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-6 text-center">What is Prompt Engineering?</h2>
-            <div className="space-y-4 text-zinc-400 text-sm sm:text-base leading-relaxed">
-              <p>
-                Prompt engineering is the process of designing effective inputs for AI models so they produce better results. Instead of writing vague instructions, well-structured prompts help AI understand exactly what you want.
-              </p>
-              <p>
-                Promhance simplifies prompt engineering by transforming simple ideas into structured, detailed prompts optimized for modern AI systems like ChatGPT, Claude, and Gemini.
-              </p>
-              <p>
-                With Promhance, you can quickly improve AI prompts, making responses more accurate, creative, and aligned with your original idea.
-              </p>
+          {/* Why Promhance */}
+          <section className="pt-12 pb-8 border-t border-zinc-800/50">
+            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-8 text-center">Why Developers Choose Promhance</h2>
+            <div className="grid sm:grid-cols-3 gap-6">
+              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 space-y-3">
+                <div className="text-3xl">⚡</div>
+                <h3 className="text-lg font-semibold text-zinc-100">10x Faster Prompts</h3>
+                <p className="text-sm text-zinc-400 leading-relaxed">
+                  Stop spending minutes crafting the perfect prompt. Type a rough idea and get a production-ready prompt in seconds.
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 space-y-3">
+                <div className="text-3xl">🎯</div>
+                <h3 className="text-lg font-semibold text-zinc-100">Better AI Outputs</h3>
+                <p className="text-sm text-zinc-400 leading-relaxed">
+                  Structured prompts with context, constraints, and formatting instructions consistently produce higher quality responses from any model.
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 space-y-3">
+                <div className="text-3xl">🔓</div>
+                <h3 className="text-lg font-semibold text-zinc-100">100% Free, No Signup</h3>
+                <p className="text-sm text-zinc-400 leading-relaxed">
+                  No accounts, no paywalls, no rate limits. Just open Promhance and start enhancing your prompts immediately.
+                </p>
+              </div>
             </div>
           </section>
 
@@ -150,12 +163,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="relative text-center w-full z-10 flex justify-center items-center gap-4 mt-auto pb-6">
-        <span className="text-zinc-600 text-xs sm:text-sm font-medium tracking-widest uppercase">
-          &copy; {new Date().getFullYear()} Promhance
-        </span>
-      </div>
+      <Footer />
     </main>
   );
 }
