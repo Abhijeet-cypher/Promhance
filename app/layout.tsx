@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -50,6 +51,7 @@ export const metadata: Metadata = {
 };
 
 import Header from "@/components/Header";
+import CursorSpotlight from "@/components/CursorSpotlight";
 
 export default function RootLayout({
   children,
@@ -61,6 +63,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CV5SK9CN9S"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-CV5SK9CN9S');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -72,9 +87,11 @@ export default function RootLayout({
             })
           }}
         />
+        <CursorSpotlight />
         <Header />
         {children}
       </body>
     </html>
   );
 }
+

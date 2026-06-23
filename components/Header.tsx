@@ -11,7 +11,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Handle scroll effect for glassmorphism
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -22,7 +22,7 @@ export default function Header() {
 
   const navLinks = [
     { name: "Promhance", href: "/" },
-    { name: "ChatGPT Tools", href: "/chatgpt-prompt-enhancer" },
+    { name: "ChatGPT", href: "/chatgpt-prompt-enhancer" },
     { name: "Midjourney", href: "/midjourney-prompt-generator" },
     { name: "YouTube", href: "/youtube-prompt-generator" },
     { name: "Blog", href: "/blog" },
@@ -30,44 +30,42 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-zinc-950 py-4 shadow-md"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? "bg-[#0a0a0a] py-4 shadow-[0_1px_0_rgba(255,255,255,0.06)]"
           : "bg-transparent py-6"
-      }`}
+        }`}
     >
       <div className="max-w-[1400px] w-[92%] mx-auto flex items-center justify-between">
-        
+
         {/* Logo */}
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="group flex items-center gap-2 relative z-50 outline-none"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <Sparkles className="w-5 h-5 text-purple-400" />
+          <Sparkles className="w-5 h-5 text-blue-400" />
           <span className="text-xl font-bold tracking-tight text-white">
-            Prom<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-gradient-x">hance</span>
+            Prom<span className="text-blue-400">hance</span>
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-2 bg-zinc-900/40 px-2 py-1.5 rounded-full border border-white/5 backdrop-blur-sm">
+        <nav className="hidden md:flex items-center gap-2 bg-[#111111] px-2 py-1.5 rounded-full border border-[#2a2a2a]">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors outline-none ${
-                  isActive 
-                    ? "text-white" 
-                    : "text-zinc-400 hover:text-zinc-200 hover:bg-white/5"
-                }`}
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors outline-none ${isActive
+                    ? "text-white"
+                    : "text-[#a1a1a1] hover:text-white hover:bg-white/5"
+                  }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="active-nav-border"
-                    className="absolute inset-0 rounded-full border border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.4)]"
+                    className="absolute inset-0 rounded-full border border-blue-500/60 shadow-[0_0_14px_rgba(59,130,246,0.25)]"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -86,32 +84,30 @@ export default function Header() {
 
         {/* Right Actions (Desktop) */}
         <div className="hidden md:flex items-center gap-4">
-           {/* Placeholder for future auth/CTA */}
-           <a 
-              href="https://github.com/Abhijeet-cypher/Promhance" 
-              target="_blank" 
-              rel="noreferrer"
-              className="text-sm font-medium text-zinc-400 hover:text-white transition-colors flex items-center gap-2 group"
-            >
-              <GithubIcon className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
-              <span className="hidden lg:inline-block">Star us</span>
-           </a>
+          <a
+            href="https://github.com/Abhijeet-cypher/Promhance"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm font-medium text-[#a1a1a1] hover:text-white transition-colors flex items-center gap-2 group"
+          >
+            <GithubIcon className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
+            <span className="hidden lg:inline-block">Star us</span>
+          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
           title="Toggle Menu"
-          className="md:hidden relative z-50 p-2 -mr-2 text-zinc-400 hover:text-white transition-colors"
+          className="md:hidden relative z-50 p-2 -mr-2 text-[#a1a1a1] hover:text-white transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
         {/* Mobile Navigation Menu */}
-        <div 
-          className={`fixed inset-0 bg-zinc-950/95 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out md:hidden flex flex-col justify-center items-center gap-8 ${
-            mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-          }`}
+        <div
+          className={`fixed inset-0 bg-[#0a0a0a]/98 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out md:hidden flex flex-col justify-center items-center gap-8 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
         >
           <nav className="flex flex-col items-center gap-6">
             {navLinks.map((link, i) => {
@@ -122,13 +118,11 @@ export default function Header() {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   style={{ transitionDelay: `${mobileMenuOpen ? i * 50 : 0}ms` }}
-                  className={`text-2xl font-semibold tracking-tight transition-all duration-500 ${
-                    mobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                  } ${
-                    isActive 
-                      ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400" 
-                      : "text-zinc-400 hover:text-white"
-                  }`}
+                  className={`text-2xl font-semibold tracking-tight transition-all duration-500 ${mobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                    } ${isActive
+                      ? "text-blue-400"
+                      : "text-[#a1a1a1] hover:text-white"
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -142,7 +136,7 @@ export default function Header() {
   );
 }
 
-// Simple github icon component to avoid blowing up the lucide import size if not needed
+// Simple github icon component
 function GithubIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg
