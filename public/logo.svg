@@ -1,4 +1,4 @@
-<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="-20 -20 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g stroke="#3b82f6" stroke-width="4" stroke-linejoin="miter" stroke-miterlimit="10" stroke-linecap="square" transform="rotate(15 50 50)">
     <polygon points="50,2 55,39 68,32 61,45 98,50 61,55 68,68 55,61 50,98 45,61 32,68 39,55 2,50 39,45 32,32 45,39" />
     <line x1="50" y1="2" x2="50" y2="98" />

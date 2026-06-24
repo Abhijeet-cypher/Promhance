@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Header() {
@@ -25,14 +26,15 @@ export default function Header() {
     { name: "ChatGPT", href: "/chatgpt-prompt-enhancer" },
     { name: "Midjourney", href: "/midjourney-prompt-generator" },
     { name: "YouTube", href: "/youtube-prompt-generator" },
+    { name: "Viral Prompts", href: "/viral-prompts" },
     { name: "Blog", href: "/blog" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-[#0a0a0a] py-4 shadow-[0_1px_0_rgba(255,255,255,0.06)]"
-          : "bg-transparent py-6"
+        ? "bg-[#0a0a0a] py-4 shadow-[0_1px_0_rgba(255,255,255,0.06)]"
+        : "bg-transparent py-6"
         }`}
     >
       <div className="max-w-[1400px] w-[92%] mx-auto flex items-center justify-between">
@@ -43,8 +45,8 @@ export default function Header() {
           className="group flex items-center gap-2 relative z-50 outline-none"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <Sparkles className="w-5 h-5 text-blue-400" />
-          <span className="text-xl font-bold tracking-tight text-white">
+          <Image src="/logo.svg" alt="Promhance Logo" width={48} height={48} className="w-12 h-12" />
+          <span className="text-2xl font-bold tracking-tight text-white">
             Prom<span className="text-blue-400">hance</span>
           </span>
         </Link>
@@ -58,8 +60,8 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors outline-none ${isActive
-                    ? "text-white"
-                    : "text-[#a1a1a1] hover:text-white hover:bg-white/5"
+                  ? "text-white"
+                  : "text-[#a1a1a1] hover:text-white hover:bg-white/5"
                   }`}
               >
                 {isActive && (
@@ -149,3 +151,4 @@ function GithubIcon(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
+

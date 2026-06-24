@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Twitter, Github, Linkedin, Wand2, Image as ImageIcon, Video, MessageSquare } from "lucide-react";
 
 const toolLinks = [
@@ -16,7 +17,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-10">
           <div className="lg:col-span-4 flex flex-col items-start">
             <Link href="/" className="group flex items-center gap-3 mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+              <Image src="/logo.svg" alt="Promhance Logo" width={40} height={40} className="w-10 h-10" />
               <span className="text-xl font-bold tracking-tight text-white">
                 Prom<span className="text-blue-400">hance</span>
               </span>
