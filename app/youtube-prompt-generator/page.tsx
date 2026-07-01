@@ -46,6 +46,26 @@ export default function YouTubePage() {
         </div>
       </div>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "YouTube Prompt Generator",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "description": "Generate high-retention YouTube scripts, catchy titles, and optimized video descriptions.",
+            "url": "https://www.promhance.com/youtube-prompt-generator",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          })
+        }}
+      />
+
       <Footer />
     </main>
   );

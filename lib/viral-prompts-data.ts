@@ -22,7 +22,7 @@ export const uniqueTrendYears = [
 // ── Era normaliser (trend_year → 'current' | 'peak' | 'classic') ─────────────
 
 export function getEra(trendYear: string): "current" | "peak" | "classic" {
-  const u = trendYear.toUpperCase();
+  const u = trendYear?.toUpperCase() || "";
   if (u.includes("CURRENT")) return "current";
   if (u.includes("CLASSIC")) return "classic";
   if (u.includes("PEAK") || u.includes("STILL")) return "peak";

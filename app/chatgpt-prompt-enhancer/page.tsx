@@ -46,6 +46,26 @@ export default function ChatGPTPage() {
         </div>
       </div>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "ChatGPT Prompt Enhancer",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "description": "Optimize your raw ideas into masterfully engineered ChatGPT prompts.",
+            "url": "https://www.promhance.com/chatgpt-prompt-enhancer",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          })
+        }}
+      />
+
       <Footer />
     </main>
   );

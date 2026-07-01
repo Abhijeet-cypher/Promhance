@@ -46,6 +46,26 @@ export default function MidjourneyPage() {
         </div>
       </div>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Midjourney Prompt Generator",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "description": "Create stunning Midjourney prompts with artistic styles and lighting.",
+            "url": "https://www.promhance.com/midjourney-prompt-generator",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          })
+        }}
+      />
+
       <Footer />
     </main>
   );

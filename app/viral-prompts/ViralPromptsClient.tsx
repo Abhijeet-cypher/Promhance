@@ -350,11 +350,12 @@ export default function ViralPromptsClient({ prompts }: { prompts: ViralPromptJS
       }
       if (q) {
         return (
-          p.prompt_text.toLowerCase().includes(q) ||
+          p.prompt_text?.toLowerCase().includes(q) ||
           p.style?.toLowerCase().includes(q) ||
-          p.section.toLowerCase().includes(q) ||
-          p.type.toLowerCase().includes(q) ||
-          p.trend_category.toLowerCase().includes(q)
+          p.section?.toLowerCase().includes(q) ||
+          p.type?.toLowerCase().includes(q) ||
+          p.trend_category?.toLowerCase().includes(q) ||
+          false
         );
       }
       return true;

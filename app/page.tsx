@@ -34,37 +34,37 @@ const USE_CASES = [
 const FEATURES = [
   {
     icon: Zap,
-    title: "10× Faster Prompts",
-    desc: "Stop spending minutes crafting the perfect prompt. Type a rough idea and get a production-ready prompt in seconds.",
+    title: "10× Faster PromptOps",
+    desc: "Stop spending minutes crafting the perfect prompt. Type a rough idea and get a production-ready prompt optimized for any AI.",
   },
   {
     icon: Target,
-    title: "Better AI Outputs",
-    desc: "Structured prompts with context, constraints, and formatting instructions consistently produce higher quality responses.",
+    title: "Data-Driven Prompting",
+    desc: "Structured prompts with context, constraints, and formatting instructions consistently produce higher quality, predictable responses.",
   },
   {
     icon: Unlock,
-    title: "100% Free, No Signup",
-    desc: "No accounts, no paywalls, no rate limits. Just open Promhance and start enhancing your prompts right away.",
+    title: "The Ultimate Prompt Enhancer",
+    desc: "No accounts, no paywalls, no rate limits. Start enhancing your prompts using professional prompt engineering frameworks right away.",
   },
 ];
 
 const FAQS = [
   {
-    q: "Is Promhance free to use?",
-    a: "Yes, Promhance is completely free. No credit card, no account required — just open the site and start enhancing.",
+    q: "What is an AI Prompt Enhancer?",
+    a: "An AI Prompt Enhancer is a tool that takes a simple idea and restructures it into a highly detailed, optimized prompt. Promhance uses proven prompt engineering frameworks to improve the quality of AI outputs automatically.",
   },
   {
     q: "Which AI models work with Promhance?",
-    a: "Promhance prompts work with ChatGPT, Claude, Gemini, Midjourney, and most modern AI tools. It's the ultimate prompt enhancer for any LLM.",
+    a: "Promhance generates prompts optimized for ChatGPT, Claude, Gemini, Midjourney, and most modern LLMs. It is designed to be the ultimate PromptOps tool for any AI workflow.",
   },
   {
-    q: "Do I need prompt engineering knowledge?",
-    a: "Not at all. Promhance automatically structures your ideas into highly effective prompts without requiring any prior knowledge.",
+    q: "Is Promhance completely free to use?",
+    a: "Yes, Promhance is a 100% free prompt generator. There are no credit cards, accounts, or paywalls required to start generating production-ready prompts.",
   },
   {
-    q: "Can I use Promhance for image generation?",
-    a: "Yes. Switch to the Image Generation mode and Promhance will enrich your concept with styles, lighting, camera settings, and aesthetic tags.",
+    q: "What is PromptOps and how does Promhance help?",
+    a: "PromptOps refers to the professional lifecycle management and optimization of AI prompts. Promhance acts as your first layer of PromptOps by ensuring every prompt is structurally sound, contextual, and formatted for maximum AI comprehension.",
   },
 ];
 
@@ -236,6 +236,24 @@ export default function Home() {
 
         </div>
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": FAQS.map((faq) => ({
+              "@type": "Question",
+              "name": faq.q,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.a
+              }
+            }))
+          })
+        }}
+      />
 
       <Footer />
     </main>
