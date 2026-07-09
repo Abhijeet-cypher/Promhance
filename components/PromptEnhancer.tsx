@@ -32,6 +32,12 @@ function estimateTokens(text: string) {
   return Math.round(text.trim().split(/\s+/).filter(Boolean).length * 1.33);
 }
 
+const trackEvent = (eventName: string, eventParams?: Record<string, any>) => {
+  if (typeof window !== "undefined" && (window as any).gtag) {
+    (window as any).gtag("event", eventName, eventParams);
+  }
+};
+
 export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { defaultMode?: string }) {
   const [input, setInput]               = useState("");
   const [output, setOutput]             = useState("");
@@ -42,6 +48,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   const [isCopied, setIsCopied]         = useState(false);
   const [placeholderIdx, setPlaceholderIdx] = useState(0);
   const [isRegenerating, setIsRegenerating] = useState(false);
+  const [hasTrackedInput, setHasTrackedInput] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -64,14 +71,28 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
         el.remove();
       }
       setIsCopied(true);
+      trackEvent("copy_prompt", {
+        mode,
+        intensity,
+        output_length: output.length,
+        output_words: output.trim().split(/\s+/).filter(Boolean).length,
+      });
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error("Copy failed:", err);
     }
-  }, [output]);
+  }, [output, mode, intensity]);
 
   const enhancePrompt = useCallback(async (regen = false) => {
     if (!input.trim()) return;
+    
+    trackEvent("enhance_prompt", {
+      mode,
+      intensity,
+      prompt_length: input.length,
+      is_retry: regen,
+    });
+    
     if (regen) setIsRegenerating(true);
     setLoading(true);
     setOutput("");
@@ -97,6 +118,15 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
     }
   }, [enhancePrompt]);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    setInput(val);
+    if (!hasTrackedInput && val.length > 0) {
+      trackEvent("input_started", { mode, intensity });
+      setHasTrackedInput(true);
+    }
+  };
+
   const wordCount  = output.trim() ? output.trim().split(/\s+/).filter(Boolean).length : 0;
   const tokenEst   = estimateTokens(output);
   const charsLeft  = MAX_CHARS - input.length;
@@ -121,7 +151,10 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                 return (
                   <button
                     key={id}
-                    onClick={() => setMode(id)}
+                    onClick={() => {
+                      setMode(id);
+                      trackEvent("mode_selected", { mode: id });
+                    }}
                     className={`group relative overflow-hidden text-left px-3 py-2.5 rounded-xl border transition-all duration-200 ${
                       active
                         ? "bg-blue-500/10 border-blue-500/40 shadow-[0_0_14px_rgba(59,130,246,0.1)]"
@@ -163,7 +196,10 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                 return (
                   <button
                     key={id}
-                    onClick={() => setIntensity(id)}
+                    onClick={() => {
+                      setIntensity(id);
+                      trackEvent("intensity_selected", { intensity: id });
+                    }}
                     className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200 ${
                       active
                         ? "bg-blue-500/15 text-blue-300 shadow-[inset_0_1px_0_rgba(59,130,246,0.2)]"
@@ -193,7 +229,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                 className="w-full h-full bg-[#0a0a0a] border border-[#2a2a2a] text-[#f5f5f5] rounded-xl p-4 pb-8 focus:outline-none focus:ring-1 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all placeholder:text-[#3a3a3a] resize-none font-sans text-sm leading-relaxed"
                 placeholder={PLACEHOLDERS[placeholderIdx]}
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 maxLength={MAX_CHARS + 100}
                 spellCheck
