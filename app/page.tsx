@@ -1,167 +1,259 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
 import Footer from "@/components/Footer";
-import { Brain, Palette, Code, PenTool, Megaphone, Clapperboard } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
+import { Brain, Palette, Code, PenTool, Megaphone, Clapperboard, Zap, Target, Unlock } from "lucide-react";
+
+/* ─── Reusable section header ─── */
+function SectionHeader({
+  overline, heading, sub
+}: { overline: string; heading: string; sub: string }) {
+  return (
+    <div className="text-center mb-12 sm:mb-16">
+      <span className="inline-block text-xs font-semibold tracking-[0.18em] uppercase text-blue-400 mb-3">
+        {overline}
+      </span>
+      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
+        {heading}
+      </h2>
+      <p className="text-[#a1a1a1] max-w-xl mx-auto text-base leading-relaxed">
+        {sub}
+      </p>
+    </div>
+  );
+}
+
+const USE_CASES = [
+  { icon: Brain,       label: "ChatGPT" },
+  { icon: Palette,     label: "Image Generation" },
+  { icon: Code,        label: "Coding" },
+  { icon: PenTool,     label: "Blog Writing" },
+  { icon: Megaphone,   label: "Marketing" },
+  { icon: Clapperboard,label: "Content Creation" },
+];
+
+const FEATURES = [
+  {
+    icon: Zap,
+    title: "10× Faster PromptOps",
+    desc: "Stop spending minutes crafting the perfect prompt. Type a rough idea and get a production-ready prompt optimized for any AI.",
+  },
+  {
+    icon: Target,
+    title: "Data-Driven Prompting",
+    desc: "Structured prompts with context, constraints, and formatting instructions consistently produce higher quality, predictable responses.",
+  },
+  {
+    icon: Unlock,
+    title: "The Ultimate Prompt Enhancer",
+    desc: "No accounts, no paywalls, no rate limits. Start enhancing your prompts using professional prompt engineering frameworks right away.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "What is an AI Prompt Enhancer?",
+    a: "An AI Prompt Enhancer is a tool that takes a simple idea and restructures it into a highly detailed, optimized prompt. Promhance uses proven prompt engineering frameworks to improve the quality of AI outputs automatically.",
+  },
+  {
+    q: "Which AI models work with Promhance?",
+    a: "Promhance generates prompts optimized for ChatGPT, Claude, Gemini, Midjourney, and most modern LLMs. It is designed to be the ultimate PromptOps tool for any AI workflow.",
+  },
+  {
+    q: "Is Promhance completely free to use?",
+    a: "Yes, Promhance is a 100% free prompt generator. There are no credit cards, accounts, or paywalls required to start generating production-ready prompts.",
+  },
+  {
+    q: "What is PromptOps and how does Promhance help?",
+    a: "PromptOps refers to the professional lifecycle management and optimization of AI prompts. Promhance acts as your first layer of PromptOps by ensuring every prompt is structurally sound, contextual, and formatted for maximum AI comprehension.",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-zinc-950 text-zinc-50 selection:bg-purple-500/30 pt-24">
-      {/* Background decorations - Increased depth and presence */}
-      <div className="fixed top-[-20%] left-[-10%] w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-purple-600/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="fixed bottom-[-20%] right-[-10%] w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-indigo-600/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="fixed top-[20%] right-[20%] w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
+    <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] selection:bg-blue-500/20 pt-24">
 
-      {/* Enhanced Grid pattern overlay */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      {/* Subtle monochrome grid */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col items-center flex-grow mb-12">
-        {/* Logo/Header area */}
-        <div className="mb-4 sm:mb-8 text-center space-y-3 pt-12 sm:pt-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            <span className="text-zinc-100 dark:text-white">
-              Prom
-            </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 animate-gradient-x">
-              hance
-            </span>
-          </h1>
+      <div className="relative z-10 w-full flex flex-col items-center flex-grow">
 
-          <p className="max-w-xl mx-auto text-sm sm:text-base text-zinc-400 leading-relaxed">
-            Elevate your raw ideas into masterfully engineered prompts. Harness the power of AI to unlock maximum potential from your language models.
-          </p>
+        {/* ── Hero ── */}
+        <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10">
+          <div className="mb-6 sm:mb-10 text-center space-y-4 pt-12 sm:pt-16">
+            <h1
+              className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight"
+              style={{ animationDelay: "0ms" }}
+            >
+              <span className="text-white">Prom</span>
+              <span className="text-blue-400">hance</span>
+            </h1>
+            <p
+              className="animate-fade-in-up max-w-lg mx-auto text-base sm:text-lg text-[#a1a1a1] leading-relaxed"
+              style={{ animationDelay: "140ms" }}
+            >
+              Transform rough ideas into masterfully engineered AI prompts — in seconds.
+            </p>
+          </div>
+
+          {/* ── Enhancer Tool ── */}
+          <div
+            className="animate-fade-in-up pb-4"
+            style={{ animationDelay: "280ms" }}
+          >
+            <PromptEnhancer />
+          </div>
         </div>
 
-        {/* Enhancer Component */}
-        <div className="w-full pb-8">
-          <PromptEnhancer />
-        </div>
+        {/* ── Below-fold sections ── */}
+        <div className="w-full max-w-5xl mx-auto px-6 sm:px-10">
 
-        {/* SEO Sections */}
-        <div className="w-[90%] max-w-[1400px] mx-auto mt-16 space-y-24">
-          
-          {/* How It Works Section */}
-          <section className="space-y-8 relative">
-            <div className="absolute -inset-x-4 -inset-y-4 rounded-3xl bg-zinc-900/30 border border-zinc-800/50 backdrop-blur-sm -z-10" />
-            <div className="text-center space-y-4 pt-4">
-              <h2 className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400">
-                How Promhance Works
-              </h2>
-              <p className="text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base">
-                Transform your raw ideas into masterfully engineered prompts in three simple steps.
-              </p>
-            </div>
-            
-            <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 pb-4">
-              <div className="relative p-6 rounded-2xl bg-zinc-950/80 border border-purple-500/20 shadow-lg shadow-purple-500/5 group hover:border-purple-500/40 transition-colors">
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300 font-bold backdrop-blur-md">1</div>
-                <h3 className="text-lg font-semibold text-zinc-200 mb-2">Enter Your Idea</h3>
-                <p className="text-sm text-zinc-400">Write a simple sentence or rough prompt describing what you want to generate.</p>
-              </div>
-              <div className="relative p-6 rounded-2xl bg-zinc-950/80 border border-purple-500/20 shadow-lg shadow-purple-500/5 group hover:border-purple-500/40 transition-colors">
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-300 font-bold backdrop-blur-md">2</div>
-                <h3 className="text-lg font-semibold text-zinc-200 mb-2">Enhance the Prompt</h3>
-                <p className="text-sm text-zinc-400">Promhance acts as an AI prompt generator, restructuring and expanding it into a detailed prompt.</p>
-              </div>
-              <div className="relative p-6 rounded-2xl bg-zinc-950/80 border border-purple-500/20 shadow-lg shadow-purple-500/5 group hover:border-purple-500/40 transition-colors">
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-300 font-bold backdrop-blur-md">3</div>
-                <h3 className="text-lg font-semibold text-zinc-200 mb-2">Use With AI Tools</h3>
-                <p className="text-sm text-zinc-400">Copy the optimized prompt and use it in ChatGPT, Claude, image generators, or coding assistants.</p>
-              </div>
-            </div>
-          </section>
+          {/* ═══ How It Works ═══ */}
+          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+            <ScrollReveal>
+              <SectionHeader
+                overline="How It Works"
+                heading="Three steps to better AI results"
+                sub="You don't need to be a prompt engineer. Give us a rough idea and we'll take it from there."
+              />
+            </ScrollReveal>
 
-          {/* Use Cases Grid */}
-          <section className="space-y-8">
-            <div className="text-center space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100">
-                Use Promhance For
-              </h2>
-              <p className="text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base">
-                Our prompt optimizer is perfect for a wide variety of AI tasks, helping you achieve better results faster.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid sm:grid-cols-3 gap-5 sm:gap-6 relative">
+              {/* Connector line on desktop */}
+              <div className="hidden sm:block absolute top-9 left-[calc(33.33%+12px)] right-[calc(33.33%+12px)] h-px bg-gradient-to-r from-blue-500/20 via-blue-500/40 to-blue-500/20 -z-10" />
+
               {[
-                { icon: <Brain className="w-8 h-8 sm:w-10 sm:h-10 text-pink-400" strokeWidth={1.5} />, text: "ChatGPT prompts" },
-                { icon: <Palette className="w-8 h-8 sm:w-10 sm:h-10 text-orange-400" strokeWidth={1.5} />, text: "Image generation prompts" },
-                { icon: <Code className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400" strokeWidth={1.5} />, text: "Coding prompts" },
-                { icon: <PenTool className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-400" strokeWidth={1.5} />, text: "Blog writing prompts" },
-                { icon: <Megaphone className="w-8 h-8 sm:w-10 sm:h-10 text-rose-400" strokeWidth={1.5} />, text: "Marketing prompts" },
-                { icon: <Clapperboard className="w-8 h-8 sm:w-10 sm:h-10 text-indigo-400" strokeWidth={1.5} />, text: "Content creation prompts" }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 hover:bg-zinc-800/60 transition-colors gap-3 text-center group">
-                  <div className="mb-1 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">{item.icon}</div>
-                  <span className="text-sm sm:text-base font-medium text-zinc-300">{item.text}</span>
-                </div>
+                { n: "01", title: "Enter Your Idea", desc: "Write a simple sentence or rough prompt describing what you want the AI to generate." },
+                { n: "02", title: "Enhance the Prompt", desc: "Promhance restructures and expands your idea into a precise, structured prompt with clear instructions." },
+                { n: "03", title: "Use With Any AI", desc: "Copy and paste the optimized prompt into ChatGPT, Claude, Midjourney, or any other AI tool you use." },
+              ].map((step, i) => (
+                <ScrollReveal key={step.n} delay={i * 120}>
+                  <div className="relative p-7 rounded-2xl bg-[#111111] border border-[#2a2a2a] group hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-all duration-300 overflow-hidden">
+                    {/* Large watermark number */}
+                    <span className="absolute -bottom-2 right-4 text-7xl font-black text-white/[0.03] select-none leading-none pointer-events-none">
+                      {step.n}
+                    </span>
+                    {/* Step badge */}
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center mb-5">
+                      <span className="text-blue-400 font-bold text-xs tracking-wider">{step.n}</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2.5 tracking-tight">{step.title}</h3>
+                    <p className="text-base text-[#a1a1a1] leading-relaxed">{step.desc}</p>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </section>
 
-          {/* Why Promhance */}
-          <section className="pt-12 pb-8 border-t border-zinc-800/50">
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-8 text-center">Why Developers Choose Promhance</h2>
-            <div className="grid sm:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 space-y-3">
-                <div className="text-3xl">⚡</div>
-                <h3 className="text-lg font-semibold text-zinc-100">10x Faster Prompts</h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">
-                  Stop spending minutes crafting the perfect prompt. Type a rough idea and get a production-ready prompt in seconds.
-                </p>
-              </div>
-              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 space-y-3">
-                <div className="text-3xl">🎯</div>
-                <h3 className="text-lg font-semibold text-zinc-100">Better AI Outputs</h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">
-                  Structured prompts with context, constraints, and formatting instructions consistently produce higher quality responses from any model.
-                </p>
-              </div>
-              <div className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 space-y-3">
-                <div className="text-3xl">🔓</div>
-                <h3 className="text-lg font-semibold text-zinc-100">100% Free, No Signup</h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">
-                  No accounts, no paywalls, no rate limits. Just open Promhance and start enhancing your prompts immediately.
-                </p>
-              </div>
+          {/* ═══ Use Cases ═══ */}
+          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+            <ScrollReveal>
+              <SectionHeader
+                overline="Use Cases"
+                heading="One tool, every AI workflow"
+                sub="From text to images, code to marketing — Promhance enhances prompts for every major AI category."
+              />
+            </ScrollReveal>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+              {USE_CASES.map(({ icon: Icon, label }, i) => (
+                <ScrollReveal key={label} delay={i * 60}>
+                  <div className="group flex flex-col items-center justify-center gap-4 py-8 px-4 rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:bg-[#141414] hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 text-center cursor-default">
+                    <div className="w-12 h-12 rounded-xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center group-hover:bg-blue-500/10 group-hover:border-blue-500/25 transition-all duration-300">
+                      <Icon
+                        className="w-5 h-5 text-[#525252] group-hover:text-blue-400 transition-colors duration-300"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                    <span className="text-sm font-medium text-[#a1a1a1] group-hover:text-white transition-colors leading-tight">
+                      {label}
+                    </span>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
           </section>
 
-          {/* FAQ Section */}
-          <section className="space-y-8 pt-8 pb-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100">
-                Frequently Asked Questions
-              </h2>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="group rounded-2xl bg-zinc-900/40 border border-zinc-800/60 p-5 sm:p-6 hover:border-zinc-700 transition-colors">
-                <h3 className="text-base sm:text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                  <span className="text-purple-400 font-bold">Q:</span> Is Promhance free to use?
-                </h3>
-                <p className="text-zinc-400 text-sm sm:text-base pl-6">
-                  <span className="text-indigo-400 font-bold hidden sm:inline-block mr-2">A:</span> Yes, Promhance is currently free to use to improve AI prompts.
-                </p>
-              </div>
-              <div className="group rounded-2xl bg-zinc-900/40 border border-zinc-800/60 p-5 sm:p-6 hover:border-zinc-700 transition-colors">
-                <h3 className="text-base sm:text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                  <span className="text-purple-400 font-bold">Q:</span> Which AI models work with Promhance prompts?
-                </h3>
-                <p className="text-zinc-400 text-sm sm:text-base pl-6">
-                  <span className="text-indigo-400 font-bold hidden sm:inline-block mr-2">A:</span> Promhance prompts work with ChatGPT, Claude, Gemini, Midjourney, and most modern AI tools. It is the ultimate prompt generator for ChatGPT and beyond.
-                </p>
-              </div>
-              <div className="group rounded-2xl bg-zinc-900/40 border border-zinc-800/60 p-5 sm:p-6 hover:border-zinc-700 transition-colors">
-                <h3 className="text-base sm:text-lg font-semibold text-zinc-200 mb-2 flex items-center gap-2">
-                  <span className="text-purple-400 font-bold">Q:</span> Do I need prompt engineering knowledge?
-                </h3>
-                <p className="text-zinc-400 text-sm sm:text-base pl-6">
-                  <span className="text-indigo-400 font-bold hidden sm:inline-block mr-2">A:</span> No. As a comprehensive prompt engineering tool, Promhance automatically structures your ideas into highly effective prompts without requiring any prior knowledge.
-                </p>
-              </div>
+          {/* ═══ Why Promhance ═══ */}
+          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+            <ScrollReveal>
+              <SectionHeader
+                overline="Why Promhance"
+                heading="Built for people who use AI every day"
+                sub="Promhance removes the trial-and-error from prompt writing so you can focus on what matters."
+              />
+            </ScrollReveal>
+
+            <div className="grid sm:grid-cols-3 gap-5 sm:gap-6">
+              {FEATURES.map(({ icon: Icon, title, desc }, i) => (
+                <ScrollReveal key={title} delay={i * 120}>
+                  <div className="p-7 sm:p-8 rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 h-full space-y-5 group">
+                    <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/15 transition-colors duration-300">
+                      <Icon className="w-5 h-5 text-blue-400" strokeWidth={1.5} />
+                    </div>
+                    <div className="space-y-2.5">
+                      <h3 className="text-lg font-semibold text-white tracking-tight">{title}</h3>
+                      <p className="text-base text-[#a1a1a1] leading-relaxed">{desc}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
           </section>
+
+          {/* ═══ FAQ ═══ */}
+          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+            <ScrollReveal>
+              <SectionHeader
+                overline="FAQ"
+                heading="Frequently asked questions"
+                sub="Everything you need to know about Promhance."
+              />
+            </ScrollReveal>
+
+            <div className="space-y-3 max-w-3xl mx-auto">
+              {FAQS.map((faq, i) => (
+                <ScrollReveal key={i} delay={i * 80}>
+                  <div className="rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:border-[#2f2f2f] hover:bg-[#131313] transition-all duration-200 p-6 sm:p-7">
+                    <div className="flex gap-4">
+                      {/* Q badge */}
+                      <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mt-0.5">
+                        <span className="text-[11px] font-bold text-blue-400 leading-none">Q</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-semibold text-white mb-3 leading-snug">
+                          {faq.q}
+                        </h3>
+                        <p className="text-base text-[#a1a1a1] leading-relaxed">
+                          {faq.a}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </section>
+
         </div>
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": FAQS.map((faq) => ({
+              "@type": "Question",
+              "name": faq.q,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.a
+              }
+            }))
+          })
+        }}
+      />
 
       <Footer />
     </main>

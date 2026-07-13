@@ -1,0 +1,1444 @@
+════════════════════════════════════════════════════════════════════════════════
+        VIRAL PROMPTS COLLECTION — PROMHANCE MASTER FILE
+        Compiled: June 2026 | Heavy Research Edition
+        Covers: Image • Video • Music • Text • Reels • Shorts & More
+        Platforms: Instagram, TikTok, YouTube, Pinterest, X/Twitter,
+                   Reddit, LinkedIn, Facebook, Midjourney, Stable Diffusion,
+                   Sora, Runway, Pika, Suno, Udio, ChatGPT & More
+════════════════════════════════════════════════════════════════════════════════
+
+📌 HOW TO READ THIS FILE:
+  ⚡ [CURRENT 2025–2026] = Actively trending right now
+  🔥 [PEAK 2024–2025]   = Was massively viral, still works
+  📅 [CLASSIC 2022–2023] = Classic trend, evergreen utility
+  🎯 TYPE: IMAGE / VIDEO / MUSIC / TEXT / REEL / SCRIPT
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 1 — INSTAGRAM (IMAGE & REEL PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — INSTAGRAM IMAGE PROMPTS
+
+1. Aesthetic portrait of a girl in golden hour sunlight, soft glow on face, wind blowing hair, natural skin texture, DSLR quality, warm tones, ultra realistic
+   TYPE: IMAGE | Style: Golden Hour Portrait
+
+2. Urban street at night, subject walking, harsh flash lighting, deep shadows, paparazzi style, motion blur, Instagram flash effect, cinematic realism, cool tones
+   TYPE: IMAGE | Style: Flash Filter / Y2K Night
+
+3. Mirror selfie, phone flash visible, reflective glare, bathroom setting, soft messy background, flash filter Instagram style, sharp contrast, influencer vibe
+   TYPE: IMAGE | Style: Flash Filter Selfie
+
+4. Crowded nightclub, colorful lights, strong flash overpowering ambient lighting, sweaty glow skin, flash filter effect, chaotic candid energy, high ISO grain
+   TYPE: IMAGE | Style: Party Flash
+
+5. Young woman at night party, direct camera flash, overexposed highlights, shiny skin, dark background, candid pose, 2000s Instagram flash filter effect, high contrast, grainy texture
+   TYPE: IMAGE | Style: 2000s Flash
+
+6. Close-up portrait of a boy with soft lighting, blurred background, bokeh effect, sharp facial features, minimal aesthetic, Instagram trending style
+   TYPE: IMAGE | Style: Minimal Bokeh Portrait
+
+7. Dark aesthetic portrait of a man wearing a black hoodie, half face covered in shadows, low light photography, high contrast, cinematic mood, ultra realistic
+   TYPE: IMAGE | Style: Dark Aesthetic
+
+8. Moody image of a girl sitting by a window in a dim room, soft natural light entering, emotional vibe, muted colors, film grain effect
+   TYPE: IMAGE | Style: Window Light Moody
+
+9. Ultra-realistic 8K portrait of a young creator with natural sunlight glow, cinematic shadows, soft texture, and vivid background, keeping the original face identity
+   TYPE: IMAGE | Style: Creator Portrait 8K
+
+10. Hyper-realistic neo-noir portrait of a person in the driver's seat of a car at night. Deep blue and magenta neon lighting illuminates the interior. Rain streaks across the car window. High contrast, cinematic photography. Subtle text: "IN THE NIGHT" in elegant sans-serif. 9:16 vertical format
+    TYPE: IMAGE | Style: Night Noir / Cinema
+
+11. A warm, moody scrapbook-style portrait collage with multiple overlapping printed portrait photos — front view, side profile, extreme eye close-up. Add torn paper, masking tape, vintage floral stickers, aged notebook scraps, retro music-card detail. Amber low light, flash-photo look, deep shadows, subtle grain, brown-orange vintage color grading, intimate indie Tumblr/Pinterest moodboard aesthetic
+    TYPE: IMAGE | Style: Scrapbook Collage
+
+12. Vintage magazine collage, retro fashion model, sepia tones mixed with muted colors, torn paper edges, analog textures, classic editorial layout, soft grain, nostalgic lighting, layered composition, ultra detailed
+    TYPE: IMAGE | Style: Vintage Editorial Collage
+
+13. Transform the uploaded portrait into a high-contrast Instagram flash photo with direct camera flash, glossy skin highlights, deep background shadows, natural facial details, and a trendy night-out aesthetic
+    TYPE: IMAGE | Style: Flash Edit
+
+14. Korean aesthetic portrait — soft skin, light pastel tones, clean white background, dewy glow, high-fashion pose, editorial lighting, beauty magazine style
+    TYPE: IMAGE | Style: Korean Beauty Aesthetic
+
+15. Soft glow portrait with golden hour haze, windswept hair, warm summer colors, natural beauty, VSCO filter look, film grain, slightly overexposed
+    TYPE: IMAGE | Style: Soft Glow / VSCO
+
+16. Y2K dreamcore portrait — dreamy early 2000s aesthetic, sitting on shiny pink satin bedding, holding a clear pink corded phone, neon "Angel" sign glowing, vaporwave palette, grainy 90s aesthetic
+    TYPE: IMAGE | Style: Y2K Dreamcore
+
+17. Clean girl aesthetic portrait — no-makeup makeup, natural skin, dewy glow, neutral tones, minimalist fashion, white background, high resolution
+    TYPE: IMAGE | Style: Clean Girl
+
+18. Old money fashion editorial — young woman in silk blouse, pearl jewelry, outdoor manor setting, warm autumn light, timeless luxury aesthetic, film photography
+    TYPE: IMAGE | Style: Old Money / Quiet Luxury
+
+19. Cinematic street portrait — man in trench coat, foggy city at night, bokeh streetlights, moody rain-slick streets, analog film, editorial look
+    TYPE: IMAGE | Style: Cinematic Street
+
+20. Neon night portrait — neon lights reflecting on wet skin, pink and blue color palette, strong shadows, 3AM city energy, editorial portrait
+    TYPE: IMAGE | Style: Neon Night Glow
+
+21. Professional DSLR outdoor portrait — woman in floral dress, sunlit garden, soft bokeh background, lifestyle photography, warm natural tones
+    TYPE: IMAGE | Style: Outdoor Lifestyle
+
+22. Moody cafe aesthetic — person reading a book at a rainy window, steaming coffee, warm amber lamplight, cozy vintage atmosphere, golden tones
+    TYPE: IMAGE | Style: Cafe / Dark Academia
+
+23. Fashion editorial — model against brutalist concrete wall, dramatic harsh shadows, monochrome palette, avant-garde posing, high contrast
+    TYPE: IMAGE | Style: Editorial Contrast
+
+24. Cyberpunk city night — neon signs in Japanese and English reflecting on wet pavement, dense fog, atmospheric elements with light rain, Blade Runner-inspired mood, 9:16 vertical
+    TYPE: IMAGE | Style: Cyberpunk / Neon
+
+25. Create a split vertical composition showing contrasting versions of the same person. Left side: casual everyday look, natural lighting. Right side: elevated transformation, formal attire, cinematic lighting, upscale setting. Clean vertical split down center. 1:1 ratio
+    TYPE: IMAGE | Style: Transformation Split
+
+26. Transform into a Studio Ghibli-style watercolor illustration. Soft pastel colors, hand-drawn quality, gentle expression. Background shows a sun-drenched countryside with a small wooden house and tall grass bending in the wind. Miyazaki film aesthetic. 4:5 ratio
+    TYPE: IMAGE | Style: Studio Ghibli
+
+27. Transform the person into a limited-edition action figure in a sealed blister pack with molded plastic accessories. Colorful branded backing card with name in bold retro typography. Dramatic studio lighting. Product photography style. 1:1 ratio
+    TYPE: IMAGE | Style: Action Figure Blister Pack
+
+28. Aesthetic portrait — young woman in pastel sundress, sitting in a dreamy flower field, fairy lights in background, soft bokeh, golden hour, ethereal vibe
+    TYPE: IMAGE | Style: Dreamy Field
+
+29. 4-panel Andy Warhol-style pop art portrait. Each panel uses a different bold color combination: cyan/magenta, yellow/blue, pink/green, orange/purple. Screen-printed texture, halftone dot overlay, high contrast
+    TYPE: IMAGE | Style: Pop Art / Warhol
+
+30. Romance novel hardcover book cover featuring a person with dramatic lighting, styled for the genre. Include a title at the top in elegant serif font and an author name at the bottom. High-quality publishing illustration style
+    TYPE: IMAGE | Style: Book Cover
+
+31. Disposable camera flash photo — candid 1995 house party, overexposed flash, friends laughing, slightly blurry, grainy film stock, authentic nostalgic feel
+    TYPE: IMAGE | Style: Disposable Cam / Retro
+
+32. Classical oil painting portrait with visible brush strokes and canvas texture. Rich layered colors, Rembrandt strong directional light creating deep shadows and warm highlights
+    TYPE: IMAGE | Style: Oil Painting Classic
+
+33. Instagram reel cover — woman in editorial high-fashion look, dramatic studio lighting, muted tones, editorial magazine vibe, vertical 9:16
+    TYPE: IMAGE | Style: Reel Cover Editorial
+
+34. Claymation figurine — cute 3D claymation character with exaggerated round features, plasticine texture, fingerprint details in clay. Soft studio lighting, tilt-shift photography effect, 8k resolution, macro lens focus. High-quality collectible toy from a stop-motion movie aesthetic
+    TYPE: IMAGE | Style: Claymation / 3D Art
+
+35. Chibi-style figurine portrait — person in small cute cartoon form, oversized head, sparkling eyes, pastel colors, collectible toy aesthetic, glassy finish
+    TYPE: IMAGE | Style: Chibi Figurine
+
+36. Dramatic indie movie poster using a portrait. Cinematic shadows, subtle film grain, elegant title typography, critic-style quotes, moody color grade inspired by A24 films
+    TYPE: IMAGE | Style: A24 Movie Poster
+
+37. Turn this image into a handmade scrapbook page with torn notebook edges, handwritten notes, tape pieces, coffee stains, faded magazine cutouts, and soft pastel textures
+    TYPE: IMAGE | Style: Scrapbook Page
+
+38. Hyper-realistic 3D action figurine in retail packaging — displayed in clear plastic blister pack with cardboard backing. Include tiny accessories. Toy photography style, dramatic product lighting, authentic Mattel/Hasbro aesthetic
+    TYPE: IMAGE | Style: 3D Toy Packaging
+
+39. High-angle wide-shot selfie reimagined in Studio Ghibli animation style. Soft watercolor textures, lush green summer background with rolling hills, large expressive eyes, warm nostalgic lighting
+    TYPE: IMAGE | Style: Ghibli Wide-Shot
+
+40. Regal historical scene — person as a 17th-century royal on a white horse riding through vineyards. Epic golden hour realism, baroque detail. Cinematic poster quality
+    TYPE: IMAGE | Style: Historical Regal
+
+41. Turn this photo into a late-1990s disposable camera memory. Slight motion blur, warm color cast, film grain, imperfect focus, authentic grain from expired Kodak film
+    TYPE: IMAGE | Style: 90s Kodak Memory
+
+42. Urban graffiti aesthetic — young model against graffiti wall, ripped posters, bold typography layers, vibrant colors, harsh editorial lighting, dynamic composition, high contrast shadows, gritty aesthetic
+    TYPE: IMAGE | Style: Urban Street Art
+
+43. Neon cyberpunk portrait — person in futuristic coat with glowing tattoos on arms, rain-soaked city night, reflections in puddles, flying drones overhead, high detail, moody lighting
+    TYPE: IMAGE | Style: Cyberpunk Portrait
+
+44. Lo-fi realism portrait — soft grain, natural imperfection, casual candid moment, warm overcast light, feels like a phone photo taken by someone who lived the moment
+    TYPE: IMAGE | Style: Lo-Fi Realism
+
+45. Cottage core aesthetic — woman in flowy linen dress picking wildflowers in a sun-dappled meadow, natural textures, soft golden light, watercolor feel, peaceful rural setting
+    TYPE: IMAGE | Style: Cottagecore
+
+46. GTA loading screen art style portrait — vector illustration, cel-shaded with bold black outlines, high contrast shadows, vibrant saturated colors, stylish streetwear, Miami sunset with palm trees background
+    TYPE: IMAGE | Style: GTA V Art Style
+
+47. Dark academia portrait — lone student in wool coat reading at mahogany desk in gothic library at night, candelabras casting warm light, towering oak bookshelves, dramatic shadows, oil painting style, deep jewel tones
+    TYPE: IMAGE | Style: Dark Academia
+
+48. Minimalist line art portrait — clean lines, simple shapes, one or two colors, modern and elegant, perfect for profile pictures and story highlights
+    TYPE: IMAGE | Style: Minimalist Line Art
+
+49. Anime portrait in Makoto Shinkai style — dramatic sky with clouds, cinematic light shafts, emotional close-up, soft color grading, romantic atmosphere
+    TYPE: IMAGE | Style: Shinkai Anime
+
+50. Soft anime illustration — girl sipping tea by a windowsill with pastel skies outside, oversized sweater, fluffy cat on her lap, fairy lights, pale pinks and soft blues, gentle glow
+    TYPE: IMAGE | Style: Soft Anime Cozy
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INSTAGRAM — REEL / VIDEO PROMPTS (Script Ideas)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+51. Before/after transformation reel — extreme close-up starts on skin detail, snaps to full glam look. Fast jump cut, trending audio, 7-second hook, voiceover: "This one trick changed everything"
+    TYPE: REEL SCRIPT
+
+52. Viral Instagram Reel script: hooks, call-to-action, 3 emojis, trending audio suggestion, 30-second format, lifestyle niche
+    TYPE: REEL SCRIPT
+
+53. GRWM (Get Ready With Me) Reel — morning routine, soft music, quick cuts, golden light window scene, aesthetic product placements, lofi background music
+    TYPE: REEL CONCEPT
+
+54. POV Reel script — "POV: You just landed your dream job" — cinematic B-roll cuts, upbeat instrumental, end with reaction
+    TYPE: REEL SCRIPT
+
+55. Day in my life Reel — 60 seconds, sunrise to sunset montage, trending audio, minimal text overlays, cinematic color grading
+    TYPE: REEL CONCEPT
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 2 — TIKTOK (VIDEO & IMAGE PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — TIKTOK VIDEO / SCRIPT PROMPTS
+
+56. Write a 45-second TikTok script explaining why [current trend or viral topic] is actually happening, going deeper than the surface-level version most people know. Open by acknowledging that viewers have probably seen or heard about the trend already in 5 seconds. Spend 30 seconds on the real underlying reasons most people don't know. End with a prediction or implication about what happens next. Tone: analytical and informed
+    TYPE: SCRIPT
+
+57. Write a TikTok hook for a video about [topic] that opens with: "Before you scroll — this [topic] trick changed everything for me." Keep it under 7 words. Make it conversational
+    TYPE: HOOK
+
+58. Create a 30-second TikTok script using the "99% of people don't know this" hook about [topic]. Fast delivery, short sentences, one insight per 5 seconds
+    TYPE: SCRIPT
+
+59. Write a viral TikTok storytime script — first-person, emotional, relatable, starts with chaos, ends with lesson learned. Hook: "I was shaking when this happened"
+    TYPE: STORYTIME SCRIPT
+
+60. POV TikTok script: "POV you're [relatable scenario]" — 15 seconds, set the scene, add trending audio suggestion, end on twist or punchline
+    TYPE: POV SCRIPT
+
+61. Messy bedroom transforms into clean aesthetic space — describe as a video prompt: smooth snap transitions, camera tracking before-and-after, bright natural light, satisfying visual rhythm
+    TYPE: AI VIDEO PROMPT
+
+62. TikTok dance challenge video prompt — recreate hottest TikTok choreography, group of friends, outdoor summer setting, sunlight, energy, wide shot then close-up on moves
+    TYPE: AI VIDEO PROMPT
+
+63. "Watch what happens by the end" TikTok hook — suspense-based format, tease an outcome at 3 seconds, deliver at 28 seconds, voiceover over B-roll footage
+    TYPE: HOOK / FORMAT
+
+64. Viral "This AI voice saved me hours" TikTok — screen recording style, before/after workflow, fast editing, add AI-generated narration, trending tech audio
+    TYPE: CONCEPT / SCRIPT
+
+65. Write a 60-second TikTok script for a [niche] channel that opens with a bold claim, supports it with three fast facts under 5 seconds each, and ends with a call to comment. Tone: confident, quick, no fluff
+    TYPE: SCRIPT
+
+66. Illusion TikTok video prompt — objects vanishing mid-frame, gravity-defying stunt, impossible transformation, magic-reveal style, quick cuts timed to bass drops
+    TYPE: AI VIDEO PROMPT
+
+67. Pet content TikTok — golden retriever runs obstacle course, wide shot to close-up reactions, enthusiastic doggo energy, playful music, vertical 9:16 format
+    TYPE: AI VIDEO PROMPT
+
+68. Baby dance challenge video — baby doing iconic TikTok dance in living room, slow-motion close-ups of tiny feet, parents laughing background, adorable music
+    TYPE: AI VIDEO PROMPT
+
+69. ASMR TikTok cooking video — top-down overhead shot, hands slicing colorful vegetables, satisfying cutting sounds, no voiceover, soft ambient kitchen background noise
+    TYPE: AI VIDEO / ASMR CONCEPT
+
+70. TikTok green screen script — creator reacts to viral news, face in corner, background displays relevant images, energetic delivery, 20 seconds, punchy ending
+    TYPE: SCRIPT
+
+71. "I tried [viral trend] for 7 days" TikTok format — Day 1 through Day 7 in 60 seconds, before/after reveal at end, music builds to climax
+    TYPE: FORMAT / SCRIPT
+
+72. TikTok "this or that" poll reel — show two aesthetic choices side by side, ask audience in caption, trending audio underneath, 10 seconds per choice
+    TYPE: CONCEPT
+
+73. TikTok true crime format — soft background music, whispering narration, photos/graphics overlay, dramatic pauses, hook: "You won't believe what happened next"
+    TYPE: SCRIPT / FORMAT
+
+74. TikTok product reveal — pack-and-ship style, hands wrapping item, satisfying tape sounds, label printing, box sealing, final product display — no talking
+    TYPE: CONCEPT / AI VIDEO
+
+75. "Things no one tells you about [topic]" TikTok — 5 facts, fast list format, each point 5 seconds, bold text on screen, trending background track
+    TYPE: SCRIPT / FORMAT
+
+76. Mindblowing science fact TikTok — 30 seconds, visual B-roll illustrating each fact, spoken fast, hook: "This fact broke my brain"
+    TYPE: SCRIPT
+
+77. Couple content TikTok — cinematic date-night montage, golden light, hand-holding shots, sunset b-roll, romantic instrumental, transitions timed to beat
+    TYPE: AI VIDEO / CONCEPT
+
+78. Fitness transformation TikTok — side-by-side before/after, workout clips, motivational voiceover, bass-heavy energetic music, 45 seconds
+    TYPE: CONCEPT / SCRIPT
+
+79. AI-generated "fake memory" TikTok — disposable camera filter over AI video, warm grain, nostalgic audio, feels like a lost summer video from 2003
+    TYPE: AI VIDEO PROMPT
+
+80. Ghibli-style animated vignette TikTok — a character walking through rain-soaked Tokyo side street at dusk, small glowing shops, transparent umbrella, puddles reflecting light, 8-second loop
+    TYPE: AI VIDEO PROMPT
+
+81. TikTok storytime animation — illustrated stick-figure or chibi character retelling an embarrassing personal story, text on screen, upbeat jingle
+    TYPE: CONCEPT
+
+82. "This is your sign to [action]" TikTok — motivational text over b-roll of nature, sunrise, coffee, journaling. Soft piano. 15-second inspirational format
+    TYPE: CONCEPT / SCRIPT
+
+83. TikTok "What I wish I knew before [topic]" format — direct to camera, casual tone, 5 fast tips, no filler, first tip within 3 seconds
+    TYPE: SCRIPT
+
+84. Viral recipe TikTok — overhead shot, ingredients laid out, fast cutting, text overlays with each step, satisfying sizzle sounds, under 45 seconds
+    TYPE: CONCEPT
+
+85. Trending sound TikTok lip sync — find top sound, film expressive reaction to lyric, use relatable caption to boost shareability
+    TYPE: FORMAT
+
+86. DIY transformation TikTok — thrift store flip, before shot → process clips → reveal, upbeat indie track, text: "spent $4 on this 🧵"
+    TYPE: CONCEPT
+
+87. TikTok duet response script — respond to another creator's claim, respectfully add perspective, end with call for audience input
+    TYPE: SCRIPT
+
+88. NPC character TikTok — person acting as a video game NPC with repetitive lines, looping motions, comedy style, green screen background option
+    TYPE: CONCEPT / FORMAT
+
+89. "Explain [complex topic] like I'm 5" TikTok — cartoon-like visuals, super simple language, 60 seconds, friendly narration, end with "make sense?"
+    TYPE: SCRIPT
+
+90. TikTok "Quiet life" aesthetic — slow morning vignette, no talking, coffee steaming, book pages turning, rain on window, cozy ambient sounds, 30 seconds
+    TYPE: AI VIDEO / CONCEPT
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 3 — YOUTUBE & YOUTUBE SHORTS (SCRIPT & VIDEO PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — YOUTUBE SHORTS PROMPTS
+
+91. Generate a 30-second YouTube Shorts script with shocking hook in first 2 seconds, rapid-fire value delivery on [topic], and a compelling CTA ending. Vertical 9:16
+    TYPE: SHORTS SCRIPT
+
+92. Write a YouTube Short script about [topic] for [target audience]. Rules: First line must be the hook — spoken directly at camera, provocative or surprising, under 10 words. No intro. Fast pacing
+    TYPE: SHORTS SCRIPT
+
+93. Create a fast-paced vertical (9:16) script for a 20–30 second YouTube Shorts video about [topic]. Include scene descriptions, text overlays, punchy transitions, sound effect suggestions, and a strong hook in the first 1 second
+    TYPE: SHORTS SCRIPT
+
+94. Write a YouTube Shorts script: "99% don't know this" hook about [fact], then 3 rapid-fire supporting points, each under 5 seconds. End with "Drop a ❤️ if this blew your mind"
+    TYPE: SHORTS SCRIPT
+
+95. Produce a viral Shorts script featuring: bold claim, quick proof, emotional trigger, and strong persuasive call-to-action. 45 seconds max
+    TYPE: SHORTS SCRIPT
+
+96. Develop a high-retention YouTube Shorts concept with a pattern interrupt every 5 seconds to maintain attention consistently
+    TYPE: SHORTS CONCEPT
+
+97. Write a YouTube Shorts script using the "Before you scroll away" opening — 30 seconds, one insight, strong ending that prompts a comment
+    TYPE: SHORTS SCRIPT
+
+98. Create a series of 5 YouTube Shorts about [broad topic] targeting [audience]. Each Short: covers one sub-point, stands alone, ends with a reason to watch the next. Use a different hook type for each: controversy, problem, direct, stat, story hooks
+    TYPE: SHORTS SERIES CONCEPT
+
+🔥 [PEAK 2024–2025] — YOUTUBE LONG-FORM PROMPTS
+
+99. Write a complete YouTube script about [topic] with a strong 5-second hook, clear introduction, structured sections, real examples, smooth transitions, and final call-to-action. Use simple language, short sentences, engaging tone. Add storytelling elements, viewer questions, retention tips. Format with timestamps and on-screen text suggestions
+    TYPE: LONG-FORM SCRIPT
+
+100. Create a beginner-friendly YouTube explainer script on [topic]. Break into simple steps. Avoid technical terms unless explained. Add analogies, examples, a quick recap at the end. Include suggestions for visuals, b-roll, captions
+     TYPE: EXPLAINER SCRIPT
+
+101. Act as a viral YouTube strategist specializing in short-form content. My channel is about [niche] and my audience is [target]. Generate 10 unique Shorts ideas. For each: a curiosity-driven title, 1-sentence concept, and specific content format (tutorial, myth-busting, quick tip, personal story, comparison)
+     TYPE: IDEA GENERATION
+
+102. Rewrite my YouTube video script to increase audience retention. Improve the hook, restructure the flow, include moments that keep viewers engaged: mini-teasers, questions, suspense. Keep language conversational. Remove filler. Suggest short visuals and text overlays. Script: [paste]
+     TYPE: OPTIMIZATION PROMPT
+
+103. Write a body section for a YouTube video about [topic] using storytelling structure. Open with a specific scene. Develop tension around a core challenge. Then deliver the insight or resolution. Short sentences. Mini-hook first, content, transition. Max 350 words
+     TYPE: SCRIPT BODY
+
+104. Create a complete YouTube video outline with: curiosity-driven hook, introduction that teases the payoff, 3–5 body sections with transitions, and a CTA that feels earned. Target: [topic + niche]
+     TYPE: OUTLINE
+
+105. Generate 15 YouTube video ideas for [niche] that have a high chance of going viral. For each: hook, video format, thumbnail concept, and title angle
+     TYPE: IDEA GENERATION
+
+106. Analyze current trends on YouTube Shorts and TikTok relevant to [niche]. Provide 5 video ideas that adapt these trends to my content style: [describe your style]. For each, explain which trend it's based on
+     TYPE: TREND ADAPTATION
+
+107. Write a YouTube Shorts script that explains one complex topic simply using relatable examples and clear visuals. Max 60 seconds. No jargon. First 3 seconds must hook
+     TYPE: SHORTS SCRIPT
+
+108. Generate a 60-sec explainer video on how [topic] works for YouTube and TikTok. Use a human-like avatar suggestion, clear narration, and text callouts
+     TYPE: EXPLAINER CONCEPT
+
+109. Create a video content proposal with audience insights, content plan, and brand integration ideas. Include: target demographic, tone, posting schedule, monetization strategy
+     TYPE: PROPOSAL / PITCH
+
+110. Summarize an 8-minute video into a 60-second Shorts script: [Insert transcript or paste key points]
+     TYPE: REPURPOSING PROMPT
+
+111. Create a high-retention educational video outline featuring a curiosity-driven hook, clear explanations, interactive viewer elements, and actionable takeaways
+     TYPE: EDUCATIONAL OUTLINE
+
+112. Write a Surprise/Reveal YouTube script — tease an unexpected twist in the first 10 seconds, build tension for 3 minutes, deliver reveal with visual drama
+     TYPE: LONG-FORM SCRIPT
+
+113. Generate YouTube thumbnail concept — 3 ideas for [video title]: main visual focus, facial expression or object placement, text suggestions (short, bold, readable), color scheme. Explain why each drives CTR
+     TYPE: THUMBNAIL BRIEF
+
+114. Generate 20 YouTube video ideas for a [niche] channel based on current global trends, rising search volume, and audience interest. Include why each idea works and what viewer it targets
+     TYPE: IDEA GENERATION
+
+115. Produce a 30-second Shorts script using the "Imagine if you could [dream outcome]" hook. Build to a product/tip/insight reveal. End with a save-worthy stat or quote
+     TYPE: SHORTS SCRIPT
+
+116. Create a step-by-step explainer video script using relatable analogies, real-world examples, engaging storytelling, and simplified explanations for beginners. Structured in 3 clear parts
+     TYPE: TUTORIAL SCRIPT
+
+117. Write an extreme hook script for a Shorts video: first line must be a question that creates a knowledge gap. "Did you know [counterintuitive fact about familiar topic]?"
+     TYPE: HOOK SCRIPT
+
+118. Convert this 2020s blog post into a viral YouTube Shorts script. Keep the insight, kill the padding, add a visual suggestion every 5 seconds
+     TYPE: REPURPOSING PROMPT
+
+119. Create a 45-second YouTube Shorts concept around a current challenge or trending topic — frame it as advice from someone who failed first, then figured it out
+     TYPE: SHORTS CONCEPT
+
+120. Act as a YouTube SEO strategist. Video topic: [Insert topic]. Suggest: 5 viral Shorts titles under 50 chars, 10 high-ranking tags, 7 trending hashtags, 1 description (100 words) that boosts ranking. Include keywords for Shorts feed visibility
+     TYPE: SEO / OPTIMIZATION
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 4 — PINTEREST (IMAGE & MOOD BOARD PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — PINTEREST IMAGE PROMPTS
+
+121. The interior of a gothic university library at night, candelabras casting warm light over towering oak bookshelves, a lone student in a wool coat reading at a mahogany desk, dramatic shadows, oil painting style, deep jewel tones
+     TYPE: IMAGE | Style: Dark Academia / Pinterest
+
+122. A digital collage featuring cut-out vintage photos, rough paper edges, pastel paint splashes, scribbled notes in marker, and hand-drawn doodles layered over an old city map — textured and messy, creative scrapbook aesthetic
+     TYPE: IMAGE | Style: Mixed-Media Collage
+
+123. A magical countryside landscape in Studio Ghibli style — rolling green hills, a small red-roofed house, a glowing sunset, and a friendly spirit creature on the hill. Intricate details, warm lighting, soft pastel tones
+     TYPE: IMAGE | Style: Ghibli Landscape
+
+124. Soft anime illustration of a girl sipping tea by a windowsill, pastel skies outside, oversized sweater, fluffy cat on lap, fairy lights in background — pale pinks, soft blues, gentle glow
+     TYPE: IMAGE | Style: Cozy Anime / Pinterest Aesthetic
+
+125. A rain-soaked cyberpunk street market at midnight, neon signs in Japanese and English reflecting on wet pavement, dense fog, overhead power lines, wide cinematic shot, blue and magenta color palette, ultra-detailed
+     TYPE: IMAGE | Style: Cyberpunk Neon / Pinterest Boards
+
+126. Y2K-inspired digital art portrait, chrome metallic skin, holographic background, bubblegum pink and silver color palette, glossy plastic accessories, early 2000s pop star energy, vibrant and synthetic
+     TYPE: IMAGE | Style: Y2K Chrome
+
+127. A young woman cycling through a quiet countryside village at golden hour, wildflowers on either side of the path, soft hand-drawn animation style, warm color palette, Studio Ghibli aesthetic, peaceful and nostalgic mood
+     TYPE: IMAGE | Style: Ghibli Travel
+
+128. Extreme macro photography of single perfect dewdrop on green leaf — entire miniature world reflected inside droplet, morning light refracting through water, shallow depth of field, creamy bokeh, ultra-detailed leaf cell texture visible, scientific beauty
+     TYPE: IMAGE | Style: Macro / Nature
+
+129. Extreme close-up macro of butterfly wing scales, iridescent blue Morpho butterfly, individual microscopic scales visible like tiles, light refracting creating color shift, black background for maximum contrast
+     TYPE: IMAGE | Style: Macro Photography
+
+130. Classical oil portrait of a noblewoman with a sci-fi twist: glowing cybernetic accessories, silver eyes, futuristic city skyline in the background. Muted warm tones and painterly brushstrokes
+     TYPE: IMAGE | Style: Classical Meets Futurism
+
+131. Abstract cinematic image — moody lighting, blurred shapes, colors that feel just right. Mysterious, nostalgic, surreal atmosphere. Like a still from a movie that doesn't exist
+     TYPE: IMAGE | Style: Abstract Cinematic
+
+132. Lo-fi aesthetic illustration — dimly lit bedroom, rain-streaked window, character lost in thought, chill music equipment visible, warm amber desk lamp, soft muted tones
+     TYPE: IMAGE | Style: Lo-Fi Aesthetic
+
+133. Pinterest mood board aesthetic — collage of torn paper, coffee cups, open books, wildflowers pressed flat, handwritten letters, warm film photography, vintage lace fabric
+     TYPE: IMAGE | Style: Cottagecore Mood Board
+
+134. Turn this photo into a handmade scrapbook page — torn notebook edges, handwritten notes, tape pieces, coffee stains, faded magazine cutouts, soft pastel textures
+     TYPE: IMAGE | Style: Scrapbook / Journaling
+
+135. Fashion illustration in editorial style — fluid ink lines, high-contrast silhouette, bold geometric pattern on garment, minimal background, vogue-style composition
+     TYPE: IMAGE | Style: Fashion Editorial Illustration
+
+136. Diver suspended in vast blue ocean, bioluminescent creatures glowing around them, James Cameron Avatar underwater aesthetic, god rays piercing from surface above, photorealistic water caustics, epic scale implied
+     TYPE: IMAGE | Style: Underwater Cinematic
+
+137. Layered paper-cutting art portrait — multiple layers of white and cream paper, backlit with warm golden LED lights for depth and shadows. Intricate filigree details, 3D relief effect, whimsical and delicate, soft ambient glow
+     TYPE: IMAGE | Style: Paper Art / Craft
+
+138. Digital scrapbook — torn paper textures, handwritten notes, stickers, stamps, pressed flowers, doodles layered over a soft personal photograph. Feels like a physical diary page scanned into the internet
+     TYPE: IMAGE | Style: Digital Diary Scrapbook
+
+139. Lo-fi realism — grain, soft focus, natural imperfection, images that look like they were taken on a phone by someone who actually lived the moment. Warm desaturated tones, slightly blurry
+     TYPE: IMAGE | Style: Lo-Fi Realism (2025 trend)
+
+140. Surreal minimalism — a single object floating in a vast empty white space with one impossibly long shadow. Ultra-clean, poetic, mysterious
+     TYPE: IMAGE | Style: Surreal Minimalism (2026 trend)
+
+141. Hyper-cozy interior — plush blanket-covered reading nook, steaming mug, fireplace, bookshelf wall, warm amber light, raindrops on window, cat curled up, inviting warmth
+     TYPE: IMAGE | Style: Cozy Interior (2026 trending)
+
+142. A famous building slowly melting like wax under a golden sunset, surrealism, reflections on the ground, painterly textures, Salvador Dalí influence, detailed brushstrokes
+     TYPE: IMAGE | Style: Surreal Architecture
+
+143. A location perfectly mirrored on top and bottom — sky turning into ocean, ocean turning into sky. Dreamy color palette, symmetrical composition, cinematic wide shot, ultra-realistic
+     TYPE: IMAGE | Style: Mirror Reflection Surreal
+
+144. X-ray style image of a flower, petals glowing softly with bioluminescent veins, dark background, ethereal lighting, scientific yet poetic composition, ultra-detailed, macro photography
+     TYPE: IMAGE | Style: Botanical X-Ray / Scientific Art
+
+145. A model wearing a gown made entirely of glowing jellyfish tentacles, underwater ballroom setting, soft blue light, iridescent shimmer, high fashion editorial
+     TYPE: IMAGE | Style: Surreal Fashion
+
+146. Minimalist line art of a woman's silhouette in profile, single continuous line, no fill, floating on off-white paper background, elegant and simple
+     TYPE: IMAGE | Style: Minimalist Illustration
+
+147. Brutalist architecture art — massive concrete structure, dramatic stormy sky, black-and-white high contrast, wide-angle perspective, lone figure for scale
+     TYPE: IMAGE | Style: Brutalist Architecture (2026 trending)
+
+148. Tilt-shift miniature world — busy city street photographed with extreme tilt-shift lens, making it appear to be a tiny model, soft blur at top and bottom, vivid saturated colors
+     TYPE: IMAGE | Style: Tilt-Shift / Miniature
+
+149. Retro 90s music video aesthetic — vibrant colors, VHS grain, glossy fashion, bold makeup, blue screen backdrop, bold typography, analog warmth
+     TYPE: IMAGE | Style: 90s Music Video
+
+150. Hyper-realistic collector figure of a man in flannel shirt and jeans — displayed on a wooden desk beside a large monitor showing 3D modeling software, mountain landscape poster in background, "ADVENTURER FIGURE — COLLECTOR EDITION" text on small base card, dramatic studio lighting, ultra-detailed fabric texture
+     TYPE: IMAGE | Style: Collector Figure / Action Figure
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 5 — X (TWITTER) — TEXT & IMAGE PROMPTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — X/TWITTER THREAD & POST PROMPTS
+
+151. Create a 5-tweet educational thread about [specific topic] that teaches actionable steps or frameworks. Each tweet should stand alone while building on the previous one. Include a compelling hook, clear steps, and a memorable conclusion. Make it valuable enough that people want to save it
+     TYPE: THREAD
+
+152. Generate viral-style Twitter/X hooks for educational content and thought leadership about [topic]. Tone: expert but conversational. Include 5 hook variations
+     TYPE: HOOKS
+
+153. Write a product launch tweet that highlights benefits, not just features. Include a clear CTA and sense of urgency. Under 280 characters
+     TYPE: TWEET
+
+154. Based on [failure/lesson learned], generate 3 different tweet formats that share this story: a hook version, a detailed version, and a lesson-focused version
+     TYPE: THREAD / TWEETS
+
+155. Draft a Twitter/X thread that teaches a framework (marketing, SEO, copywriting, productivity) in a practical way. Open with a hook stat. Use numbered list format. End with a resource or CTA
+     TYPE: THREAD
+
+156. Create a hot take tweet about [industry/topic] that will spark debate. Controversial but defensible. Under 180 characters for maximum retweet potential
+     TYPE: HOT TAKE
+
+157. Write a thread on X that announces a lesson I learned from failing at [topic]. First tweet is the hook (1 sentence). Second tweet admits the mistake. Tweets 3-7 are the specific steps of what I learned. Last tweet: ask for a comment
+     TYPE: FAILURE STORY THREAD
+
+158. Generate a story-based tweet series — 6 tweets about a journey from [point A] to [point B]. Conversational, human, no corporate language
+     TYPE: STORY THREAD
+
+159. Write a curiosity-gap tweet: start a sentence and end it with "..." that makes someone compelled to click or reply. Topic: [insert topic]
+     TYPE: TWEET HOOK
+
+160. Produce multiple tweet variations for A/B testing messaging about [product/idea]. Include: emotional version, data-driven version, humor version, authority version
+     TYPE: A/B TESTING SET
+
+161. Generate X/Twitter post for thought leaders — share an insight from [field] that challenges conventional wisdom. One bold claim + one supporting reason + one open question
+     TYPE: THOUGHT LEADER TWEET
+
+162. Write a tweet thread responding to a common misconception about [topic]. Each tweet addresses one myth and replaces it with the accurate take. 7 tweets max
+     TYPE: MYTH-BUSTING THREAD
+
+163. Create a Twitter/X carousel text thread that teaches [framework] using: hook, problem, step 1, step 2, step 3, summary, and call to action. 8 tweets
+     TYPE: EDUCATIONAL THREAD
+
+164. Write a personal brand tweet that shows expertise through a micro-story: a moment, a lesson, and a principle — all in under 280 characters
+     TYPE: PERSONAL BRAND TWEET
+
+165. Generate 10 "did you know" tweets about [topic] that are shareable, factual, and surprising. Each under 200 characters
+     TYPE: FACT SERIES
+
+166. Write a Twitter thread about what [topic] gets wrong — frame it as "Most people think X, but here's what's actually true." 5 tweets
+     TYPE: PERSPECTIVE THREAD
+
+167. Write a thread that grows a Twitter account in [niche]: hook tweet, 5 value tweets on specific sub-topics, engagement close (question or poll)
+     TYPE: GROWTH THREAD
+
+168. Create a vulnerable tweet about [personal professional struggle] that shows humanity and invites others to share their experiences
+     TYPE: VULNERABILITY TWEET
+
+169. Generate a tweet for newsjacking a current trending topic and connecting it to [your niche]. Relevant, timely, non-opportunistic tone
+     TYPE: NEWSJACK TWEET
+
+170. Write a Twitter/X poll tweet that is genuinely divisive in [niche] and drives comment activity. 4 poll options that represent real perspectives people hold
+     TYPE: POLL TWEET
+
+171. Create a comprehensive image prompt for an X thread visual — minimalist quote card, bold typography, brand colors, high contrast, shareable 16:9 format
+     TYPE: IMAGE PROMPT
+
+172. Generate a viral-style quote card image — elegant sans-serif font, dark background, one powerful sentence in white, author credit at bottom, subtle grain texture
+     TYPE: IMAGE PROMPT
+
+173. Produce a meme-style tweet image — simple caption at top, relatable reaction image format, clean bold text at bottom. Dark or light background
+     TYPE: IMAGE CONCEPT
+
+174. Create a Twitter thread that turns this blog post into 8 single-insight tweets: [paste post summary]. Each tweet is a standalone insight. Add relevant hashtags at end
+     TYPE: REPURPOSING THREAD
+
+175. Write the world's most clickable Twitter/X bio for a [profession] who specializes in [niche]. Under 160 characters. Show personality and credibility
+     TYPE: BIO COPY
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 6 — MIDJOURNEY (IMAGE GENERATION PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — MIDJOURNEY VIRAL STYLES
+
+176. Rain-soaked cyberpunk street market at midnight, neon signs in Japanese and English reflecting on wet pavement, dense fog, overhead power lines, wide cinematic shot, blue and magenta color palette, ultra-detailed --ar 2:1 --v 7
+     TYPE: IMAGE | Style: Cyberpunk
+
+177. Extreme macro photography of single perfect dewdrop on green leaf, entire miniature world reflected inside droplet, morning light refracting through water, shallow depth of field, creamy bokeh, ultra-detailed --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Macro Photography
+
+178. A photorealistic 3D collector figure of a person in streetwear on a wooden desk beside a monitor, "COLLECTOR EDITION" text on base, professional studio lighting, ultra-detailed fabric texture --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Collector Toy
+
+179. Extreme close-up macro of butterfly wing scales, iridescent blue Morpho butterfly, individual microscopic scales visible, light refracting creating color shift, black background --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Macro Nature
+
+180. A diver suspended in vast blue ocean, bioluminescent creatures glowing, James Cameron Avatar underwater aesthetic, god rays piercing from surface, photorealistic water caustics, epic scale --ar 2:1 --v 7
+     TYPE: IMAGE | Style: Underwater Epic
+
+181. A red panda looking at you from afar, beneath a mint green sky. Lush mint green trees, patches of purple grass, Asian aesthetic, ASCII art and gongbi influence, vibrant neon colors --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Asian Art Fusion
+
+182. A woman in a perfectly symmetrical portrait, looking directly at camera, moody dark background, intense lighting from above, ultra-detailed eyes, psychological impact, symmetric face art --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Symmetrical Portrait
+
+183. An ancient temple in a jungle, golden afternoon light filtering through trees, stone carvings covered in moss, rays of light through the canopy, cinematic documentary photography style --ar 16:9 --v 7
+     TYPE: IMAGE | Style: Cinematic Travel
+
+184. Neo-noir city scene — a lone detective under a streetlight in the rain, black fedora, film noir color grading, long dramatic shadow, 1940s style but futuristic elements in background --ar 9:16 --v 7
+     TYPE: IMAGE | Style: Neo-Noir
+
+185. A close-up of a wolf in winter snow, piercing blue eyes, breath visible in cold air, dramatic backlighting from rising sun, ultra-photorealistic, wildlife photography --ar 4:5 --v 7
+     TYPE: IMAGE | Style: Wildlife Photography
+
+186. A fashion model in a flowing dress made of liquid mercury, studio white background, high fashion editorial, experimental material, artistic lighting, magazine quality --ar 4:5 --v 7
+     TYPE: IMAGE | Style: Avant-Garde Fashion
+
+187. Studio Ghibli style — young woman walking through a rain-soaked autumn forest path, lantern in hand, golden leaves falling, peaceful mystical atmosphere, detailed Miyazaki-style painting --ar 9:16 --niji 6
+     TYPE: IMAGE | Style: Ghibli / Niji
+
+188. Pop art portrait in Andy Warhol style, bold flat colors, halftone dot overlay, high contrast, silk-screen print texture, iconic color blocking --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Pop Art
+
+189. Futuristic city from aerial view, glass and steel towers, bioluminescent rivers, flying vehicles, holographic billboards, golden hour, blade runner 2049 aesthetic --ar 21:9 --v 7
+     TYPE: IMAGE | Style: Sci-Fi City
+
+190. A classic marble bust sculpture of a modern person with hyper-realistic detail, museum lighting, white background, displayed on a museum plinth --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Marble Sculpture
+
+191. Dark moody forest at night, bioluminescent mushrooms, mist rolling through trees, ethereal blue and green light, fantasy environment, ultra-detailed --ar 16:9 --v 7
+     TYPE: IMAGE | Style: Fantasy Forest
+
+192. Hyper-realistic product photography of a luxury watch on black velvet, macro lens, studio ring light, reflections on glass face, scratch-free pristine --ar 1:1 --v 7
+     TYPE: IMAGE | Style: Product Photography
+
+193. Impressionist oil painting style — a bustling Paris café in rain, colorful umbrellas, reflections on cobblestones, impressionist brushstrokes, Renoir-inspired --ar 4:5 --v 7
+     TYPE: IMAGE | Style: Impressionist Art
+
+194. A white tiger in a neon-lit jungle, glowing plants, electric blue and magenta color palette, hyper-detailed fur texture, fantasy wildlife --ar 9:16 --v 7
+     TYPE: IMAGE | Style: Fantasy Wildlife
+
+195. Paper cut-out illustration — a cityscape made entirely of layered paper, soft backlit warm glow, pastel tones, handcraft aesthetic, editorial illustration --ar 16:9 --v 7
+     TYPE: IMAGE | Style: Paper Cut Art
+
+196. 1:6 scale collector figure of a young man in casual streetwear, standing next to its own retail packaging, professional studio desk, ultra-realistic skin and fabric texture --ar 4:5 --v 7
+     TYPE: IMAGE | Style: 1:6 Scale Figure
+
+197. Solarpunk city — lush green architecture, solar panels, cascading gardens on buildings, canals between towers, golden warm sunlight, utopian vision --ar 2:1 --v 7
+     TYPE: IMAGE | Style: Solarpunk
+
+198. Medieval knight in full armor standing in a misty battlefield at dawn, dramatic backlight, ultra-detailed metal engraving on armor, cinematic widescreen --ar 2:1 --v 7
+     TYPE: IMAGE | Style: Historical Epic
+
+199. Photorealistic portrait of an elderly wise man in a mountain monastery, deep wrinkles, gentle eyes, morning light, shot on 85mm lens, intimate and spiritual --ar 4:5 --v 7
+     TYPE: IMAGE | Style: Portrait Photography
+
+200. GTA V style loading screen art of a person — vector art, cel-shaded bold outlines, high contrast, vibrant colors, streetwear outfit, Los Santos sunset backdrop --ar 9:16 --v 7
+     TYPE: IMAGE | Style: GTA V
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 7 — STABLE DIFFUSION (IMAGE PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Note: For Stable Diffusion, always include negative prompts (what to exclude).
+Format: [Subject] [Style] [Medium] [Mood] | Negative: [unwanted elements]
+
+⚡ [CURRENT 2025–2026] — STABLE DIFFUSION PROMPTS
+
+201. Subject: 30s woman with curly hair, head-and-shoulders portrait, facing camera | Style: photograph, 85mm lens, f/1.8, soft Rembrandt lighting, subtle film grain | Mood: intimate, confident, warm color grading | Negative: watermark, text, extra fingers, distorted face, harsh shadow clipping
+     TYPE: IMAGE
+
+202. Subject: red fox curled on moss under a pine tree | Style: watercolor on cold-press paper, light pigment pooling, pencil outline | Mood: cozy, misty morning forest | Negative: photo-real skin, plastic shine, hard edges
+     TYPE: IMAGE
+
+203. Subject: matte black wireless earbuds on reflective glass, 45-degree hero angle | Style: studio photo, softbox key light, crisp reflections, clean background | Mood: premium, minimal | Negative: dust, scratches, fingerprints, text, watermark
+     TYPE: IMAGE | Product Photography
+
+204. Cyberpunk female warrior in leather armor with glowing tattoos, neon-lit rainy alley, holographic displays, atmospheric fog, dramatic rim lighting | Style: digital painting, hyper-detailed, ArtStation quality | Negative: blurry, low quality, bad anatomy, text
+     TYPE: IMAGE
+
+205. Anime character in school uniform on rooftop at sunset, cherry blossoms falling, dramatic clouds, Makoto Shinkai style, volumetric light, pastel sky | Negative: watermark, poorly drawn hands, deformed face
+     TYPE: IMAGE
+
+206. Fantasy landscape — floating islands in an orange sky, waterfalls cascading into clouds, ancient ruins, magical glowing plants, epic panoramic view | Style: concept art, matte painting, cinematic | Negative: people, text, blurry foreground
+     TYPE: IMAGE
+
+207. Corporate stock photo style — team handshake in glass office, clean white balance, even softbox lighting, neutral wardrobe styling, professional setting | Negative: outdated clothing, low resolution, busy background
+     TYPE: IMAGE
+
+208. Polished digital concept art of a futuristic soldier in power armor on a barren alien planet, two moons visible, red sky, dramatic rim light | Style: ArtStation-like quality, cinematic contrast | Negative: anime style, cartoonish, flat colors
+     TYPE: IMAGE
+
+209. Portrait of elderly Japanese sushi chef in traditional garb, focused expression, fish market backdrop, golden hour light, documentary photography, raw emotion | Negative: studio setup, posed look, modern elements
+     TYPE: IMAGE
+
+210. Retro 1980s synthwave poster style — sports car on neon-lit highway, palm trees silhouetted, pink and purple gradient sky, grid on road, chrome text | Style: vector illustration, limited color palette | Negative: photorealistic, busy design
+     TYPE: IMAGE
+
+211. Fashion model in flowing white dress on minimalist white background, high-key studio lighting, clean editorial look, slight movement in fabric | Negative: harsh shadows, color cast, distracting elements
+     TYPE: IMAGE
+
+212. Macro photography — coffee beans with steam rising, dark moody background, warm amber tones, sharp focus on single bean, bokeh background | Negative: dark green tones, blurry subjects, text overlay
+     TYPE: IMAGE
+
+213. Fantasy warrior woman with flaming sword in throne room, dramatic candlelight, shadows dancing on stone walls, powerful pose, epic fantasy style | Negative: poorly drawn anatomy, low detail, anachronistic elements
+     TYPE: IMAGE
+
+214. Victorian-era street scene — cobblestone road, gas lamps, fog, horse-drawn carriage, people in period clothing, warm orange night tones | Style: oil painting aesthetic | Negative: modern elements, bright daylight
+     TYPE: IMAGE
+
+215. Minimalist isometric apartment room illustration — clean lines, flat design, pastel colors, floating perspective, small cute details throughout | Negative: photorealistic, cluttered, dark tones
+     TYPE: IMAGE
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 8 — SUNO AI & UDIO (MUSIC GENERATION PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — SUNO AI MUSIC PROMPTS
+
+216. pop-rock, angsty emotional, raw female vocals, guitar-driven confessions, Gen Z heartbreak
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+217. hyperpop glitchcore chaos, pitch-shifted vocal chops, over-the-top synth stacks, explosive 808-tuned bass, 2025 viral energy
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+218. dreamy lofi hip-hop, jazzy vinyl crackle, mellow piano chords, chill bedroom beats, nostalgic Saturday morning
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno/Udio
+
+219. dark trap, moody 808s, whispered rapper delivery, midnight city energy, cinematic strings
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+220. rock, progressive theatrical, falsetto male vocals, orchestral rock, sci-fi epics, drones and riffs
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+221. upbeat indie pop, warm acoustic guitar, clapping percussion, feel-good summer energy, sing-along chorus
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+222. orchestral swells, epic percussion, Hans Zimmer-inspired cinematic score, building tension to dramatic climax, 3-minute arc
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno/Udio
+
+223. synthwave, driving bassline, nostalgic 80s vibe, vocoder harmonies, neon midnight chase scene energy
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+224. afrobeats, infectious groove, female vocalist with bright tone, tropical percussion, vibrant celebratory energy
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+225. heavy metal, aggressive electric guitars, screaming vocals, double kick drum, breakdown riff, dark lyrical themes
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+226. lo-fi study beats, soft piano, distant rain sounds, 70 BPM, minimal melody, cozy late-night focus energy
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno/Udio
+
+227. deep house, 124 BPM, warm chord progressions, late-night club underground feel, subtle female vocal chops
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+228. country ballad, emotional storytelling, acoustic guitar with pedal steel, baritone male vocals, rural heartbreak narrative
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+229. R&B pop, smooth production, falsetto male vocals, layered harmonies, soulful chord changes, urban romance
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+230. dubstep, heavy wobble bass drops, distorted synths, 140 BPM, chaotic energy, electronic festival anthem
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+231. jazz fusion, complex chord voicings, electric piano, upright bass, brushed snare, late-night cocktail bar energy
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno/Udio
+
+232. tropical house, marimba melody, gentle 4-on-the-floor kick, ocean atmosphere, vacation daydream
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+233. punk anthem, raw power chords, shouted group vocals, rebellious energy, short sharp bursts, 2-minute song
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+234. K-pop bop, bright synth production, group harmonies, catchy English-Korean hook, high energy dance break
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+235. gospel choir, powerful lead vocal, full congregation harmonies, Hammond organ, tambourine, uplifting spiritual energy
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+236. neo-soul, warm vinyl texture, complex jazz chords, silky female vocalist, introspective late afternoon mood
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno/Udio
+
+237. folk indie, fingerpicked acoustic guitar, honest storytelling lyrics, intimate bedroom recording feel, male voice with slight gravel
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+238. bossa nova, nylon string guitar, soft female vocal in Portuguese, gentle samba rhythm, Rio de Janeiro café afternoon
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno/Udio
+
+239. reggaeton, dembow rhythm, urban Latin energy, auto-tuned male vocalist, heavy sub-bass, party anthem
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno
+
+240. ambient electronic, floating pads, slowly evolving textures, no percussion, meditative and spatial, perfect for focus playlists
+     TYPE: MUSIC STYLE PROMPT | Platform: Suno/Udio
+
+241. Create a song about [topic]. Style: upbeat pop with a pre-chorus that builds tension, a massive chorus drop, and a bridge that flips the emotion. Female vocalist, 128 BPM
+     TYPE: MUSIC + LYRICS DIRECTION
+
+242. Write verse/chorus structure lyrics for a heartbreak song in a dreamy indie pop style. The chorus should be 4 lines, anthemic, and singable. Verse 1 should tell a specific story
+     TYPE: LYRICS PROMPT
+
+243. A cinematic orchestral intro, 30 seconds, that builds from a single piano note to a full ensemble. Suitable for an epic documentary or film trailer
+     TYPE: MUSIC CONCEPT / INSTRUMENTAL
+
+244. Upbeat TikTok-ready pop song — hook under 8 words, 3-chord progression, punchy production, fast intro, no spoken intro — viral format
+     TYPE: MUSIC STYLE PROMPT
+
+245. Meditation soundscape — 432hz tuning, tibetan singing bowls, nature ambient layers (stream + birds + wind), no melody, pure healing atmosphere
+     TYPE: MUSIC CONCEPT / SOUND DESIGN
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 9 — SORA & AI VIDEO GENERATION (VIDEO PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — SORA / RUNWAY / PIKA VIDEO PROMPTS
+
+246. A white and orange tabby cat darting through a dense garden, eyes wide, jogs forward scanning branches. Ground-level angle, low intimate perspective. Cinematic, warm tones, grainy texture, scattered daylight creating contrast, shallow depth of field
+     TYPE: VIDEO PROMPT | Platform: Sora/Runway
+
+247. An astronaut drifting through space debris, reflective helmet showing Earth below, melancholic mood, close-up camera, cinematic 8K
+     TYPE: VIDEO PROMPT | Platform: Sora
+
+248. Fashion model walking down a futuristic runway, cyberpunk theme, vivid colors, confident tone, dramatic camera movement
+     TYPE: VIDEO PROMPT | Platform: Runway
+
+249. A stylish woman walks down a Tokyo street filled with warm glowing neon and animated city signage. Slow tracking shot, cinematic 35mm film quality
+     TYPE: VIDEO PROMPT | Platform: Sora
+
+250. A baby driving a monster truck through a desert, drone shot, cinematic tone, dust trails, extreme wide angle
+     TYPE: VIDEO PROMPT | Platform: Sora (Viral format)
+
+251. A dog doing a motivational speech to a crowd of other dogs — TED Talk stage, microphone, slideshow visible behind — comedic deadpan tone
+     TYPE: VIDEO PROMPT | Platform: Sora (Viral/Comedy)
+
+252. Realistic police bodycam footage of an officer pulling over a sentient waffle in business attire. Professional tone, mundane setting, unexpected subject — comedy contrast
+     TYPE: VIDEO PROMPT | Platform: Sora (Viral format)
+
+253. New York City submerged like Atlantis — fish, whales, sea turtles and sharks swimming through the streets of New York. Camera rotates through Manhattan underwater. Cinematic sci-fi
+     TYPE: VIDEO PROMPT | Platform: Sora
+
+254. A gorgeous rendered papercraft world of a coral reef, rife with colorful fish and sea creatures. Animated loop style
+     TYPE: VIDEO PROMPT | Platform: Sora
+
+255. A silhouette animation of a wolf howling at the moon, feeling lonely until it finds its pack. Emotional arc, minimal style, haunting music implied
+     TYPE: VIDEO PROMPT | Platform: Sora
+
+256. A movie trailer featuring the adventures of a 30-year-old space man wearing a red wool knitted motorcycle helmet, blue sky, salt desert, cinematic style, shot on 35mm film, vivid colors
+     TYPE: VIDEO PROMPT | Platform: Sora
+
+257. A stop-motion animation of a flower growing out of the windowsill of a suburban house. Time-lapse feel, Wes Anderson aesthetic, pastel tones
+     TYPE: VIDEO PROMPT | Platform: Sora
+
+258. A cinematic 8-second video of [PRODUCT] on a matte black table. Scene starts in darkness. Single spotlight slowly fades in, revealing product with warm golden glow. Camera orbits slowly 180 degrees. Reflections on surface below. Studio quality. Shallow depth of field. 16:9 horizontal
+     TYPE: VIDEO PROMPT | Product Ad
+
+259. A 10-second anime-style opening sequence — young entrepreneur shown in dynamic anime art style with wind blowing their hair, speed lines, dramatic sky
+     TYPE: VIDEO PROMPT | Platform: Sora/Pika
+
+260. An 8-second video in the style of a Studio Ghibli animated film. A small cottage on a hillside with wildflowers swaying in the breeze. Soft watercolor textures. Gentle fluid animation — clouds drifting, grass swaying, butterflies floating. Warm color palette. Peaceful nostalgic atmosphere. 16:9 horizontal
+     TYPE: VIDEO PROMPT | Ghibli Style
+
+261. A 15-second ad video. Scene 1 (0-5s): frustrated person staring at a messy desk, head in hands, grey desaturated color grading. Scene 2 (5-10s): transformation moment. Scene 3 (10-15s): same person energized, clean desk, bright warm color grade. Before/after contrast
+     TYPE: VIDEO PROMPT | Ad Format
+
+262. ASMR product packing video — top-down overhead shot, hands arranging colorful macarons in a gift box. Smooth fluid movements. No music. Satisfying ambient sounds. Vertical 9:16
+     TYPE: VIDEO PROMPT | ASMR Style
+
+263. Step-printing scene of a person running, cinematic film shot in 35mm. Slow deliberate motion effect
+     TYPE: VIDEO PROMPT | Cinematic Technique
+
+264. A bodycam-style video of two raccoons getting married in a suburban backyard. Earnest and sincere in tone despite absurd subject
+     TYPE: VIDEO PROMPT | Sora Viral Comedy
+
+265. An extreme close-up of a gray-haired man in his 60s, deep in thought at a Paris café, people walking past. He wears a brown beret and glasses, professorial appearance. Golden Parisian light, cinematic depth of field, 35mm film look. At the end, he offers a subtle closed-mouth smile
+     TYPE: VIDEO PROMPT | Cinematic Character
+
+266. A group of squirrels jumping on a trampoline in slow motion, high-speed camera, cinematic lighting, blue skies, dramatic music
+     TYPE: VIDEO PROMPT | Viral Comedy (7M views on TikTok)
+
+267. A smooth cinematic 5-second video of [PRODUCT] rotating slowly on a clean white pedestal. Soft studio lighting from left with a gentle shadow. Camera starts close-up on a detail, then slowly pulls back to reveal the full product. Shallow depth of field. Professional product photography style. Vertical 9:16 format. Subtle warm color grading
+     TYPE: VIDEO PROMPT | E-commerce
+
+268. Cinematic rain scene — person running in slow motion through a rain-soaked Tokyo alley, neon reflections on wet ground, dramatic lighting, 9:16 vertical
+     TYPE: VIDEO PROMPT | Cinematic Aesthetic
+
+269. A couple's anniversary recap — golden-hour outdoor moments, soft focus transitions, warm color grading, instrumental acoustic soundtrack implied, vertical 9:16 for Reels
+     TYPE: VIDEO PROMPT | Couple Content
+
+270. Timelapse of a busy coffee shop from empty morning to packed afternoon to quiet evening. Fixed overhead camera. Natural light progression. 10 seconds
+     TYPE: VIDEO PROMPT | Environmental Cinematic
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 10 — CHATGPT & GEMINI (IMAGE TRENDING PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2025–2026] — CHATGPT IMAGE VIRAL TRENDS
+
+271. Transform this portrait into a Studio Ghibli-style watercolor illustration. Soft pastel colors, hand-drawn quality, gentle expression. Background shows a sun-drenched countryside with a small wooden house and tall grass bending in the wind. Miyazaki film aesthetic. 4:5 ratio
+     TYPE: IMAGE | PEAK: Early 2025 | Still trending
+
+272. Transform the person in this photo into a limited-edition action figure. Display them in a sealed blister pack with molded plastic accessories that reflect their personality. Add a colorful branded backing card with their name in bold retro typography. Dramatic studio lighting. Product photography style. 1:1 ratio
+     TYPE: IMAGE | PEAK: April 2025 | Currently: High
+
+273. Create a hyper-realistic 1/7 scale action figurine of the subject in a futuristic cyberpunk suit, posed dramatically on a transparent acrylic base
+     TYPE: IMAGE | Action Figure Style
+
+274. Create a picture of me as a 3D action figure toy, as if displayed in transparent plastic blister packaging. Add accessories related to my personality or job. Include my name on the box
+     TYPE: IMAGE | Viral April 2025 Twitter/X
+
+275. Generate me as a book cover character for a romance novel — dramatic lighting, Italian balcony background, flowing dress, warm golden hour
+     TYPE: IMAGE | PEAK: Late 2025
+
+276. Turn this photo into a late-1990s disposable camera memory. Slight motion blur, warm color cast, film grain, imperfect focus, authentic grain from expired film
+     TYPE: IMAGE | Style: Retro Memory
+
+277. Create a 4-panel Andy Warhol-style pop art portrait. Each panel uses a different bold color combination. Screen-printed texture, halftone dot overlay, high contrast
+     TYPE: IMAGE | PEAK: 2024–2025
+
+278. A cute 3D claymation figurine character of [subject] standing on a small display base. Exaggerated round features, plasticine texture, fingerprint details in clay. Soft studio lighting, tilt-shift photography, 8k resolution. Styled like a collectible toy from a stop-motion movie
+     TYPE: IMAGE | PEAK: Late 2024–2025
+
+279. Create a chibi version of the person in this image — small cute cartoon form, oversized head, sparkling eyes, pastel colors, collectible toy aesthetic
+     TYPE: IMAGE | PEAK: Mid 2025 (followed Ghibli & Action Figure trends)
+
+280. Hyper-realistic 3D action figurine displayed in retail packaging — clear plastic blister pack, cardboard backing, tiny accessories, "CAREER LEGENDS" branded toy line, dramatic studio lighting
+     TYPE: IMAGE | Still trending 2026
+
+281. Grand Theft Auto loading screen art style portrait — vector art illustration, cel-shaded bold black outlines, high contrast shadows, vibrant saturated colors, streetwear, Miami sunset with palm trees
+     TYPE: IMAGE | PEAK: 2024–2025
+
+282. Futuristic cyberpunk portrait in rain-slicked Neo-Tokyo. Subject has glowing cybernetic tech lines on their cheek, wearing a translucent plastic raincoat. Pink and blue neon signs reflecting off wet skin. Cinematic atmosphere, volumetric fog, Blade Runner 2049 aesthetic. 9:16
+     TYPE: IMAGE | Consistently Viral 2024–2026
+
+283. A Polaroid photograph of a quiet Sunday morning kitchen. Warm natural light through a half-open window. Coffee mug steaming on marble counter. Slightly overexposed, soft film grain, gentle yellow color cast at the edges. The Polaroid sits on wooden table, white border visible. 1:1 ratio
+     TYPE: IMAGE | PEAK: Late 2025
+
+284. Classical white marble bust sculpture of a modern person displayed in a museum. Hyper-detailed stone texture, cinematic museum lighting
+     TYPE: IMAGE | Style: Classical Art
+
+285. Create a layered paper-cutting art portrait with multiple layers of cream paper, backlit by warm golden LED light. Intricate filigree details, 3D relief, whimsical and delicate, soft glow
+     TYPE: IMAGE | Style: Paper Art
+
+286. A Polaroid-style photo of a couple hugging under a shared umbrella in rain. Blurred city lights reflecting on wet streets, moody cinematic lighting with light leaks
+     TYPE: IMAGE | Style: Romantic Polaroid
+
+287. 1990s Bollywood-inspired photo — woman in polka-dot chiffon saree leaning against a rustic wooden door, dramatic shadows, grainy yet bright lighting, moody cinematic aura
+     TYPE: IMAGE | Style: Bollywood Retro (Popular in South Asian social media)
+
+288. Create a retro 90s couple portrait walking hand-in-hand on a cobblestone street, soft golden sunset glow, subtle film grain, slightly overexposed highlights, cinematic romantic vibe
+     TYPE: IMAGE | Style: 90s Romance
+
+289. An action figure of a cat in a collectible box with cosmic galaxy theme. Shiny astronaut suit, glowing helmet, floating in zero gravity, colorful packaging background
+     TYPE: IMAGE | Style: Pet Action Figure
+
+290. Animated scene of a short fluffy monster kneeling beside a melting red candle. 3D realistic art style, focus on lighting and texture. Warm colors, dramatic lighting. Mood of wonder and curiosity. Sense of innocence and playfulness
+     TYPE: IMAGE | Style: Character Art
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 11 — LINKEDIN (PROFESSIONAL POST & IMAGE PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+291. Write a LinkedIn post about a career lesson I learned the hard way from [experience]. Format: one-sentence hook, 3 short paragraphs (challenge / what I did / lesson), closing question to spark comments
+     TYPE: POST
+
+292. Generate a thought leadership LinkedIn post about [industry trend]. Open with a contrarian take. Back it with 3 brief data points. Close with a prediction. No corporate jargon
+     TYPE: POST
+
+293. Career coach: Analyze [professional situation], suggest 5 career pivots with a 30-day action plan for each
+     TYPE: TEXT / CAREER POST
+
+294. Write a personal story LinkedIn post — "The day I almost quit [profession]." Vulnerability-first, authentic tone, lesson at the end, engagement question
+     TYPE: POST
+
+295. Create a LinkedIn carousel text post that teaches [framework] in 8 slides: hook, problem, solution steps 1–5, summary, CTA. Mobile-optimized
+     TYPE: CAROUSEL CONCEPT
+
+296. Write a LinkedIn post that announces a job change or promotion using storytelling format — where I started, the journey, what I learned, the next chapter
+     TYPE: ANNOUNCEMENT POST
+
+297. Create a "myth vs. reality" LinkedIn post about [industry]. 3 myths, each corrected with a real insight. Professional but conversational tone
+     TYPE: POST
+
+298. Write a viral-style LinkedIn post about a time I failed at [project/career goal] and what I did differently after. Format: Start with failure, add context, describe pivot, share outcome
+     TYPE: FAILURE/GROWTH POST
+
+299. Generate a LinkedIn post that shares a counterintuitive insight about [topic]. Format: Start with a surprising statement. Explain why most people think the opposite. Reveal the nuanced truth. Ask for opinion
+     TYPE: INSIGHT POST
+
+300. Create a behind-the-scenes LinkedIn post about building [product/company/project] — the challenges no one talks about publicly. Authentic, specific, no PR spin
+     TYPE: BTS POST
+
+301. Write a LinkedIn post for a [profession] sharing the 3 questions they ask before taking on any new client. Professional, specific, shows expertise
+     TYPE: EXPERTISE POST
+
+302. Create a "what I know now that I wish I knew then" LinkedIn post for someone with [X years] in [industry]. 5 points, direct, actionable
+     TYPE: WISDOM POST
+
+303. Generate a LinkedIn image prompt — clean professional headshot-style background, soft studio lighting, muted palette, bold name typography, "Open to Work" or "Hiring" badge alternative
+     TYPE: IMAGE PROMPT
+
+304. Write a viral LinkedIn hook for a post about [topic]. Options: stat-based, question-based, bold claim, counterintuitive statement. Give 4 options
+     TYPE: HOOKS
+
+305. Create a LinkedIn post about a recent industry news event — offer a unique angle not covered by others, tie it to your own experience, ask for reader predictions
+     TYPE: NEWS RESPONSE POST
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 12 — REDDIT (IMAGE & TEXT PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+306. Create an AI image that looks exactly like a screenshot of someone's first-person perspective waking up in a fantasy RPG world. Notification-style UI, quest accepted, morning light from a window
+     TYPE: IMAGE | Style: Gaming Meme / r/gaming
+
+307. "What if [mundane thing] had a movie poster?" — design a blockbuster-style movie poster for a completely ordinary everyday item. Dramatic lighting, epic tagline
+     TYPE: IMAGE | Style: Reddit Humor
+
+308. Generate a realistic "found footage" style image — abandoned building, slightly blurry, security camera grain, uncanny atmosphere, no people
+     TYPE: IMAGE | Style: r/nosleep / Horror
+
+309. Create an infographic-style image breaking down [complex topic] in a visually satisfying way — clean icons, muted palette, structured layout, easy to absorb in 10 seconds
+     TYPE: IMAGE | Style: Educational / r/coolguides
+
+310. Write a Reddit-style "TIFU" (Today I F***ed Up) story structure — opening line is the funniest/most embarrassing possible setup, escalation in body, self-aware closing
+     TYPE: TEXT / STORY
+
+311. Create a "rate my setup" style image — gaming setup, desk, multiple monitors, RGB lighting, cable management visible, moody blue room lighting
+     TYPE: IMAGE | Style: r/battlestations
+
+312. Reddit AMA (Ask Me Anything) opening post for a [professional/expert] — introduce credentials, explain unique experience, invite questions. Engaging, humble, specific
+     TYPE: TEXT / POST
+
+313. Generate a meme template from [scenario] — top text sets up the irony, bottom text delivers the unexpected relatable twist. Text on classic meme image format
+     TYPE: IMAGE / MEME PROMPT
+
+314. Write a Reddit comment that becomes its own mini-essay — someone asks [question], you respond with a nuanced, well-structured, paragraph-by-paragraph answer that earns awards
+     TYPE: TEXT
+
+315. Create an r/Showerthoughts style post — an everyday observation that suddenly makes you question reality or see something familiar in a completely new way
+     TYPE: TEXT
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 13 — FACEBOOK (POST & IMAGE PROMPTS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+316. Create a Facebook community post for a [local business] — friendly tone, share a behind-the-scenes moment, include a special offer, ask a question to drive comments
+     TYPE: POST
+
+317. Write a Facebook Memories-style nostalgic post — "X years ago today, I [milestone moment]." Reflective, warm, include a lesson or funny element
+     TYPE: POST
+
+318. Generate a Facebook marketplace product listing description — friendly, specific, highlight unique features, trust-building language, local community feel
+     TYPE: LISTING TEXT
+
+319. Create a shareable Facebook post about [parenting/family/community topic] — relatable, warm, designed to be shared widely by parents. End with "Tag a [person]"
+     TYPE: VIRAL FAMILY POST
+
+320. Write a Facebook event post for [local event] — excitement-building language, key details, FOMO-inducing invitation, visual description for accompanying image
+     TYPE: EVENT POST
+
+321. Create a Facebook image post celebrating [business milestone] — business anniversary, first hire, grand opening. Warm tone, authentic, community-centered
+     TYPE: IMAGE CONCEPT / POST
+
+322. Write a Facebook post announcing a [sale/discount/offer] that doesn't feel salesy — lead with a story or reason, then naturally introduce the offer
+     TYPE: PROMOTIONAL POST
+
+323. Create a daily "did you know" Facebook post series about [topic] — friendly casual tone, single surprising fact, accompanied image suggestion, always ends with a question
+     TYPE: SERIES CONCEPT
+
+324. Generate a "Share your story" Facebook community engagement post — ask followers to share their experience with [topic], warm inviting language, makes people feel safe to open up
+     TYPE: ENGAGEMENT POST
+
+325. Create a Facebook image for a motivational quote post — clean design, bold text, inspirational colors, simple background, shareable format. Quote: [insert]
+     TYPE: IMAGE CONCEPT
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 14 — DALL-E / GEMINI / GENERAL AI IMAGE PROMPTS
+(Cross-Platform Trending Styles)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ [CURRENT 2026] — TRENDING STYLES
+
+326. Surreal minimalism — a single floating object in infinite white space, one impossibly long shadow, ultra-clean, 8K, poetic negative space
+     TYPE: IMAGE | TRENDING: 2026
+
+327. Extreme macro photography of everyday objects — a safety pin, a grain of salt, a pencil tip — shot with a scanning electron microscope aesthetic, ultra-detailed, otherworldly
+     TYPE: IMAGE | TRENDING: 2026
+
+328. Brutalist architecture art photography — raw concrete, dramatic overcast sky, symmetrical composition, lone human figure for scale, black and white or muted tones
+     TYPE: IMAGE | TRENDING: 2026
+
+329. Hyper-cozy interior — reading nook, warm blankets, steaming tea, rain-streaked window, afternoon light, stacked books — aspirational comfort
+     TYPE: IMAGE | TRENDING: 2026
+
+330. Nano banana miniature world — tiny banana in an elaborate diorama-style setting, tilt-shift lens effect, ultra-detailed miniature environment, playful and clever
+     TYPE: IMAGE | TRENDING: 2025–2026
+
+🔥 [PEAK 2024–2025] — STILL EFFECTIVE
+
+331. 3D figurine, chibi style, vibrant colors, glassy finish, high detail, collectible toy aesthetic, soft studio lighting
+     TYPE: IMAGE
+
+332. Hyper-realistic portrait, ethereal glow, 8K, professional lighting, magazine quality, subtle retouching
+     TYPE: IMAGE
+
+333. Cyberpunk street, Tokyo, neon signs, rain-slick roads, night, cinematic wide shot
+     TYPE: IMAGE
+
+334. Y2K aesthetic portrait, chrome text, bubblegum pink, glossy, early-internet energy, synthetic pop star look
+     TYPE: IMAGE
+
+335. Old money aesthetic, equestrian setting, neutral tones, understated luxury, natural light
+     TYPE: IMAGE
+
+📅 [CLASSIC 2022–2023] — EVERGREEN
+
+336. Realistic oil painting of [subject], Rembrandt lighting, canvas texture, museum quality
+     TYPE: IMAGE
+
+337. Low-poly geometric landscape, vibrant faceted surfaces, clean and angular, digital art
+     TYPE: IMAGE
+
+338. Impressionist watercolor cityscape, loose brushstrokes, wet-on-wet bleeding colors, soft edges
+     TYPE: IMAGE
+
+339. Steampunk workshop interior, brass gears, candlelight, Victorian aesthetic, ultra-detailed
+     TYPE: IMAGE
+
+340. Fantasy portrait with magical glowing elements, dramatic composition, luminous details
+     TYPE: IMAGE
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 15 — BONUS: CROSS-PLATFORM VIRAL IMAGE STYLES (TRENDING 2025–2026)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+These prompts went viral across multiple platforms simultaneously:
+
+341. [2025 MEGA VIRAL — Instagram/X/TikTok] Studio Ghibli-style portrait of the subject. Soft watercolor background, lush green landscape, large expressive eyes, warm nostalgic lighting, hand-painted feel
+     Platform Peak: January–March 2025 | 50M+ generations
+
+342. [2025 MEGA VIRAL — TikTok/Instagram] Action figure in blister pack packaging. Subject's name on bold backing card, tiny personality-appropriate accessories, "LIMITED EDITION" stamp, product studio lighting
+     Platform Peak: April 2025 | Triggered by ChatGPT image update
+
+343. [2024–2025 — All Platforms] Retro 90s high school yearbook portrait. Muted blue background, vintage soft focus, formal pose, grainy film look
+     Platform Peak: Late 2024 | Still gets consistent engagement
+
+344. [2025 — TikTok/Pinterest/Instagram] Scrapbook collage portrait — overlapping printed portraits, torn paper, masking tape, vintage stickers, aged details, Tumblr moodboard aesthetic
+     Platform Peak: Mid 2025
+
+345. [2025–2026 — All Platforms] Polaroid photo effect — white border, warm yellow cast, slightly overexposed, film grain, candid feel
+     Platform Peak: Late 2025 | Still trending 2026
+
+346. [2024–2025 — Reddit/X/TikTok] GTA V loading screen portrait — cel-shaded, dramatic vector look, Los Santos sunset
+     Platform Peak: 2024
+
+347. [2025 — TikTok/Instagram] Chibi gashapon capsule toy style — person inside a clear plastic ball, capsule machine setting, miniature cute version
+     Platform Peak: April–May 2025 (followed action figure trend)
+
+348. [2024–2025 — Instagram/Pinterest] Dark academia moody library portrait
+     Platform Peak: Consistent 2024–2025
+
+349. [2024 — All Platforms] 3D action figurine, hyper-realistic collector quality, cyberpunk suit, transparent base
+     Platform Peak: Throughout 2024
+
+350. [2025–2026 — Instagram/YouTube/TikTok] Anime-style opening sequence — person reimagined as anime protagonist with wind in hair, speed lines, dramatic sky, Japanese title card aesthetic
+     Platform Peak: 2025–2026
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 16 — EXTRA: GEMINI-SPECIFIC VIRAL PROMPTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+351. Ultra-realistic 8K portrait of a young creator with natural sunlight glow, cinematic shadows, soft texture, and vivid background, keeping the original face identity
+     Platform: Gemini | TYPE: IMAGE
+
+352. A captivating half-body shot of a young woman standing by the ocean. Dark wavy hair flowing in the breeze, small pink flower tucked behind one ear. Elegantly draped in sheer flowing saree with floral pattern. Background: vast deep blue ocean, slightly blurred. Natural sunlight. Photorealistic, soft, ethereal outdoor portrait. Don't change the face
+     Platform: Gemini | TYPE: IMAGE
+
+353. A young, slim man with the same facial features as the uploaded image, standing in an outdoor café at night. Loose white shirt, black baggy cargo pants, black smartwatch, relaxed yet confident pose. Surrounded by lush green plants with small pink flowers. Softly illuminated by warm string lights. Peaceful nighttime café setting
+     Platform: Gemini | TYPE: IMAGE
+
+354. Ultra realistic photo of a woman in a playful summer-ready red polka dot co-ord set, consisting of an off-the-shoulder ruffled crop top and a matching mini skirt. Outdoor golden hour background, natural confidence, lifestyle photography
+     Platform: Gemini | TYPE: IMAGE
+
+355. Transform into a dreamy Y2K style portrait while retaining the subject's exact hairstyle and accessories. Subject lying on shiny pink satin bedding, holding large 90s corded phone, thoughtful daydreaming pose. Ghostface Killer lurking in the doorway behind. Grainy 90s aesthetic, lamp-lit night atmosphere
+     Platform: Gemini/ChatGPT | TYPE: IMAGE | VIRAL: High
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 17 — RUNWAY, PIKA, KLING SPECIFIC PROMPTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+356. Runway Gen-4: A model walking in slow motion through a golden wheat field, hair blowing in the wind, cinematic close-up, dreamy color grade, soft natural lighting, Terrence Malick aesthetic
+     Platform: Runway | TYPE: VIDEO
+
+357. Pika 2.5: A dancing cat in zero gravity, pastel background, playful loop animation, Gen Z aesthetic, comedic energy, vertical 9:16
+     Platform: Pika | TYPE: VIDEO
+
+358. Kling 2.0: Two people sharing an umbrella in Tokyo rain, detailed facial animation, slow approach, realistic water droplets on fabric, warm interior light visible behind
+     Platform: Kling | TYPE: VIDEO
+
+359. Runway: Apple-style product reveal — product on matte black surface, spotlight fades in from above, orbiting camera, reflections visible, cinematic product photography motion, 16:9
+     Platform: Runway | TYPE: VIDEO / Ad
+
+360. Pika: Looping ASMR video — hands folding an origami crane in precise slow steps, overhead shot, minimal ambient sounds implied, clean wooden surface, vertical format
+     Platform: Pika | TYPE: VIDEO / ASMR
+
+361. Kling: Realistic human running — full sprint across wet track, detailed muscle movement, rain drops scattering, shot from low angle, cinematic slow motion
+     Platform: Kling | TYPE: VIDEO
+
+362. Runway: Time-lapse of storm clouds rolling over a city at dusk, lightning in the distance, dramatic color shift from gold to dark grey, wide establishing shot
+     Platform: Runway | TYPE: VIDEO
+
+363. Pika: Satisfying transformation — cluttered desk becomes perfectly organized in snap-cut transition, bright energetic music implied, vertical 9:16, before/after
+     Platform: Pika | TYPE: VIDEO
+
+364. Luma Dream Machine: 3D-aware ocean wave breaking on a rocky shore, camera starts underwater, rises through the surface, golden hour light refracting, photorealistic water
+     Platform: Luma | TYPE: VIDEO
+
+365. HailuoAI: Romantic slow-motion moment — two people laughing in a sunlit park, autumn leaves falling, candid feel, golden hour warmth, natural facial expressions
+     Platform: HailuoAI | TYPE: VIDEO
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 18 — DISCORD / GAMING / NICHE PLATFORM PROMPTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+366. Create GTA V style artwork of the person in the image, using Grand Theft Auto loading screen aesthetic with dramatic lighting and bold colors. Best for: Gaming profiles, YouTube thumbnails, social media avatars
+     TYPE: IMAGE | Platform: Discord/Gaming
+
+367. Transform into a 16-bit video game character and place the character in a level of a 2D 16-bit platform video game. Best for: Retro game projects, pixel art collections, nostalgic content
+     TYPE: IMAGE | Platform: Discord/Gaming
+
+368. Transform to pixel art: retro 8-bit or 16-bit video game style, clear pixel grid visible, reduced resolution with blocky appearance, simplified color palette, nostalgic arcade game aesthetic, maintain subject's key features
+     TYPE: IMAGE | Platform: Discord/Gaming
+
+369. Create a Funko Pop-style vinyl figure of [character/person] — oversized head, tiny body, black dot eyes, stylized features, iconic pose, on a branded cardboard display base
+     TYPE: IMAGE | Platform: Discord/Art Communities
+
+370. Fantasy character sheet — front and side view of original character, name, stats, backstory summary, ability descriptions, art style: D&D illustration, detailed
+     TYPE: IMAGE | Platform: Discord/D&D
+
+371. Design a Discord server banner — dark gradient background, server name in bold fantasy font, thematic icon centered, horizontal 16:4 ratio, mystical atmosphere
+     TYPE: IMAGE | Platform: Discord
+
+372. Isometric game environment — a cozy medieval tavern interior, pixelated but detailed, warm lantern light, NPCs at tables, bulletin board with quests, top-down 45-degree angle
+     TYPE: IMAGE | Platform: Discord/Gaming
+
+373. Create a Twitch stream overlay concept — HUD elements, subscriber notification area, donation bar, webcam frame, dark theme with neon accents, clean and professional
+     TYPE: IMAGE CONCEPT | Platform: Twitch/Gaming
+
+374. Custom emoji-style sticker pack — 6 expressions of a cartoon character (happy, sad, surprised, angry, cool, sleepy) — flat design, vibrant colors, Discord-ready square format
+     TYPE: IMAGE | Platform: Discord
+
+375. Watercolor style map of a fantasy world — named kingdoms, mountain ranges, forests, sea routes, decorative compass rose, warm aged parchment tones, hand-drawn aesthetic
+     TYPE: IMAGE | Platform: Discord/Fantasy Communities
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 19 — SNAPCHAT & THREADS PROMPTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+376. Snapchat AR lens concept — user's face surrounded by falling cherry blossoms, soft pink tones, subtle sparkle overlay, spring-themed, automatic head tracking
+     TYPE: AR / CONCEPT
+
+377. Snapchat streak story image — fun illustrated border, "Day X 🔥" streak badge, casual Polaroid-style frame, bright and energetic
+     TYPE: IMAGE CONCEPT
+
+378. Threads text post — one provocative opening line that makes someone stop scrolling, then 2-3 short paragraphs of honest, casual opinion on [topic], ends with a genuine question
+     TYPE: TEXT POST
+
+379. Threads casual opinion post — conversational, lowercase, no hashtags, feels like a thought shared with a friend, relatable take on [everyday observation]
+     TYPE: TEXT POST
+
+380. Threads image post concept — single striking visual, minimal text overlay, designed to prompt saves and shares in the close-friend atmosphere of the platform
+     TYPE: IMAGE CONCEPT
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 20 — QUICK-FIRE BONUS VIRAL PROMPTS (MIXED PLATFORMS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+381. Ethereal forest scene, bioluminescent mushrooms, misty atmosphere, fairy-tale mood, deep green tones with glowing blue/purple details, ultra-detailed
+     TYPE: IMAGE
+
+382. Ocean sunset time-lapse — blazing orange and pink sky, silhouetted palm trees, slow camera tilt from horizon down to water, 8-second cinematic loop
+     TYPE: VIDEO
+
+383. Cozy winter cabin interior — fireplace crackling, snow visible through frost-edged window, warm amber and red tones, cup of hot cocoa on wooden table, inviting and serene
+     TYPE: IMAGE
+
+384. An illustrative scene of a person reading in a hot air balloon above the clouds, watercolor style, pastel palette, dreamlike and adventurous
+     TYPE: IMAGE
+
+385. A timelapse of a flower blooming — macro lens, close-up on petals unfurling, warm golden light growing brighter as it opens, 5-second satisfying loop
+     TYPE: VIDEO
+
+386. Aerial view of a neon city at night from directly above — grid of streets and buildings, rivers of headlights and taillights, abstract pattern from height, ultra-sharp
+     TYPE: IMAGE
+
+387. A portrait that gradually transitions from realism to impressionism — the left side photorealistic, the right side dissolving into Monet-style brushstrokes
+     TYPE: IMAGE / EFFECT
+
+388. A realistic medieval market scene in morning mist — merchants setting up stalls, cobblestones wet from overnight rain, warm torchlight mixing with dawn
+     TYPE: IMAGE
+
+389. A woman looking at herself in an antique mirror — what she sees is her alternate self in a fantasy world. Mirror as portal, two realities visible simultaneously
+     TYPE: IMAGE
+
+390. Dramatic before/after landscape split — left side: barren desert, harsh light; right side: the same location lush and green, soft misty morning, ecological contrast
+     TYPE: IMAGE / VISUAL CONCEPT
+
+391. lofi chill beats — bedroom producer, neon headphones, rainy window, desk lamp, late night coding session, instrumental, 80 BPM, peaceful
+     TYPE: MUSIC PROMPT (Suno)
+
+392. powerful pump-up workout track — heavy 808s, aggressive synth stabs, motivational energy, 140 BPM, no lyrics, gym anthem
+     TYPE: MUSIC PROMPT (Suno)
+
+393. Write a Viral Instagram Reel script with hook, call-to-action, 3 emojis, and trending audio suggestion for the [beauty/fitness/food] niche. 30-second format
+     TYPE: SCRIPT
+
+394. Generate 10 trending hashtag combinations for [niche] on Instagram in 2025. Mix high-volume and niche-specific. Include rationale for each
+     TYPE: TEXT / STRATEGY
+
+395. Create an AI-generated "color analysis" post — show the subject surrounded by 4 seasonal color palettes (Spring/Summer/Autumn/Winter), each highlighting how those tones complement the person's features
+     TYPE: IMAGE CONCEPT (Instagram Trend 2024–2025)
+
+396. Cinematic drone shot — camera rises from ocean surface to reveal a tropical island from above, perfect circular atoll, turquoise lagoon, white sand, cinematic reveal
+     TYPE: VIDEO PROMPT
+
+397. Horror aesthetic portrait — subject lit only by a flickering candle in a pitch-black room, deep shadows, barely visible face, unsettling calm, VHS grain overlay
+     TYPE: IMAGE
+
+398. Stop-motion animation style — a bouquet of flowers assembling themselves petal by petal, warm studio light, 8-second satisfying loop
+     TYPE: VIDEO PROMPT
+
+399. Underwater fashion editorial — model in flowing silk dress surrounded by vibrant sea anemones and fish, natural ocean light, bubble trails, ethereal and surreal
+     TYPE: IMAGE
+
+400. Abstract glitch art portrait — digital corruption effect over a clean portrait, split-channel RGB errors, distorted edges, cyberpunk error message aesthetic
+     TYPE: IMAGE
+
+════════════════════════════════════════════════════════════════════════════════
+SECTION 21 — COLORING BOOK / ARTISTIC / NICHE PLATFORM EXTRAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+401. Convert this photo into a coloring book page — clean black outlines, no shading or color, simplified forms, kid-friendly line weight, printable quality
+     TYPE: IMAGE
+
+402. Transform into a children's book illustration style — cheerful colors, exaggerated proportions, warm storytelling atmosphere, characters with large friendly eyes
+     TYPE: IMAGE
+
+403. Create an art nouveau illustration — organic flowing lines, floral frame elements, decorative borders, muted gold and green palette, Mucha-inspired
+     TYPE: IMAGE
+
+404. Ukiyo-e Japanese woodblock print style — flat colors, bold outlines, traditional wave patterns, Mt Fuji aesthetic, limited color palette, classic composition
+     TYPE: IMAGE
+
+405. Poster design — retro 1960s travel poster style for [location], bold flat illustration, limited palette of 4 colors, vintage sun rays, clean bold typography
+     TYPE: IMAGE
+
+406. Concept art for a video game environment — abandoned space station, flickering lights, zero gravity debris, moody, cinematic, detailed architectural concept
+     TYPE: IMAGE
+
+407. Create a tarot card design for "The [Archetype]" — symbolic imagery, bordered frame, ornate decorative elements, mystical atmosphere, rich jewel tones
+     TYPE: IMAGE
+
+408. Isometric 3D room art — a tiny creator's studio with all relevant tools, adorable proportions, bright pastel colors, every detail meaningful, bird's-eye view
+     TYPE: IMAGE
+
+409. Risograph print style illustration — two-color limited palette, slight misalignment between layers, grainy texture, retro indie zine aesthetic
+     TYPE: IMAGE
+
+410. Art deco poster — geometric patterns, gold foil effect, streamlined elegant figures, 1920s glamour, symmetrical composition, metallic accents
+     TYPE: IMAGE
+
+════════════════════════════════════════════════════════════════════════════════
+📊 PLATFORM TREND TIMELINE SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2022:
+- Midjourney V1-3 goes viral on Discord/Twitter
+- Stable Diffusion democratizes AI art
+- Photorealistic portrait prompts dominate Reddit
+
+2023:
+- ChatGPT prompt engineering becomes mainstream
+- Cyberpunk, fantasy, and anime art styles dominate
+- DALL-E 3 integrates into ChatGPT; quality leap
+- Suno & Udio launch (late 2023); AI music generation begins
+- Y2K aesthetic rises on TikTok and Instagram
+
+2024:
+- GTA V portrait trend explodes on TikTok/X (mid 2024)
+- Disposable camera / retro aesthetic peaks
+- AI music goes mainstream; Suno reaches millions of users
+- 90s yearbook prompt trend goes viral across all platforms
+- Dark academia and old money aesthetics dominate Pinterest
+- Scrapbook collage trend begins on Instagram/Pinterest
+- Midjourney V6.1 brings photorealistic quality
+- Action figure concept first emerges (end 2024)
+
+2025 (Jan–Jun):
+- Studio Ghibli portrait trend EXPLODES (50M+ generations)
+- ChatGPT image generation upgrades trigger action figure trend
+- Chibi gashapon trend follows action figure
+- Claymation figurine trend gains traction
+- Book cover character trend grows
+- Polaroid photo trend resurfaces with strong engagement
+- Lo-Fi Realism rises as counter to over-polished AI
+- Nano Banana (Gemini) becomes new major platform
+
+2025 (Jul–Dec):
+- Andy Warhol pop art trend peaks
+- GTA V portrait remains consistently popular
+- Anime opening sequence style gains momentum
+- Suno v4 releases; AI music production quality improves
+- Y2K dreamcore and chrome aesthetics peak
+- Collector figure trend evolves and diversifies
+
+2026 (Current):
+- Surreal Minimalism is #1 trending style
+- Extreme Macro Photography is massively viral on Pinterest
+- Brutalist Architecture Art trending for editorial content
+- Hyper-Cozy Interior shooting up in engagement
+- Ghibli + Action Figure remain popular (past peak but steady)
+- True Character Consistency across images is the new frontier
+- Anime-style opening sequence videos dominating Shorts/Reels
+- Veo3, Runway Gen-4, Kling 3.0 leading AI video generation
+
+════════════════════════════════════════════════════════════════════════════════
+🔑 PROMHANCE QUICK-USE TAGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CURRENT HOT: Surreal Minimalism | Macro Photography | Brutalist Architecture
+            | Hyper-Cozy Interior | Ghibli Wide-Shot | Character Consistency
+
+STILL STRONG: Action Figure | Polaroid | Anime Opening | Scrapbook Collage
+              | Cyberpunk Neon | Y2K Chrome | Collector Figure
+
+PEAK (Use for Nostalgia Appeal): Studio Ghibli Portrait | GTA V Portrait
+                                  | Chibi Gashapon | 90s Yearbook | Claymation
+
+MUSIC (Suno): Hyperpop Chaos | Lofi Hip-Hop | Dreamy Indie Pop
+              | Orchestral Epic | Dark Trap | Synthwave
+
+VIDEO (Platforms): Sora Viral Comedy | Runway Product Ad | Pika ASMR Loop
+                   | Kling Realistic Human | Ghibli Animated Short
+
+════════════════════════════════════════════════════════════════════════════════
+END OF DOCUMENT — TOTAL PROMPTS: 410+
+Compiled for: Promhance | Research Date: June 2026
+════════════════════════════════════════════════════════════════════════════════
