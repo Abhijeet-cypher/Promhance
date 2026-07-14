@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
-import { Bot, Sparkles, Palette, PenTool, Code, RefreshCw, Copy, Check, Wand2, Megaphone } from "lucide-react";
+import { Bot, Sparkles, Palette, PenTool, Code, RefreshCw, Copy, Check, Wand2, Megaphone, ExternalLink, ChevronDown } from "lucide-react";
 
 const MAX_CHARS = 2000;
 
@@ -49,6 +49,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   const [placeholderIdx, setPlaceholderIdx] = useState(0);
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [hasTrackedInput, setHasTrackedInput] = useState(false);
+  const [isPlatformMenuOpen, setIsPlatformMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -319,6 +320,65 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                       <><Copy className="w-3.5 h-3.5" /><span className="hidden sm:inline">Copy</span></>
                     )}
                   </button>
+
+                  {/* Open in AI Platform */}
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsPlatformMenuOpen(!isPlatformMenuOpen)}
+                      title="Open in AI Platform"
+                      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all duration-200 ${
+                        isPlatformMenuOpen
+                          ? "bg-blue-500/15 text-blue-300 border-blue-500/40"
+                          : "bg-[#0a0a0a] text-[#a1a1a1] border-[#2a2a2a] hover:text-white hover:border-[#3a3a3a]"
+                      }`}
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Open in...</span>
+                      <ChevronDown className={`w-3 h-3 transition-transform ${isPlatformMenuOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    
+                    {isPlatformMenuOpen && (
+                      <>
+                        <div className="fixed inset-0 z-10" onClick={() => setIsPlatformMenuOpen(false)} />
+                        <div className="absolute right-0 mt-2 w-36 bg-[#111111] border border-[#2a2a2a] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-20 flex flex-col overflow-hidden py-1">
+                          {(() => {
+                            const llmPlatforms = [
+                              { name: "ChatGPT", url: (p: string) => `https://chatgpt.com/?q=${encodeURIComponent(p)}` },
+                              { name: "Claude", url: () => `https://claude.ai/new` },
+                              { name: "Perplexity", url: (p: string) => `https://www.perplexity.ai/?q=${encodeURIComponent(p)}` },
+                              { name: "Gemini", url: () => `https://gemini.google.com/` },
+                            ];
+                            
+                            const imagePlatforms = [
+                              { name: "Midjourney", url: () => `https://www.midjourney.com/` },
+                              { name: "DALL-E (ChatGPT)", url: (p: string) => `https://chatgpt.com/?q=${encodeURIComponent("Generate an image: " + p)}` },
+                              { name: "Bing Image Creator", url: () => `https://www.bing.com/create` },
+                            ];
+
+                            let platforms = llmPlatforms;
+                            if (mode === "Image Generation") platforms = imagePlatforms;
+                            else if (mode === "General") platforms = [...llmPlatforms, ...imagePlatforms];
+
+                            return platforms.map((platform) => (
+                              <button
+                                key={platform.name}
+                                onClick={() => {
+                                  handleCopy();
+                                  window.open(platform.url(output), "_blank");
+                                  setIsPlatformMenuOpen(false);
+                                  trackEvent("open_ai_platform", { platform: platform.name, mode, intensity });
+                                }}
+                                className="px-3 py-2 text-xs text-[#a1a1a1] hover:text-white hover:bg-[#1a1a1a] transition-colors text-left flex items-center justify-between group/btn"
+                              >
+                                <span>{platform.name}</span>
+                                <ExternalLink className="w-3 h-3 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                              </button>
+                            ));
+                          })()}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
