@@ -15,6 +15,7 @@ export type BlogPost = {
   tags: string[];
   image?: string;
   content: string;
+  faqSchema?: any;
 };
 
 export function getPostSlugs() {
@@ -46,6 +47,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     tags: data.tags || [],
     image: data.image || '',
     content: contentHtml,
+    faqSchema: data.faqSchema || null,
   };
 }
 

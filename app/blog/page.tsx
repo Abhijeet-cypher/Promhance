@@ -58,7 +58,9 @@ export default async function BlogIndexPage() {
                   <div className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
                     <time dateTime={post.date}>
-                      {format(new Date(post.date), 'MMMM d, yyyy')}
+                      {post.date && !isNaN(new Date(post.date).getTime()) 
+                        ? format(new Date(post.date), 'MMMM d, yyyy') 
+                        : (post.date || 'Unknown date')}
                     </time>
                   </div>
                 </div>

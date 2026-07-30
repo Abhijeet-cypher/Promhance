@@ -84,6 +84,12 @@ export default async function BlogPostPage({ params }: Props) {
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
+    {post.faqSchema && (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(post.faqSchema) }}
+      />
+    )}
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] pt-28 pb-24 selection:bg-white/20">
       
       {/* Monochrome grid overlay */}
@@ -128,7 +134,9 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               <time dateTime={post.date}>
-                {format(new Date(post.date), 'MMMM d, yyyy')}
+                {post.date && !isNaN(new Date(post.date).getTime())
+                  ? format(new Date(post.date), 'MMMM d, yyyy')
+                  : (post.date || 'Unknown date')}
               </time>
             </div>
           </div>
