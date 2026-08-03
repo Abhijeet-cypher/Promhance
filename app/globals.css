@@ -31,6 +31,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure TOC-linked headings don't disappear under fixed navbar */
+* {
+  scroll-margin-top: 100px;
+}
+
 body {
   background: var(--bg-base);
   color: var(--text-primary);
@@ -38,6 +47,41 @@ body {
   /* Firefox scrollbar */
   scrollbar-color: #2a2a2a #111111;
   scrollbar-width: thin;
+}
+
+/* ─── Prose links: no underline by default, underline only on hover of that link ─── */
+.prose a {
+  text-decoration: none !important;
+}
+.prose a:hover {
+  text-decoration: underline !important;
+}
+
+/* ─── CTA / button-style anchors: never underline ─── */
+a.btn-cta,
+a.btn-cta:hover {
+  text-decoration: none !important;
+}
+
+/* ─── Blog prose table: scrollable on small screens ─── */
+.prose table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  overflow: hidden;
+}
+.prose thead tr {
+  background: #161616;
+}
+.prose tbody tr:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+.prose tbody tr:last-child td {
+  border-bottom: none;
 }
 
 /* ─── Custom Scrollbar (Webkit) ─── */

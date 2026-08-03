@@ -1,7 +1,7 @@
 import { getPostBySlug, getAllPosts, BlogPost } from "@/lib/markdown";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { Calendar, User, ArrowLeft } from "lucide-react";
+import { Calendar, User, ArrowLeft, Zap } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
 import Footer from "@/components/Footer";
@@ -90,6 +90,10 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(post.faqSchema) }}
       />
     )}
+
+    {/* Smooth scroll for TOC anchor links */}
+    <style>{`html { scroll-behavior: smooth; } html * { scroll-margin-top: 100px; }`}</style>
+
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] pt-28 pb-24 selection:bg-white/20">
       
       {/* Monochrome grid overlay */}
@@ -162,7 +166,7 @@ export default async function BlogPostPage({ params }: Props) {
             prose-h1:text-3xl prose-h1:mt-12 prose-h1:mb-6
             prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:border-b prose-h2:border-[#2a2a2a] prose-h2:pb-3
             prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
-            prose-a:text-white prose-a:no-underline hover:prose-a:underline prose-a:opacity-80 hover:prose-a:opacity-100
+            prose-a:text-white prose-a:no-underline prose-a:opacity-80 hover:prose-a:opacity-100
             prose-strong:text-white
             prose-blockquote:border-l-2 prose-blockquote:border-l-white/20 prose-blockquote:bg-[#111111] prose-blockquote:py-3 prose-blockquote:px-5 prose-blockquote:rounded-r-xl prose-blockquote:text-[#a1a1a1] prose-blockquote:not-italic prose-blockquote:text-sm prose-blockquote:leading-relaxed prose-blockquote:my-4
             prose-code:text-white prose-code:bg-[#1a1a1a] prose-code:border prose-code:border-[#2a2a2a] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
@@ -170,9 +174,40 @@ export default async function BlogPostPage({ params }: Props) {
             prose-hr:border-[#2a2a2a] prose-hr:my-10
             prose-ul:text-[#a1a1a1] prose-ol:text-[#a1a1a1]
             prose-em:text-[#d4d4d4]
+            prose-table:w-full prose-table:border-collapse prose-table:text-sm
+            prose-thead:border-b prose-thead:border-[#3a3a3a]
+            prose-th:text-white prose-th:font-semibold prose-th:text-left prose-th:py-3 prose-th:px-4 prose-th:bg-[#161616]
+            prose-td:text-[#a1a1a1] prose-td:py-3 prose-td:px-4 prose-td:border-b prose-td:border-[#1f1f1f]
+            prose-tr:transition-colors
           "
           dangerouslySetInnerHTML={{ __html: post.content }} 
         />
+
+        {/* ─── CTA Banner ─── */}
+        <div className="mt-16 rounded-2xl border border-[#2a2a2a] bg-gradient-to-br from-[#111111] via-[#0f1724] to-[#111111] p-8 sm:p-10 text-center shadow-xl relative overflow-hidden">
+          {/* Subtle blue glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(59,130,246,0.08),transparent)] pointer-events-none" />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.25)] text-[#60a5fa] mb-4">
+              <Zap className="w-3 h-3" />
+              Free · No account needed
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
+              Stop rewriting. Start engineering.
+            </h2>
+            <p className="text-[#a1a1a1] text-base max-w-xl mx-auto mb-6">
+              Transform any rough idea into a perfectly structured prompt for ChatGPT, Claude, Gemini, or Midjourney — instantly, for free.
+            </p>
+            <a
+              href="https://promhance.com/chatgpt-prompt-enhancer"
+              className="btn-cta inline-flex items-center gap-2 bg-white text-[#0a0a0a] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#f5f5f5] transition-colors shadow-lg no-underline"
+              style={{ textDecoration: 'none' }}
+            >
+              <Zap className="w-4 h-4" />
+              Try Promhance Free →
+            </a>
+          </div>
+        </div>
         
       </article>
     </main>

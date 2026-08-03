@@ -4,7 +4,7 @@ date: "2026-03-20"
 description: "Master prompt engineering with our comprehensive AI prompt writing guide. Learn how to write better prompts for AI to get exact, high-quality results from ChatGPT, Claude, and Gemini."
 author: "Promhance Team"
 tags: ["Prompt Engineering", "ChatGPT Prompts", "AI Prompts", "AI", "AI Writing"]
-image: "https://images.unsplash.com/photo-1625297670911-8311cd5e7832?q=80&w=2070&auto=format&fit=crop"
+image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
 ---
 
 Artificial Intelligence has transformed the way we work, write, and code. But if you’ve ever felt frustrated by generic, inaccurate, or unhelpful responses from tools like ChatGPT or Claude, you are not alone. The secret isn't a smarter AI—it's **prompt engineering**.
@@ -13,7 +13,6 @@ Understanding **how to write better prompts for AI** is the single highest-ROI s
 
 In this comprehensive **AI prompt writing guide**, we’ll break down exactly why most people fail at prompting and how you can use **contextual prompts** and **clear instructions** to unlock the true power of AI.
 
-![Prompt Engineering Concept](https://images.unsplash.com/photo-1677506050626-90651f770d0a?q=80&w=2070&auto=format&fit=crop)
 
 ---
 
@@ -39,7 +38,7 @@ When you give an AI nothing to work with, it falls back on its most generic trai
 
 To stop getting generic fluff and start getting expert-level outputs, you need to master **crafting AI prompts** using the **CREATE** framework: Context, Request, Examples, Audience, Tone, and Extras (Constraints).
 
-![Good vs Bad AI Prompt](https://images.unsplash.com/photo-1759661990336-51bd4b951fea?q=80&w=2070&auto=format&fit=crop)
+![Structured prompts vs vague requests](https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2072&auto=format&fit=crop)
 *A structured prompt always beats a vague, one-sentence request.*
 
 ### 1. Context is King (Contextual Prompts)

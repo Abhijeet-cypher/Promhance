@@ -2,7 +2,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { getAllPosts } from "@/lib/markdown";
 import { Metadata } from "next";
-import { Calendar } from "lucide-react";
+import { Calendar, Zap } from "lucide-react";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default async function BlogIndexPage() {
             <Link 
               key={post.slug} 
               href={`/blog/${post.slug}`}
-              className="group flex flex-col bg-[#111111] rounded-3xl border border-[#2a2a2a] overflow-hidden hover:bg-[#1a1a1a] hover:border-[#3a3a3a] transition-all duration-300 shadow-lg"
+              className="group flex flex-col bg-[#111111] rounded-3xl border border-[#2a2a2a] overflow-hidden hover:bg-[#1a1a1a] hover:border-[#3a3a3a] transition-all duration-300 shadow-lg no-underline"
             >
               {/* Image Header */}
               {post.image && (
@@ -96,6 +96,32 @@ export default async function BlogIndexPage() {
             No blog posts found. Stay tuned for updates!
           </div>
         )}
+
+        {/* ─── CTA Banner ─── */}
+        <div className="mt-20 rounded-2xl border border-[#2a2a2a] bg-gradient-to-br from-[#111111] via-[#0f1724] to-[#111111] p-8 sm:p-12 text-center shadow-xl relative overflow-hidden">
+          {/* Subtle blue glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_50%_100%,rgba(59,130,246,0.07),transparent)] pointer-events-none" />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.25)] text-[#60a5fa] mb-5">
+              <Zap className="w-3 h-3" />
+              Free · No sign-up required
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">
+              Ready to write better prompts?
+            </h2>
+            <p className="text-[#a1a1a1] text-base sm:text-lg max-w-xl mx-auto mb-7">
+              Put what you&apos;ve learned into practice. Promhance turns any rough idea into a perfectly structured, expert-level prompt — for any AI — in seconds.
+            </p>
+            <a
+              href="https://promhance.com/chatgpt-prompt-enhancer"
+              className="btn-cta inline-flex items-center gap-2 bg-white text-[#0a0a0a] font-bold text-sm px-8 py-3.5 rounded-xl hover:bg-[#f5f5f5] transition-colors shadow-lg no-underline"
+              style={{ textDecoration: 'none' }}
+            >
+              <Zap className="w-4 h-4" />
+              Try Promhance Free →
+            </a>
+          </div>
+        </div>
 
       </div>
     </main>

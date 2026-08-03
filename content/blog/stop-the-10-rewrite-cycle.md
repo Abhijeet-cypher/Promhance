@@ -15,7 +15,7 @@ Ten seconds later, the AI spits out a generic, robotic wall of text that sounds 
 
 If you are spending more time editing and wrestling with Large Language Models (LLMs) than you are actually creating, your prompt strategy is broken. In this guide, we will break down exactly why your AI prompts are failing and reveal a **2-second fix** that will instantly transform your AI outputs from generic to genius.
 
-![Prompt Engineering](https://fortune.com/img-assets/wp-content/uploads/2024/03/Prompt-engineering-courses-GettyImages-1498577422-e1709762465348.jpg)
+![Frustrated with AI rewrites](https://images.unsplash.com/photo-1545987796-200677ee1011?q=80&w=2070&auto=format&fit=crop)
 
 ---
 
@@ -51,7 +51,7 @@ Here is the **2-second fix** to stop the 10-rewrite cycle forever. Append this e
 
 > **"Before generating your response, ask me up to 3 clarifying questions so you can provide the best possible output."**
 
-![Prompt Engineering Tips](https://media.licdn.com/dms/image/v2/D4E12AQE8veI44IU0bw/article-cover_image-shrink_600_2000/B4EZZhPiaKHYAU-/0/1745388186367?e=2147483647&v=beta&t=5Pff2qq9tAwA8CtnsMWeQ-b5RNlIOwmMorM4wUVOs-U)
+![Reverse prompting in action](https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2068&auto=format&fit=crop)
 *Reverse Prompting turns AI into a collaborative conversation partner.*
 
 ---
@@ -85,7 +85,7 @@ If you want to go beyond the 2-second fix and build highly repeatable, professio
 
 - **F - Format:** Tell the AI how to deliver it. (*"Format the post with short paragraphs, use exactly 3 emojis, and end with a question to drive engagement."*)
 
-![AI Prompt Engineering Strategy](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*Eu9PolLyyi_hRde-1JaQ-A.jpeg)
+![RTF framework visual](https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop)
 *Structure your prompts like a strategy — with the R.T.F. Framework.*
 
 ### A Perfect R.T.F. Prompt Example:
