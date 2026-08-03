@@ -18,7 +18,7 @@ function slugify(text: string): string {
 // Post-processes HTML to inject id attributes on headings for TOC navigation
 function addHeadingIds(htmlContent: string): string {
   return htmlContent.replace(
-    /<(h[1-6])([^>]*)>(.*?)<\/\1>/gis,
+    /<(h[1-6])([^>]*)>([\s\S]*?)<\/\1>/gi,
     (match, tag, attrs, inner) => {
       // Strip any existing HTML tags inside heading to get plain text for slug
       const plainText = inner.replace(/<[^>]+>/g, '');
