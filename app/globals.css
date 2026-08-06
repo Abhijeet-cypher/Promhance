@@ -218,6 +218,20 @@ body::after {
   display: none;
 }
 
+/* ─── Trust Strip: Mobile Marquee Ticker ─── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* ─── Slider (mono-slider) ─── */
 input[type="range"].mono-slider {
   -webkit-appearance: none;

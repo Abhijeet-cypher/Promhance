@@ -28,13 +28,15 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               {[
-                { icon: Twitter, href: "#", name: "Twitter" },
-                { icon: Github, href: "#", name: "GitHub" },
-                { icon: Linkedin, href: "#", name: "LinkedIn" },
+                { icon: Twitter, href: "", name: "Twitter" },
+                { icon: Github, href: "https://github.com/Abhijeet-cypher/Promhance", name: "GitHub" },
+                // { icon: Linkedin, href: "", name: "LinkedIn" },
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={social.name}
                   className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-[#111111] border border-[#2a2a2a] text-[#a1a1a1] hover:text-white hover:border-[#3a3a3a] transition-all duration-300 hover:scale-110 hover:-translate-y-1"
                 >

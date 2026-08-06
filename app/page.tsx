@@ -1,4 +1,6 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
+import TrustStrip from "@/components/TrustStrip";
+import AICompatibility from "@/components/AICompatibility";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Brain, Palette, Code, PenTool, Megaphone, Clapperboard, Zap, Target, Unlock } from "lucide-react";
@@ -102,7 +104,18 @@ export default function Home() {
           >
             <PromptEnhancer />
           </div>
+
+          {/* ── Trust Strip ── */}
+          <div
+            className="animate-fade-in-up"
+            style={{ animationDelay: "420ms" }}
+          >
+            <TrustStrip />
+          </div>
         </div>
+
+        {/* ═══ AI Compatibility — full-width section, sits immediately below hero ═══ */}
+        <AICompatibility />
 
         {/* ── Below-fold sections ── */}
         <div className="w-full max-w-5xl mx-auto px-6 sm:px-10">
@@ -143,6 +156,11 @@ export default function Home() {
               ))}
             </div>
           </section>
+
+        </div>
+
+        {/* ── Remaining below-fold sections ── */}
+        <div className="w-full max-w-5xl mx-auto px-6 sm:px-10">
 
           {/* ═══ Use Cases ═══ */}
           <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
