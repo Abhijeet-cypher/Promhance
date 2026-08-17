@@ -66,14 +66,14 @@ export default async function BlogPostPage({ params }: Props) {
     author: [{
       '@type': 'Organization',
       name: post.author,
-      url: 'https://promhance.com',
+      url: 'https://www.promhance.com',
     }],
     publisher: {
       '@type': 'Organization',
       name: 'Promhance',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://promhance.com/logo.png',
+        url: 'https://www.promhance.com/logo.png',
       },
     },
   };
@@ -199,7 +199,7 @@ export default async function BlogPostPage({ params }: Props) {
               Transform any rough idea into a perfectly structured prompt for ChatGPT, Claude, Gemini, or Midjourney — instantly, for free.
             </p>
             <a
-              href="https://promhance.com/chatgpt-prompt-enhancer"
+              href="https://www.promhance.com/chatgpt-prompt-enhancer"
               className="btn-cta inline-flex items-center gap-2 bg-white text-[#0a0a0a] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#f5f5f5] transition-colors shadow-lg no-underline"
               style={{ textDecoration: 'none' }}
             >

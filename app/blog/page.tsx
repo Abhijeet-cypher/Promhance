@@ -113,7 +113,7 @@ export default async function BlogIndexPage() {
               Put what you&apos;ve learned into practice. Promhance turns any rough idea into a perfectly structured, expert-level prompt — for any AI — in seconds.
             </p>
             <a
-              href="https://promhance.com/chatgpt-prompt-enhancer"
+              href="https://www.promhance.com/chatgpt-prompt-enhancer"
               className="btn-cta inline-flex items-center gap-2 bg-white text-[#0a0a0a] font-bold text-sm px-8 py-3.5 rounded-xl hover:bg-[#f5f5f5] transition-colors shadow-lg no-underline"
               style={{ textDecoration: 'none' }}
             >

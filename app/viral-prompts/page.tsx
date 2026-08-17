@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Viral AI Prompts Collection — 410+ Trending Prompts | Promhance",
     description:
       "The largest curated collection of viral AI prompts. Image, video, music, scripts & text — spanning every major platform and AI tool.",
-    url: "https://promhance.com/viral-prompts",
+    url: "https://www.promhance.com/viral-prompts",
     type: "website",
   },
   twitter: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Filter, search & copy trending AI prompts for Midjourney, ChatGPT, Suno, TikTok, Instagram & more.",
   },
   alternates: {
-    canonical: "https://promhance.com/viral-prompts",
+    canonical: "https://www.promhance.com/viral-prompts",
   },
 };
 
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
      3. BreadcrumbList   — breadcrumb for SERP display
 ───────────────────────────────────────────────────────────────────────────── */
 function buildStructuredData(prompts: typeof allPrompts) {
-  const baseUrl = "https://promhance.com";
+  const baseUrl = "https://www.promhance.com";
 
   const collectionPage = {
     "@context": "https://schema.org",

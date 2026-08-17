@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://promhance.com'), // Replace with actual domain later if different
+  metadataBase: new URL('https://www.promhance.com'),
   title: {
     default: "Promhance - AI Prompt Enhancer & Generator",
     template: "%s | Promhance"
@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   authors: [{ name: "Promhance" }],
   creator: "Promhance",
   alternates: {
-    canonical: "https://promhance.com",
+    canonical: "https://www.promhance.com",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://promhance.com",
+    url: "https://www.promhance.com",
     title: "Promhance - AI Prompt Enhancer & Generator",
     description: "Elevate your raw ideas into masterfully engineered prompts for ChatGPT, Midjourney, Claude, and more using AI.",
     siteName: "Promhance",
