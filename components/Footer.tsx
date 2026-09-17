@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Github, Linkedin, Wand2, Image as ImageIcon, Video, MessageSquare } from "lucide-react";
+import { Twitter, Github, Wand2, Image as ImageIcon, Video, MessageSquare } from "lucide-react";
 
 const toolLinks = [
   { href: "/", label: "Prompt Enhancer", desc: "Optimize any prompt using AI", icon: Wand2 },
@@ -76,10 +76,24 @@ export default function Footer() {
 
         </div>
 
-        <div className="relative pt-6 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-[#2a2a2a]">
+        <div className="relative pt-6 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-[#2a2a2a]">
           <p className="text-xs text-[#525252] font-medium">
-            &copy; {new Date().getFullYear()} Promhance Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Promhance. All rights reserved.
           </p>
+          <nav className="flex items-center gap-5">
+            <Link
+              href="/privacy"
+              className="text-xs text-[#525252] hover:text-[#a1a1a1] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-xs text-[#525252] hover:text-[#a1a1a1] transition-colors"
+            >
+              Terms of Service
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>

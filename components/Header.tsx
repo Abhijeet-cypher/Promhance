@@ -4,13 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn, LogOut, History } from "lucide-react";
 import { motion } from "framer-motion";
+import { useAuth } from "@/components/AuthProvider";
 
 export default function Header() {
   const pathname = usePathname();
+  const { user, loading, signOut } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   // Handle scroll effect
   useEffect(() => {
@@ -27,6 +30,7 @@ export default function Header() {
     { name: "Midjourney", href: "/midjourney-prompt-generator" },
     { name: "YouTube", href: "/youtube-prompt-generator" },
     { name: "Viral Prompts", href: "/viral-prompts" },
+    { name: "History", href: "/history" },
     { name: "Blog", href: "/blog" },
   ];
 
@@ -85,7 +89,7 @@ export default function Header() {
         </nav>
 
         {/* Right Actions (Desktop) */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
           <a
             href="https://github.com/Abhijeet-cypher/Promhance"
             target="_blank"
@@ -95,6 +99,66 @@ export default function Header() {
             <GithubIcon className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
             <span className="hidden lg:inline-block">Star us</span>
           </a>
+
+          {!loading && !user && (
+            <Link
+              href="/login"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/15 hover:border-blue-500/45 transition-all"
+            >
+              <LogIn className="w-4 h-4" strokeWidth={2} />
+              <span>Sign in</span>
+            </Link>
+          )}
+
+          {!loading && user && (
+            <div className="relative">
+              <button
+                onClick={() => setUserMenuOpen((open) => !open)}
+                className="flex items-center gap-2 pl-1 pr-2.5 py-1 rounded-full bg-[#111111] border border-[#2a2a2a] hover:border-[#3a3a3a] transition-colors"
+                aria-label="Account menu"
+              >
+                <span className="w-6 h-6 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-[11px] font-semibold text-blue-300">
+                  {user.email?.[0]?.toUpperCase() ?? "U"}
+                </span>
+                <span className="hidden lg:inline-block max-w-[130px] truncate text-xs text-[#a1a1a1]">
+                  {user.email}
+                </span>
+              </button>
+
+              {userMenuOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setUserMenuOpen(false)}
+                  />
+                  <div className="absolute right-0 mt-2 w-52 bg-[#111111] border border-[#2a2a2a] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-20 flex flex-col overflow-hidden py-1">
+                    <div className="px-3 py-2 border-b border-[#1f1f1f]">
+                      <p className="text-[10px] uppercase tracking-widest text-[#525252]">Signed in as</p>
+                      <p className="text-xs text-white truncate">{user.email}</p>
+                    </div>
+                    <Link
+                      href="/history"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="px-3 py-2 text-xs text-[#a1a1a1] hover:text-white hover:bg-[#1a1a1a] transition-colors flex items-center gap-2"
+                    >
+                      <History className="w-3.5 h-3.5" />
+                      My history
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        void signOut();
+                      }}
+                      className="px-3 py-2 text-xs text-[#a1a1a1] hover:text-white hover:bg-[#1a1a1a] transition-colors flex items-center gap-2 text-left"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      Sign out
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -131,6 +195,28 @@ export default function Header() {
               );
             })}
           </nav>
+
+          {!loading && (
+            user ? (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  void signOut();
+                }}
+                className="text-lg font-semibold tracking-tight text-[#a1a1a1] hover:text-white transition-colors"
+              >
+                Sign out
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg font-semibold tracking-tight text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Sign in
+              </Link>
+            )
+          )}
         </div>
 
       </div>

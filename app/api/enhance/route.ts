@@ -1,9 +1,17 @@
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
+import { getSupabaseAdmin } from "@/lib/supabase/server";
+import { parseAnonId, resolveUserId } from "@/lib/supabase/identity";
+
+export const runtime = "nodejs";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
+
+const MAX_PROMPT_LENGTH = 8000;
+const MAX_OUTPUT_LENGTH = 20000;
+const MAX_FIELD_LENGTH = 200;
 
 export async function POST(req: Request) {
   try {
@@ -11,6 +19,7 @@ export async function POST(req: Request) {
     const prompt = body.prompt;
     const mode = body.mode || "General";
     const intensity = body.intensity || "medium";
+    const anonId = parseAnonId(body.anonId);
 
     if (!prompt) {
       return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
@@ -40,6 +49,11 @@ export async function POST(req: Request) {
         systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine technical requests into straightforward, clear coding prompts. 
         Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
         Focus simply on: Defining the exact tech stack, core functionality, and expected inputs/outputs directly.`;
+        break;
+      case "Marketing":
+        systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine marketing ideas into clear, effective marketing prompts (ads, emails, social copy).
+        Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
+        Focus simply on: The target audience, the desired action, the channel, and the key value proposition.`;
         break;
       case "General":
       default:
@@ -77,11 +91,38 @@ export async function POST(req: Request) {
       },
     });
 
-    console.log(response)
-    const enhanced = response.text || "Failed to generate enhancement.";
+    const enhanced = (response.text || "Failed to generate enhancement.").trim();
+
+    // Persist the enhancement so it can be reused later. Failure to persist
+    // must never break the enhancement itself.
+    let promptId: string | null = null;
+    const supabase = getSupabaseAdmin();
+
+    if (supabase && anonId) {
+      const userId = await resolveUserId();
+      const { data, error } = await supabase
+        .from("prompts")
+        .insert({
+          anon_id: anonId,
+          user_id: userId,
+          original_prompt: String(prompt).slice(0, MAX_PROMPT_LENGTH),
+          enhanced_prompt: enhanced.slice(0, MAX_OUTPUT_LENGTH),
+          mode: String(mode).slice(0, MAX_FIELD_LENGTH),
+          intensity: String(intensity).slice(0, MAX_FIELD_LENGTH),
+        })
+        .select("id")
+        .single();
+
+      if (error) {
+        console.error("Prompt persist failed:", error.message);
+      } else {
+        promptId = data.id;
+      }
+    }
 
     return NextResponse.json({
-      enhanced: enhanced.trim(),
+      enhanced,
+      prompt_id: promptId,
     });
 
   } catch (error) {

@@ -3,6 +3,14 @@
 import { useState, useEffect, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import { Bot, Sparkles, Palette, PenTool, Code, RefreshCw, Copy, Check, Wand2, Megaphone, ExternalLink, ChevronDown } from "lucide-react";
+import FeedbackReaction from "@/components/FeedbackReaction";
+import { getAnonId } from "@/lib/anon-id";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 const MAX_CHARS = 2000;
 
@@ -32,9 +40,9 @@ function estimateTokens(text: string) {
   return Math.round(text.trim().split(/\s+/).filter(Boolean).length * 1.33);
 }
 
-const trackEvent = (eventName: string, eventParams?: Record<string, any>) => {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", eventName, eventParams);
+const trackEvent = (eventName: string, eventParams?: Record<string, unknown>) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", eventName, eventParams);
   }
 };
 
@@ -50,11 +58,49 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [hasTrackedInput, setHasTrackedInput] = useState(false);
   const [isPlatformMenuOpen, setIsPlatformMenuOpen] = useState(false);
+  const [promptId, setPromptId] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<{ promptId: string | null } | null>(null);
 
   useEffect(() => {
-    setIsMounted(true);
+    const mountTimer = setTimeout(() => setIsMounted(true), 0);
     const id = setInterval(() => setPlaceholderIdx(p => (p + 1) % PLACEHOLDERS.length), 4000);
-    return () => clearInterval(id);
+    return () => {
+      clearTimeout(mountTimer);
+      clearInterval(id);
+    };
+  }, []);
+
+  // Preload a historical prompt when arriving from /history (?prompt=<id>).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("prompt");
+    if (!id) return;
+
+    let active = true;
+    (async () => {
+      try {
+        const res = await fetch(
+          `/api/prompts?id=${encodeURIComponent(id)}&anon_id=${encodeURIComponent(getAnonId())}`,
+          { cache: "no-store" }
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        const p = data?.prompt;
+        if (!active || !p) return;
+        setInput(p.original_prompt ?? "");
+        setOutput(p.enhanced_prompt ?? "");
+        if (p.mode) setMode(p.mode);
+        if (p.intensity) setIntensity(p.intensity);
+        setPromptId(p.id ?? null);
+      } catch {
+        // Ignore — the enhancer still works from scratch.
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleCopy = useCallback(async () => {
@@ -78,11 +124,20 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
         output_length: output.length,
         output_words: output.trim().split(/\s+/).filter(Boolean).length,
       });
+      let alreadyGiven = false;
+      try {
+        alreadyGiven = sessionStorage.getItem("promhance_feedback_given") === "1";
+      } catch {
+        /* sessionStorage unavailable — show anyway */
+      }
+      if (!alreadyGiven) {
+        setFeedback({ promptId });
+      }
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error("Copy failed:", err);
     }
-  }, [output, mode, intensity]);
+  }, [output, mode, intensity, promptId]);
 
   const enhancePrompt = useCallback(async (regen = false) => {
     if (!input.trim()) return;
@@ -97,13 +152,16 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
     if (regen) setIsRegenerating(true);
     setLoading(true);
     setOutput("");
+    setPromptId(null);
+    setFeedback(null);
     try {
       const res  = await fetch("/api/enhance", {
         method: "POST",
-        body: JSON.stringify({ prompt: input, mode, intensity }),
+        body: JSON.stringify({ prompt: input, mode, intensity, anonId: getAnonId() }),
       });
       const data = await res.json();
       setOutput(data.enhanced || "Enhanced output could not be generated.");
+      setPromptId(data.prompt_id ?? null);
     } catch {
       setOutput("An error occurred while enhancing the prompt.");
     } finally {
@@ -382,6 +440,14 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                 </div>
               )}
             </div>
+
+            {/* Inline reaction — appears after a copy */}
+            {feedback && (
+              <FeedbackReaction
+                promptId={feedback.promptId}
+                onDismiss={() => setFeedback(null)}
+              />
+            )}
 
             {/* Output Body */}
             <div className="flex-1 min-h-0 overflow-y-auto relative">

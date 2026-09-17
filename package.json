@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@google/genai": "^1.44.0",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.116.0",
     "@tailwindcss/typography": "^0.5.19",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.38.0",

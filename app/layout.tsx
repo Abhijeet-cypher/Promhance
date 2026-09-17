@@ -55,6 +55,8 @@ export const metadata: Metadata = {
 
 import Header from "@/components/Header";
 import CursorSpotlight from "@/components/CursorSpotlight";
+import { AuthProvider } from "@/components/AuthProvider";
+import FeatureAnnouncementModal from "@/components/FeatureAnnouncementModal";
 
 export default function RootLayout({
   children,
@@ -107,8 +109,11 @@ export default function RootLayout({
           }}
         />
         <CursorSpotlight />
-        <Header />
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+          <FeatureAnnouncementModal />
+        </AuthProvider>
       </body>
     </html>
   );

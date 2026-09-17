@@ -1,10 +1,10 @@
-import { Check, Zap } from "lucide-react";
+import { Check, Zap, History } from "lucide-react";
 
 const TRUST_ITEMS = [
-  { icon: Check, label: "Free Forever" },
-  { icon: Check, label: "No Login Required" },
-  { icon: Check, label: "Zero Data Stored" },
-  { icon: Zap,   label: "Instant Results" },
+  { icon: Check,   label: "Free Forever" },
+  { icon: Check,   label: "No Login Required" },
+  { icon: History, label: "Prompt History Saved" },
+  { icon: Zap,     label: "Instant Results" },
 ] as const;
 
 export default function TrustStrip() {
