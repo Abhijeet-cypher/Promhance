@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { LOGO_DATA_URI } from "./logo";
 
 export const runtime = "nodejs";
-export const alt = "Promhance — AI Prompt Enhancer & Generator";
+export const alt = "Promhance — Your AI Prompt & Productivity Workspace";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -37,13 +37,13 @@ export async function GET() {
               style={{
                 display: "flex",
                 fontSize: 104,
-                fontWeight: 800,
-                color: "#ffffff",
-                letterSpacing: -3,
+                fontWeight: 700,
+                letterSpacing: -2.6,
                 lineHeight: 1,
               }}
             >
-              Promhance
+              <span style={{ color: "#ffffff" }}>Prom</span>
+              <span style={{ color: "#60a5fa" }}>hance</span>
             </div>
             <div
               style={{
@@ -53,7 +53,7 @@ export async function GET() {
                 color: "#a1a1a1",
               }}
             >
-              AI Prompt Enhancer &amp; Generator
+              Your AI Prompt &amp; Productivity Workspace
             </div>
           </div>
         </div>

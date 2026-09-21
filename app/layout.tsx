@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.promhance.com'),
   title: {
-    default: "Promhance - AI Prompt Enhancer & Generator",
+    default: "Promhance - Your AI Prompt & Productivity Workspace",
     template: "%s | Promhance"
   },
   description: "Elevate your raw ideas into masterfully engineered prompts for ChatGPT, Midjourney, Claude, and more using AI.",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.promhance.com",
-    title: "Promhance - AI Prompt Enhancer & Generator",
+    title: "Promhance - Your AI Prompt & Productivity Workspace",
     description: "Elevate your raw ideas into masterfully engineered prompts for ChatGPT, Midjourney, Claude, and more using AI.",
     siteName: "Promhance",
     images: [
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: "Promhance - AI Prompt Enhancer & Generator",
+        alt: "Promhance - Your AI Prompt & Productivity Workspace",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Promhance - AI Prompt Enhancer & Generator",
+    title: "Promhance - Your AI Prompt & Productivity Workspace",
     description: "Transform your rough ideas into powerful, optimized AI prompts.",
     creator: "@promhance",
     images: ["/og"],
