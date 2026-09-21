@@ -30,12 +30,21 @@ export const metadata: Metadata = {
       "The largest curated collection of viral AI prompts. Image, video, music, scripts & text — spanning every major platform and AI tool.",
     url: "https://www.promhance.com/viral-prompts",
     type: "website",
+    images: [
+      {
+        url: "/og",
+        width: 1200,
+        height: 630,
+        alt: "Viral AI Prompts Collection — Promhance",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "410+ Viral AI Prompts — Free Collection | Promhance",
     description:
       "Filter, search & copy trending AI prompts for Midjourney, ChatGPT, Suno, TikTok, Instagram & more.",
+    images: ["/og"],
   },
   alternates: {
     canonical: "https://www.promhance.com/viral-prompts",

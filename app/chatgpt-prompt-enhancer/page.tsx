@@ -43,12 +43,21 @@ export const metadata: Metadata = {
       "Transform rough ideas into powerful ChatGPT prompts instantly. Role context, constraints & output format — added automatically.",
     url: "https://www.promhance.com/chatgpt-prompt-enhancer",
     type: "website",
+    images: [
+      {
+        url: "/og",
+        width: 1200,
+        height: 630,
+        alt: "Free ChatGPT Prompt Enhancer — Promhance",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free ChatGPT Prompt Enhancer — Better Prompts, Better Answers",
     description:
       "Turn vague ideas into expert-level ChatGPT prompts in one click. Free, no login, instant.",
+    images: ["/og"],
   },
 };
 

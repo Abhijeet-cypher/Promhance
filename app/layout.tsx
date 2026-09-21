@@ -33,12 +33,21 @@ export const metadata: Metadata = {
     title: "Promhance - AI Prompt Enhancer & Generator",
     description: "Elevate your raw ideas into masterfully engineered prompts for ChatGPT, Midjourney, Claude, and more using AI.",
     siteName: "Promhance",
+    images: [
+      {
+        url: "/og",
+        width: 1200,
+        height: 630,
+        alt: "Promhance - AI Prompt Enhancer & Generator",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Promhance - AI Prompt Enhancer & Generator",
     description: "Transform your rough ideas into powerful, optimized AI prompts.",
     creator: "@promhance",
+    images: ["/og"],
   },
   robots: {
     index: true,

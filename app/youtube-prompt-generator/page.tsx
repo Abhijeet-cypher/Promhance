@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'YouTube Prompt Generator - Promhance',
     description: 'Transform basic ideas into viral YouTube scripts and ideas.',
+    images: [
+      {
+        url: '/og',
+        width: 1200,
+        height: 630,
+        alt: 'YouTube Prompt Generator - Promhance',
+      },
+    ],
   }
 };
 

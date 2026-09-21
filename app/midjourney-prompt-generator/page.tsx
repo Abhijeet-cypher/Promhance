@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Midjourney Prompt Generator - Promhance',
     description: 'Transform basic concepts into breathtaking AI image prompts.',
+    images: [
+      {
+        url: '/og',
+        width: 1200,
+        height: 630,
+        alt: 'Midjourney Prompt Generator - Promhance',
+      },
+    ],
   }
 };
 
