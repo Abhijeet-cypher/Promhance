@@ -516,7 +516,7 @@ export default function PromaiChat() {
                 <button
                   onClick={() => void send()}
                   disabled={!canSend}
-                  className="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-blue-500 text-white text-xs font-semibold transition-all hover:bg-blue-400 active:scale-[0.98] disabled:opacity-35 disabled:cursor-not-allowed shadow-[0_0_16px_rgba(59,130,246,0.25)]"
+                  className="btn-secondary"
                 >
                   <Send className="w-3.5 h-3.5" strokeWidth={2} />
                   Send

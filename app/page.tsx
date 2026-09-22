@@ -75,7 +75,7 @@ export default function Home() {
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] selection:bg-blue-500/20 pt-24">
 
       {/* Subtle monochrome grid */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid-overlay pointer-events-none z-0" />
 
       <div className="relative z-10 w-full flex flex-col items-center flex-grow">
 
@@ -140,7 +140,7 @@ export default function Home() {
                 { n: "03", title: "Use With Any AI", desc: "Copy and paste the optimized prompt into ChatGPT, Claude, Midjourney, or any other AI tool you use." },
               ].map((step, i) => (
                 <ScrollReveal key={step.n} delay={i * 120}>
-                  <div className="relative p-7 rounded-2xl bg-[#111111] border border-[#2a2a2a] group hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-all duration-300 overflow-hidden">
+                  <div className="relative p-7 rounded-2xl card-interactive  overflow-hidden">
                     {/* Large watermark number */}
                     <span className="absolute -bottom-2 right-4 text-7xl font-black text-white/[0.03] select-none leading-none pointer-events-none">
                       {step.n}
@@ -204,7 +204,7 @@ export default function Home() {
             <div className="grid sm:grid-cols-3 gap-5 sm:gap-6">
               {FEATURES.map(({ icon: Icon, title, desc }, i) => (
                 <ScrollReveal key={title} delay={i * 120}>
-                  <div className="p-7 sm:p-8 rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 h-full space-y-5 group">
+                  <div className="p-7 sm:p-8 rounded-2xl card-interactive  h-full space-y-5 group">
                     <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/15 transition-colors duration-300">
                       <Icon className="w-5 h-5 text-blue-400" strokeWidth={1.5} />
                     </div>
