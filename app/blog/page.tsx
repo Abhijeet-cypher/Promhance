@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { format } from "date-fns";
+
 import { getAllPosts } from "@/lib/markdown";
 import { Metadata } from "next";
 import { Calendar, Zap } from "lucide-react";
@@ -62,7 +62,7 @@ export default async function BlogIndexPage() {
     />
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] selection:bg-white/20 pt-32 pb-24">
       {/* Monochrome grid overlay */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid-overlay pointer-events-none z-0" />
 
       <div className="relative z-10 w-[92%] max-w-[1200px] mx-auto flex flex-col flex-grow">
         
@@ -104,7 +104,7 @@ export default async function BlogIndexPage() {
                     <Calendar className="w-3.5 h-3.5" />
                     <time dateTime={post.date}>
                       {post.date && !isNaN(new Date(post.date).getTime()) 
-                        ? format(new Date(post.date), 'MMMM d, yyyy') 
+                        ? new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
                         : (post.date || 'Unknown date')}
                     </time>
                   </div>
@@ -145,7 +145,7 @@ export default async function BlogIndexPage() {
         {/* ─── CTA Banner ─── */}
         <div className="mt-20 rounded-2xl border border-[#2a2a2a] bg-gradient-to-br from-[#111111] via-[#0f1724] to-[#111111] p-8 sm:p-12 text-center shadow-xl relative overflow-hidden">
           {/* Subtle blue glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_50%_100%,rgba(59,130,246,0.07),transparent)] pointer-events-none" />
+          <div className="absolute inset-0 bg-glow-blue pointer-events-none" />
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.25)] text-[#60a5fa] mb-5">
               <Zap className="w-3 h-3" />

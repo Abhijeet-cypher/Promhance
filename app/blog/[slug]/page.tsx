@@ -1,6 +1,9 @@
 import { getPostBySlug, getAllPosts, BlogPost } from "@/lib/markdown";
 import { notFound } from "next/navigation";
-import { format } from "date-fns";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+
 import { Calendar, User, ArrowLeft, Zap } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -137,7 +140,7 @@ export default async function BlogPostPage({ params }: Props) {
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] pt-28 pb-24 selection:bg-white/20">
       
       {/* Monochrome grid overlay */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid-overlay pointer-events-none z-0" />
 
       <article className="relative z-10 w-[92%] max-w-[1000px] mx-auto">
         
@@ -179,7 +182,7 @@ export default async function BlogPostPage({ params }: Props) {
               <Calendar className="w-4 h-4" />
               <time dateTime={post.date}>
                 {post.date && !isNaN(new Date(post.date).getTime())
-                  ? format(new Date(post.date), 'MMMM d, yyyy')
+                  ? new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
                   : (post.date || 'Unknown date')}
               </time>
             </div>
@@ -220,13 +223,16 @@ export default async function BlogPostPage({ params }: Props) {
             prose-td:text-[#a1a1a1] prose-td:py-3 prose-td:px-4 prose-td:border-b prose-td:border-[#1f1f1f]
             prose-tr:transition-colors
           "
-          dangerouslySetInnerHTML={{ __html: post.content }} 
-        />
+        >
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]}>
+            {post.content}
+          </ReactMarkdown>
+        </div>
 
         {/* ─── CTA Banner ─── */}
         <div className="mt-16 rounded-2xl border border-[#2a2a2a] bg-gradient-to-br from-[#111111] via-[#0f1724] to-[#111111] p-8 sm:p-10 text-center shadow-xl relative overflow-hidden">
           {/* Subtle blue glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(59,130,246,0.08),transparent)] pointer-events-none" />
+          <div className="absolute inset-0 bg-glow-blue pointer-events-none" />
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.25)] text-[#60a5fa] mb-4">
               <Zap className="w-3 h-3" />

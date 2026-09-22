@@ -1,34 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
-import remarkGfm from 'remark-gfm';
 
-// Converts heading text to a URL-safe slug ID for TOC anchor links
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-}
-
-// Post-processes HTML to inject id attributes on headings for TOC navigation
-function addHeadingIds(htmlContent: string): string {
-  return htmlContent.replace(
-    /<(h[1-6])([^>]*)>([\s\S]*?)<\/\1>/gi,
-    (match, tag, attrs, inner) => {
-      // Strip any existing HTML tags inside heading to get plain text for slug
-      const plainText = inner.replace(/<[^>]+>/g, '');
-      const id = slugify(plainText);
-      // Avoid adding duplicate id attributes
-      if (/\bid=/.test(attrs)) return match;
-      return `<${tag}${attrs} id="${id}">${inner}</${tag}>`;
-    }
-  );
-}
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
@@ -58,12 +31,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
-  const processedContent = await remark()
-    .use(remarkGfm)
-    .use(html, { sanitize: false })
-    .process(content || '');
-    
-  const contentHtml = addHeadingIds(processedContent.toString());
+
 
   return {
     slug: realSlug,
@@ -73,7 +41,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     author: data.author || '',
     tags: data.tags || [],
     image: data.image || '',
-    content: contentHtml,
+    content: content || '',
     faqSchema: data.faqSchema || null,
   };
 }

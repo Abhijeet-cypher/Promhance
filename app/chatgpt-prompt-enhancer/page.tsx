@@ -315,7 +315,7 @@ export default function ChatGPTPage() {
   return (
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] selection:bg-blue-500/20 pt-24">
       {/* Monochrome grid overlay */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid-overlay pointer-events-none z-0" />
 
       <div className="relative z-10 w-full flex flex-col items-center flex-grow">
 
@@ -362,7 +362,7 @@ export default function ChatGPTPage() {
             <div className="grid sm:grid-cols-3 gap-5 sm:gap-6">
               {WHAT_IT_DOES.map(({ icon: Icon, title, desc }, i) => (
                 <ScrollReveal key={title} delay={i * 100}>
-                  <div className="h-full p-7 rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-all duration-300 space-y-5 group">
+                  <div className="h-full p-7 rounded-2xl card-interactive  space-y-5 group">
                     <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/15 transition-colors duration-300">
                       <Icon className="w-5 h-5 text-blue-400" strokeWidth={1.5} />
                     </div>
@@ -406,7 +406,7 @@ export default function ChatGPTPage() {
                 },
               ].map((step, i) => (
                 <ScrollReveal key={step.n} delay={i * 120}>
-                  <div className="relative p-7 rounded-2xl bg-[#111111] border border-[#2a2a2a] group hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] transition-all duration-300 overflow-hidden">
+                  <div className="relative p-7 rounded-2xl card-interactive  overflow-hidden">
                     <span className="absolute -bottom-2 right-4 text-7xl font-black text-white/[0.03] select-none leading-none pointer-events-none">
                       {step.n}
                     </span>
@@ -486,7 +486,7 @@ export default function ChatGPTPage() {
             <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
               {TECHNIQUES.map(({ icon: Icon, title, desc, tag }, i) => (
                 <ScrollReveal key={title} delay={i * 80}>
-                  <div className="h-full p-7 rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 group">
+                  <div className="h-full p-7 rounded-2xl card-interactive  group">
                     <div className="flex items-start justify-between mb-5">
                       <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/15 transition-colors duration-300">
                         <Icon className="w-5 h-5 text-blue-400" strokeWidth={1.5} />
@@ -517,7 +517,7 @@ export default function ChatGPTPage() {
                 const c = COLOR_MAP[color];
                 return (
                   <ScrollReveal key={label} delay={i * 80}>
-                    <div className="h-full rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 overflow-hidden group">
+                    <div className="h-full rounded-2xl card-interactive  overflow-hidden group">
                       {/* Card header */}
                       <div className="flex items-center gap-3 px-6 py-5 border-b border-[#1e1e1e]">
                         <div className={`w-9 h-9 rounded-xl ${c.bg} border ${c.border} flex items-center justify-center`}>

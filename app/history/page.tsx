@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function HistoryPage() {
   return (
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] pt-28">
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="fixed inset-0 bg-grid-overlay pointer-events-none z-0" />
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-10 flex-grow pb-24">
         <HistoryClient />
