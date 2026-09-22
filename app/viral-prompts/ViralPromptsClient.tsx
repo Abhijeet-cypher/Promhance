@@ -441,13 +441,13 @@ export default function ViralPromptsClient({ prompts }: { prompts: ViralPromptJS
       </section>
 
       {/* ── STICKY TOOLBAR ───────────────────────────────────────────────── */}
-      <div className="sticky top-[64px] z-30 bg-[#0a0a0a]/95 backdrop-blur-2xl border-b border-[#181818]">
+      <div className="sticky top-[68px] md:top-[64px] z-30 bg-[#0a0a0a]/95 backdrop-blur-2xl border-b border-[#181818]">
         <div className="max-w-[1480px] mx-auto px-4 sm:px-6 py-3">
 
           {/* Row 1: search + controls */}
           <div className="flex items-center gap-3">
             {/* Search */}
-            <div className="relative flex-1 max-w-lg">
+            <div className="relative flex-1 min-w-0 max-w-lg">
               <label htmlFor={searchId} className="sr-only">Search prompts</label>
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#444] pointer-events-none" />
               <input

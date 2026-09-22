@@ -1,10 +1,61 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
-import { Bot, Sparkles, Palette, PenTool, Code, RefreshCw, Copy, Check, Wand2, Megaphone, ExternalLink, ChevronDown } from "lucide-react";
+import {
+  Bot,
+  Sparkles,
+  Palette,
+  PenTool,
+  Code,
+  RefreshCw,
+  Copy,
+  Check,
+  Wand2,
+  Megaphone,
+  ExternalLink,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  Maximize2,
+  Minimize2,
+  Briefcase,
+  Feather,
+  Film,
+  Camera,
+  Coffee,
+  TrendingUp,
+  Bug,
+  ListOrdered,
+  Play,
+  type LucideIcon,
+} from "lucide-react";
 import FeedbackReaction from "@/components/FeedbackReaction";
 import { getAnonId } from "@/lib/anon-id";
+import { getQuickActions, type QuickAction } from "@/lib/quick-actions";
+
+const QUICK_ACTION_ICONS: Record<string, LucideIcon> = {
+  more_detail: Maximize2,
+  shorten: Minimize2,
+  formal: Briefcase,
+  simpler: Feather,
+  more_vivid: Palette,
+  cinematic: Film,
+  photorealistic: Camera,
+  casual: Coffee,
+  more_persuasive: TrendingUp,
+  edge_cases: Bug,
+  step_by_step: ListOrdered,
+};
+
+type PromptVersion = {
+  version_number: number;
+  text: string;
+  action: string | null;
+  action_label: string | null;
+};
 
 declare global {
   interface Window {
@@ -47,8 +98,10 @@ const trackEvent = (eventName: string, eventParams?: Record<string, unknown>) =>
 };
 
 export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { defaultMode?: string }) {
+  const router = useRouter();
   const [input, setInput]               = useState("");
-  const [output, setOutput]             = useState("");
+  const [versions, setVersions]         = useState<PromptVersion[]>([]);
+  const [activeVersion, setActiveVersion] = useState(1);
   const [loading, setLoading]           = useState(false);
   const [isMounted, setIsMounted]       = useState(false);
   const [mode, setMode]                 = useState(defaultMode);
@@ -60,6 +113,15 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   const [isPlatformMenuOpen, setIsPlatformMenuOpen] = useState(false);
   const [promptId, setPromptId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ promptId: string | null } | null>(null);
+  const [refiningAction, setRefiningAction] = useState<string | null>(null);
+  const [refineError, setRefineError] = useState<string | null>(null);
+  // The mode that produced the current output, so refinements always match it
+  // even if the user changes the mode picker afterwards.
+  const [outputMode, setOutputMode] = useState(defaultMode);
+
+  const activeVersionObj = versions.find((v) => v.version_number === activeVersion) ?? null;
+  const output = activeVersionObj?.text ?? "";
+  const quickActions = getQuickActions(outputMode);
 
   useEffect(() => {
     const mountTimer = setTimeout(() => setIsMounted(true), 0);
@@ -89,10 +151,41 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
         const p = data?.prompt;
         if (!active || !p) return;
         setInput(p.original_prompt ?? "");
-        setOutput(p.enhanced_prompt ?? "");
         if (p.mode) setMode(p.mode);
         if (p.intensity) setIntensity(p.intensity);
+        setOutputMode(p.mode ?? "General");
         setPromptId(p.id ?? null);
+
+        const loaded: PromptVersion[] =
+          Array.isArray(p.versions) && p.versions.length > 0
+            ? p.versions.map(
+                (v: {
+                  version_number: number;
+                  text: string;
+                  action?: string | null;
+                  action_label?: string | null;
+                }) => ({
+                  version_number: v.version_number,
+                  text: v.text,
+                  action: v.action ?? null,
+                  action_label: v.action_label ?? null,
+                })
+              )
+            : [
+                {
+                  version_number: 1,
+                  text: p.enhanced_prompt ?? "",
+                  action: "base",
+                  action_label: null,
+                },
+              ];
+
+        setVersions(loaded);
+        const requested = Number.parseInt(params.get("version") ?? "", 10);
+        const hasRequested = loaded.some((v) => v.version_number === requested);
+        setActiveVersion(
+          hasRequested ? requested : loaded[loaded.length - 1].version_number
+        );
       } catch {
         // Ignore — the enhancer still works from scratch.
       }
@@ -151,24 +244,92 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
     
     if (regen) setIsRegenerating(true);
     setLoading(true);
-    setOutput("");
+    setVersions([]);
+    setActiveVersion(1);
+    setOutputMode(mode);
     setPromptId(null);
     setFeedback(null);
+    setRefineError(null);
     try {
       const res  = await fetch("/api/enhance", {
         method: "POST",
         body: JSON.stringify({ prompt: input, mode, intensity, anonId: getAnonId() }),
       });
       const data = await res.json();
-      setOutput(data.enhanced || "Enhanced output could not be generated.");
+      const text = data.enhanced || "Enhanced output could not be generated.";
+      setVersions([
+        { version_number: 1, text, action: "base", action_label: null },
+      ]);
+      setActiveVersion(1);
       setPromptId(data.prompt_id ?? null);
     } catch {
-      setOutput("An error occurred while enhancing the prompt.");
+      setVersions([
+        {
+          version_number: 1,
+          text: "An error occurred while enhancing the prompt.",
+          action: "base",
+          action_label: null,
+        },
+      ]);
+      setActiveVersion(1);
     } finally {
       setLoading(false);
       setIsRegenerating(false);
     }
   }, [input, mode, intensity]);
+
+  const refinePrompt = useCallback(async (action: QuickAction) => {
+    if (!promptId) {
+      setRefineError("Save this prompt first to unlock refinements.");
+      return;
+    }
+
+    const baseVersion = activeVersion;
+    setRefiningAction(action.id);
+    setRefineError(null);
+    trackEvent("refine_prompt", {
+      mode: outputMode,
+      intensity,
+      action: action.id,
+      from_version: baseVersion,
+    });
+
+    try {
+      const res = await fetch("/api/prompts/refine", {
+        method: "POST",
+        body: JSON.stringify({
+          prompt_id: promptId,
+          action: action.id,
+          from_version: baseVersion,
+          anonId: getAnonId(),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.text) {
+        throw new Error(data?.error || "Could not refine the prompt.");
+      }
+
+      setVersions((prev) => {
+        if (prev.some((v) => v.version_number === data.version_number)) return prev;
+        return [
+          ...prev,
+          {
+            version_number: data.version_number,
+            text: data.text,
+            action: data.action ?? action.id,
+            action_label: data.action_label ?? action.label,
+          },
+        ];
+      });
+      setActiveVersion(data.version_number);
+    } catch (err) {
+      setRefineError(
+        err instanceof Error ? err.message : "Could not refine the prompt."
+      );
+    } finally {
+      setRefiningAction(null);
+    }
+  }, [promptId, outputMode, intensity, activeVersion]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
@@ -335,22 +496,36 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
           }`}>
 
             {/* Output Header */}
-            <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-[#1f1f1f] shrink-0">
-              <div className="flex items-center gap-2.5">
-                <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 px-5 sm:px-6 py-4 border-b border-[#1f1f1f] shrink-0">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className={`w-2 h-2 shrink-0 rounded-full transition-all duration-300 ${
                   loading ? "bg-blue-400 animate-pulse" : output ? "bg-blue-500" : "bg-[#3a3a3a]"
                 }`} />
-                <h2 className="text-sm font-semibold text-white">Enhanced Prompt</h2>
-                {output && !loading && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-blue-500/10 text-blue-400 border border-blue-500/20 font-mono">
-                    {wordCount}w · ~{tokenEst}tk
+                <h2 className="text-sm font-semibold text-white whitespace-nowrap">Enhanced Prompt</h2>
+                {output && !loading && versions.length > 0 && (
+                  <span className="inline-flex items-center whitespace-nowrap text-[10px] px-1.5 py-0.5 rounded-md bg-[#1a1a1a] text-[#a1a1a1] border border-[#2a2a2a] font-mono">
+                    v{activeVersion}
+                    {activeVersionObj?.action_label ? ` · ${activeVersionObj.action_label}` : ""}
                   </span>
                 )}
               </div>
 
               {/* Action buttons */}
               {output && !loading && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0 ml-auto">
+                  {/* Try in PromAI */}
+                  <button
+                    onClick={() => {
+                      trackEvent("try_in_promai", { mode, intensity });
+                      router.push(`/promai?test=${encodeURIComponent(output)}`);
+                    }}
+                    title="Test this prompt with PromAI"
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-blue-500/40 bg-blue-500/10 text-blue-300 hover:bg-blue-500/15 transition-all text-xs font-medium"
+                  >
+                    <Play className="w-3.5 h-3.5" strokeWidth={2} />
+                    <span className="hidden sm:inline whitespace-nowrap">Try it</span>
+                  </button>
+
                   {/* Regenerate */}
                   <button
                     onClick={() => enhancePrompt(true)}
@@ -359,7 +534,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                     className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[#2a2a2a] bg-[#0a0a0a] text-[#a1a1a1] hover:text-white hover:border-[#3a3a3a] transition-all text-xs font-medium disabled:opacity-50"
                   >
                     <RefreshCw className={`w-3.5 h-3.5 ${isRegenerating ? "animate-spin" : ""}`} />
-                    <span className="hidden sm:inline">Retry</span>
+                    <span className="hidden sm:inline whitespace-nowrap">Retry</span>
                   </button>
 
                   {/* Copy */}
@@ -373,9 +548,9 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                     }`}
                   >
                     {isCopied ? (
-                      <><Check className="w-3.5 h-3.5" /><span className="hidden sm:inline">Copied!</span></>
+                      <><Check className="w-3.5 h-3.5" /><span className="hidden sm:inline whitespace-nowrap">Copied!</span></>
                     ) : (
-                      <><Copy className="w-3.5 h-3.5" /><span className="hidden sm:inline">Copy</span></>
+                      <><Copy className="w-3.5 h-3.5" /><span className="hidden sm:inline whitespace-nowrap">Copy</span></>
                     )}
                   </button>
 
@@ -391,7 +566,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                       }`}
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
-                      <span className="hidden sm:inline">Open in...</span>
+                      <span className="hidden sm:inline whitespace-nowrap">Open in...</span>
                       <ChevronDown className={`w-3 h-3 transition-transform ${isPlatformMenuOpen ? "rotate-180" : ""}`} />
                     </button>
                     
@@ -520,6 +695,95 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                 </div>
               )}
             </div>
+
+            {/* Refinements + version history */}
+            {output && !loading && (
+              <div className="px-5 sm:px-6 py-4 border-t border-[#1f1f1f] shrink-0 space-y-3">
+                {versions.length > 1 && (
+                  <div className="flex items-center gap-1.5">
+                    <span className="shrink-0 text-[10px] font-semibold uppercase tracking-widest text-[#525252] mr-1">
+                      Version
+                    </span>
+                    <button
+                      onClick={() => setActiveVersion((v) => Math.max(1, v - 1))}
+                      disabled={activeVersion <= versions[0].version_number}
+                      aria-label="Previous version"
+                      className="shrink-0 p-1 rounded-md border border-[#2a2a2a] bg-[#0a0a0a] text-[#a1a1a1] hover:text-white hover:border-[#3a3a3a] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      <ChevronLeft className="w-3.5 h-3.5" />
+                    </button>
+                    <div className="flex items-center gap-1 min-w-0 overflow-x-auto scrollbar-hide">
+                      {versions.map((v) => {
+                        const isActive = v.version_number === activeVersion;
+                        return (
+                          <button
+                            key={v.version_number}
+                            onClick={() => setActiveVersion(v.version_number)}
+                            title={v.action_label ?? "Initial enhancement"}
+                            className={`px-2.5 py-1 rounded-md text-xs font-medium border transition-all whitespace-nowrap ${
+                              isActive
+                                ? "bg-blue-500/15 text-blue-300 border-blue-500/40"
+                                : "bg-[#0a0a0a] text-[#a1a1a1] border-[#2a2a2a] hover:text-white hover:border-[#3a3a3a]"
+                            }`}
+                          >
+                            v{v.version_number}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <button
+                      onClick={() =>
+                        setActiveVersion((v) =>
+                          Math.min(versions[versions.length - 1].version_number, v + 1)
+                        )
+                      }
+                      disabled={activeVersion >= versions[versions.length - 1].version_number}
+                      aria-label="Next version"
+                      className="shrink-0 p-1 rounded-md border border-[#2a2a2a] bg-[#0a0a0a] text-[#a1a1a1] hover:text-white hover:border-[#3a3a3a] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
+
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#525252]">
+                      Refine
+                    </p>
+                    {!promptId && (
+                      <span className="text-[10px] text-[#525252] italic">
+                        Unavailable for unsaved prompts
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {quickActions.map((action) => {
+                      const Icon = QUICK_ACTION_ICONS[action.id] ?? Sparkles;
+                      const isRefining = refiningAction === action.id;
+                      return (
+                        <button
+                          key={action.id}
+                          onClick={() => refinePrompt(action)}
+                          disabled={!promptId || refiningAction !== null}
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#2a2a2a] bg-[#0a0a0a] text-xs font-medium text-[#a1a1a1] hover:text-white hover:border-blue-500/40 hover:bg-blue-500/5 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                        >
+                          {isRefining ? (
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          ) : (
+                            <Icon className="w-3.5 h-3.5" strokeWidth={2} />
+                          )}
+                          {action.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {refineError && (
+                    <p className="text-[10px] text-red-400 mt-2">{refineError}</p>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Output Footer — stats */}
             {output && !loading && (

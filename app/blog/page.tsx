@@ -6,15 +6,60 @@ import { Calendar, Zap } from "lucide-react";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Blog | Promhance",
+  title: "Blog",
   description: "Read the latest tips, guides, and tutorials on AI prompt engineering, ChatGPT, Midjourney, and more.",
+  alternates: {
+    canonical: "https://www.promhance.com/blog",
+  },
+  openGraph: {
+    title: "Promhance Blog — AI Prompt Engineering Guides",
+    description: "Read the latest tips, guides, and tutorials on AI prompt engineering, ChatGPT, Midjourney, and more.",
+    url: "https://www.promhance.com/blog",
+    type: "website",
+    images: [
+      {
+        url: "/og",
+        width: 1200,
+        height: 630,
+        alt: "Promhance Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Promhance Blog — AI Prompt Engineering Guides",
+    description: "Read the latest tips, guides, and tutorials on AI prompt engineering, ChatGPT, Midjourney, and more.",
+    images: ["/og"],
+  },
 };
 
 export default async function BlogIndexPage() {
   const posts = await getAllPosts();
 
+  const blogLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://www.promhance.com/blog#blog",
+    name: "Promhance Blog",
+    description: "Tips, guides, and tutorials on AI prompt engineering, ChatGPT, Midjourney, and more.",
+    url: "https://www.promhance.com/blog",
+    publisher: { "@id": "https://www.promhance.com/#organization" },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      url: `https://www.promhance.com/blog/${post.slug}`,
+      author: { "@type": "Organization", name: post.author },
+    })),
+  };
+
   return (
     <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(blogLd) }}
+    />
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] selection:bg-white/20 pt-32 pb-24">
       {/* Monochrome grid overlay */}
       <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />

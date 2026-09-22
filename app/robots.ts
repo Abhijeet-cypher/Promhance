@@ -4,7 +4,21 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: ['Googlebot', 'Bingbot'],
+        userAgent: ['Googlebot', 'Bingbot', 'DuckDuckBot', 'Applebot'],
+        allow: '/',
+        disallow: ['/api/'],
+      },
+      {
+        userAgent: [
+          'GPTBot',
+          'ClaudeBot',
+          'Claude-Web',
+          'PerplexityBot',
+          'Google-Extended',
+          'CCBot',
+          'Amazonbot',
+          'cohere-ai',
+        ],
         allow: '/',
         disallow: ['/api/'],
       },

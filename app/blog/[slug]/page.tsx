@@ -29,15 +29,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${post.title} | Promhance Blog`,
     description: post.description,
     keywords: post.tags,
+    alternates: {
+      canonical: `https://www.promhance.com/blog/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
       type: "article",
+      url: `https://www.promhance.com/blog/${post.slug}`,
       publishedTime: post.date,
       authors: [post.author],
       tags: post.tags,
       images: post.image
-        ? [post.image]
+        ? [{ url: post.image, width: 1200, height: 630, alt: post.title }]
         : [{ url: "/og", width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
@@ -59,9 +63,14 @@ export default async function BlogPostPage({ params }: Props) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.promhance.com/blog/${post.slug}`,
+    },
     headline: post.title,
     description: post.description,
+    keywords: post.tags?.join(', '),
     image: post.image ? [post.image] : [],
     datePublished: post.date,
     dateModified: post.date,
@@ -80,11 +89,40 @@ export default async function BlogPostPage({ params }: Props) {
     },
   };
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.promhance.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.promhance.com/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://www.promhance.com/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
     />
     {post.faqSchema && (
       <script
@@ -150,7 +188,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Hero Image */}
         {post.image && (
-          <div className="relative w-full h-[350px] sm:h-[450px] rounded-2xl overflow-hidden border border-[#2a2a2a] shadow-xl mb-12">
+          <div className="relative w-full h-56 sm:h-[450px] rounded-2xl overflow-hidden border border-[#2a2a2a] shadow-xl mb-12">
             <img 
               src={post.image} 
               alt={post.title} 

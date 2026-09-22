@@ -60,11 +60,11 @@ export default function FeatureAnnouncementModal() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="announcement-title"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in-up"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in-up overflow-y-auto"
       onClick={dismiss}
     >
       <div
-        className="relative w-full max-w-md bg-[#111111] border border-[#2a2a2a] rounded-2xl p-7 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+        className="relative w-full max-w-md max-h-[85vh] overflow-y-auto bg-[#111111] border border-[#2a2a2a] rounded-2xl p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button

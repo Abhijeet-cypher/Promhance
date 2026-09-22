@@ -1,0 +1,54 @@
+# Promhance
+
+> Promhance is a free AI prompt engineering studio that transforms rough ideas into structured, expert-level prompts for ChatGPT, Claude, Gemini, Midjourney, and any modern LLM — instantly and without an account.
+
+Promhance applies proven prompt engineering frameworks (role, context, constraints, output format, few-shot patterns) automatically. It is useful for developers, marketers, writers, researchers, and anyone who uses generative AI daily. The tool is free, requires no sign-up, has no rate limits, and does not store prompt content.
+
+## Key facts
+
+- Free to use: no account, no credit card, no rate limits.
+- Works with any instruction-following model, including ChatGPT (GPT-4o/GPT-4), Claude, Gemini, Llama, and Midjourney.
+- Enhancement applies role prompting, constraint injection, chain-of-thought guidance, and explicit output-format instructions automatically.
+- Prompts can be refined with quick actions, and the version history is retained for signed-in users (optional).
+- Prompt content is processed in real time and is not stored or shared.
+
+## Tools
+
+- [Prompt Enhancer](https://www.promhance.com/): The core tool — turn any rough idea into an engineered prompt.
+- [PromAI](https://www.promhance.com/promai): Promhance's built-in AI assistant. Ask questions or test any prompt and see the raw output instantly, without leaving the site.
+- [ChatGPT Prompt Enhancer](https://www.promhance.com/chatgpt-prompt-enhancer): Prompt optimization tuned for ChatGPT, with techniques and before/after examples.
+- [Midjourney Prompt Generator](https://www.promhance.com/midjourney-prompt-generator): Adds artistic styles, lighting, camera settings, and aspect ratios for AI image prompts.
+- [YouTube Prompt Generator](https://www.promhance.com/youtube-prompt-generator): Generates high-retention scripts, titles, and descriptions.
+- [Viral AI Prompts Collection](https://www.promhance.com/viral-prompts): 410+ hand-curated viral prompts for Midjourney, ChatGPT, Suno, Sora, Instagram, TikTok, and YouTube.
+
+## Guides
+
+- [What Is Prompt Engineering? The Ultimate Guide (2026)](https://www.promhance.com/blog/what-is-prompt-engineering): Definition, frameworks, techniques, and a free roadmap.
+- [Context Engineering vs. Prompt Engineering (2026 Guide)](https://www.promhance.com/blog/context-engineering-vs-prompt-engineering): What context engineering means for ChatGPT prompts.
+- [ChatGPT vs Claude vs Gemini: The Complete Prompt Engineering Guide (2026)](https://www.promhance.com/blog/chatgpt-vs-gemini-vs-claude): How each model interprets prompts differently.
+- [10 Advanced Prompt Engineering Techniques to 10x Your Productivity](https://www.promhance.com/blog/advanced-prompt-engineering-techniques): Advanced techniques and copy-paste templates.
+- [How to Write Better Prompts for AI](https://www.promhance.com/blog/how-to-write-better-ai-prompts): Why most prompts fail and how to fix them.
+- [50 ChatGPT Prompts for Developers](https://www.promhance.com/blog/50-chatgpt-prompts-for-developers): Structured prompts for debugging, refactoring, and architecture.
+- [What is PromptOps?](https://www.promhance.com/blog/what-is-promptops): Managing, versioning, and optimizing prompts like code.
+- [Stop the 10-Rewrite Cycle](https://www.promhance.com/blog/stop-the-10-rewrite-cycle): Why AI prompts fail and the two-second fix.
+
+## FAQ
+
+### What is Promhance?
+Promhance is a free AI prompt enhancer that restructures a simple idea into a highly detailed, optimized prompt using proven prompt engineering frameworks.
+
+### Is Promhance free?
+Yes. Promhance is 100% free with no account, credit card, or rate limits.
+
+### Which AI models does Promhance work with?
+Promhance generates prompts for ChatGPT, Claude, Gemini, Midjourney, Llama, and most modern instruction-following LLMs.
+
+### Does Promhance store my prompts?
+No. Prompts are processed in real time and are not stored, logged, or shared.
+
+### What is PromptOps?
+PromptOps is the professional lifecycle management and optimization of AI prompts. Promhance acts as the first layer of PromptOps by ensuring prompts are structurally sound, contextual, and correctly formatted.
+
+## Optional
+
+- [Full documentation](https://www.promhance.com/llms-full.txt): Complete list of pages and content.

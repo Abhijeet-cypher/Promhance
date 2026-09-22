@@ -96,9 +96,32 @@ export default function RootLayout({
             __html: JSON.stringify([
               {
                 "@context": "https://schema.org",
-                "@type": "WebSite",
+                "@type": "Organization",
+                "@id": "https://www.promhance.com/#organization",
                 "name": "Promhance",
-                "url": "https://www.promhance.com"
+                "url": "https://www.promhance.com",
+                "logo": {
+                  "@type": "ImageObject",
+                  "@id": "https://www.promhance.com/#logo",
+                  "url": "https://www.promhance.com/logo.svg"
+                },
+                "sameAs": ["https://github.com/Abhijeet-cypher/Promhance"]
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": "https://www.promhance.com/#website",
+                "name": "Promhance",
+                "url": "https://www.promhance.com",
+                "publisher": { "@id": "https://www.promhance.com/#organization" },
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://www.promhance.com/viral-prompts?q={search_term_string}"
+                  },
+                  "query-input": "required name=search_term_string"
+                }
               },
               {
                 "@context": "https://schema.org",
@@ -108,6 +131,7 @@ export default function RootLayout({
                 "operatingSystem": "Any",
                 "url": "https://www.promhance.com",
                 "description": "Transform rough ideas into masterfully engineered AI prompts.",
+                "publisher": { "@id": "https://www.promhance.com/#organization" },
                 "offers": {
                   "@type": "Offer",
                   "price": "0",

@@ -66,7 +66,7 @@ function LogoCard({
   internal,
 }: (typeof AI_PLATFORMS)[number]) {
   const cardClass =
-    "group flex flex-col items-center gap-3 px-6 py-5 rounded-2xl " +
+    "group flex flex-col items-center gap-3 px-4 py-5 sm:px-6 rounded-2xl " +
     "border border-[#2a2a2a] bg-[#111111] " +
     "hover:border-blue-500/30 hover:bg-[#111d2e] " +
     "hover:shadow-[0_0_28px_rgba(59,130,246,0.07)] " +

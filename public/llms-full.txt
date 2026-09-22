@@ -1,0 +1,74 @@
+# Promhance — Full Content Index
+
+> Promhance is a free AI prompt engineering studio that transforms rough ideas into structured, expert-level prompts for ChatGPT, Claude, Gemini, Midjourney, and any modern LLM — instantly and without an account.
+
+This file expands on `llms.txt` with full descriptions of every page and guide on the site.
+
+## Core pages
+
+- [Home](https://www.promhance.com/): The Prompt Enhancer tool. Enter a rough idea and get a structured, production-ready prompt optimized for any AI. Free, no account required. Includes a how-it-works walkthrough, use cases, and an FAQ.
+- [Viral AI Prompts Collection](https://www.promhance.com/viral-prompts): 410+ hand-curated viral prompts for Midjourney, ChatGPT, Suno, Sora, Instagram, TikTok, YouTube, and LinkedIn. Filter by platform, prompt type, and trend era. Free to copy.
+- [Prompt History](https://www.promhance.com/history): Version history and refinements for signed-in users.
+- [Blog](https://www.promhance.com/blog): Guides and tutorials on prompt engineering, ChatGPT, Claude, Gemini, Midjourney, and AI workflows.
+- [Privacy Policy](https://www.promhance.com/privacy)
+- [Terms of Service](https://www.promhance.com/terms)
+
+## Tool pages
+
+### PromAI
+https://www.promhance.com/promai
+Promhance's built-in AI assistant. Ask mode answers questions on writing, coding, marketing, research, and prompt engineering. Test mode runs any prompt as-is and streams back the exact model output, so users can judge a prompt's quality without opening ChatGPT, Claude, or Gemini in another tab. Free, no sign-up, no persistence.
+
+### ChatGPT Prompt Enhancer
+https://www.promhance.com/chatgpt-prompt-enhancer
+Turns vague ideas into expert-level ChatGPT prompts in one click. Adds role context, constraints, and output format automatically. Includes prompt engineering techniques (role prompting, chain-of-thought, few-shot, constraint injection), before/after examples, ready-to-enhance templates by category, and pro tips.
+
+### Midjourney Prompt Generator
+https://www.promhance.com/midjourney-prompt-generator
+Generates Midjourney-ready image prompts from a basic idea, adding artistic styles, lighting, camera settings, and aspect ratios.
+
+### YouTube Prompt Generator
+https://www.promhance.com/youtube-prompt-generator
+Transforms a video concept into prompts that produce high-retention scripts, catchy titles, and optimized descriptions.
+
+## Guides and articles
+
+### What Is Prompt Engineering? The Ultimate Guide (2026)
+https://www.promhance.com/blog/what-is-prompt-engineering
+Published 2026-07-30. Defines prompt engineering, explains why it matters, and covers frameworks, techniques, real examples, and a free step-by-step roadmap.
+
+### Context Engineering vs. Prompt Engineering (2026 Guide)
+https://www.promhance.com/blog/context-engineering-vs-prompt-engineering
+Published 2026-09-21. Explains context engineering, how it differs from prompt engineering, and what it means for ChatGPT prompts.
+
+### ChatGPT vs Claude vs Gemini: The Complete Prompt Engineering Guide (2026)
+https://www.promhance.com/blog/chatgpt-vs-gemini-vs-claude
+Published 2026-08-03. How each model interprets prompts differently, with frameworks, XML tag examples, and copy-paste prompts for all three.
+
+### 10 Advanced Prompt Engineering Techniques to 10x Your Productivity
+https://www.promhance.com/blog/advanced-prompt-engineering-techniques
+Published 2026-07-21. Advanced techniques, the best AI prompts, and prompt templates to maximize productivity.
+
+### How to Write Better Prompts for AI (And Why Most People Get It Wrong)
+https://www.promhance.com/blog/how-to-write-better-ai-prompts
+Published 2026-03-20. A comprehensive guide to writing clear, contextual prompts that produce exact, high-quality results.
+
+### 50 ChatGPT Prompts for Developers: Code Faster & Smarter
+https://www.promhance.com/blog/50-chatgpt-prompts-for-developers
+Published 2026-03-18. 50 structured ChatGPT prompts to help engineers debug, refactor, architect, and write tests faster.
+
+### What is PromptOps? The Future of AI Prompt Lifecycle Management
+https://www.promhance.com/blog/what-is-promptops
+Published 2026-07-01. Why PromptOps matters for developers and how to implement the S.P.A.R.K. framework.
+
+### Stop the 10-Rewrite Cycle: Why Your AI Prompts Are Failing (and the 2-Second Fix)
+https://www.promhance.com/blog/stop-the-10-rewrite-cycle
+Published 2026-03-26. Why ChatGPT, Claude, and Gemini prompts fail and the prompt engineering fix.
+
+## Key facts
+
+- Free: no account, no credit card, no rate limits.
+- Model-agnostic: ChatGPT, Claude, Gemini, Midjourney, Llama, and any instruction-following LLM.
+- Applies role prompting, constraint injection, chain-of-thought guidance, and output-format instructions automatically.
+- Optional refinements with retained version history for signed-in users.
+- No prompt storage; content is processed in real time and discarded.

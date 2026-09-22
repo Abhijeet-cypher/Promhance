@@ -9,7 +9,7 @@ const TRUST_ITEMS = [
 
 export default function TrustStrip() {
   return (
-    <div className="w-full flex justify-center items-center py-4 gap-0">
+    <div className="w-full flex flex-wrap justify-center items-center py-4 gap-x-4 sm:gap-x-0 gap-y-2">
       {TRUST_ITEMS.map(({ icon: Icon, label }, i) => (
         <span key={label} className="inline-flex items-center">
           {/* Trust item */}
@@ -20,9 +20,9 @@ export default function TrustStrip() {
             />
             {label}
           </span>
-          {/* Dot separator — not after last item */}
+          {/* Dot separator — desktop only (hidden when items wrap on mobile) */}
           {i < TRUST_ITEMS.length - 1 && (
-            <span className="mx-5 text-[#2a2a2a] select-none text-[10px]">·</span>
+            <span className="hidden sm:inline mx-5 text-[#2a2a2a] select-none text-[10px]">·</span>
           )}
         </span>
       ))}

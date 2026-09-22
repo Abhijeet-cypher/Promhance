@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Github, Wand2, Image as ImageIcon, Video, MessageSquare } from "lucide-react";
+import { Twitter, Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
 
 const toolLinks = [
   { href: "/", label: "Prompt Enhancer", desc: "Optimize any prompt using AI", icon: Wand2 },
   { href: "/chatgpt-prompt-enhancer", label: "ChatGPT Prompts", desc: "For LLM conversations", icon: MessageSquare },
   { href: "/midjourney-prompt-generator", label: "Midjourney Prompts", desc: "For AI image generation", icon: ImageIcon },
   { href: "/youtube-prompt-generator", label: "YouTube Prompts", desc: "Scripts & viral titles", icon: Video },
+  { href: "/promai", label: "PromAI", desc: "Ask questions & test prompts", icon: Sparkles },
 ];
 
 export default function Footer() {

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { parseAnonId, resolveUserId } from "@/lib/supabase/identity";
+import { buildEnhanceSystemInstruction } from "@/lib/prompt-modes";
 
 export const runtime = "nodejs";
 
@@ -32,50 +33,7 @@ export async function POST(req: Request) {
       );
     }
 
-    let systemInstruction = "";
-
-    switch (mode) {
-      case "Image Generation":
-        systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine basic ideas into clean, simple, and effective image generation prompts. 
-        Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
-        Focus simply on: Core subject, basic environment/lighting, and a defining artistic style.`;
-        break;
-      case "Creative Writing":
-        systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine basic story ideas into clear, simple writing prompts. 
-        Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
-        Focus simply on: The core narrative, target tone, and basic constraints necessary to guide the LLM effectively.`;
-        break;
-      case "Technical/Code":
-        systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine technical requests into straightforward, clear coding prompts. 
-        Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
-        Focus simply on: Defining the exact tech stack, core functionality, and expected inputs/outputs directly.`;
-        break;
-      case "Marketing":
-        systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine marketing ideas into clear, effective marketing prompts (ads, emails, social copy).
-        Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
-        Focus simply on: The target audience, the desired action, the channel, and the key value proposition.`;
-        break;
-      case "General":
-      default:
-        systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine basic ideas into clear, simple, and direct AI prompts.
-        Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
-        Focus simply on straightforward constraints, optimal formatting, and clarity.`;
-        break;
-      case "LLM Prompt":
-        systemInstruction = `You are Promhance, a AI Prompt Engineer. Your job is to refine basic ideas into clear, simple, and direct LLM prompts.
-        Your output must be ONLY the final optimized prompt. Do not mention specific word counts.
-        Focus simply on straightforward constraints, optimal formatting, and clarity.`;
-        break;
-    }
-
-    const intensityPrompts: Record<string, string> = {
-      low: `Lightly enhance the prompt. Fix grammar, add minimal clarity. Keep it short — 1-2 sentences max. Do not over-explain.`,
-      medium: `Moderately enhance the prompt. Add a role, define the task clearly, specify audience and format. Keep it focused — 3-5 sentences.`,
-      high: `Fully engineer the prompt. Add role, detailed task breakdown, constraints, expected input/output format, edge cases, and performance requirements. Be comprehensive and specific.`
-    };
-
-    const intensityInstruction = intensityPrompts[intensity as keyof typeof intensityPrompts] || intensityPrompts.medium;
-    const finalSystemInstruction = `${systemInstruction}\n\nINTENSITY GUIDELINE:\n${intensityInstruction}`;
+    const finalSystemInstruction = buildEnhanceSystemInstruction(mode, intensity);
 
     const response = await ai.models.generateContent({
       model: "gemini-3.1-flash-lite-preview",
@@ -117,12 +75,29 @@ export async function POST(req: Request) {
         console.error("Prompt persist failed:", error.message);
       } else {
         promptId = data.id;
+
+        // Seed v1 of the version history. Best-effort: the enhancement and
+        // the prompt row are already valid without it.
+        const { error: versionError } = await supabase
+          .from("prompt_versions")
+          .insert({
+            prompt_id: data.id,
+            version_number: 1,
+            text: enhanced.slice(0, MAX_OUTPUT_LENGTH),
+            action: "base",
+            action_label: null,
+          });
+
+        if (versionError) {
+          console.error("Prompt version persist failed:", versionError.message);
+        }
       }
     }
 
     return NextResponse.json({
       enhanced,
       prompt_id: promptId,
+      version_number: promptId ? 1 : null,
     });
 
   } catch (error) {

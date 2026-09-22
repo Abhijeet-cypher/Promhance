@@ -323,7 +323,7 @@ export default function ChatGPTPage() {
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10">
           <div className="mb-6 sm:mb-10 text-center space-y-4 pt-12 sm:pt-16">
             <h1
-              className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white"
+              className="animate-fade-in-up text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white"
               style={{ animationDelay: "0ms" }}
             >
               ChatGPT Prompt Enhancer
@@ -351,7 +351,7 @@ export default function ChatGPTPage() {
         <div className="w-full max-w-5xl mx-auto px-6 sm:px-10">
 
           {/* ═══ 1 — What Does It Do ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="How It Works"
@@ -377,7 +377,7 @@ export default function ChatGPTPage() {
           </section>
 
           {/* ═══ 2 — How Promhance Improves Prompts ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="The Process"
@@ -422,7 +422,7 @@ export default function ChatGPTPage() {
           </section>
 
           {/* ═══ 3 — Before / After ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="Before / After"
@@ -475,7 +475,7 @@ export default function ChatGPTPage() {
           </section>
 
           {/* ═══ 4 — Prompt Engineering Techniques ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="Prompt Engineering"
@@ -504,7 +504,7 @@ export default function ChatGPTPage() {
           </section>
 
           {/* ═══ 5 — Prompt Templates by Category ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="Prompt Library"
@@ -542,7 +542,7 @@ export default function ChatGPTPage() {
           </section>
 
           {/* ═══ 6 — How to Get Better Results ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="Pro Tips"
@@ -571,7 +571,7 @@ export default function ChatGPTPage() {
           </section>
 
           {/* ═══ 7 — FAQ ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="FAQ"

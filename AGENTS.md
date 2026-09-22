@@ -12,13 +12,31 @@ Promhance — a Next.js app that enhances rough prompts into engineered prompts 
 
 ## Environment
 
-- `/api/enhance` requires `GEMINI_API_KEY` in `.env.local`; without it the route returns HTTP 500. `.env*` is gitignored.
+- `/api/enhance` and `/api/prompts/refine` require `GEMINI_API_KEY` in `.env.local`; without it they return HTTP 500. `.env*` is gitignored.
+- Supabase env vars (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`) power auth + persistence. Without them, history/refinements are disabled but enhancement still works.
 
 ## Architecture
 
-- `app/api/enhance/route.ts` — the only API route. Single **non-streaming** Gemini call (model string `gemini-3.1-flash-lite-preview`). All mode/intensity system prompts live here. Note: `README.md` is stale and claims `gemini-2.5-flash` + streaming.
-- `components/PromptEnhancer.tsx` — the core client tool, reused by every landing page via a `defaultMode` prop. Keep its `MODES` list in sync with the route's `switch`: it currently includes `"Marketing"`, which has no case in the route and silently falls through to `General`.
+- API routes (all `runtime = "nodejs"`):
+  - `app/api/enhance/route.ts` — initial enhancement. Single **non-streaming** Gemini call (model string `gemini-3.1-flash-lite-preview`). Persists the prompt and its v1 version.
+  - `app/api/prompts/route.ts` — GET history / single prompt (with versions), DELETE.
+  - `app/api/prompts/refine/route.ts` — applies a quick-action refinement to a prompt, stores the next version.
+  - `app/api/promai/route.ts` — PromAI chat. **Streaming** `text/plain` response (answer mode = assistant persona; test mode = run the prompt as-is). Ephemeral, no persistence. Uses `lib/ai.ts`.
+  - `app/api/feedback/route.ts`, `app/api/auth/claim/route.ts` — feedback + anonymous-history claiming after sign-in.
+  - Note: `README.md` is stale and claims `gemini-2.5-flash` + streaming.
+- `lib/ai.ts` — shared `GoogleGenAI` client (`getGoogleGenAI()`) + `GEMINI_MODEL` constant, used by `/api/promai`.
+- `lib/prompt-modes.ts` — mode + intensity system instructions (shared by enhance & refine). `lib/quick-actions.ts` — per-mode refinement actions (`id`/`label`/`instruction`), shared by the refine route and the client.
+- `components/PromptEnhancer.tsx` — the core client tool, reused by every landing page via a `defaultMode` prop. Keep its `MODES` list in sync with `lib/prompt-modes.ts` and the quick-action sets (both `Marketing` and all modes have entries). Its output header has a "Try it" button that deep-links to `/promai?test=<prompt>`.
+- `components/PromaiChat.tsx` + `app/promai/page.tsx` — PromAI chat UI/page (Ask + Test modes, streaming).
 - Path alias `@/*` maps to the repo root (not `src/`).
+
+## Prompt versioning & refinements
+
+- `prompts` = one enhancement (original + latest enhanced + mode + intensity + identity). `prompt_versions` = ordered refinements: v1 is the initial enhancement (`action = 'base'`), v2+ are quick-action refinements. `prompts.enhanced_prompt` is a cache of the latest version.
+- Migration: `supabase/migrations/20250922000000_prompt_versions.sql` (creates the table + backfills existing prompts as v1). Run it in the Supabase SQL Editor.
+- Refinements are linear and refine the version the user is viewing (`from_version`), not always the base.
+- If `prompt_versions` is missing, `/api/prompts` synthesizes v1 from `enhanced_prompt`, so history keeps working.
+- Identity/ownership: service-role routes; a row is owned when `user_id` matches the session or `anon_id` matches with `user_id IS NULL`.
 
 ## Viral prompts data (two sources — only one is live)
 
@@ -35,6 +53,9 @@ Promhance — a Next.js app that enhances rough prompts into engineered prompts 
 
 - Every route exports `metadata` and inlines JSON-LD (`application/ld+json`). Follow existing page patterns when adding routes.
 - `app/sitemap.ts` hardcodes static routes and `lastModified` dates — add new top-level pages there manually; blog posts are appended automatically.
+- `public/llms.txt` and `public/llms-full.txt` are the GEO/AEO discovery files (llmstxt.org spec) — keep the tool/guide links and FAQs in sync when adding pages or posts.
+- `app/robots.ts` explicitly allows search + AI crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, etc.); all disallow `/api/`.
+- IndexNow key `4ec819a7ef58c72476f4947dc3a953f6` is served at `public/4ec819a7ef58c72476f4947dc3a953f6.txt`. To request indexing on Bing/Yandex/DuckDuckGo after publish, POST or GET the changed URLs, e.g. `https://api.indexnow.org/indexnow?url=https://www.promhance.com/&key=4ec819a7ef58c72476f4947dc3a953f6`. There is no deploy hook wired up yet.
 
 ## Styling
 

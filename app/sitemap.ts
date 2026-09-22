@@ -14,27 +14,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: `${baseUrl}/`,
-      lastModified: new Date('2026-08-03'),
+      lastModified: new Date('2026-09-22'),
     },
     {
       url: `${baseUrl}/chatgpt-prompt-enhancer`,
-      lastModified: new Date('2026-08-17'),
+      lastModified: new Date('2026-09-22'),
     },
     {
       url: `${baseUrl}/midjourney-prompt-generator`,
-      lastModified: new Date('2026-07-21'),
+      lastModified: new Date('2026-09-22'),
     },
     {
       url: `${baseUrl}/youtube-prompt-generator`,
-      lastModified: new Date('2026-07-21'),
+      lastModified: new Date('2026-09-22'),
+    },
+    {
+      url: `${baseUrl}/promai`,
+      lastModified: new Date('2026-09-22'),
     },
     {
       url: `${baseUrl}/viral-prompts`,
-      lastModified: new Date('2026-06-25'),
+      lastModified: new Date('2026-09-22'),
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date('2026-08-03'),
+      lastModified: new Date('2026-09-22'),
     },
     {
       url: `${baseUrl}/privacy`,

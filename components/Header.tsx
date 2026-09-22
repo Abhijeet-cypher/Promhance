@@ -29,6 +29,7 @@ export default function Header() {
     { name: "ChatGPT", href: "/chatgpt-prompt-enhancer" },
     { name: "Midjourney", href: "/midjourney-prompt-generator" },
     { name: "YouTube", href: "/youtube-prompt-generator" },
+    { name: "PromAI", href: "/promai" },
     { name: "Viral Prompts", href: "/viral-prompts" },
     { name: "History", href: "/history" },
     { name: "Blog", href: "/blog" },
@@ -49,8 +50,8 @@ export default function Header() {
           className="group flex items-center gap-2 relative z-50 outline-none"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <Image src="/logo.svg" alt="Promhance Logo" width={48} height={48} className="w-12 h-12" />
-          <span className="text-2xl font-bold tracking-tight text-white">
+          <Image src="/logo.svg" alt="Promhance Logo" width={48} height={48} className="w-9 h-9 sm:w-12 sm:h-12" />
+          <span className="text-xl sm:text-2xl font-bold tracking-tight text-white">
             Prom<span className="text-blue-400">hance</span>
           </span>
         </Link>
@@ -172,10 +173,11 @@ export default function Header() {
 
         {/* Mobile Navigation Menu */}
         <div
-          className={`fixed inset-0 bg-[#0a0a0a]/98 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out md:hidden flex flex-col justify-center items-center gap-8 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          className={`fixed inset-0 bg-[#0a0a0a]/98 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out md:hidden overflow-y-auto ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
         >
-          <nav className="flex flex-col items-center gap-6">
+          <div className="flex min-h-full flex-col justify-center items-center gap-8 px-6 py-24">
+          <nav className="flex flex-col items-center gap-5">
             {navLinks.map((link, i) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
@@ -217,6 +219,7 @@ export default function Header() {
               </Link>
             )
           )}
+          </div>
         </div>
 
       </div>

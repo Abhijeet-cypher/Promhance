@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
           <span className="inline-block text-xs font-semibold tracking-[0.18em] uppercase text-blue-400 mb-3">
             Legal
           </span>
-          <h1 className="text-4xl font-bold text-white tracking-tight mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
             Privacy Policy
           </h1>
           <p className="text-sm text-[#525252]">Last Updated: {LAST_UPDATED}</p>

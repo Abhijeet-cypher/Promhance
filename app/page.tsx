@@ -121,7 +121,7 @@ export default function Home() {
         <div className="w-full max-w-5xl mx-auto px-6 sm:px-10">
 
           {/* ═══ How It Works ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="How It Works"
@@ -163,7 +163,7 @@ export default function Home() {
         <div className="w-full max-w-5xl mx-auto px-6 sm:px-10">
 
           {/* ═══ Use Cases ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="Use Cases"
@@ -192,7 +192,7 @@ export default function Home() {
           </section>
 
           {/* ═══ Why Promhance ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="Why Promhance"
@@ -219,7 +219,7 @@ export default function Home() {
           </section>
 
           {/* ═══ FAQ ═══ */}
-          <section className="py-20 sm:py-28 border-t border-[#1a1a1a]">
+          <section className="py-16 sm:py-28 border-t border-[#1a1a1a]">
             <ScrollReveal>
               <SectionHeader
                 overline="FAQ"
