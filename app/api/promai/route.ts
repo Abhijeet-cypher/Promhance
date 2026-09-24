@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import type { Content } from "@google/genai";
-import { getGoogleGenAI, GEMINI_MODEL } from "@/lib/ai";
+import {
+  getGoogleGenAI,
+  GEMINI_MODEL,
+  generateContentStreamWithFallback,
+} from "@/lib/ai";
 
 export const runtime = "nodejs";
 
@@ -64,7 +68,7 @@ export async function POST(req: Request) {
 
     // "test" mode runs the prompt as-is (no assistant persona) so the user
     // sees the raw model output. "answer" mode is a helpful assistant.
-    const stream = await ai.models.generateContentStream({
+    const stream = await generateContentStreamWithFallback(ai, {
       model: GEMINI_MODEL,
       contents,
       config: {

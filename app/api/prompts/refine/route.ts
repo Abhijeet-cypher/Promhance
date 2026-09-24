@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
+import { GEMINI_MODEL, generateContentWithFallback } from "@/lib/ai";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { isValidUuid, parseAnonId, resolveUserId } from "@/lib/supabase/identity";
 import { findQuickAction } from "@/lib/quick-actions";
@@ -126,8 +127,8 @@ export async function POST(req: Request) {
     const currentText = sourceText ?? latest?.text ?? prompt.enhanced_prompt;
     const nextVersion = (latest?.version_number ?? 1) + 1;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-lite-preview",
+    const response = await generateContentWithFallback(ai, {
+      model: GEMINI_MODEL,
       contents: [
         {
           role: "user",

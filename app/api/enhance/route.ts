@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
+import { GEMINI_MODEL, generateContentWithFallback } from "@/lib/ai";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { parseAnonId, resolveUserId } from "@/lib/supabase/identity";
 import { buildEnhanceSystemInstruction } from "@/lib/prompt-modes";
@@ -35,8 +36,8 @@ export async function POST(req: Request) {
 
     const finalSystemInstruction = buildEnhanceSystemInstruction(mode, intensity);
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-lite-preview",
+    const response = await generateContentWithFallback(ai, {
+      model: GEMINI_MODEL,
       contents: [
         {
           role: "user",
