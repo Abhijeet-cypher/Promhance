@@ -5,6 +5,36 @@ description: "Master prompt engineering with our comprehensive AI prompt writing
 author: "Promhance Team"
 tags: ["Prompt Engineering", "ChatGPT Prompts", "AI Prompts", "AI", "AI Writing"]
 image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
+howToSchema:
+  "@context": "https://schema.org"
+  "@type": "HowTo"
+  name: "How to Write Better Prompts for AI"
+  description: "Use the CREATE framework — Context, Request, Examples, Audience, Tone, and Extras — to write prompts that produce expert-level AI output."
+  step:
+    - "@type": "HowToStep"
+      position: 1
+      name: "Give context"
+      text: "Tell the AI who you are, what your business does, and what your goal is before making the request."
+    - "@type": "HowToStep"
+      position: 2
+      name: "Be hyper-specific with the request"
+      text: "State the role the AI should adopt and the precise output you need."
+    - "@type": "HowToStep"
+      position: 3
+      name: "Provide few-shot examples"
+      text: "Show an example of the format or style you want the AI to mimic."
+    - "@type": "HowToStep"
+      position: 4
+      name: "Define audience and tone"
+      text: "Specify who the output is for and how it should sound."
+    - "@type": "HowToStep"
+      position: 5
+      name: "Add constraints"
+      text: "Set length, exclusions, and rules the output must follow."
+    - "@type": "HowToStep"
+      position: 6
+      name: "Iterate"
+      text: "Ask the AI to critique its own draft against your rules, then rewrite it."
 ---
 
 Artificial Intelligence has transformed the way we work, write, and code. But if you’ve ever felt frustrated by generic, inaccurate, or unhelpful responses from tools like ChatGPT or Claude, you are not alone. The secret isn't a smarter AI—it's **prompt engineering**.

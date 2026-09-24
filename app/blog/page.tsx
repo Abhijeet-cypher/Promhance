@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { format } from "date-fns";
 import { getAllPosts } from "@/lib/markdown";
 import { Metadata } from "next";
@@ -87,12 +88,14 @@ export default async function BlogIndexPage() {
               {/* Image Header */}
               {post.image && (
                 <div className="relative w-full h-48 overflow-hidden bg-[#1a1a1a]">
-                  <div className="absolute inset-0 bg-[#0a0a0a]/20 group-hover:bg-transparent transition-colors z-10" />
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-[#0a0a0a]/20 group-hover:bg-transparent transition-colors z-10" />
                 </div>
               )}
 

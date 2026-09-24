@@ -1,5 +1,6 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
 import Footer from "@/components/Footer";
+import { breadcrumbSchema } from "@/lib/schema";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -161,6 +162,18 @@ export default function YouTubePage() {
               "acceptedAnswer": { "@type": "Answer", "text": faq.a }
             }))
           })
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "YouTube Prompt Generator", path: "/youtube-prompt-generator" },
+            ])
+          ),
         }}
       />
 

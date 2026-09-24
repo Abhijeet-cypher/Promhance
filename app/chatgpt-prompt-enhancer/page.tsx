@@ -1,6 +1,7 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import { breadcrumbSchema } from "@/lib/schema";
 import { Metadata } from "next";
 import {
   UserCheck,
@@ -308,6 +309,11 @@ const howToSchema = {
   })),
 };
 
+const breadcrumb = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "ChatGPT Prompt Enhancer", path: "/chatgpt-prompt-enhancer" },
+]);
+
 /* ─────────────────────────────────────────────────────────────────────────────
    PAGE
 ───────────────────────────────────────────────────────────────────────────── */
@@ -604,7 +610,7 @@ export default function ChatGPTPage() {
       </div>
 
       {/* ─── JSON-LD Structured Data ─── */}
-      {[softwareSchema, faqSchema, howToSchema].map((schema, i) => (
+      {[softwareSchema, faqSchema, howToSchema, breadcrumb].map((schema, i) => (
         <script
           key={i}
           type="application/ld+json"

@@ -88,6 +88,7 @@ export default function Home() {
             >
               <span className="text-white">Prom</span>
               <span className="text-blue-400">hance</span>
+              <span className="sr-only"> — AI Prompt Enhancer &amp; Prompt Engineering Workspace</span>
             </h1>
             <p
               className="animate-fade-in-up max-w-lg mx-auto text-base sm:text-lg text-[#a1a1a1] leading-relaxed"

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
+import { Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
 
 const toolLinks = [
   { href: "/", label: "Prompt Enhancer", desc: "Optimize any prompt using AI", icon: Wand2 },
@@ -29,9 +29,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               {[
-                { icon: Twitter, href: "", name: "Twitter" },
                 { icon: Github, href: "https://github.com/Abhijeet-cypher/Promhance", name: "GitHub" },
-                // { icon: Linkedin, href: "", name: "LinkedIn" },
               ].map((social, idx) => (
                 <a
                   key={idx}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -12,6 +12,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.promhance.com'),
@@ -77,6 +82,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <link
+          rel="search"
+          type="application/opensearchdescription+xml"
+          title="Promhance Prompt Search"
+          href="/opensearch.xml"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Promhance Blog RSS"
+          href="/blog/rss.xml"
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CV5SK9CN9S"
           strategy="afterInteractive"
@@ -100,6 +117,7 @@ export default function RootLayout({
                 "@id": "https://www.promhance.com/#organization",
                 "name": "Promhance",
                 "url": "https://www.promhance.com",
+                "foundingDate": "2026",
                 "logo": {
                   "@type": "ImageObject",
                   "@id": "https://www.promhance.com/#logo",
@@ -113,6 +131,7 @@ export default function RootLayout({
                 "@id": "https://www.promhance.com/#website",
                 "name": "Promhance",
                 "url": "https://www.promhance.com",
+                "inLanguage": "en-US",
                 "publisher": { "@id": "https://www.promhance.com/#organization" },
                 "potentialAction": {
                   "@type": "SearchAction",

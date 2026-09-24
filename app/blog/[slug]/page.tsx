@@ -1,4 +1,5 @@
-import { getPostBySlug, getAllPosts, BlogPost } from "@/lib/markdown";
+import { getPostBySlug, getAllPosts } from "@/lib/markdown";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { Calendar, User, ArrowLeft, Zap } from "lucide-react";
@@ -22,11 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(resolvedParams.slug);
   
   if (!post) {
-    return { title: 'Post Not Found | Promhance' };
+    return { title: { absolute: 'Post Not Found | Promhance' } };
   }
 
   return {
-    title: `${post.title} | Promhance Blog`,
+    title: { absolute: `${post.title} | Promhance Blog` },
     description: post.description,
     keywords: post.tags,
     alternates: {
@@ -61,6 +62,9 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const plainText = post.content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const wordCount = plainText ? plainText.split(' ').length : 0;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -73,7 +77,14 @@ export default async function BlogPostPage({ params }: Props) {
     keywords: post.tags?.join(', '),
     image: post.image ? [post.image] : [],
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated || post.date,
+    wordCount,
+    articleSection: post.tags?.[0],
+    about: (post.tags || []).map((tag) => ({ '@type': 'Thing', name: tag })),
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['article h1', '.prose p'],
+    },
     author: [{
       '@type': 'Organization',
       name: post.author,
@@ -128,6 +139,12 @@ export default async function BlogPostPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(post.faqSchema) }}
+      />
+    )}
+    {post.howToSchema && (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(post.howToSchema) }}
       />
     )}
 
@@ -189,10 +206,13 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Hero Image */}
         {post.image && (
           <div className="relative w-full h-56 sm:h-[450px] rounded-2xl overflow-hidden border border-[#2a2a2a] shadow-xl mb-12">
-            <img 
-              src={post.image} 
-              alt={post.title} 
-              className="object-cover w-full h-full"
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              priority
+              sizes="(max-width: 640px) 92vw, 1000px"
+              className="object-cover"
             />
           </div>
         )}

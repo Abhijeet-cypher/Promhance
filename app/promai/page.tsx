@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import PromaiChat from "@/components/PromaiChat";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "PromAI — Ask Anything or Test Your Prompt Instantly",
@@ -90,6 +91,11 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: faq.a },
   })),
 };
+
+const breadcrumb = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "PromAI", path: "/promai" },
+]);
 
 export default function PromaiPage() {
   return (
@@ -217,7 +223,7 @@ export default function PromaiPage() {
       </div>
 
       {/* ─── JSON-LD ─── */}
-      {[softwareSchema, faqSchema].map((schema, i) => (
+      {[softwareSchema, faqSchema, breadcrumb].map((schema, i) => (
         <script
           key={i}
           type="application/ld+json"

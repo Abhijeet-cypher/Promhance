@@ -41,6 +41,10 @@ Published 2026-07-30. Defines prompt engineering, explains why it matters, and c
 https://www.promhance.com/blog/context-engineering-vs-prompt-engineering
 Published 2026-09-21. Explains context engineering, how it differs from prompt engineering, and what it means for ChatGPT prompts.
 
+### Is Prompt Engineering Dead in 2026? What Still Works (and What to Stop Doing)
+https://www.promhance.com/blog/is-prompt-engineering-dead-2026
+Published 2026-09-24. Why trick-based prompting faded, what changed for reasoning models, and the durable fundamentals that still determine output quality.
+
 ### ChatGPT vs Claude vs Gemini: The Complete Prompt Engineering Guide (2026)
 https://www.promhance.com/blog/chatgpt-vs-gemini-vs-claude
 Published 2026-08-03. How each model interprets prompts differently, with frameworks, XML tag examples, and copy-paste prompts for all three.

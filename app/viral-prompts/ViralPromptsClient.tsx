@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useId } from "react";
+import { useSearchParams } from "next/navigation";
 import type { ViralPromptJSON } from "@/lib/viral-prompts-types";
 import { getEra, normaliseType } from "@/lib/viral-prompts-data";
 import {
@@ -318,9 +319,11 @@ const PER_PAGE = 48;
 
 export default function ViralPromptsClient({ prompts }: { prompts: ViralPromptJSON[] }) {
   const searchId = useId();
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") ?? "";
 
   // ── State ──────────────────────────────────────────────────────────────────
-  const [query,      setQuery]      = useState("");
+  const [query,      setQuery]      = useState(initialQuery);
   const [activeType, setActiveType] = useState("All");
   const [activeEra,  setActiveEra]  = useState("All");
   const [activeSec,  setActiveSec]  = useState("All");
