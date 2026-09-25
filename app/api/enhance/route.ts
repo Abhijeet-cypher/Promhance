@@ -1,35 +1,57 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
-import { GEMINI_MODEL, generateContentWithFallback } from "@/lib/ai";
+import { GEMINI_MODEL, generateContentWithFallback, getGoogleGenAI } from "@/lib/ai";
+import { enforceRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { parseAnonId, resolveUserId } from "@/lib/supabase/identity";
-import { buildEnhanceSystemInstruction } from "@/lib/prompt-modes";
+import {
+  buildEnhanceSystemInstruction,
+  INTENSITY_INSTRUCTIONS,
+  MODE_SYSTEM_INSTRUCTIONS,
+} from "@/lib/prompt-modes";
 
 export const runtime = "nodejs";
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
-
 const MAX_PROMPT_LENGTH = 8000;
 const MAX_OUTPUT_LENGTH = 20000;
-const MAX_FIELD_LENGTH = 200;
+const MAX_BODY_BYTES = 64_000;
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const prompt = body.prompt;
-    const mode = body.mode || "General";
-    const intensity = body.intensity || "medium";
+    const limited = await enforceRateLimit(req, "enhance", 10, 200);
+    if (limited) return limited;
+
+    const declaredSize = Number(req.headers.get("content-length") ?? 0);
+    if (declaredSize > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: "Request too large." }, { status: 413 });
+    }
+
+    const body = await req.json().catch(() => null);
+    if (typeof body !== "object" || body === null || Array.isArray(body)) {
+      return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+    }
+
+    // Cap before the model call so oversized input can't inflate token costs.
+    const prompt =
+      typeof body.prompt === "string" ? body.prompt.trim().slice(0, MAX_PROMPT_LENGTH) : "";
+    const mode =
+      typeof body.mode === "string" && Object.hasOwn(MODE_SYSTEM_INSTRUCTIONS, body.mode)
+        ? body.mode
+        : "General";
+    const intensity =
+      typeof body.intensity === "string" && Object.hasOwn(INTENSITY_INSTRUCTIONS, body.intensity)
+        ? body.intensity
+        : "medium";
     const anonId = parseAnonId(body.anonId);
 
     if (!prompt) {
       return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
     }
 
-    if (!process.env.GEMINI_API_KEY) {
+    const ai = getGoogleGenAI();
+    if (!ai) {
+      console.error("GEMINI_API_KEY is not configured.");
       return NextResponse.json(
-        { error: "Gemini API Key is not configured in .env.local" },
+        { error: "The service is temporarily unavailable." },
         { status: 500 }
       );
     }
@@ -64,10 +86,10 @@ export async function POST(req: Request) {
         .insert({
           anon_id: anonId,
           user_id: userId,
-          original_prompt: String(prompt).slice(0, MAX_PROMPT_LENGTH),
+          original_prompt: prompt,
           enhanced_prompt: enhanced.slice(0, MAX_OUTPUT_LENGTH),
-          mode: String(mode).slice(0, MAX_FIELD_LENGTH),
-          intensity: String(intensity).slice(0, MAX_FIELD_LENGTH),
+          mode,
+          intensity,
         })
         .select("id")
         .single();

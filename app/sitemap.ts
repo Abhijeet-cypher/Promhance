@@ -39,6 +39,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/claude-prompt-improver`,
+      lastModified: new Date('2026-09-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/gemini-prompt-enhancer`,
+      lastModified: new Date('2026-09-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/promai`,
       lastModified: new Date('2026-09-22'),
       changeFrequency: 'weekly',

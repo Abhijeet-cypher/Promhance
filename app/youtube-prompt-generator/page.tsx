@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: 'Is the YouTube prompt generator free?',
-    a: 'Yes — Promhance is completely free with no sign-up, no credit card, and no usage limits. Generate as many scripts, titles, and descriptions as you need.',
+    a: 'Yes — Promhance is free, with no account or credit card required. Fair-use limits apply so the service stays fast for everyone.',
   },
   {
     q: 'Does it work for Shorts and long-form videos?',

@@ -23,6 +23,14 @@ Promhance's built-in AI assistant. Ask mode answers questions on writing, coding
 https://www.promhance.com/chatgpt-prompt-enhancer
 Turns vague ideas into expert-level ChatGPT prompts in one click. Adds role context, constraints, and output format automatically. Includes prompt engineering techniques (role prompting, chain-of-thought, few-shot, constraint injection), before/after examples, ready-to-enhance templates by category, and pro tips.
 
+### Claude Prompt Improver
+https://www.promhance.com/claude-prompt-improver
+Rewrites a rough idea into a structured prompt for Claude: clear role, context, XML-style separation of instructions and data, examples, and an explicit output format. Includes tips, a before/after example and an FAQ.
+
+### Gemini Prompt Enhancer
+https://www.promhance.com/gemini-prompt-enhancer
+Rewrites a rough idea into a structured prompt for Google Gemini with persona, task, context and format, plus tips, a before/after example and an FAQ.
+
 ### Midjourney Prompt Generator
 https://www.promhance.com/midjourney-prompt-generator
 Generates Midjourney-ready image prompts from a basic idea, adding artistic styles, lighting, camera settings, and aspect ratios.
@@ -32,6 +40,14 @@ https://www.promhance.com/youtube-prompt-generator
 Transforms a video concept into prompts that produce high-retention scripts, catchy titles, and optimized descriptions.
 
 ## Guides and articles
+
+### What Is a Prompt Enhancer? How AI Prompt Enhancers Work (2026)
+https://www.promhance.com/blog/what-is-a-prompt-enhancer
+Published 2026-09-25. A prompt enhancer rewrites a short or vague request into a structured prompt by adding role, context, constraints and output format. Explains how they work, when they help most, and their limits.
+
+### Best AI Prompt Enhancers and Optimizers in 2026 (Honest Comparison)
+https://www.promhance.com/blog/best-ai-prompt-enhancers-2026
+Published 2026-09-25. Explains three lanes of prompt tools (rewrite, test/optimize, monitor/evaluate), how to choose, and where Promhance fits and does not fit.
 
 ### What Is Prompt Engineering? The Ultimate Guide (2026)
 https://www.promhance.com/blog/what-is-prompt-engineering
@@ -71,8 +87,28 @@ Published 2026-03-26. Why ChatGPT, Claude, and Gemini prompts fail and the promp
 
 ## Key facts
 
-- Free: no account, no credit card, no rate limits.
+- Free: no account or credit card required; fair-use limits apply.
 - Model-agnostic: ChatGPT, Claude, Gemini, Midjourney, Llama, and any instruction-following LLM.
 - Applies role prompting, constraint injection, chain-of-thought guidance, and output-format instructions automatically.
 - Optional refinements with retained version history for signed-in users.
-- No prompt storage; content is processed in real time and discarded.
+- Prompts are processed by Google's Gemini API. History is saved per device (anonymous ID) or account and can be deleted at any time. Promhance does not sell prompts or use them to train models.
+
+## Definitions
+
+- **Prompt enhancer:** a tool that rewrites a short or vague request into a clearer, more structured prompt for an AI model, typically adding a role, context, constraints and an output format.
+- **Prompt engineering:** the practice of designing instructions and context so AI models produce reliable, useful output.
+- **PromptOps:** managing, versioning and improving prompts over time, like code.
+
+## FAQ
+
+### Is Promhance free?
+Yes. No account or credit card is required. Fair-use limits apply.
+
+### Does Promhance save my prompts?
+Prompts are sent to Google's Gemini API to generate the result. The prompt and result are saved to the user's history (device-based anonymous ID or account) and can be deleted at any time. Promhance does not sell prompts or use them to train AI models.
+
+### Is Promhance affiliated with OpenAI, Anthropic or Google?
+No. Promhance is an independent product. It produces prompts that can be used with ChatGPT, Claude, Gemini and other models.
+
+### Last updated
+2026-09-25

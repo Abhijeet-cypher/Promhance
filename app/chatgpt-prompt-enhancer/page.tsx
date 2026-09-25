@@ -213,7 +213,7 @@ const FAQS = [
   },
   {
     q: "Is Promhance completely free to use?",
-    a: "Yes — Promhance is 100% free with no account, no credit card, and no rate limits. You can enhance as many prompts as you want without creating a login.",
+    a: "Yes — Promhance is free, with no account or credit card required. Fair-use limits apply so the service stays fast for everyone. You can enhance prompts without creating a login.",
   },
   {
     q: "Which AI models work best with Promhance-enhanced prompts?",
@@ -221,7 +221,7 @@ const FAQS = [
   },
   {
     q: "Does Promhance store or read my prompts?",
-    a: "No. Promhance does not store, log, or share your prompt content. Each enhancement is processed in real time and discarded immediately. Zero data retention.",
+    a: "Your prompt is sent to Google's Gemini API to generate the enhancement. The prompt and result are then saved to your history — on your device via an anonymous ID, or to your account if you sign in — so you can revisit them, and you can delete any entry at any time. Promhance does not sell your prompts or use them to train AI models. See the Privacy Policy for details.",
   },
   {
     q: "Can I use Promhance for professional or commercial work?",

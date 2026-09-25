@@ -47,7 +47,7 @@ const FEATURES = [
   {
     icon: Unlock,
     title: "The Ultimate Prompt Enhancer",
-    desc: "No accounts, no paywalls, no rate limits. Start enhancing your prompts using professional prompt engineering frameworks right away.",
+    desc: "No accounts and no paywalls, with fair-use limits. Start enhancing your prompts using professional prompt engineering frameworks right away.",
   },
 ];
 

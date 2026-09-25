@@ -62,6 +62,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
   const processedContent = await remark()
     .use(remarkGfm)
+    // SECURITY: raw HTML is intentionally allowed (embeds, custom markup) and
+    // the result is rendered with dangerouslySetInnerHTML. Posts in
+    // content/blog are trusted, repo-authored content only. If posts ever come
+    // from untrusted authors, switch to remark-rehype + rehype-sanitize.
     .use(html, { sanitize: false })
     .process(content || '');
     

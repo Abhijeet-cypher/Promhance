@@ -5,11 +5,15 @@ import {
   GEMINI_MODEL,
   generateContentStreamWithFallback,
 } from "@/lib/ai";
+import { enforceRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
+// Streaming answers can outlast the platform default; give them headroom.
+export const maxDuration = 60;
 
 const MAX_MESSAGE_LENGTH = 8000;
 const MAX_HISTORY_TURNS = 12;
+const MAX_BODY_BYTES = 200_000;
 
 const ANSWER_SYSTEM_INSTRUCTION = `You are PromAI, the built-in AI assistant for Promhance (https://www.promhance.com), an AI prompt engineering studio.
 You help users with a wide range of questions — writing, coding, marketing, research, brainstorming, and prompt engineering.
@@ -28,7 +32,18 @@ function isValidMessage(value: unknown): value is string {
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const limited = await enforceRateLimit(req, "promai", 20, 300);
+    if (limited) return limited;
+
+    const declaredSize = Number(req.headers.get("content-length") ?? 0);
+    if (declaredSize > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: "Request too large." }, { status: 413 });
+    }
+
+    const body = await req.json().catch(() => null);
+    if (typeof body !== "object" || body === null || Array.isArray(body)) {
+      return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+    }
     const mode = body.mode === "test" ? "test" : "answer";
     const message = body.message;
     const rawHistory = Array.isArray(body.history) ? body.history : [];
@@ -39,8 +54,9 @@ export async function POST(req: Request) {
 
     const ai = getGoogleGenAI();
     if (!ai) {
+      console.error("GEMINI_API_KEY is not configured.");
       return NextResponse.json(
-        { error: "Gemini API Key is not configured in .env.local" },
+        { error: "The service is temporarily unavailable." },
         { status: 500 }
       );
     }
@@ -72,6 +88,8 @@ export async function POST(req: Request) {
       model: GEMINI_MODEL,
       contents,
       config: {
+        // Stop generating (and paying) when the client disconnects.
+        abortSignal: req.signal,
         ...(mode === "answer"
           ? { systemInstruction: ANSWER_SYSTEM_INSTRUCTION }
           : {}),

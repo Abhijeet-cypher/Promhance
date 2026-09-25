@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { enforceRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { isValidUuid, parseAnonId, resolveUserId } from "@/lib/supabase/identity";
 
@@ -10,36 +11,7 @@ type Reaction = (typeof REACTIONS)[number];
 const MAX_COMMENT_LENGTH = 1000;
 const MAX_FIELD_LENGTH = 200;
 
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX = 15;
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
-
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-function getClientIp(req: Request): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return req.headers.get("x-real-ip") ?? "unknown";
-}
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-
-  if (rateLimitStore.size > 10_000) {
-    for (const [key, entry] of rateLimitStore) {
-      if (entry.resetAt <= now) rateLimitStore.delete(key);
-    }
-  }
-
-  const entry = rateLimitStore.get(ip);
-  if (!entry || entry.resetAt <= now) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return false;
-  }
-
-  entry.count += 1;
-  return entry.count > RATE_LIMIT_MAX;
-}
 
 function cleanString(value: unknown, maxLength = MAX_FIELD_LENGTH): string | null {
   if (typeof value !== "string") return null;
@@ -54,11 +26,8 @@ function parseBody(value: unknown): Record<string, unknown> | null {
 }
 
 export async function POST(req: Request) {
-  const ip = getClientIp(req);
-
-  if (isRateLimited(ip)) {
-    return NextResponse.json({ error: "Too many submissions. Please try again shortly." }, { status: 429 });
-  }
+  const limited = await enforceRateLimit(req, "feedback", 15, 200);
+  if (limited) return limited;
 
   const payload = parseBody(await req.json().catch(() => null));
   if (!payload) {
@@ -118,11 +87,8 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  const ip = getClientIp(req);
-
-  if (isRateLimited(ip)) {
-    return NextResponse.json({ error: "Too many submissions. Please try again shortly." }, { status: 429 });
-  }
+  const limited = await enforceRateLimit(req, "feedback", 15, 200);
+  if (limited) return limited;
 
   const payload = parseBody(await req.json().catch(() => null));
   if (!payload) {

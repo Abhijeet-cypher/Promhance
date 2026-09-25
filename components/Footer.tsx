@@ -5,6 +5,8 @@ import { Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } fro
 const toolLinks = [
   { href: "/", label: "Prompt Enhancer", desc: "Optimize any prompt using AI", icon: Wand2 },
   { href: "/chatgpt-prompt-enhancer", label: "ChatGPT Prompts", desc: "For LLM conversations", icon: MessageSquare },
+  { href: "/claude-prompt-improver", label: "Claude Prompts", desc: "Structured prompts for Claude", icon: MessageSquare },
+  { href: "/gemini-prompt-enhancer", label: "Gemini Prompts", desc: "Structured prompts for Gemini", icon: MessageSquare },
   { href: "/midjourney-prompt-generator", label: "Midjourney Prompts", desc: "For AI image generation", icon: ImageIcon },
   { href: "/youtube-prompt-generator", label: "YouTube Prompts", desc: "Scripts & viral titles", icon: Video },
   { href: "/promai", label: "PromAI", desc: "Ask questions & test prompts", icon: Sparkles },

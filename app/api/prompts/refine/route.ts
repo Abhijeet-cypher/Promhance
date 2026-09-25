@@ -1,16 +1,12 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
-import { GEMINI_MODEL, generateContentWithFallback } from "@/lib/ai";
+import { GEMINI_MODEL, generateContentWithFallback, getGoogleGenAI } from "@/lib/ai";
+import { enforceRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { isValidUuid, parseAnonId, resolveUserId } from "@/lib/supabase/identity";
 import { findQuickAction } from "@/lib/quick-actions";
 import { buildRefineSystemInstruction } from "@/lib/prompt-modes";
 
 export const runtime = "nodejs";
-
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
 
 const MAX_OUTPUT_LENGTH = 20000;
 
@@ -37,9 +33,14 @@ function parseBody(value: unknown): Record<string, unknown> | null {
  */
 export async function POST(req: Request) {
   try {
-    if (!process.env.GEMINI_API_KEY) {
+    const limited = await enforceRateLimit(req, "refine", 15, 300);
+    if (limited) return limited;
+
+    const ai = getGoogleGenAI();
+    if (!ai) {
+      console.error("GEMINI_API_KEY is not configured.");
       return NextResponse.json(
-        { error: "Gemini API Key is not configured in .env.local" },
+        { error: "The service is temporarily unavailable." },
         { status: 500 }
       );
     }
@@ -143,13 +144,34 @@ export async function POST(req: Request) {
 
     const refined = (response.text || "Failed to generate refinement.").trim();
 
-    const { error: insertError } = await supabase.from("prompt_versions").insert({
-      prompt_id: prompt.id,
-      version_number: nextVersion,
-      text: refined.slice(0, MAX_OUTPUT_LENGTH),
-      action: action.id,
-      action_label: action.label,
-    });
+    // Two concurrent refinements can compute the same next version number.
+    // The (prompt_id, version_number) unique constraint rejects the loser
+    // (Postgres 23505); re-read the latest number and retry the insert
+    // without paying for another model call.
+    const refinedText = refined.slice(0, MAX_OUTPUT_LENGTH);
+    let savedVersion = nextVersion;
+    let insertError: { code?: string; message: string } | null = null;
+
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const result = await supabase.from("prompt_versions").insert({
+        prompt_id: prompt.id,
+        version_number: savedVersion,
+        text: refinedText,
+        action: action.id,
+        action_label: action.label,
+      });
+      insertError = result.error;
+      if (!insertError || insertError.code !== "23505") break;
+
+      const { data: current } = await supabase
+        .from("prompt_versions")
+        .select("version_number")
+        .eq("prompt_id", prompt.id)
+        .order("version_number", { ascending: false })
+        .limit(1)
+        .maybeSingle<{ version_number: number }>();
+      savedVersion = (current?.version_number ?? savedVersion) + 1;
+    }
 
     if (insertError) {
       console.error("Refinement persist failed:", insertError.message);
@@ -159,7 +181,7 @@ export async function POST(req: Request) {
     // Keep the cached latest version on the prompt row in sync.
     const { error: updateError } = await supabase
       .from("prompts")
-      .update({ enhanced_prompt: refined.slice(0, MAX_OUTPUT_LENGTH) })
+      .update({ enhanced_prompt: refinedText })
       .eq("id", prompt.id);
 
     if (updateError) {
@@ -168,7 +190,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       prompt_id: prompt.id,
-      version_number: nextVersion,
+      version_number: savedVersion,
       action: action.id,
       action_label: action.label,
       text: refined,

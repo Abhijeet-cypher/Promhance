@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: 'Is the Midjourney prompt generator free?',
-    a: 'Yes — Promhance is 100% free with no account, no credit card, and no rate limits. Generate as many image prompts as you like.',
+    a: 'Yes — Promhance is free, with no account or credit card required. Fair-use limits apply so the service stays fast for everyone.',
   },
   {
     q: 'Do Midjourney prompts from Promhance work with other image tools?',

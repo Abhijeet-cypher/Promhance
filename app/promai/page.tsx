@@ -61,11 +61,11 @@ const FAQS = [
   },
   {
     q: "Is PromAI free to use?",
-    a: "Yes. PromAI is free with no account, credit card, or rate limits. Responses stream in as they are generated.",
+    a: "Yes. PromAI is free with no account or credit card required, and fair-use limits apply. Responses stream in as they are generated.",
   },
   {
     q: "Does PromAI store my questions or prompts?",
-    a: "No. PromAI processes your messages in real time and does not store, log, or share their content.",
+    a: "PromAI conversations are not saved to your Promhance history. Your messages are sent to Google's Gemini API to generate replies, and Promhance does not sell them or use them to train AI models.",
   },
 ];
 

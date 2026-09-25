@@ -9,6 +9,26 @@ export const GEMINI_MODEL = "gemini-3.1-flash-lite-preview";
  */
 export const GEMINI_FALLBACK_MODEL = "gemini-2.5-flash-lite";
 
+/** Upper bound for a single Gemini request so a hung call cannot pin a function. */
+const REQUEST_TIMEOUT_MS = 45_000;
+
+/** Applies the default request timeout unless the caller already set one. */
+function withTimeout(
+  params: GenerateContentParameters,
+  timeoutMs = REQUEST_TIMEOUT_MS
+): GenerateContentParameters {
+  if (params.config?.httpOptions?.timeout) return params;
+  return {
+    ...params,
+    config: {
+      ...params.config,
+      httpOptions: { ...params.config?.httpOptions, timeout: timeoutMs },
+    },
+  };
+}
+
+const STREAM_TIMEOUT_MS = 120_000;
+
 let client: GoogleGenAI | null = null;
 
 /**
@@ -28,7 +48,8 @@ export function getGoogleGenAI(): GoogleGenAI | null {
  */
 export function isRetryableModelError(error: unknown): boolean {
   const status = (error as { status?: number } | null)?.status;
-  if (status === 429 || status === 503) return true;
+  // 404 covers a preview model that has been renamed or retired.
+  if (status === 429 || status === 503 || status === 404) return true;
 
   const message = String(
     (error as { message?: string } | null)?.message ?? error ?? ""
@@ -43,6 +64,10 @@ export function isRetryableModelError(error: unknown): boolean {
     "try again later",
     "503",
     "429",
+    "404",
+    "is not found",
+    "no longer available",
+    "deprecated",
   ].some((needle) => message.includes(needle));
 }
 
@@ -52,8 +77,9 @@ export function isRetryableModelError(error: unknown): boolean {
  */
 export async function generateContentWithFallback(
   ai: GoogleGenAI,
-  params: GenerateContentParameters
+  rawParams: GenerateContentParameters
 ) {
+  const params = withTimeout(rawParams);
   try {
     return await ai.models.generateContent(params);
   } catch (error) {
@@ -74,8 +100,10 @@ export async function generateContentWithFallback(
  */
 export async function generateContentStreamWithFallback(
   ai: GoogleGenAI,
-  params: GenerateContentParameters
+  rawParams: GenerateContentParameters
 ) {
+  // Streams stay open for the whole answer, so allow a longer ceiling.
+  const params = withTimeout(rawParams, STREAM_TIMEOUT_MS);
   try {
     return await ai.models.generateContentStream(params);
   } catch (error) {
