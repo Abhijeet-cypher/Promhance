@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import PromaiChat from "@/components/PromaiChat";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "PromAI — Ask Anything or Test Your Prompt Instantly",
@@ -60,11 +61,11 @@ const FAQS = [
   },
   {
     q: "Is PromAI free to use?",
-    a: "Yes. PromAI is free with no account, credit card, or rate limits. Responses stream in as they are generated.",
+    a: "Yes. PromAI is free with no account or credit card required, and fair-use limits apply. Responses stream in as they are generated.",
   },
   {
     q: "Does PromAI store my questions or prompts?",
-    a: "No. PromAI processes your messages in real time and does not store, log, or share their content.",
+    a: "PromAI conversations are not saved to your Promhance history. Your messages are sent to Google's Gemini API to generate replies, and Promhance does not sell them or use them to train AI models.",
   },
 ];
 
@@ -90,6 +91,11 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: faq.a },
   })),
 };
+
+const breadcrumb = breadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "PromAI", path: "/promai" },
+]);
 
 export default function PromaiPage() {
   return (
@@ -217,7 +223,7 @@ export default function PromaiPage() {
       </div>
 
       {/* ─── JSON-LD ─── */}
-      {[softwareSchema, faqSchema].map((schema, i) => (
+      {[softwareSchema, faqSchema, breadcrumb].map((schema, i) => (
         <script
           key={i}
           type="application/ld+json"

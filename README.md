@@ -72,7 +72,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 💡 How it Works
 
-Under the hood, Promhance intercepts your raw text and injects it into a carefully crafted meta-prompt depending on the **Mode** and **Intensity** you selected. It then tasks the `gemini-2.5-flash` model via a streaming serverless API route (`app/api/enhance/route.ts`) to reconstruct your text into its final, optimized form.
+Under the hood, Promhance intercepts your raw text and injects it into a carefully crafted meta-prompt depending on the **Mode** and **Intensity** you selected. It then tasks the Gemini model configured in `lib/ai.ts` (with an automatic fallback model) via a non-streaming serverless API route (`app/api/enhance/route.ts`) to reconstruct your text into its final, optimized form.
 
 ## 🤝 Contributing
 

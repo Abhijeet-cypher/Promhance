@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -13,14 +13,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.promhance.com'),
   title: {
-    default: "Promhance - Your AI Prompt & Productivity Workspace",
+    default: "Promhance — Free AI Prompt Enhancer for ChatGPT, Claude & Gemini",
     template: "%s | Promhance"
   },
-  description: "Elevate your raw ideas into masterfully engineered prompts for ChatGPT, Midjourney, Claude, and more using AI.",
-  keywords: ["PromptOps", "ai prompt enhancer", "chatgpt prompt builder", "midjourney prompt maker", "llm optimization", "Answer Engine Optimization", "Prompt Engineering Framework", "S.P.A.R.K. Method", "Data-Driven Prompting"],
+  description: "Free AI prompt enhancer: turn a rough idea into a structured prompt for ChatGPT, Claude, Gemini and Midjourney. Adds role, context, constraints and format. No account needed.",
+  keywords: ["ai prompt enhancer", "prompt improver", "prompt optimizer", "prompt generator", "chatgpt prompt enhancer", "claude prompt improver", "gemini prompt enhancer", "midjourney prompt generator", "prompt engineering tool", "PromptOps"],
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
   authors: [{ name: "Promhance" }],
   creator: "Promhance",
   alternates: {
@@ -30,22 +41,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.promhance.com",
-    title: "Promhance - Your AI Prompt & Productivity Workspace",
-    description: "Elevate your raw ideas into masterfully engineered prompts for ChatGPT, Midjourney, Claude, and more using AI.",
+    title: "Promhance — Free AI Prompt Enhancer for ChatGPT, Claude & Gemini",
+    description: "Turn a rough idea into a structured prompt for ChatGPT, Claude, Gemini and Midjourney. Free, no account needed.",
     siteName: "Promhance",
     images: [
       {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: "Promhance - Your AI Prompt & Productivity Workspace",
+        alt: "Promhance — Free AI Prompt Enhancer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Promhance - Your AI Prompt & Productivity Workspace",
-    description: "Transform your rough ideas into powerful, optimized AI prompts.",
+    title: "Promhance — Free AI Prompt Enhancer for ChatGPT, Claude & Gemini",
+    description: "Turn a rough idea into a structured prompt for any AI model. Free, no account needed.",
     creator: "@promhance",
     images: ["/og"],
   },
@@ -77,6 +88,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <link
+          rel="search"
+          type="application/opensearchdescription+xml"
+          title="Promhance Prompt Search"
+          href="/opensearch.xml"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Promhance Blog RSS"
+          href="/blog/rss.xml"
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CV5SK9CN9S"
           strategy="afterInteractive"
@@ -100,11 +123,13 @@ export default function RootLayout({
                 "@id": "https://www.promhance.com/#organization",
                 "name": "Promhance",
                 "url": "https://www.promhance.com",
+                "foundingDate": "2026",
                 "logo": {
                   "@type": "ImageObject",
                   "@id": "https://www.promhance.com/#logo",
                   "url": "https://www.promhance.com/logo.svg"
                 },
+                "description": "Promhance is a free AI prompt enhancer that turns rough ideas into structured prompts for ChatGPT, Claude, Gemini and Midjourney.",
                 "sameAs": ["https://github.com/Abhijeet-cypher/Promhance"]
               },
               {
@@ -113,6 +138,7 @@ export default function RootLayout({
                 "@id": "https://www.promhance.com/#website",
                 "name": "Promhance",
                 "url": "https://www.promhance.com",
+                "inLanguage": "en-US",
                 "publisher": { "@id": "https://www.promhance.com/#organization" },
                 "potentialAction": {
                   "@type": "SearchAction",
@@ -130,7 +156,14 @@ export default function RootLayout({
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Any",
                 "url": "https://www.promhance.com",
-                "description": "Transform rough ideas into masterfully engineered AI prompts.",
+                "description": "Free AI prompt enhancer that turns rough ideas into structured prompts for ChatGPT, Claude, Gemini and Midjourney.",
+                "featureList": [
+                  "Prompt enhancement with adjustable intensity",
+                  "Modes for general, writing, code, marketing and image prompts",
+                  "One-click refinements with version history",
+                  "PromAI assistant to test prompts"
+                ],
+                "inLanguage": "en-US",
                 "publisher": { "@id": "https://www.promhance.com/#organization" },
                 "offers": {
                   "@type": "Offer",

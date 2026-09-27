@@ -1,5 +1,6 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
 import Footer from "@/components/Footer";
+import { breadcrumbSchema } from "@/lib/schema";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -53,7 +54,7 @@ const FAQS = [
   },
   {
     q: 'Is the YouTube prompt generator free?',
-    a: 'Yes — Promhance is completely free with no sign-up, no credit card, and no usage limits. Generate as many scripts, titles, and descriptions as you need.',
+    a: 'Yes — Promhance is free, with no account or credit card required. Fair-use limits apply so the service stays fast for everyone.',
   },
   {
     q: 'Does it work for Shorts and long-form videos?',
@@ -161,6 +162,18 @@ export default function YouTubePage() {
               "acceptedAnswer": { "@type": "Answer", "text": faq.a }
             }))
           })
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "YouTube Prompt Generator", path: "/youtube-prompt-generator" },
+            ])
+          ),
         }}
       />
 

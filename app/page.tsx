@@ -47,7 +47,7 @@ const FEATURES = [
   {
     icon: Unlock,
     title: "The Ultimate Prompt Enhancer",
-    desc: "No accounts, no paywalls, no rate limits. Start enhancing your prompts using professional prompt engineering frameworks right away.",
+    desc: "No accounts and no paywalls, with fair-use limits. Start enhancing your prompts using professional prompt engineering frameworks right away.",
   },
 ];
 
@@ -88,6 +88,7 @@ export default function Home() {
             >
               <span className="text-white">Prom</span>
               <span className="text-blue-400">hance</span>
+              <span className="sr-only"> — AI Prompt Enhancer &amp; Prompt Engineering Workspace</span>
             </h1>
             <p
               className="animate-fade-in-up max-w-lg mx-auto text-base sm:text-lg text-[#a1a1a1] leading-relaxed"

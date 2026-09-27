@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
+import { Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
 
 const toolLinks = [
   { href: "/", label: "Prompt Enhancer", desc: "Optimize any prompt using AI", icon: Wand2 },
   { href: "/chatgpt-prompt-enhancer", label: "ChatGPT Prompts", desc: "For LLM conversations", icon: MessageSquare },
+  { href: "/claude-prompt-improver", label: "Claude Prompts", desc: "Structured prompts for Claude", icon: MessageSquare },
+  { href: "/gemini-prompt-enhancer", label: "Gemini Prompts", desc: "Structured prompts for Gemini", icon: MessageSquare },
   { href: "/midjourney-prompt-generator", label: "Midjourney Prompts", desc: "For AI image generation", icon: ImageIcon },
   { href: "/youtube-prompt-generator", label: "YouTube Prompts", desc: "Scripts & viral titles", icon: Video },
   { href: "/promai", label: "PromAI", desc: "Ask questions & test prompts", icon: Sparkles },
@@ -29,9 +31,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               {[
-                { icon: Twitter, href: "", name: "Twitter" },
                 { icon: Github, href: "https://github.com/Abhijeet-cypher/Promhance", name: "GitHub" },
-                // { icon: Linkedin, href: "", name: "LinkedIn" },
               ].map((social, idx) => (
                 <a
                   key={idx}

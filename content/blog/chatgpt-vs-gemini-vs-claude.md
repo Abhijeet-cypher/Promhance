@@ -6,7 +6,6 @@ author: "Promhance Team"
 category: "Prompt Engineering"
 tags: ["Prompt Engineering", "ChatGPT", "Claude", "Gemini", "AI Comparison", "PromptOps"]
 keywords: "ChatGPT vs Claude, Gemini prompts, Claude prompt engineering, prompt engineering guide 2026, AI prompt generator, PTCF framework, XML tags for Claude, prompt templates, PromptOps, context engineering, chain-of-thought prompting, few-shot prompting"
-canonical: "https://promhance.com/blog/chatgpt-vs-claude-vs-gemini-prompt-guide"
 image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop"
 ---
 

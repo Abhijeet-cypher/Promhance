@@ -9,12 +9,14 @@ export type BlogPost = {
   slug: string;
   title: string;
   date: string;
+  updated?: string;
   description: string;
   author: string;
   tags: string[];
   image?: string;
   content: string;
-  faqSchema?: any;
+  faqSchema?: Record<string, unknown>;
+  howToSchema?: Record<string, unknown>;
 };
 
 export function getPostSlugs() {
@@ -32,17 +34,18 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const { data, content } = matter(fileContents);
 
 
-
   return {
     slug: realSlug,
     title: data.title || '',
     date: data.date || '',
+    updated: data.updated || '',
     description: data.description || '',
     author: data.author || '',
     tags: data.tags || [],
     image: data.image || '',
     content: content || '',
     faqSchema: data.faqSchema || null,
+    howToSchema: data.howToSchema || null,
   };
 }
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Footer from "@/components/Footer";
 import ViralPromptsClient from "./ViralPromptsClient";
 import { allPrompts, uniqueSections, uniqueTypes } from "@/lib/viral-prompts-data";
@@ -7,7 +8,7 @@ import { allPrompts, uniqueSections, uniqueTypes } from "@/lib/viral-prompts-dat
    SEO METADATA
 ───────────────────────────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: "Viral AI Prompts Collection — 410+ Trending Prompts (2025–2026)",
+  title: { absolute: "Viral AI Prompts Collection — 410+ Trending Prompts (2025–2026) | Promhance" },
   description:
     "Browse 410+ hand-curated viral AI prompts for Midjourney, ChatGPT, Suno, Sora, Instagram, TikTok, YouTube & more. Filter by platform, type, and trend era. Free to copy.",
   keywords: [
@@ -167,7 +168,7 @@ export default function ViralPromptsPage() {
         <div className="sr-only">
           <h1>Viral AI Prompts Collection — {allPrompts.length}+ Trending Prompts (2025–2026)</h1>
           <p>
-            Promhance's curated library of {allPrompts.length} viral AI prompts across{" "}
+            Promhance&apos;s curated library of {allPrompts.length} viral AI prompts across{" "}
             {uniqueSections.length} platforms including Midjourney, ChatGPT, Suno, Sora,
             Instagram, TikTok, YouTube, LinkedIn and more. Each prompt is tagged by type (
             {uniqueTypes.join(", ")}) and trend era.
@@ -183,7 +184,9 @@ export default function ViralPromptsPage() {
         </div>
 
         {/* All interactive UI is client-side */}
-        <ViralPromptsClient prompts={allPrompts} />
+        <Suspense fallback={null}>
+          <ViralPromptsClient prompts={allPrompts} />
+        </Suspense>
       </main>
 
       <Footer />

@@ -138,7 +138,7 @@ export default function AICompatibility() {
 
             {/* Sub-copy — matches SectionHeader exactly */}
             <p className="text-[#a1a1a1] max-w-xl mx-auto text-base leading-relaxed">
-              Promhance enhances your prompt into a structured, production-ready format that works seamlessly across today's most powerful AI models.
+              Promhance enhances your prompt into a structured, production-ready format that works seamlessly across today&apos;s most powerful AI models.
             </p>
 
             {/* Logo cloud — centered flex row */}
