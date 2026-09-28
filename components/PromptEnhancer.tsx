@@ -464,7 +464,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
             <button
               onClick={() => enhancePrompt(false)}
               disabled={!canEnhance}
-              className="btn-shimmer relative overflow-hidden w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-blue-500 text-white text-sm font-semibold transition-all duration-200 hover:bg-blue-400 active:scale-[0.98] disabled:opacity-35 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-1 focus:ring-offset-[#111111] shadow-[0_0_20px_rgba(59,130,246,0.25)] hover:shadow-[0_0_28px_rgba(59,130,246,0.4)]"
+              className="btn-primary btn-shimmer"
             >
               {loading && !isRegenerating ? (
                 <>

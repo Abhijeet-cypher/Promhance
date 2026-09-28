@@ -156,7 +156,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={submitting || !configured}
-          className="btn-shimmer relative overflow-hidden w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-blue-500 text-white text-sm font-semibold transition-all duration-200 hover:bg-blue-400 active:scale-[0.98] disabled:opacity-35 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(59,130,246,0.25)] hover:shadow-[0_0_28px_rgba(59,130,246,0.4)]"
+          className="btn-primary btn-shimmer"
         >
           {submitting ? (
             <Loader2 className="w-4 h-4 animate-spin" />

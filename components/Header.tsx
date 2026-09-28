@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X, LogIn, LogOut, History } from "lucide-react";
-import { motion } from "framer-motion";
+
 import { useAuth } from "@/components/AuthProvider";
 
 export default function Header() {
@@ -70,18 +70,7 @@ export default function Header() {
                   }`}
               >
                 {isActive && (
-                  <motion.div
-                    layoutId="active-nav-border"
-                    className="absolute inset-0 rounded-full border border-blue-500/60 shadow-[0_0_14px_rgba(59,130,246,0.25)]"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 30
-                    }}
-                  />
+                  <div className="absolute inset-0 rounded-full border border-blue-500/60 shadow-[0_0_14px_rgba(59,130,246,0.25)]" />
                 )}
                 <span className="relative z-10">{link.name}</span>
               </Link>
