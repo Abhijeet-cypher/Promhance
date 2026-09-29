@@ -53,6 +53,10 @@ Published 2026-09-25. Explains three lanes of prompt tools (rewrite, test/optimi
 https://www.promhance.com/blog/what-is-prompt-engineering
 Published 2026-07-30. Defines prompt engineering, explains why it matters, and covers frameworks, techniques, real examples, and a free step-by-step roadmap.
 
+### Best Prompt Frameworks in 2026: CO-STAR vs RISEN vs RTF vs CRAFT (and When to Skip Them)
+https://www.promhance.com/blog/prompt-frameworks-compared-2026
+Published 2026-09-29. Side-by-side comparison of RTF, RACE, CRAFT, CO-STAR, RISEN, and the S.P.A.R.K. Method: what each framework covers, what it misses, which to use for which task, and when to skip frameworks entirely.
+
 ### Context Engineering vs. Prompt Engineering (2026 Guide)
 https://www.promhance.com/blog/context-engineering-vs-prompt-engineering
 Published 2026-09-21. Explains context engineering, how it differs from prompt engineering, and what it means for ChatGPT prompts.

@@ -28,6 +28,7 @@ Promhance applies proven prompt engineering frameworks (role, context, constrain
 - [What Is a Prompt Enhancer? How They Work (2026)](https://www.promhance.com/blog/what-is-a-prompt-enhancer): Definition, what enhancers add, when they help and when they don't.
 - [Best AI Prompt Enhancers and Optimizers in 2026](https://www.promhance.com/blog/best-ai-prompt-enhancers-2026): Honest comparison of tool categories and where Promhance fits.
 - [What Is Prompt Engineering? The Ultimate Guide (2026)](https://www.promhance.com/blog/what-is-prompt-engineering): Definition, frameworks, techniques, and a free roadmap.
+- [Best Prompt Frameworks in 2026: CO-STAR vs RISEN vs RTF vs CRAFT](https://www.promhance.com/blog/prompt-frameworks-compared-2026): Side-by-side comparison of RTF, RACE, CRAFT, CO-STAR, RISEN, and the S.P.A.R.K. Method, what each covers, and when to skip frameworks.
 - [Context Engineering vs. Prompt Engineering (2026 Guide)](https://www.promhance.com/blog/context-engineering-vs-prompt-engineering): What context engineering means for ChatGPT prompts.
 - [Is Prompt Engineering Dead in 2026?](https://www.promhance.com/blog/is-prompt-engineering-dead-2026): What changed, what still works, and what to stop doing.
 - [ChatGPT vs Claude vs Gemini: The Complete Prompt Engineering Guide (2026)](https://www.promhance.com/blog/chatgpt-vs-gemini-vs-claude): How each model interprets prompts differently.
