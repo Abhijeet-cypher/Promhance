@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import {
@@ -97,6 +97,7 @@ const trackEvent = (eventName: string, eventParams?: Record<string, unknown>) =>
 
 export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { defaultMode?: string }) {
   const router = useRouter();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput]               = useState("");
   const [versions, setVersions]         = useState<PromptVersion[]>([]);
   const [activeVersion, setActiveVersion] = useState(1);
@@ -231,7 +232,10 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   }, [output, mode, intensity, promptId]);
 
   const enhancePrompt = useCallback(async (regen = false) => {
-    if (!input.trim()) return;
+    if (loading) return;
+
+    const trimmedInput = input.trim();
+    if (!trimmedInput || input.length > MAX_CHARS) return;
     
     trackEvent("enhance_prompt", {
       mode,
@@ -274,7 +278,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
       setLoading(false);
       setIsRegenerating(false);
     }
-  }, [input, mode, intensity]);
+  }, [input, mode, intensity, loading]);
 
   const refinePrompt = useCallback(async (action: QuickAction) => {
     if (!promptId) {
@@ -365,14 +369,20 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
           <div className="p-4 sm:p-5 flex-grow flex flex-col relative">
             {input.length > 0 && (
               <button
-                onClick={() => setInput("")}
+                type="button"
+                onClick={() => {
+                  setInput("");
+                  textareaRef.current?.focus();
+                }}
                 className="absolute top-4 right-4 p-1.5 rounded-md text-[#525252] hover:text-[#ededed] hover:bg-[#1a1a1a] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#525252] z-10"
                 title="Clear input"
+                aria-label="Clear input"
               >
                 <X className="w-4 h-4" />
               </button>
             )}
             <textarea
+              ref={textareaRef}
               className="w-full h-full bg-transparent text-[#ededed] placeholder:text-[#525252] resize-none outline-none font-sans text-[15px] leading-relaxed pr-8"
               placeholder={PLACEHOLDERS[placeholderIdx]}
               value={input}
