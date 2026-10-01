@@ -13,14 +13,15 @@ import { getAnonId } from "@/lib/anon-id";
 
 type SignInResult = { error: string | null };
 type SignUpResult = { error: string | null; needsConfirmation: boolean };
+type AuthOptions = { newsletterOptIn?: boolean };
 
 type AuthContextValue = {
   user: User | null;
   session: Session | null;
   loading: boolean;
   configured: boolean;
-  signIn: (email: string, password: string) => Promise<SignInResult>;
-  signUp: (email: string, password: string) => Promise<SignUpResult>;
+  signIn: (email: string, password: string, options?: AuthOptions) => Promise<SignInResult>;
+  signUp: (email: string, password: string, options?: AuthOptions) => Promise<SignUpResult>;
   signOut: () => Promise<void>;
   claimAnonHistory: () => Promise<void>;
 };
@@ -83,16 +84,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [supabase, claimAnonHistory]);
 
   const signIn = useCallback(
-    async (email: string, password: string): Promise<SignInResult> => {
+    async (
+      email: string,
+      password: string,
+      options?: AuthOptions
+    ): Promise<SignInResult> => {
       if (!supabase) return { error: "Authentication is not configured." };
       const { error } = await supabase.auth.signInWithPassword({ email, password });
-      return { error: error?.message ?? null };
+      if (error) return { error: error.message };
+
+      // Only write when the user explicitly changed the newsletter checkbox,
+      // so an existing opt-out is never silently overwritten on sign-in.
+      if (options?.newsletterOptIn !== undefined) {
+        try {
+          await fetch("/api/newsletter", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "set", optIn: options.newsletterOptIn }),
+          });
+        } catch {
+          // Preference update is best effort — sign-in already succeeded.
+        }
+      }
+
+      return { error: null };
     },
     [supabase]
   );
 
   const signUp = useCallback(
-    async (email: string, password: string): Promise<SignUpResult> => {
+    async (
+      email: string,
+      password: string,
+      options?: AuthOptions
+    ): Promise<SignUpResult> => {
       if (!supabase) {
         return { error: "Authentication is not configured.", needsConfirmation: false };
       }
@@ -105,6 +130,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             typeof window !== "undefined"
               ? `${window.location.origin}/auth/callback`
               : undefined,
+          // Picked up by the handle_new_user trigger so the preference is
+          // correct even when email confirmation is required.
+          data: { newsletter_opt_in: options?.newsletterOptIn ?? true },
         },
       });
 

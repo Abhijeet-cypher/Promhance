@@ -63,16 +63,20 @@ a.btn-cta:hover {
   text-decoration: none !important;
 }
 
-/* ─── Blog prose table: scrollable on small screens ─── */
-.prose table {
-  display: block;
+/* ─── Blog prose table: full-width, scrollable on small screens ─── */
+.prose-table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
+  margin: 1.75em 0;
+}
+.prose table {
+  width: 100%;
+  min-width: max-content;
   border-collapse: separate !important;
   border-spacing: 0;
-  overflow: hidden;
+  margin: 0 !important;
 }
 .prose thead tr {
   background: #161616;

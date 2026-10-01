@@ -41,6 +41,10 @@ Transforms a video concept into prompts that produce high-retention scripts, cat
 
 ## Guides and articles
 
+### Why Your Old Prompts Stopped Working (and the Outcome-First Fix for 2026 AI Models)
+https://www.promhance.com/blog/why-your-old-prompts-stopped-working
+Published 2026-10-01. Why prompts that worked in 2023 now give bloated or off-target answers on 2026 reasoning models, five habits to retire, a copy-paste outcome-first template, and a 20-minute prompt audit.
+
 ### What Is a Prompt Enhancer? How AI Prompt Enhancers Work (2026)
 https://www.promhance.com/blog/what-is-a-prompt-enhancer
 Published 2026-09-25. A prompt enhancer rewrites a short or vague request into a structured prompt by adding role, context, constraints and output format. Explains how they work, when they help most, and their limits.
@@ -115,4 +119,4 @@ Prompts are sent to Google's Gemini API to generate the result. The prompt and r
 No. Promhance is an independent product. It produces prompts that can be used with ChatGPT, Claude, Gemini and other models.
 
 ### Last updated
-2026-09-25
+2026-10-01

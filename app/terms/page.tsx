@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "September 17, 2026";
+const LAST_UPDATED = "October 1, 2026";
 
 export default function TermsOfServicePage() {
   return (
@@ -273,7 +273,29 @@ export default function TermsOfServicePage() {
             the exclusive jurisdiction of the courts located in India.
           </p>
 
-          <h2>15. Miscellaneous</h2>
+          <h2>15. Communications and Newsletter</h2>
+          <ul>
+            <li>
+              If you create an account, you may receive our newsletter, which
+              includes product updates, prompt tips, and announcements about new
+              features. New accounts are opted in by default.
+            </li>
+            <li>
+              You can opt out at any time using the one-click unsubscribe link in
+              any newsletter email, visiting our{" "}
+              <Link href="/unsubscribe">unsubscribe page</Link>, or changing your
+              preference from the site footer. We will honor your request
+              promptly.
+            </li>
+            <li>
+              Even after you unsubscribe from the newsletter, we may still send
+              you essential service or transactional messages related to your
+              account (for example, security notices, confirmation emails, or
+              important changes to the Service).
+            </li>
+          </ul>
+
+          <h2>16. Miscellaneous</h2>
           <ul>
             <li>
               <strong>Entire Agreement</strong>: These Terms, together with our{" "}
@@ -297,7 +319,7 @@ export default function TermsOfServicePage() {
             </li>
           </ul>
 
-          <h2>16. Contact Us</h2>
+          <h2>17. Contact Us</h2>
           <p>If you have any questions about these Terms, please contact us at:</p>
           <ul>
             <li>
@@ -327,7 +349,7 @@ export default function TermsOfServicePage() {
             url: "https://www.promhance.com/terms",
             description:
               "The terms and conditions for using Promhance, a free AI-powered prompt enhancement tool.",
-            dateModified: "2026-09-17",
+            dateModified: "2026-10-01",
           }),
         }}
       />

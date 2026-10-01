@@ -25,6 +25,7 @@ Promhance applies proven prompt engineering frameworks (role, context, constrain
 
 ## Guides
 
+- [Why Your Old Prompts Stopped Working (and the Outcome-First Fix for 2026 AI Models)](https://www.promhance.com/blog/why-your-old-prompts-stopped-working): Why 2023-era prompts break on reasoning models, five habits to retire, and a free outcome-first template.
 - [What Is a Prompt Enhancer? How They Work (2026)](https://www.promhance.com/blog/what-is-a-prompt-enhancer): Definition, what enhancers add, when they help and when they don't.
 - [Best AI Prompt Enhancers and Optimizers in 2026](https://www.promhance.com/blog/best-ai-prompt-enhancers-2026): Honest comparison of tool categories and where Promhance fits.
 - [What Is Prompt Engineering? The Ultimate Guide (2026)](https://www.promhance.com/blog/what-is-prompt-engineering): Definition, frameworks, techniques, and a free roadmap.

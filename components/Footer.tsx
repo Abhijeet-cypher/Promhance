@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const toolLinks = [
   { href: "/", label: "Prompt Enhancer", desc: "Optimize any prompt using AI", icon: Wand2 },
@@ -47,7 +48,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-6 lg:pl-12">
+          <div className="lg:col-span-4 lg:pl-8">
             <h3 className="text-white text-base font-semibold tracking-wide mb-6 flex items-center gap-3">
               <span className="w-6 h-px bg-blue-500/50" />
               Products
@@ -75,6 +76,10 @@ export default function Footer() {
             </div>
           </div>
 
+          <div className="lg:col-span-4">
+            <NewsletterSignup />
+          </div>
+
         </div>
 
         <div className="relative pt-6 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-[#2a2a2a]">
@@ -93,6 +98,12 @@ export default function Footer() {
               className="text-xs text-[#525252] hover:text-[#a1a1a1] transition-colors"
             >
               Terms of Service
+            </Link>
+            <Link
+              href="/unsubscribe"
+              className="text-xs text-[#525252] hover:text-[#a1a1a1] transition-colors"
+            >
+              Unsubscribe
             </Link>
           </nav>
         </div>

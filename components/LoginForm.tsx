@@ -18,6 +18,8 @@ export default function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmationSent, setConfirmationSent] = useState(false);
+  const [newsletterOptIn, setNewsletterOptIn] = useState(true);
+  const [newsletterTouched, setNewsletterTouched] = useState(false);
 
   useEffect(() => {
     if (!loading && user) {
@@ -37,7 +39,11 @@ export default function LoginForm() {
     setSubmitting(true);
     try {
       if (mode === "signin") {
-        const { error: signInError } = await signIn(email.trim(), password);
+        const { error: signInError } = await signIn(
+          email.trim(),
+          password,
+          newsletterTouched ? { newsletterOptIn } : undefined
+        );
         if (signInError) {
           setError(signInError);
           return;
@@ -47,7 +53,8 @@ export default function LoginForm() {
       } else {
         const { error: signUpError, needsConfirmation } = await signUp(
           email.trim(),
-          password
+          password,
+          { newsletterOptIn }
         );
         if (signUpError) {
           setError(signUpError);
@@ -146,6 +153,22 @@ export default function LoginForm() {
             />
           </div>
         </div>
+
+        <label className="flex items-start gap-3 cursor-pointer select-none rounded-xl border border-[#2a2a2a] bg-[#0a0a0a] px-3.5 py-3 transition-colors hover:border-[#3a3a3a]">
+          <input
+            type="checkbox"
+            checked={newsletterOptIn}
+            onChange={(e) => {
+              setNewsletterOptIn(e.target.checked);
+              setNewsletterTouched(true);
+            }}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-blue-500"
+          />
+          <span className="text-xs text-[#a1a1a1] leading-relaxed">
+            Email me the Promhance newsletter — tips, product updates, and new
+            features. You can unsubscribe anytime.
+          </span>
+        </label>
 
         {error && (
           <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
