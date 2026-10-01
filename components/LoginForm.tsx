@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2, Mail, Lock, ArrowRight, MailCheck } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
+import GoogleIcon from "@/components/GoogleIcon";
 
 type Mode = "signin" | "signup";
 
 export default function LoginForm() {
   const router = useRouter();
-  const { user, loading, configured, signIn, signUp } = useAuth();
+  const { user, loading, configured, signIn, signUp, signInWithGoogle } = useAuth();
 
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
@@ -72,6 +73,29 @@ export default function LoginForm() {
     }
   };
 
+  const handleGoogle = async () => {
+    setError(null);
+    setSubmitting(true);
+    try {
+      const options =
+        mode === "signup"
+          ? { newsletterOptIn }
+          : newsletterTouched
+            ? { newsletterOptIn }
+            : undefined;
+      const { error: oauthError } = await signInWithGoogle(options);
+      if (oauthError) {
+        setError(oauthError);
+        setSubmitting(false);
+      }
+      // On success the browser is redirected to Google, so we keep the
+      // button in its loading state until the page navigates away.
+    } catch {
+      setError("Could not start Google sign-in. Please try again.");
+      setSubmitting(false);
+    }
+  };
+
   if (confirmationSent) {
     return (
       <div className="bg-[#111111] border border-[#2a2a2a] rounded-2xl p-8 text-center space-y-4">
@@ -116,6 +140,22 @@ export default function LoginForm() {
           <span className="font-mono"> .env.local</span>.
         </p>
       )}
+
+      <button
+        type="button"
+        onClick={handleGoogle}
+        disabled={submitting || !configured}
+        className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#2a2a2a] bg-[#0a0a0a] px-4 py-2.5 text-sm font-medium text-white transition-all hover:border-[#3a3a3a] hover:bg-[#141414] disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        <GoogleIcon />
+        {mode === "signup" ? "Sign up with Google" : "Continue with Google"}
+      </button>
+
+      <div className="my-6 flex items-center gap-3">
+        <span className="h-px flex-1 bg-[#2a2a2a]" />
+        <span className="text-xs text-[#525252]">or</span>
+        <span className="h-px flex-1 bg-[#2a2a2a]" />
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-1.5">

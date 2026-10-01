@@ -18,16 +18,16 @@ export default function Footer() {
     <footer className="relative w-full border-t border-[#2a2a2a] bg-[#0a0a0a] overflow-hidden">
 
       <div className="relative z-10 w-[92%] max-w-[1400px] mx-auto pt-12 pb-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-10">
-          <div className="lg:col-span-4 flex flex-col items-start">
-            <Link href="/" className="group flex items-center gap-3 mb-6">
+        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-14">
+          <div className="flex flex-col items-start">
+            <Link href="/" className="group mb-5 flex items-center gap-3">
               <Image src="/logo.svg" alt="Promhance Logo" width={40} height={40} className="w-10 h-10" />
               <span className="text-xl font-bold tracking-tight text-white">
                 Prom<span className="text-blue-400">hance</span>
               </span>
             </Link>
 
-            <p className="text-[#a1a1a1] leading-relaxed text-sm pr-4 mb-8 max-w-sm">
+            <p className="mb-6 max-w-sm text-sm leading-relaxed text-[#a1a1a1]">
               The AI prompt engineering studio. Stop guessing what the AI wants, and start generating masterfully crafted prompts that unlock true model potential.
             </p>
             <div className="flex items-center gap-4">
@@ -40,34 +40,34 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.name}
-                  className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-[#111111] border border-[#2a2a2a] text-[#a1a1a1] hover:text-white hover:border-[#3a3a3a] transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+                  className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#111111] text-[#a1a1a1] transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-[#3a3a3a] hover:text-white"
                 >
-                  <social.icon className="w-4 h-4 relative z-10" />
+                  <social.icon className="relative z-10 h-4 w-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-4 lg:pl-8">
-            <h3 className="text-white text-base font-semibold tracking-wide mb-6 flex items-center gap-3">
-              <span className="w-6 h-px bg-blue-500/50" />
+          <div>
+            <h3 className="mb-5 flex items-center gap-3 text-base font-semibold tracking-wide text-white">
+              <span className="h-px w-6 bg-blue-500/50" />
               Products
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid auto-rows-fr grid-cols-1 gap-3 sm:grid-cols-2">
               {toolLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="group flex items-start gap-4 p-3 rounded-2xl bg-[#111111] border border-[#2a2a2a] hover:bg-[#1a1a1a] hover:border-[#3a3a3a] transition-all duration-300"
+                  className="group flex items-start gap-4 rounded-2xl border border-[#2a2a2a] bg-[#111111] p-3 transition-all duration-300 hover:border-[#3a3a3a] hover:bg-[#1a1a1a]"
                 >
-                  <div className="mt-0.5 flex-shrink-0 w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
-                    <link.icon className="w-4 h-4 text-[#a1a1a1] group-hover:text-white transition-colors" />
+                  <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5">
+                    <link.icon className="h-4 w-4 text-[#a1a1a1] transition-colors group-hover:text-white" />
                   </div>
                   <div>
-                    <div className="text-[#f5f5f5] text-sm font-medium mb-0.5 group-hover:text-white transition-colors">
+                    <div className="mb-0.5 text-sm font-medium text-[#f5f5f5] transition-colors group-hover:text-white">
                       {link.label}
                     </div>
-                    <div className="text-[#525252] text-xs leading-snug">
+                    <div className="text-xs leading-snug text-[#525252]">
                       {link.desc}
                     </div>
                   </div>
@@ -76,7 +76,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-4">
+          <div className="flex flex-col">
             <NewsletterSignup />
           </div>
 

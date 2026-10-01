@@ -96,8 +96,8 @@ export default function NewsletterSignup() {
 
   return (
     <div>
-      <h3 className="text-white text-base font-semibold tracking-wide mb-6 flex items-center gap-3">
-        <span className="w-6 h-px bg-blue-500/50" />
+      <h3 className="mb-5 flex items-center gap-3 text-base font-semibold tracking-wide text-white">
+        <span className="h-px w-6 bg-blue-500/50" />
         Newsletter
       </h3>
 

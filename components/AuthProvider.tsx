@@ -15,6 +15,8 @@ type SignInResult = { error: string | null };
 type SignUpResult = { error: string | null; needsConfirmation: boolean };
 type AuthOptions = { newsletterOptIn?: boolean };
 
+const NEWSLETTER_PENDING_KEY = "promhance_newsletter_pending";
+
 type AuthContextValue = {
   user: User | null;
   session: Session | null;
@@ -22,6 +24,7 @@ type AuthContextValue = {
   configured: boolean;
   signIn: (email: string, password: string, options?: AuthOptions) => Promise<SignInResult>;
   signUp: (email: string, password: string, options?: AuthOptions) => Promise<SignUpResult>;
+  signInWithGoogle: (options?: AuthOptions) => Promise<SignInResult>;
   signOut: () => Promise<void>;
   claimAnonHistory: () => Promise<void>;
 };
@@ -48,6 +51,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  /**
+   * Applies a newsletter preference captured before an OAuth redirect (where
+   * `signInWithOAuth` can't carry user metadata the way email sign-up can).
+   * The value is stored in localStorage just before redirecting and consumed
+   * once the session comes back.
+   */
+  const applyPendingNewsletterPreference = useCallback(async () => {
+    if (typeof window === "undefined") return;
+
+    let pending: string | null = null;
+    try {
+      pending = window.localStorage.getItem(NEWSLETTER_PENDING_KEY);
+      if (pending === null) return;
+      window.localStorage.removeItem(NEWSLETTER_PENDING_KEY);
+    } catch {
+      return;
+    }
+
+    try {
+      await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "set", optIn: pending === "true" }),
+      });
+    } catch {
+      // Best effort — the user can always change it from the footer.
+    }
+  }, []);
+
   useEffect(() => {
     if (!supabase) return;
 
@@ -62,7 +94,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Covers flows where the session was established server-side
       // (e.g. clicking an email-confirmation link) rather than via an
       // in-page sign-in event.
-      if (data.session?.user) claimAnonHistory();
+      if (data.session?.user) {
+        claimAnonHistory();
+        applyPendingNewsletterPreference();
+      }
     });
 
     const { data: subscription } = supabase.auth.onAuthStateChange(
@@ -73,7 +108,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         // Claim is idempotent and append-only, so it is safe to call on
         // any authenticated state change.
-        if (newSession?.user) claimAnonHistory();
+        if (newSession?.user) {
+          claimAnonHistory();
+          applyPendingNewsletterPreference();
+        }
       }
     );
 
@@ -81,7 +119,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       active = false;
       subscription.subscription.unsubscribe();
     };
-  }, [supabase, claimAnonHistory]);
+  }, [supabase, claimAnonHistory, applyPendingNewsletterPreference]);
 
   const signIn = useCallback(
     async (
@@ -142,6 +180,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     [supabase]
   );
 
+  const signInWithGoogle = useCallback(
+    async (options?: AuthOptions): Promise<SignInResult> => {
+      if (!supabase) return { error: "Authentication is not configured." };
+
+      // OAuth can't carry sign-up metadata, so stash the newsletter choice
+      // locally and apply it once the session returns from the callback.
+      if (options?.newsletterOptIn !== undefined && typeof window !== "undefined") {
+        try {
+          window.localStorage.setItem(
+            NEWSLETTER_PENDING_KEY,
+            options.newsletterOptIn ? "true" : "false"
+          );
+        } catch {
+          // localStorage unavailable — fall back to the profile default.
+        }
+      }
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo:
+            typeof window !== "undefined"
+              ? `${window.location.origin}/auth/callback`
+              : undefined,
+        },
+      });
+
+      return { error: error?.message ?? null };
+    },
+    [supabase]
+  );
+
   const signOut = useCallback(async () => {
     if (!supabase) return;
     await supabase.auth.signOut();
@@ -156,6 +226,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         configured: Boolean(supabase),
         signIn,
         signUp,
+        signInWithGoogle,
         signOut,
         claimAnonHistory,
       }}
