@@ -74,7 +74,6 @@ export default function Home() {
   return (
     <main className="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#0a0a0a] text-[#f5f5f5] selection:bg-blue-500/20 pt-24">
 
-      {/* Subtle monochrome grid */}
       <div className="fixed inset-0 bg-grid-overlay pointer-events-none z-0" />
 
       <div className="relative z-10 w-full flex flex-col items-center flex-grow">
