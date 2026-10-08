@@ -46,17 +46,17 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: SEARCH_BOTS,
         allow: '/',
-        disallow: ['/api/'],
+        disallow: ['/api/', '/admin/'],
       },
       {
         userAgent: AI_BOTS,
         allow: '/',
-        disallow: ['/api/'],
+        disallow: ['/api/', '/admin/'],
       },
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/'],
+        disallow: ['/api/', '/admin/'],
       },
     ],
     sitemap: 'https://www.promhance.com/sitemap.xml',

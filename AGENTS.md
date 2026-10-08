@@ -38,6 +38,15 @@ Promhance — a Next.js app that enhances rough prompts into engineered prompts 
 - If `prompt_versions` is missing, `/api/prompts` synthesizes v1 from `enhanced_prompt`, so history keeps working.
 - Identity/ownership: service-role routes; a row is owned when `user_id` matches the session or `anon_id` matches with `user_id IS NULL`.
 
+## Admin dashboard & profile
+
+- Access is gated by the `ADMIN_EMAILS` env var (comma-separated, case-insensitive). `lib/admin.ts` exposes `getAdmin()` / `adminOrError()`; the `/admin` layout redirects non-admins and every `/api/admin/*` route re-checks server-side. Never trust a client role.
+- `app/admin` tabs: Overview (`/admin`), Prompts, Users, Feedback, Survey, Newsletter. Pages are thin wrappers around `components/admin/*` client components; charts use **recharts** (`components/admin/charts.tsx`).
+- Aggregation lives in SQL, not PostgREST (which caps at 1000 rows): `supabase/migrations/20251007010000_admin_analytics_functions.sql` defines `admin_overview_totals`, `admin_daily_series`, `admin_prompts_breakdown`, `admin_reaction_breakdown`, `admin_country_breakdown`, `admin_survey_breakdown`, `admin_users_page`. EXECUTE is revoked from `anon`/`authenticated`, granted to `service_role`. API: `/api/admin/{overview,prompts,users,feedback,survey,newsletter}`.
+- Analytics strategy is **hybrid**: product metrics come from Supabase (admin dashboard); marketing/traffic/SEO stay in GA4 (`G-CV5SK9CN9S`, already loaded in `app/layout.tsx`). No separate analytics DB.
+- Country: `profiles.country` (+ `country_source`) added by `supabase/migrations/20251007000000_profile_country.sql`. `lib/geo.ts` infers it from edge headers (`cf-ipcountry` → `x-vercel-ip-country`) on first read; users correct it at `/profile` (`/api/profile`, `components/ProfilePage.tsx`), which flips `country_source` to `'self'` so inference never overwrites it.
+- `/admin` is `noindex` and disallowed in `app/robots.ts`. `/profile` is `noindex` too but not disallowed.
+
 ## Viral prompts data (two sources — only one is live)
 
 - Live: `viral_prompts_structured.json`, imported by `lib/viral-prompts-data.ts` (type in `lib/viral-prompts-types.ts`). `app/viral-prompts/page.tsx` reads `allPrompts` from there.

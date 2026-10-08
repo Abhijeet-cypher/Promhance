@@ -41,6 +41,10 @@ Transforms a video concept into prompts that produce high-retention scripts, cat
 
 ## Guides and articles
 
+### Prompt Engineering Myths 2026: 7 Popular Tricks Tested Against Real Research
+https://www.promhance.com/blog/prompt-engineering-myths-tested-2026
+Published 2026-10-07. Seven popular prompting tricks (politeness, tips and threats, expert personas, "think step by step," long prompts, universal formulas, ALL CAPS) checked against Wharton, Penn State and Chroma research, plus what reliably works instead.
+
 ### What Is Meta Prompting? How to Make AI Write Your Prompts (With Templates)
 https://www.promhance.com/blog/what-is-meta-prompting
 Published 2026-10-03. Meta prompting uses AI to write, critique, or improve prompts instead of writing them by hand. Covers the two meanings of the term, a 4-step workflow, 3 copy-paste templates, a before/after example, and when the technique backfires.
@@ -123,4 +127,4 @@ Prompts are sent to Google's Gemini API to generate the result. The prompt and r
 No. Promhance is an independent product. It produces prompts that can be used with ChatGPT, Claude, Gemini and other models.
 
 ### Last updated
-2026-10-03
+2026-10-07

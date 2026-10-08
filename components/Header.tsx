@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, LogIn, LogOut, History } from "lucide-react";
+import { Menu, X, LogIn, LogOut, History, User } from "lucide-react";
 
 import { useAuth } from "@/components/AuthProvider";
 
@@ -133,6 +133,14 @@ export default function Header() {
                     >
                       <History className="w-3.5 h-3.5" />
                       My history
+                    </Link>
+                    <Link
+                      href="/profile"
+                      onClick={() => setUserMenuOpen(false)}
+                      className="px-3 py-2 text-xs text-[#a1a1a1] hover:text-white hover:bg-[#1a1a1a] transition-colors flex items-center gap-2"
+                    >
+                      <User className="w-3.5 h-3.5" />
+                      Profile
                     </Link>
                     <button
                       onClick={() => {

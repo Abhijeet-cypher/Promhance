@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { parseAnonId, resolveUserId } from "@/lib/supabase/identity";
+import { getCountryFromRequest } from "@/lib/geo";
 
 export const runtime = "nodejs";
 
@@ -58,6 +59,22 @@ export async function POST(req: Request) {
   if (feedbackError) {
     // Prompts are the primary payload; log and continue.
     console.error("Feedback claim failed:", feedbackError.message);
+  }
+
+  // Capture the user's country from the edge headers the first time we see
+  // them signed in. Only fills an empty value so a self-reported country is
+  // never overwritten. Best-effort: never block the claim.
+  const country = getCountryFromRequest(req);
+  if (country) {
+    const { error: countryError } = await supabase
+      .from("profiles")
+      .update({ country, country_source: "inferred" })
+      .eq("id", userId)
+      .is("country", null);
+
+    if (countryError) {
+      console.error("Country inference failed:", countryError.message);
+    }
   }
 
   return NextResponse.json({ ok: true, claimed: claimedPrompts?.length ?? 0 });
