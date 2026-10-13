@@ -1,0 +1,14 @@
+# dependencies
+node_modules
+
+# wxt output
+.output
+.wxt
+stats.html
+
+# typescript
+*.tsbuildinfo
+
+# env
+.env*
+!.env.example

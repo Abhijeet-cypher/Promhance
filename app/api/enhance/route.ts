@@ -8,14 +8,23 @@ import {
   INTENSITY_INSTRUCTIONS,
   MODE_SYSTEM_INSTRUCTIONS,
 } from "@/lib/prompt-modes";
+import { preflight, withCors } from "@/lib/cors";
 
 export const runtime = "nodejs";
+
+export async function OPTIONS(req: Request) {
+  return preflight(req);
+}
 
 const MAX_PROMPT_LENGTH = 8000;
 const MAX_OUTPUT_LENGTH = 20000;
 const MAX_BODY_BYTES = 64_000;
 
 export async function POST(req: Request) {
+  return withCors(req, await handlePost(req));
+}
+
+async function handlePost(req: Request) {
   try {
     const limited = await enforceRateLimit(req, "enhance", 10, 200);
     if (limited) return limited;
