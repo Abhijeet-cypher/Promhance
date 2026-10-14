@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "indexnow": "node scripts/indexnow.mjs"
+    "indexnow": "node scripts/indexnow.mjs",
+    "extension:dev": "npm --prefix extension run dev",
+    "extension:build": "npm --prefix extension run build",
+    "extension:compile": "npm --prefix extension run compile",
+    "extension:zip": "npm --prefix extension run zip"
   },
   "dependencies": {
     "@google/genai": "^1.44.0",
@@ -20,6 +24,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
+    "recharts": "^3.10.1",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1"
   },

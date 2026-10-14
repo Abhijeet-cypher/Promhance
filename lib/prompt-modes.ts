@@ -25,6 +25,12 @@ export const INTENSITY_INSTRUCTIONS: Record<string, string> = {
   high: `Fully engineer the prompt. Add role, detailed task breakdown, constraints, expected input/output format, edge cases, and performance requirements. Be comprehensive and specific.`,
 };
 
+/** Mode names for UI selects (kept in sync with MODE_SYSTEM_INSTRUCTIONS). */
+export const MODE_NAMES = Object.keys(MODE_SYSTEM_INSTRUCTIONS);
+
+/** Intensity names for UI selects (kept in sync with INTENSITY_INSTRUCTIONS). */
+export const INTENSITY_NAMES = Object.keys(INTENSITY_INSTRUCTIONS);
+
 export function getModeSystemInstruction(mode: string | null | undefined): string {
   return MODE_SYSTEM_INSTRUCTIONS[mode ?? "General"] ?? MODE_SYSTEM_INSTRUCTIONS.General;
 }

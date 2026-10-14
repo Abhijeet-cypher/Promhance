@@ -5,7 +5,7 @@ updated: "2026-09-25"
 description: "A prompt enhancer rewrites a rough request into a structured AI prompt. Learn how prompt enhancers work, what they add, when they help and when they don't."
 author: "Promhance Team"
 tags: ["Prompt Enhancer", "Prompt Engineering", "ChatGPT", "Claude", "Gemini", "AI Tools"]
-image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop"
+image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1600&auto=format&fit=crop"
 faqSchema:
   "@context": "https://schema.org"
   "@type": "FAQPage"

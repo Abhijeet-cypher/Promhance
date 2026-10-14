@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "September 17, 2026";
+const LAST_UPDATED = "October 1, 2026";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -55,6 +55,15 @@ export default function PrivacyPolicyPage() {
             </li>
             <li>
               <strong>Prompts</strong>: The text prompts you submit to be enhanced.
+            </li>
+            <li>
+              <strong>Newsletter preference</strong>: Whether you have chosen to
+              receive our newsletter. This preference is stored with your account
+              (and is on by default when you create one). Every newsletter email
+              we send includes a one-click unsubscribe link, and you can change
+              your preference at any time on the{" "}
+              <Link href="/unsubscribe">unsubscribe page</Link> or directly from
+              the site footer.
             </li>
             <li>
               <strong>Communications</strong>: Information you provide when you
@@ -104,6 +113,12 @@ export default function PrivacyPolicyPage() {
             <li>Create and manage your account.</li>
             <li>Improve, personalize, and expand the Service.</li>
             <li>Communicate with you, including customer support, updates, and marketing (with opt-out options).</li>
+            <li>
+              Send you our newsletter and product updates where you have opted
+              in. You can unsubscribe at any time using the link in any email or
+              on the <Link href="/unsubscribe">unsubscribe page</Link>, and we
+              will stop sending you newsletter emails.
+            </li>
             <li>Monitor and analyze usage trends to improve performance and user experience.</li>
             <li>Detect, prevent, and address technical issues, fraud, or abuse.</li>
             <li>Comply with legal obligations.</li>
@@ -268,7 +283,7 @@ export default function PrivacyPolicyPage() {
             url: "https://www.promhance.com/privacy",
             description:
               "How Promhance collects, uses, stores, and protects your information and prompts.",
-            dateModified: "2026-09-17",
+            dateModified: "2026-10-01",
           }),
         }}
       />

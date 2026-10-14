@@ -244,7 +244,20 @@ export default async function BlogPostPage({ params }: Props) {
             prose-tr:transition-colors
           "
         >
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeSlug]}
+            components={{
+              table: ({ node, ...props }) => {
+                void node;
+                return (
+                  <div className="prose-table-wrap">
+                    <table {...props} />
+                  </div>
+                );
+              },
+            }}
+          >
             {post.content}
           </ReactMarkdown>
         </div>

@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2, Mail, Lock, ArrowRight, MailCheck } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
+import GoogleIcon from "@/components/GoogleIcon";
 
 type Mode = "signin" | "signup";
 
 export default function LoginForm() {
   const router = useRouter();
-  const { user, loading, configured, signIn, signUp } = useAuth();
+  const { user, loading, configured, signIn, signUp, signInWithGoogle } = useAuth();
 
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
@@ -18,6 +19,8 @@ export default function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmationSent, setConfirmationSent] = useState(false);
+  const [newsletterOptIn, setNewsletterOptIn] = useState(true);
+  const [newsletterTouched, setNewsletterTouched] = useState(false);
 
   useEffect(() => {
     if (!loading && user) {
@@ -37,7 +40,11 @@ export default function LoginForm() {
     setSubmitting(true);
     try {
       if (mode === "signin") {
-        const { error: signInError } = await signIn(email.trim(), password);
+        const { error: signInError } = await signIn(
+          email.trim(),
+          password,
+          newsletterTouched ? { newsletterOptIn } : undefined
+        );
         if (signInError) {
           setError(signInError);
           return;
@@ -47,7 +54,8 @@ export default function LoginForm() {
       } else {
         const { error: signUpError, needsConfirmation } = await signUp(
           email.trim(),
-          password
+          password,
+          { newsletterOptIn }
         );
         if (signUpError) {
           setError(signUpError);
@@ -61,6 +69,29 @@ export default function LoginForm() {
         }
       }
     } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleGoogle = async () => {
+    setError(null);
+    setSubmitting(true);
+    try {
+      const options =
+        mode === "signup"
+          ? { newsletterOptIn }
+          : newsletterTouched
+            ? { newsletterOptIn }
+            : undefined;
+      const { error: oauthError } = await signInWithGoogle(options);
+      if (oauthError) {
+        setError(oauthError);
+        setSubmitting(false);
+      }
+      // On success the browser is redirected to Google, so we keep the
+      // button in its loading state until the page navigates away.
+    } catch {
+      setError("Could not start Google sign-in. Please try again.");
       setSubmitting(false);
     }
   };
@@ -110,6 +141,22 @@ export default function LoginForm() {
         </p>
       )}
 
+      <button
+        type="button"
+        onClick={handleGoogle}
+        disabled={submitting || !configured}
+        className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#2a2a2a] bg-[#0a0a0a] px-4 py-2.5 text-sm font-medium text-white transition-all hover:border-[#3a3a3a] hover:bg-[#141414] disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        <GoogleIcon />
+        {mode === "signup" ? "Sign up with Google" : "Continue with Google"}
+      </button>
+
+      <div className="my-6 flex items-center gap-3">
+        <span className="h-px flex-1 bg-[#2a2a2a]" />
+        <span className="text-xs text-[#525252]">or</span>
+        <span className="h-px flex-1 bg-[#2a2a2a]" />
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-1.5">
           <label htmlFor="email" className="text-[11px] font-semibold uppercase tracking-widest text-[#525252]">
@@ -146,6 +193,22 @@ export default function LoginForm() {
             />
           </div>
         </div>
+
+        <label className="flex items-start gap-3 cursor-pointer select-none rounded-xl border border-[#2a2a2a] bg-[#0a0a0a] px-3.5 py-3 transition-colors hover:border-[#3a3a3a]">
+          <input
+            type="checkbox"
+            checked={newsletterOptIn}
+            onChange={(e) => {
+              setNewsletterOptIn(e.target.checked);
+              setNewsletterTouched(true);
+            }}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-blue-500"
+          />
+          <span className="text-xs text-[#a1a1a1] leading-relaxed">
+            Email me the Promhance newsletter — tips, product updates, and new
+            features. You can unsubscribe anytime.
+          </span>
+        </label>
 
         {error && (
           <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
