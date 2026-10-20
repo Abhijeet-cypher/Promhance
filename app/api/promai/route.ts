@@ -6,10 +6,15 @@ import {
   generateContentStreamWithFallback,
 } from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
+import { preflight, withCors } from "@/lib/cors";
 
 export const runtime = "nodejs";
 // Streaming answers can outlast the platform default; give them headroom.
 export const maxDuration = 60;
+
+export async function OPTIONS(req: Request) {
+  return preflight(req);
+}
 
 const MAX_MESSAGE_LENGTH = 8000;
 const MAX_HISTORY_TURNS = 12;
@@ -31,6 +36,10 @@ function isValidMessage(value: unknown): value is string {
 }
 
 export async function POST(req: Request) {
+  return withCors(req, await handlePost(req));
+}
+
+async function handlePost(req: Request) {
   try {
     const limited = await enforceRateLimit(req, "promai", 20, 300);
     if (limited) return limited;

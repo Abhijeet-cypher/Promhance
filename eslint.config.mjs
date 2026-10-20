@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The extension is a separate WXT project with its own toolchain.
+    "extension/**",
   ]),
 ]);
 
