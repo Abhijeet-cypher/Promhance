@@ -314,7 +314,7 @@ export default function PromaiChat() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <div className="bg-[#111111] border border-[#2a2a2a] rounded-2xl flex flex-col h-[calc(100dvh-16rem)] min-h-[560px] overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.4)]">
+      <div className="card-interactive rounded-2xl flex flex-col h-[calc(100dvh-16rem)] min-h-[560px] overflow-hidden">
 
         {/* ── Header ── */}
         <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-4 border-b border-[#1f1f1f] shrink-0">
