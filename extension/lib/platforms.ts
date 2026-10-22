@@ -22,6 +22,8 @@ export type Platform = {
   matches: string[];
   /** Ordered input selectors, best first. */
   inputs: PlatformInput[];
+  /** Ordered selectors for the composer's send/submit button (used to dock our button beside it). */
+  sendButtons: string[];
   /** Default Promhance mode for this platform. */
   mode: PromptMode;
 };
@@ -36,6 +38,7 @@ export const PLATFORMS: Platform[] = [
       { selector: 'textarea[data-id="root"]' },
       { selector: 'div[contenteditable="true"][id="prompt-textarea"]', contentEditable: true },
     ],
+    sendButtons: ['button[data-testid="send-button"]', "button#composer-submit-button", 'button[type="submit"]', 'button[aria-label*="Send" i]'],
     mode: "LLM Prompt",
   },
   {
@@ -46,6 +49,7 @@ export const PLATFORMS: Platform[] = [
       { selector: 'div.ProseMirror[contenteditable="true"]', contentEditable: true },
       { selector: 'div[contenteditable="true"]', contentEditable: true },
     ],
+    sendButtons: ['button[aria-label*="Send" i]'],
     mode: "LLM Prompt",
   },
   {
@@ -57,6 +61,7 @@ export const PLATFORMS: Platform[] = [
       { selector: 'rich-textarea div[contenteditable="true"]', contentEditable: true },
       { selector: 'div[contenteditable="true"]', contentEditable: true },
     ],
+    sendButtons: ["button.send-button", 'button[aria-label*="Send" i]'],
     mode: "LLM Prompt",
   },
   {
@@ -68,6 +73,7 @@ export const PLATFORMS: Platform[] = [
       { selector: 'textarea[placeholder*="imagine" i]' },
       { selector: "textarea" },
     ],
+    sendButtons: ['button[type="submit"]'],
     mode: "Image Generation",
   },
   {
@@ -80,6 +86,7 @@ export const PLATFORMS: Platform[] = [
       { selector: 'textarea[placeholder*="message" i]' },
       { selector: 'div[contenteditable="true"]', contentEditable: true },
     ],
+    sendButtons: ['button[data-testid="submit-button"]', 'button[aria-label*="Submit" i]', 'button[type="submit"]'],
     mode: "LLM Prompt",
   },
 ];

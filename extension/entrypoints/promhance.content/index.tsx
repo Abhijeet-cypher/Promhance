@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Widget from "./Widget";
 import "./widget.css";
 import { findPlatformForUrl, type Platform } from "@/lib/platforms";
-import { findInput, focusInput, type PromptInput } from "@/lib/inputs";
+import { findInput, focusInput, findSendButton, getInputText, type PromptInput } from "@/lib/inputs";
 
 export default defineContentScript({
   matches: [
@@ -19,7 +19,7 @@ export default defineContentScript({
 
   async main(ctx) {
     const platform = findPlatformForUrl(location.href);
-    console.log("[Promhance] content script loaded", location.href, "platform:", platform?.id);
+    console.log("[Promhance] content script loaded (send-button dock build v2)", location.href, "platform:", platform?.id);
     if (!platform) return;
 
     let target: PromptInput | null = null;
@@ -71,33 +71,64 @@ function PromhanceLauncher({
   getTarget: () => PromptInput | null;
 }) {
   const [open, setOpen] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [anchor, setAnchor] = useState<{ top: number; left: number; flip: boolean } | null>(null);
 
   useEffect(() => {
     let lastInput: PromptInput | null = null;
-    const check = () => {
+    const update = () => {
       const found = findInput(platform.inputs);
       if (found !== lastInput) {
         lastInput = found;
         console.log("[Promhance] prompt input:", found);
       }
-      setVisible(!!found);
+      // Only show the button once there is something to enhance (or while the
+      // panel is open, so it doesn't vanish mid-flow).
+      if (!found || (!openRef.current && !getInputText(found).trim())) {
+        setAnchor(null);
+        return;
+      }
+      const rect = found.getBoundingClientRect();
+      const send = findSendButton(platform.sendButtons, found);
+      let top: number;
+      let left: number;
+      if (send) {
+        // Dock immediately left of the send button, bottom-aligned with it.
+        const s = send.getBoundingClientRect();
+        top = s.bottom;
+        left = s.left - 8;
+      } else {
+        // Fallback: just above the prompt box's top-right corner.
+        top = Math.max(rect.top - 6, 44);
+        left = Math.min(rect.right - 8, window.innerWidth - 8);
+      }
+      setAnchor((prev) =>
+        prev && prev.top === top && prev.left === left ? prev : { top, left, flip: rect.top < 430 }
+      );
     };
-    check();
+    update();
 
-    const observer = new MutationObserver(check);
+    const observer = new MutationObserver(update);
     observer.observe(document.body, { childList: true, subtree: true });
-    const interval = window.setInterval(check, 1500);
+    const interval = window.setInterval(update, 500);
+    window.addEventListener("scroll", update, true);
+    window.addEventListener("resize", update);
+    document.addEventListener("input", update, true);
     return () => {
       observer.disconnect();
       window.clearInterval(interval);
+      window.removeEventListener("scroll", update, true);
+      window.removeEventListener("resize", update);
+      document.removeEventListener("input", update, true);
     };
   }, [platform]);
 
-  if (!visible) return null;
+  const openRef = useRef(open);
+  openRef.current = open;
+
+  if (!anchor) return null;
 
   return (
-    <div className="promhance-launcher">
+    <div className="promhance-launcher" style={{ top: anchor.top, left: anchor.left }}>
       <button
         className="promhance-trigger"
         title={`Enhance with Promhance — ${platform.name}`}
@@ -114,7 +145,7 @@ function PromhanceLauncher({
       </button>
 
       {open && (
-        <div className="promhance-panel">
+        <div className={anchor.flip ? "promhance-panel below" : "promhance-panel"}>
           <Widget platform={platform} getTarget={getTarget} onClose={() => setOpen(false)} />
         </div>
       )}

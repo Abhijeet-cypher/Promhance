@@ -75,6 +75,29 @@ export function findInput(selectors: { selector: string }[]): PromptInput | null
   return findHeuristicInput();
 }
 
+/**
+ * Finds the composer's send button for `input`. Only accepts a visible button
+ * that sits beside/below the input (same row of the composer), so a stray
+ * "Send" button elsewhere on the page is never picked.
+ */
+export function findSendButton(selectors: string[], input: PromptInput): HTMLElement | null {
+  const inputRect = input.getBoundingClientRect();
+  // A submit button in the composer is the common case across sites.
+  for (const selector of [...selectors, 'button[type="submit"]']) {
+    for (const el of document.querySelectorAll<HTMLElement>(selector)) {
+      if (el.closest("#promhance-root, [data-promhance]")) continue;
+      const r = el.getBoundingClientRect();
+      if (r.width < 16 || r.height < 16) continue;
+      const style = window.getComputedStyle(el);
+      if (style.display === "none" || style.visibility === "hidden") continue;
+      const nearVertically = r.bottom > inputRect.top - 24 && r.top < inputRect.bottom + 80;
+      const nearHorizontally = r.left > inputRect.left && r.left < inputRect.right + 200;
+      if (nearVertically && nearHorizontally) return el;
+    }
+  }
+  return null;
+}
+
 /** True when an element is rendered with a non-trivial size. */
 function isVisible(el: Element): boolean {
   const rect = el.getBoundingClientRect();

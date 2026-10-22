@@ -7,6 +7,8 @@ import { findQuickAction } from "@/lib/quick-actions";
 import { buildRefineSystemInstruction } from "@/lib/prompt-modes";
 
 export const runtime = "nodejs";
+// Primary + fallback model attempts can add up; give them room.
+export const maxDuration = 60;
 
 const MAX_OUTPUT_LENGTH = 20000;
 

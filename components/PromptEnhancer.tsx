@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import {
@@ -232,9 +232,15 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
     }
   }, [output, mode, intensity, promptId]);
 
+  const enhanceInFlight = useRef(false);
+
   const enhancePrompt = useCallback(async (regen = false) => {
     if (!input.trim()) return;
-    
+    // Synchronous guard: state-based `loading` lags a render behind, so a
+    // double click / repeated Ctrl+Enter could otherwise fire two requests.
+    if (enhanceInFlight.current) return;
+    enhanceInFlight.current = true;
+
     trackEvent("enhance_prompt", {
       mode,
       intensity,
@@ -273,6 +279,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
       ]);
       setActiveVersion(1);
     } finally {
+      enhanceInFlight.current = false;
       setLoading(false);
       setIsRegenerating(false);
     }
@@ -334,6 +341,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
       e.preventDefault();
+      if (e.repeat) return;
       enhancePrompt();
     }
   }, [enhancePrompt]);

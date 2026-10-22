@@ -11,6 +11,8 @@ import {
 import { preflight, withCors } from "@/lib/cors";
 
 export const runtime = "nodejs";
+// Primary + fallback model attempts can add up; give them room.
+export const maxDuration = 60;
 
 export async function OPTIONS(req: Request) {
   return preflight(req);
