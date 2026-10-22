@@ -57,7 +57,7 @@ Published 2026-10-07. Seven popular prompting tricks (politeness, tips and threa
 ### What Is Meta Prompting? How to Make AI Write Your Prompts (With Templates)
 https://www.promhance.com/blog/what-is-meta-prompting
 Published 2026-10-03. Meta prompting uses AI to write, critique, or improve prompts instead of writing them by hand. Covers the two meanings of the term, a 4-step workflow, 3 copy-paste templates, a before/after example, and when the technique backfires.
-=======
+
 ### Agent Skills (SKILL.md) Explained: The Next Step After Prompt Engineering in 2026
 https://www.promhance.com/blog/agent-skills-skill-md-guide
 Published 2026-10-20. Explains Agent Skills: reusable SKILL.md folders that AI agents load on demand. Covers progressive disclosure, skills vs prompts vs MCP, a copy-paste SKILL.md template, five common mistakes, and when skills are the wrong tool.
