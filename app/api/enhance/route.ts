@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import type { GoogleGenAI } from "@google/genai";
 import { GEMINI_MODEL, generateContentWithFallback, getGoogleGenAI } from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
@@ -67,71 +68,22 @@ async function handlePost(req: Request) {
       );
     }
 
-    const finalSystemInstruction = buildEnhanceSystemInstruction(mode, intensity);
-
-    const response = await generateContentWithFallback(ai, {
-      model: GEMINI_MODEL,
-      contents: [
-        {
-          role: "user",
-          parts: [{ text: `Enhance this idea into a master-level prompt:\n\n${prompt}` }],
-        },
-      ],
-      config: {
-        systemInstruction: finalSystemInstruction,
-        temperature: 0.7,
-      },
-    });
-
-    const enhanced = (response.text || "Failed to generate enhancement.").trim();
-
-    // Persist the enhancement so it can be reused later. Failure to persist
-    // must never break the enhancement itself.
-    let promptId: string | null = null;
-    const supabase = getSupabaseAdmin();
-
-    if (supabase && anonId) {
-      const userId = await resolveUserId();
-      const { data, error } = await supabase
-        .from("prompts")
-        .insert({
-          anon_id: anonId,
-          user_id: userId,
-          original_prompt: prompt,
-          enhanced_prompt: enhanced.slice(0, MAX_OUTPUT_LENGTH),
-          mode,
-          intensity,
-        })
-        .select("id")
-        .single();
-
-      if (error) {
-        console.error("Prompt persist failed:", error.message);
-      } else {
-        promptId = data.id;
-
-        // Seed v1 of the version history. Best-effort: the enhancement and
-        // the prompt row are already valid without it.
-        const { error: versionError } = await supabase
-          .from("prompt_versions")
-          .insert({
-            prompt_id: data.id,
-            version_number: 1,
-            text: enhanced.slice(0, MAX_OUTPUT_LENGTH),
-            action: "base",
-            action_label: null,
-          });
-
-        if (versionError) {
-          console.error("Prompt version persist failed:", versionError.message);
-        }
-      }
+    // Identical requests already in flight (double click, client retry, two
+    // extension instances) share one Gemini call and one DB row.
+    const key = `${anonId ?? ""}|${mode}|${intensity}|${prompt}`;
+    let job = inFlight.get(key);
+    if (!job) {
+      job = runEnhance(ai, { prompt, mode, intensity, anonId }).finally(() => {
+        inFlight.delete(key);
+      });
+      inFlight.set(key, job);
     }
+    const result = await job;
 
     return NextResponse.json({
-      enhanced,
-      prompt_id: promptId,
-      version_number: promptId ? 1 : null,
+      enhanced: result.enhanced,
+      prompt_id: result.promptId,
+      version_number: result.promptId ? 1 : null,
     });
 
   } catch (error) {
@@ -141,4 +93,77 @@ async function handlePost(req: Request) {
       { status: 500 }
     );
   }
+}
+
+const inFlight = new Map<string, Promise<EnhanceResult>>();
+
+type EnhanceResult = { enhanced: string; promptId: string | null };
+
+async function runEnhance(
+  ai: GoogleGenAI,
+  { prompt, mode, intensity, anonId }: { prompt: string; mode: string; intensity: string; anonId: string | null }
+): Promise<EnhanceResult> {
+  const finalSystemInstruction = buildEnhanceSystemInstruction(mode, intensity);
+
+  const response = await generateContentWithFallback(ai, {
+    model: GEMINI_MODEL,
+    contents: [
+      {
+        role: "user",
+        parts: [{ text: `Enhance this idea into a master-level prompt:\n\n${prompt}` }],
+      },
+    ],
+    config: {
+      systemInstruction: finalSystemInstruction,
+      temperature: 0.7,
+    },
+  });
+
+  const enhanced = (response.text || "Failed to generate enhancement.").trim();
+
+  // Persist the enhancement so it can be reused later. Failure to persist
+  // must never break the enhancement itself.
+  let promptId: string | null = null;
+  const supabase = getSupabaseAdmin();
+
+  if (supabase && anonId) {
+    const userId = await resolveUserId();
+
+    const { data, error } = await supabase
+      .from("prompts")
+      .insert({
+        anon_id: anonId,
+        user_id: userId,
+        original_prompt: prompt,
+        enhanced_prompt: enhanced.slice(0, MAX_OUTPUT_LENGTH),
+        mode,
+        intensity,
+      })
+      .select("id")
+      .single();
+
+    if (error) {
+      console.error("Prompt persist failed:", error.message);
+    } else {
+      promptId = data.id;
+
+      // Seed v1 of the version history. Best-effort: the enhancement and
+      // the prompt row are already valid without it.
+      const { error: versionError } = await supabase
+        .from("prompt_versions")
+        .insert({
+          prompt_id: data.id,
+          version_number: 1,
+          text: enhanced.slice(0, MAX_OUTPUT_LENGTH),
+          action: "base",
+          action_label: null,
+        });
+
+      if (versionError) {
+        console.error("Prompt version persist failed:", versionError.message);
+      }
+    }
+  }
+
+  return { enhanced, promptId };
 }

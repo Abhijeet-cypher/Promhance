@@ -28,6 +28,7 @@ export default function Widget({ platform, getTarget, onClose }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const inFlight = useRef(false);
 
   useEffect(() => {
     void browser.storage.local.get("default_intensity").then((data) => {
@@ -50,6 +51,9 @@ export default function Widget({ platform, getTarget, onClose }: Props) {
   }, [onClose]);
 
   async function enhance() {
+    // Synchronous guard: `loading` state lags a render, so a fast double click
+    // could otherwise send two requests.
+    if (inFlight.current) return;
     const target = getTarget();
     if (!target) return;
     const prompt = getInputText(target).trim();
@@ -58,6 +62,7 @@ export default function Widget({ platform, getTarget, onClose }: Props) {
       return;
     }
 
+    inFlight.current = true;
     setLoading(true);
     setError(null);
     setOutput(null);
@@ -81,6 +86,7 @@ export default function Widget({ platform, getTarget, onClose }: Props) {
       console.error("[Promhance] enhance failed:", err);
       setError("Could not reach Promhance. Check your connection and try again.");
     } finally {
+      inFlight.current = false;
       setLoading(false);
     }
   }
