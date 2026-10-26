@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import type { GoogleGenAI } from "@google/genai";
-import { GEMINI_MODEL, generateContentWithFallback, getGoogleGenAI } from "@/lib/ai";
+import {
+  GEMINI_MODEL,
+  generateContentStreamWithFallback,
+  generateContentWithFallback,
+  getGoogleGenAI,
+} from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { parseAnonId, resolveUserId } from "@/lib/supabase/identity";
@@ -68,6 +73,13 @@ async function handlePost(req: Request) {
       );
     }
 
+    // Opt-in streaming (the web app): text arrives as it is generated, then a
+    // trailing metadata record carries the saved prompt id. Other callers (the
+    // extension) keep the plain JSON response below.
+    if (body.stream === true) {
+      return streamEnhance(ai, { prompt, mode, intensity, anonId });
+    }
+
     // Identical requests already in flight (double click, client retry, two
     // extension instances) share one Gemini call and one DB row.
     const key = `${anonId ?? ""}|${mode}|${intensity}|${prompt}`;
@@ -99,13 +111,10 @@ const inFlight = new Map<string, Promise<EnhanceResult>>();
 
 type EnhanceResult = { enhanced: string; promptId: string | null };
 
-async function runEnhance(
-  ai: GoogleGenAI,
-  { prompt, mode, intensity, anonId }: { prompt: string; mode: string; intensity: string; anonId: string | null }
-): Promise<EnhanceResult> {
-  const finalSystemInstruction = buildEnhanceSystemInstruction(mode, intensity);
+type EnhanceArgs = { prompt: string; mode: string; intensity: string; anonId: string | null };
 
-  const response = await generateContentWithFallback(ai, {
+function buildEnhanceParams({ prompt, mode, intensity }: EnhanceArgs) {
+  return {
     model: GEMINI_MODEL,
     contents: [
       {
@@ -114,15 +123,73 @@ async function runEnhance(
       },
     ],
     config: {
-      systemInstruction: finalSystemInstruction,
+      systemInstruction: buildEnhanceSystemInstruction(mode, intensity),
       temperature: 0.7,
+    },
+  };
+}
+
+async function runEnhance(ai: GoogleGenAI, args: EnhanceArgs): Promise<EnhanceResult> {
+  const response = await generateContentWithFallback(ai, buildEnhanceParams(args));
+  const enhanced = (response.text || "Failed to generate enhancement.").trim();
+  const promptId = await persistEnhancement(args, enhanced);
+  return { enhanced, promptId };
+}
+
+/** Separates streamed text from the trailing JSON metadata record. */
+const META_SEPARATOR = "\u001e";
+
+async function streamEnhance(ai: GoogleGenAI, args: EnhanceArgs) {
+  const params = buildEnhanceParams(args);
+  const stream = await generateContentStreamWithFallback(ai, params, {
+    primaryMs: 15_000,
+    attemptMs: 30_000,
+    budgetMs: 54_000,
+  });
+  const encoder = new TextEncoder();
+
+  const readable = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      let full = "";
+      let meta: { prompt_id: string | null; error?: boolean };
+      try {
+        for await (const chunk of stream) {
+          const text = chunk.text;
+          if (text) {
+            full += text;
+            controller.enqueue(encoder.encode(text));
+          }
+        }
+        const enhanced = full.trim();
+        meta = enhanced
+          ? { prompt_id: await persistEnhancement(args, enhanced) }
+          : { prompt_id: null, error: true };
+      } catch (error) {
+        console.error("Enhancement stream error:", error);
+        meta = { prompt_id: null, error: true };
+      }
+      controller.enqueue(encoder.encode(META_SEPARATOR + JSON.stringify(meta)));
+      controller.close();
     },
   });
 
-  const enhanced = (response.text || "Failed to generate enhancement.").trim();
+  return new Response(readable, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Accel-Buffering": "no",
+    },
+  });
+}
 
-  // Persist the enhancement so it can be reused later. Failure to persist
-  // must never break the enhancement itself.
+/**
+ * Persists the enhancement so it can be reused later. Failure to persist must
+ * never break the enhancement itself, so errors resolve to a null id.
+ */
+async function persistEnhancement(
+  { prompt, mode, intensity, anonId }: EnhanceArgs,
+  enhanced: string
+): Promise<string | null> {
   let promptId: string | null = null;
   const supabase = getSupabaseAdmin();
 
@@ -165,5 +232,5 @@ async function runEnhance(
     }
   }
 
-  return { enhanced, promptId };
+  return promptId;
 }

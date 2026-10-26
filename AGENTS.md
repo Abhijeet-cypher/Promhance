@@ -26,7 +26,7 @@ Promhance — a Next.js app that enhances rough prompts into engineered prompts 
 ## Architecture
 
 - API routes (all `runtime = "nodejs"`):
-  - `app/api/enhance/route.ts` — initial enhancement. Single **non-streaming** Gemini call (model string `gemini-3.1-flash-lite-preview`). Persists the prompt and its v1 version.
+  - `app/api/enhance/route.ts` — initial enhancement. Single **non-streaming** Gemini call (primary model `gemini-3.1-flash-lite` via `GEMINI_MODEL`, with a fallback chain in `lib/ai.ts`). Persists the prompt and its v1 version.
   - `app/api/prompts/route.ts` — GET history / single prompt (with versions), DELETE.
   - `app/api/prompts/refine/route.ts` — applies a quick-action refinement to a prompt, stores the next version.
   - `app/api/promai/route.ts` — PromAI chat. **Streaming** `text/plain` response (answer mode = assistant persona; test mode = run the prompt as-is). Ephemeral, no persistence. Uses `lib/ai.ts`.

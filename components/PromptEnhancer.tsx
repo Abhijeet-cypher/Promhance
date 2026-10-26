@@ -33,6 +33,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import FeedbackReaction from "@/components/FeedbackReaction";
+import SavePromptModal from "@/components/SavePromptModal";
+import { useAuth } from "@/components/AuthProvider";
 import { getAnonId } from "@/lib/anon-id";
 import { getQuickActions, type QuickAction } from "@/lib/quick-actions";
 
@@ -99,10 +101,13 @@ const trackEvent = (eventName: string, eventParams?: Record<string, unknown>) =>
 
 export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { defaultMode?: string }) {
   const router = useRouter();
-  const [input, setInput]               = useState("");
+  const { user, loading: authLoading } = useAuth();
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [input, setInput]              = useState("");
   const [versions, setVersions]         = useState<PromptVersion[]>([]);
   const [activeVersion, setActiveVersion] = useState(1);
   const [loading, setLoading]           = useState(false);
+  const [streaming, setStreaming]       = useState(false);
   const [isMounted, setIsMounted]       = useState(false);
   const [mode, setMode]                 = useState(defaultMode);
   const [intensity, setIntensity]       = useState("medium");
@@ -226,11 +231,23 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
       if (!alreadyGiven) {
         setFeedback({ promptId });
       }
+      // Nudge signed-out users to sign up so the prompt is stored. Skipped for
+      // the first 5 copies, then shown on the 6th, 11th, 16th... (persisted count).
+      if (!authLoading && !user) {
+        try {
+          const key = "promhance_copy_count";
+          const count = (Number.parseInt(localStorage.getItem(key) ?? "0", 10) || 0) + 1;
+          localStorage.setItem(key, String(count));
+          if (count > 5 && (count - 1) % 5 === 0) setShowSaveModal(true);
+        } catch {
+          /* localStorage unavailable — don't nag */
+        }
+      }
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error("Copy failed:", err);
     }
-  }, [output, mode, intensity, promptId]);
+  }, [output, mode, intensity, promptId, user, authLoading]);
 
   const enhanceInFlight = useRef(false);
 
@@ -257,17 +274,46 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
     setFeedback(null);
     setRefineError(null);
     try {
-      const res  = await fetch("/api/enhance", {
+      const res = await fetch("/api/enhance", {
         method: "POST",
-        body: JSON.stringify({ prompt: input, mode, intensity, anonId: getAnonId() }),
+        body: JSON.stringify({ prompt: input, mode, intensity, anonId: getAnonId(), stream: true }),
       });
-      const data = await res.json();
-      const text = data.enhanced || "Enhanced output could not be generated.";
-      setVersions([
-        { version_number: 1, text, action: "base", action_label: null },
-      ]);
+      if (!res.ok || !res.body) throw new Error("Enhancement failed");
+
+      // The server streams the text, then a record separator followed by JSON
+      // metadata (saved prompt id). Show text as soon as it starts arriving.
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      const META_SEPARATOR = "\u001e";
+      let raw = "";
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        raw += decoder.decode(value, { stream: true });
+        const text = raw.split(META_SEPARATOR)[0];
+        if (text) {
+          setLoading(false);
+          setStreaming(true);
+          setVersions([{ version_number: 1, text, action: "base", action_label: null }]);
+        }
+      }
+      raw += decoder.decode();
+
+      const sepIdx = raw.indexOf(META_SEPARATOR);
+      const text = (sepIdx === -1 ? raw : raw.slice(0, sepIdx)).trim();
+      let meta: { prompt_id?: string | null; error?: boolean } = {};
+      if (sepIdx !== -1) {
+        try {
+          meta = JSON.parse(raw.slice(sepIdx + 1));
+        } catch {
+          /* metadata is best-effort */
+        }
+      }
+      if (!text || meta.error) throw new Error("Enhancement failed");
+
+      setVersions([{ version_number: 1, text, action: "base", action_label: null }]);
       setActiveVersion(1);
-      setPromptId(data.prompt_id ?? null);
+      setPromptId(meta.prompt_id ?? null);
     } catch {
       setVersions([
         {
@@ -281,6 +327,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
     } finally {
       enhanceInFlight.current = false;
       setLoading(false);
+      setStreaming(false);
       setIsRegenerating(false);
     }
   }, [input, mode, intensity]);
@@ -497,10 +544,10 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
       {/* ══════════════ OUTPUT PANEL ══════════════ */}
       {(output || loading || window.innerWidth >= 1024) && (
         <div className={`w-full lg:w-1/2 transition-all duration-500 ${
-          !output && !loading ? "opacity-40 lg:opacity-100 pointer-events-none lg:pointer-events-auto" : "opacity-100"
+          !output && !loading && !streaming ? "opacity-40 lg:opacity-100 pointer-events-none lg:pointer-events-auto" : "opacity-100"
         }`}>
           <div className={`bg-[#111111] border rounded-2xl flex flex-col h-full min-h-[580px] lg:min-h-[640px] transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)] overflow-hidden ${
-            output && !loading ? "border-blue-500/20 hover:border-blue-500/30" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
+            output && !loading && !streaming ? "border-blue-500/20 hover:border-blue-500/30" : "border-[#2a2a2a] hover:border-[#3a3a3a]"
           }`}>
 
             {/* Output Header */}
@@ -510,7 +557,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                   loading ? "bg-blue-400 animate-pulse" : output ? "bg-blue-500" : "bg-[#3a3a3a]"
                 }`} />
                 <h2 className="text-sm font-semibold text-white whitespace-nowrap">Enhanced Prompt</h2>
-                {output && !loading && versions.length > 0 && (
+                {output && !loading && !streaming && versions.length > 0 && (
                   <span className="inline-flex items-center whitespace-nowrap text-[10px] px-1.5 py-0.5 rounded-md bg-[#1a1a1a] text-[#a1a1a1] border border-[#2a2a2a] font-mono">
                     v{activeVersion}
                     {activeVersionObj?.action_label ? ` · ${activeVersionObj.action_label}` : ""}
@@ -519,7 +566,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
               </div>
 
               {/* Action buttons */}
-              {output && !loading && (
+              {output && !loading && !streaming && (
                 <div className="flex items-center gap-2 shrink-0 ml-auto">
                   {/* Try in PromAI */}
                   <button
@@ -632,6 +679,8 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
               />
             )}
 
+            {showSaveModal && <SavePromptModal onClose={() => setShowSaveModal(false)} />}
+
             {/* Output Body */}
             <div className="flex-1 min-h-0 overflow-y-auto relative">
               {loading ? (
@@ -705,7 +754,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
             </div>
 
             {/* Refinements + version history */}
-            {output && !loading && (
+            {output && !loading && !streaming && (
               <div className="px-5 sm:px-6 py-4 border-t border-[#1f1f1f] shrink-0 space-y-3">
                 {versions.length > 1 && (
                   <div className="flex items-center gap-1.5">
@@ -794,7 +843,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
             )}
 
             {/* Output Footer — stats */}
-            {output && !loading && (
+            {output && !loading && !streaming && (
               <div className="px-5 sm:px-6 py-3 border-t border-[#1f1f1f] shrink-0 flex items-center justify-between">
                 <div className="flex items-center gap-3 text-[10px] text-[#525252]">
                   <span className="flex items-center gap-1">
