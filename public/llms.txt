@@ -24,12 +24,12 @@ Promhance applies proven prompt engineering frameworks (role, context, constrain
 - [Viral AI Prompts Collection](https://www.promhance.com/viral-prompts): 410+ hand-curated viral prompts for Midjourney, ChatGPT, Suno, Sora, Instagram, TikTok, and YouTube.
 
 ## Guides
- 
+
+- [How to Prompt GPT-6: OpenAI's Tips + Slop-Word Blocklist](https://www.promhance.com/blog/how-to-prompt-gpt-6): OpenAI's official GPT-6 Astra prompting guidance summarized (initiative, plain prose, skill-file priority, reasoning effort), its slop-word blocklist, 5 copy-paste prompts, and a migration checklist.
+- [Stop Telling AI to 'Think Step by Step': How to Prompt Reasoning Models in 2026](https://www.promhance.com/blog/how-to-prompt-reasoning-models-2026): What Wharton research shows about chain-of-thought on reasoning models and the outcome-first prompt structure to use instead.
+- [Vibe Coding Prompts in 2026: 8 Copy-Paste Templates](https://www.promhance.com/blog/vibe-coding-prompts-2026): A 5-part anatomy and 8 templates for Cursor, Claude Code, Lovable and Bolt.
 - [Prompt Engineering Myths 2026: 7 Popular Tricks Tested Against Real Research](https://www.promhance.com/blog/prompt-engineering-myths-tested-2026): What Wharton, Penn State and Chroma research says about saying please, expert personas, chain-of-thought, long prompts and other popular prompting tricks.
 - [What Is Meta Prompting? How to Make AI Write Your Prompts (With Templates)](https://www.promhance.com/blog/what-is-meta-prompting): How to use AI to write, critique, and improve prompts, with 3 copy-paste templates and honest limits.
-
-- [Agent Skills (SKILL.md) Explained: The Next Step After Prompt Engineering in 2026](https://www.promhance.com/blog/agent-skills-skill-md-guide): What Agent Skills are, how SKILL.md works, skills vs prompts vs MCP, and a copy-paste template.
-
 - [Agent Skills (SKILL.md) Explained: The Next Step After Prompt Engineering in 2026](https://www.promhance.com/blog/agent-skills-skill-md-guide): What Agent Skills are, how SKILL.md works, skills vs prompts vs MCP, and a copy-paste template.
 - [Why Your Old Prompts Stopped Working (and the Outcome-First Fix for 2026 AI Models)](https://www.promhance.com/blog/why-your-old-prompts-stopped-working): Why 2023-era prompts break on reasoning models, five habits to retire, and a free outcome-first template.
 - [What Is a Prompt Enhancer? How They Work (2026)](https://www.promhance.com/blog/what-is-a-prompt-enhancer): Definition, what enhancers add, when they help and when they don't.
@@ -61,6 +61,9 @@ Prompts are sent to Google's Gemini API to generate the result. The prompt and r
 
 ### What is PromptOps?
 PromptOps is the professional lifecycle management and optimization of AI prompts. Promhance acts as the first layer of PromptOps by ensuring prompts are structurally sound, contextual, and correctly formatted.
+
+### How do you prompt GPT-6?
+State the finished result first, tell the model to make reasonable assumptions and act, ask for plain prose if you don't want lists and tables, add a short blocklist of filler phrases, and say your instructions override any skill or context files. See [How to Prompt GPT-6](https://www.promhance.com/blog/how-to-prompt-gpt-6).
 
 ## Optional
 

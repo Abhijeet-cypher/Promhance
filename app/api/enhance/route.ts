@@ -130,10 +130,48 @@ function buildEnhanceParams({ prompt, mode, intensity }: EnhanceArgs) {
 }
 
 async function runEnhance(ai: GoogleGenAI, args: EnhanceArgs): Promise<EnhanceResult> {
-  const response = await generateContentWithFallback(ai, buildEnhanceParams(args));
-  const enhanced = (response.text || "Failed to generate enhancement.").trim();
+  let enhanced: string;
+  try {
+    const response = await generateContentWithFallback(ai, buildEnhanceParams(args));
+    enhanced = (response.text ?? "").trim();
+    if (!enhanced) throw new Error("Model returned an empty response.");
+  } catch (error) {
+    await persistFailure(args, error);
+    throw error;
+  }
   const promptId = await persistEnhancement(args, enhanced);
   return { enhanced, promptId };
+}
+
+/**
+ * Records a failed enhancement so it shows up in the admin Prompts view.
+ * Best-effort: never throws, and the failed row is hidden from user history.
+ */
+async function persistFailure(
+  { prompt, mode, intensity, anonId }: EnhanceArgs,
+  error: unknown
+): Promise<void> {
+  try {
+    const supabase = getSupabaseAdmin();
+    if (!supabase || !anonId) return;
+    const userId = await resolveUserId();
+    const message = (error instanceof Error ? error.message : String(error ?? "Unknown error"))
+      .slice(0, 500);
+
+    const { error: insertError } = await supabase.from("prompts").insert({
+      anon_id: anonId,
+      user_id: userId,
+      original_prompt: prompt,
+      enhanced_prompt: "",
+      mode,
+      intensity,
+      status: "failed",
+      error_message: message,
+    });
+    if (insertError) console.error("Failed-prompt persist failed:", insertError.message);
+  } catch (persistError) {
+    console.error("Failed-prompt persist failed:", persistError);
+  }
 }
 
 /** Separates streamed text from the trailing JSON metadata record. */
@@ -141,11 +179,17 @@ const META_SEPARATOR = "\u001e";
 
 async function streamEnhance(ai: GoogleGenAI, args: EnhanceArgs) {
   const params = buildEnhanceParams(args);
-  const stream = await generateContentStreamWithFallback(ai, params, {
-    primaryMs: 15_000,
-    attemptMs: 30_000,
-    budgetMs: 54_000,
-  });
+  let stream;
+  try {
+    stream = await generateContentStreamWithFallback(ai, params, {
+      primaryMs: 15_000,
+      attemptMs: 30_000,
+      budgetMs: 54_000,
+    });
+  } catch (error) {
+    await persistFailure(args, error);
+    throw error;
+  }
   const encoder = new TextEncoder();
 
   const readable = new ReadableStream<Uint8Array>({
@@ -161,11 +205,15 @@ async function streamEnhance(ai: GoogleGenAI, args: EnhanceArgs) {
           }
         }
         const enhanced = full.trim();
-        meta = enhanced
-          ? { prompt_id: await persistEnhancement(args, enhanced) }
-          : { prompt_id: null, error: true };
+        if (!enhanced) {
+          await persistFailure(args, new Error("Model returned an empty response."));
+          meta = { prompt_id: null, error: true };
+        } else {
+          meta = { prompt_id: await persistEnhancement(args, enhanced) };
+        }
       } catch (error) {
         console.error("Enhancement stream error:", error);
+        await persistFailure(args, error);
         meta = { prompt_id: null, error: true };
       }
       controller.enqueue(encoder.encode(META_SEPARATOR + JSON.stringify(meta)));

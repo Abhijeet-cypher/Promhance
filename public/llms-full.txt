@@ -41,15 +41,22 @@ Transforms a video concept into prompts that produce high-retention scripts, cat
 
 ## Guides and articles
 
-### Agent Skills (SKILL.md) Explained: The Next Step After Prompt Engineering in 2026
-https://www.promhance.com/blog/agent-skills-skill-md-guide
-Published 2026-10-20. Explains Agent Skills: reusable SKILL.md folders that AI agents load on demand. Covers progressive disclosure, skills vs prompts vs MCP, a copy-paste SKILL.md template, five common mistakes, and when skills are the wrong tool.
+### How to Prompt GPT-6: OpenAI's Tips + Slop-Word Blocklist
+https://www.promhance.com/blog/how-to-prompt-gpt-6
+Published 2026-11-03. How to prompt GPT-6 Astra, based on OpenAI's official developer guidance: grant initiative so it stops over-asking, request plain prose instead of lists and tables, state that user instructions override skill and context files, and set reasoning effort instead of writing "think step by step." Summarizes OpenAI's slop-word blocklist ("delve into," "it's worth noting," "This isn't about X. It's about Y," summary closers), with a before/after rewrite, 5 copy-paste GPT-6 prompts, and a 6-step migration checklist for old prompts.
 
 ### Agent Skills (SKILL.md) Explained: The Next Step After Prompt Engineering in 2026
 https://www.promhance.com/blog/agent-skills-skill-md-guide
 Published 2026-10-20. Explains Agent Skills: reusable SKILL.md folders that AI agents load on demand. Covers progressive disclosure, skills vs prompts vs MCP, a copy-paste SKILL.md template, five common mistakes, and when skills are the wrong tool.
 
-<<<<<<< HEAD
+### Vibe Coding Prompts in 2026: 8 Copy-Paste Templates for Cursor, Claude Code, Lovable & Bolt
+https://www.promhance.com/blog/vibe-coding-prompts-2026
+Published 2026-10-14. A 5-part anatomy of a vibe coding prompt, vibe coding vs agentic engineering, prompting tips per tool, 8 copy-paste templates, and what to put in rules files like CLAUDE.md.
+
+### Stop Telling AI to "Think Step by Step": How to Prompt Reasoning Models in 2026
+https://www.promhance.com/blog/how-to-prompt-reasoning-models-2026
+Published 2026-10-13. What Wharton's Prompting Science Report 2 found about chain-of-thought prompting on reasoning and non-reasoning models, the five-part outcome-first prompt to use instead, and a 20-minute test for your own prompts.
+
 ### Prompt Engineering Myths 2026: 7 Popular Tricks Tested Against Real Research
 https://www.promhance.com/blog/prompt-engineering-myths-tested-2026
 Published 2026-10-07. Seven popular prompting tricks (politeness, tips and threats, expert personas, "think step by step," long prompts, universal formulas, ALL CAPS) checked against Wharton, Penn State and Chroma research, plus what reliably works instead.
@@ -57,11 +64,6 @@ Published 2026-10-07. Seven popular prompting tricks (politeness, tips and threa
 ### What Is Meta Prompting? How to Make AI Write Your Prompts (With Templates)
 https://www.promhance.com/blog/what-is-meta-prompting
 Published 2026-10-03. Meta prompting uses AI to write, critique, or improve prompts instead of writing them by hand. Covers the two meanings of the term, a 4-step workflow, 3 copy-paste templates, a before/after example, and when the technique backfires.
-
-### Agent Skills (SKILL.md) Explained: The Next Step After Prompt Engineering in 2026
-https://www.promhance.com/blog/agent-skills-skill-md-guide
-Published 2026-10-20. Explains Agent Skills: reusable SKILL.md folders that AI agents load on demand. Covers progressive disclosure, skills vs prompts vs MCP, a copy-paste SKILL.md template, five common mistakes, and when skills are the wrong tool.
-
 
 ### Why Your Old Prompts Stopped Working (and the Outcome-First Fix for 2026 AI Models)
 https://www.promhance.com/blog/why-your-old-prompts-stopped-working
@@ -128,6 +130,7 @@ Published 2026-03-26. Why ChatGPT, Claude, and Gemini prompts fail and the promp
 - **Prompt enhancer:** a tool that rewrites a short or vague request into a clearer, more structured prompt for an AI model, typically adding a role, context, constraints and an output format.
 - **Prompt engineering:** the practice of designing instructions and context so AI models produce reliable, useful output.
 - **PromptOps:** managing, versioning and improving prompts over time, like code.
+- **AI slop:** generic, filler-heavy AI output marked by stock phrases ("delve into," "it's worth noting"), summary closers, and over-formatting. Reduced by asking for a specific format and adding a short blocklist of phrases to avoid.
 
 ## FAQ
 
@@ -140,5 +143,8 @@ Prompts are sent to Google's Gemini API to generate the result. The prompt and r
 ### Is Promhance affiliated with OpenAI, Anthropic or Google?
 No. Promhance is an independent product. It produces prompts that can be used with ChatGPT, Claude, Gemini and other models.
 
+### How do you prompt GPT-6?
+State the finished result first, tell the model to make reasonable assumptions and act, ask for plain prose if you don't want lists and tables, add a short blocklist of filler phrases, and say that your instructions override any skill or context files. Set reasoning effort in the model settings rather than writing "think step by step." Full guide: https://www.promhance.com/blog/how-to-prompt-gpt-6
+
 ### Last updated
-2026-10-07
+2026-11-03

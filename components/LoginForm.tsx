@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Loader2, Mail, Lock, ArrowRight, MailCheck } from "lucide-react";
+import { Loader2, Mail, Lock, ArrowRight, MailCheck, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 import GoogleIcon from "@/components/GoogleIcon";
 
@@ -16,6 +16,7 @@ export default function LoginForm() {
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmationSent, setConfirmationSent] = useState(false);
@@ -184,13 +185,26 @@ export default function LoginForm() {
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#525252]" strokeWidth={1.75} />
             <input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               autoComplete={mode === "signin" ? "current-password" : "new-password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-xl pl-10 pr-4 py-2.5 text-sm text-[#f5f5f5] focus:outline-none focus:ring-1 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all placeholder:text-[#3a3a3a]"
+              className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-xl pl-10 pr-10 py-2.5 text-sm text-[#f5f5f5] focus:outline-none focus:ring-1 focus:ring-blue-500/40 focus:border-blue-500/50 transition-all placeholder:text-[#3a3a3a]"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              aria-pressed={showPassword}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#525252] hover:text-[#a1a1a1] transition-colors"
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4" strokeWidth={1.75} />
+              ) : (
+                <Eye className="w-4 h-4" strokeWidth={1.75} />
+              )}
+            </button>
           </div>
         </div>
 

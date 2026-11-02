@@ -158,7 +158,11 @@ export async function GET(req: Request) {
   const offset = clampInt(searchParams.get("offset"), 0, 0, 100_000);
   const search = (searchParams.get("q") ?? "").trim().slice(0, MAX_SEARCH_LENGTH);
 
-  let query = supabase.from("prompts").select("*", { count: "exact" });
+  // Failed enhancements are stored with an empty enhanced_prompt; hide them.
+  let query = supabase
+    .from("prompts")
+    .select("*", { count: "exact" })
+    .neq("enhanced_prompt", "");
 
   if (userId && anonId) {
     // Account history + any still-unclaimed rows for this device. This keeps
