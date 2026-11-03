@@ -1,8 +1,9 @@
 ---
-title: "Agent Skills (SKILL.md): Beyond Prompt Engineering"
+title: "Agent Skills (SKILL.md) Explained: The Next Step After Prompt Engineering in 2026"
+seoTitle: "Agent Skills (SKILL.md): Beyond Prompt Engineering"
 date: "2026-10-20"
 updated: "2026-10-20"
-description: "Agent Skills turn your best prompts into reusable SKILL.md folders that AI agents load on demand. Learn what they are, how they differ from prompts and MCP, and how to write your first one."
+description: "Agent Skills turn your best prompts into reusable SKILL.md folders that AI agents load on demand. Learn how they differ from prompts and MCP."
 author: "Promhance Team"
 tags: ["Agent Skills", "SKILL.md", "Prompt Engineering", "AI Agents", "Claude", "Context Engineering"]
 image: "https://images.unsplash.com/photo-1737644467636-6b0053476bb2?q=80&w=1600&h=840&auto=format&fit=crop&crop=entropy"

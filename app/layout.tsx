@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: "Promhance — Free AI Prompt Enhancer for ChatGPT, Claude & Gemini",
     template: "%s | Promhance"
   },
-  description: "Free AI prompt enhancer: turn a rough idea into a structured prompt for ChatGPT, Claude, Gemini and Midjourney. Adds role, context, constraints and format. No account needed.",
+  description: "Free AI prompt enhancer: turn a rough idea into a structured prompt for ChatGPT, Claude, Gemini and Midjourney. No account needed.",
   keywords: ["ai prompt enhancer", "prompt improver", "prompt optimizer", "prompt generator", "chatgpt prompt enhancer", "claude prompt improver", "gemini prompt enhancer", "midjourney prompt generator", "prompt engineering tool", "PromptOps"],
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,

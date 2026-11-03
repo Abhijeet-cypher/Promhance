@@ -1,7 +1,8 @@
 ---
 title: "How to Write Better Prompts for AI (And Why Most People Get It Wrong)"
+seoTitle: "How to Write Better Prompts for AI"
 date: "2026-03-20"
-description: "Master prompt engineering with our comprehensive AI prompt writing guide. Learn how to write better prompts for AI to get exact, high-quality results from ChatGPT, Claude, and Gemini."
+description: "Learn how to write better prompts for AI with our prompt engineering guide, and get exact, high-quality results from ChatGPT, Claude, and Gemini."
 author: "Promhance Team"
 tags: ["Prompt Engineering", "ChatGPT Prompts", "AI Prompts", "AI", "AI Writing"]
 image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"

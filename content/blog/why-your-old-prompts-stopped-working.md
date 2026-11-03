@@ -1,8 +1,9 @@
 ---
 title: "Why Your Old Prompts Stopped Working (and the Outcome-First Fix for 2026 AI Models)"
+seoTitle: "Why Your Old Prompts Stopped Working (2026 Fix)"
 date: "2026-10-01"
 updated: "2026-10-01"
-description: "Prompts that worked in 2023 now give bloated, off-target answers on 2026 reasoning models. Here's why, which 5 habits to retire, and a free outcome-first template."
+description: "Prompts that worked in 2023 now give bloated answers on 2026 reasoning models. Here's why, which 5 habits to retire, and a free outcome-first template."
 author: "Promhance Team"
 tags: ["Prompt Engineering", "ChatGPT", "Claude", "Gemini", "Outcome-First Prompting"]
 image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop"

@@ -1,5 +1,6 @@
 ---
 title: "Stop Telling AI to 'Think Step by Step': How to Prompt Reasoning Models in 2026"
+seoTitle: "How to Prompt Reasoning Models in 2026"
 date: "2026-10-13"
 updated: "2026-10-13"
 description: "Does 'think step by step' still work? Wharton data shows it adds little on reasoning models and costs 20-80% more time. Here's what to write instead."

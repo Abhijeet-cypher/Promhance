@@ -1,5 +1,6 @@
 ---
 title: "Context Engineering vs. Prompt Engineering (2026 Guide)"
+seoTitle: "Context Engineering vs Prompt Engineering (2026)"
 date: "2026-09-21"
 description: "Context engineering is 2026's biggest AI buzzword. Here's what it actually means for your ChatGPT prompts — and how to do it in one click."
 author: "Promhance Team"

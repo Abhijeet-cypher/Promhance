@@ -1,5 +1,6 @@
 ---
 title: "Stop the 10-Rewrite Cycle: Why Your AI Prompts Are Failing (and the 2-Second Fix)"
+seoTitle: "Stop the 10-Rewrite Cycle: Fix Failing AI Prompts"
 date: "2026-03-26"
 description: "Tired of rewriting AI prompts? Discover why your ChatGPT, Claude, and Gemini prompts are failing and learn the ultimate 2-second prompt engineering fix."
 author: "Promhance Team"

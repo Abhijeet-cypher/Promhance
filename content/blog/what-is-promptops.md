@@ -1,5 +1,6 @@
 ---
 title: "What is PromptOps? The Future of AI Prompt Lifecycle Management"
+seoTitle: "What is PromptOps? AI Prompt Lifecycle Management"
 date: "2026-07-01"
 description: "Discover what PromptOps is, why it's essential for developers in 2026, and how to implement the S.P.A.R.K. framework for better AI prompts."
 author: "Promhance"

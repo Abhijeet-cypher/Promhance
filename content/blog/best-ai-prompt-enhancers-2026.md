@@ -1,5 +1,6 @@
 ---
 title: "Best AI Prompt Enhancers and Optimizers in 2026 (Honest Comparison)"
+seoTitle: "Best AI Prompt Enhancers & Optimizers in 2026"
 date: "2026-09-25"
 updated: "2026-09-25"
 description: "An honest 2026 comparison of AI prompt enhancers and optimizers: what each type is good at, how to choose, and where Promhance fits and where it doesn't."

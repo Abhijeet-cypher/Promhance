@@ -1,7 +1,8 @@
 ---
 title: "10 Advanced Prompt Engineering Techniques to 10x Your Productivity"
+seoTitle: "10 Advanced Prompt Engineering Techniques"
 date: "2026-07-21"
-description: "Discover advanced prompt engineering techniques, the best AI prompts, and ChatGPT prompt templates to maximize your productivity and unlock generative AI's full potential."
+description: "Advanced prompt engineering techniques, the best AI prompts, and ChatGPT prompt templates to maximize your productivity with generative AI."
 author: "Promhance Team"
 tags: ["Prompt Engineering", "ChatGPT Prompts", "AI Prompts", "Prompt Templates", "Productivity"]
 image: "https://images.unsplash.com/photo-1516110833967-0b5716ca1387?q=80&w=2074&auto=format&fit=crop"

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ModelLandingPage, { type ModelLandingConfig } from "@/components/ModelLandingPage";
 
 const PATH = "/gemini-prompt-enhancer";
-const TITLE = "Free Gemini Prompt Enhancer — Better Prompts for Google Gemini";
+const TITLE = "Free Gemini Prompt Enhancer — Better Gemini Prompts";
 const DESCRIPTION =
   "Turn a rough idea into a structured prompt for Google Gemini with a clear persona, task, context and format. Free, no account needed.";
 

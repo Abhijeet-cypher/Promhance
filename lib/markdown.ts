@@ -8,6 +8,7 @@ const postsDirectory = path.join(process.cwd(), 'content/blog');
 export type BlogPost = {
   slug: string;
   title: string;
+  seoTitle?: string;
   date: string;
   updated?: string;
   description: string;
@@ -37,6 +38,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   return {
     slug: realSlug,
     title: data.title || '',
+    seoTitle: data.seoTitle || '',
     date: data.date || '',
     updated: data.updated || '',
     description: data.description || '',

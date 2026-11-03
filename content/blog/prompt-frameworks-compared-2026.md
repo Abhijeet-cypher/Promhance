@@ -1,5 +1,6 @@
 ---
 title: "Best Prompt Frameworks in 2026: CO-STAR vs RISEN vs RTF vs CRAFT (and When to Skip Them)"
+seoTitle: "Best Prompt Frameworks 2026: CO-STAR vs RISEN vs RTF"
 date: "2026-09-29"
 updated: "2026-09-29"
 description: "Compare CO-STAR, RISEN, RTF, CRAFT and RACE side by side. See what each framework covers, what it misses, and which to use for which task."

@@ -8,9 +8,9 @@ import { allPrompts, uniqueSections, uniqueTypes } from "@/lib/viral-prompts-dat
    SEO METADATA
 ───────────────────────────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: { absolute: "Viral AI Prompts Collection — 410+ Trending Prompts (2025–2026) | Promhance" },
+  title: { absolute: "Viral AI Prompts Collection — 410+ Trending Prompts | Promhance" },
   description:
-    "Browse 410+ hand-curated viral AI prompts for Midjourney, ChatGPT, Suno, Sora, Instagram, TikTok, YouTube & more. Filter by platform, type, and trend era. Free to copy.",
+    "Browse 410+ hand-curated viral AI prompts for Midjourney, ChatGPT, Suno, Sora, Instagram, TikTok, YouTube & more. Filter by platform and type. Free to copy.",
   keywords: [
     "viral ai prompts 2025",
     "viral ai prompts 2026",

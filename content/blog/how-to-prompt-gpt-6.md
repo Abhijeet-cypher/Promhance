@@ -1,5 +1,6 @@
 ---
 title: "How to Prompt GPT-6: OpenAI's Tips + Slop-Word Blocklist"
+seoTitle: "How to Prompt GPT-6: OpenAI Tips + Slop Blocklist"
 date: "2026-11-03"
 updated: "2026-11-03"
 description: "How to prompt GPT-6 Astra: OpenAI's official tips on initiative, plain prose and skill files, plus its slop-word blocklist and 5 copy-paste prompts."

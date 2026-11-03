@@ -1,5 +1,6 @@
 ---
 title: "What Is Meta Prompting? How to Make AI Write Your Prompts (With Templates)"
+seoTitle: "What Is Meta Prompting? How AI Writes Your Prompts"
 date: "2026-10-03"
 updated: "2026-10-03"
 description: "Meta prompting means using AI to write, critique, and improve your prompts. Learn how it works, 3 copy-paste templates, and when it fails."

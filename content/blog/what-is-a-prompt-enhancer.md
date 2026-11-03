@@ -1,5 +1,6 @@
 ---
 title: "What Is a Prompt Enhancer? How AI Prompt Enhancers Work (2026)"
+seoTitle: "What Is a Prompt Enhancer? How It Works (2026)"
 date: "2026-09-25"
 updated: "2026-09-25"
 description: "A prompt enhancer rewrites a rough request into a structured AI prompt. Learn how prompt enhancers work, what they add, when they help and when they don't."

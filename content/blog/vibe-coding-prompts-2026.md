@@ -1,5 +1,6 @@
 ---
 title: "Vibe Coding Prompts in 2026: 8 Copy-Paste Templates for Cursor, Claude Code, Lovable & Bolt"
+seoTitle: "Vibe Coding Prompts 2026: 8 Copy-Paste Templates"
 date: "2026-10-14"
 updated: "2026-10-14"
 description: "How to write vibe coding prompts in 2026: a 5-part anatomy and 8 copy-paste templates for Cursor, Claude Code, Lovable and Bolt."

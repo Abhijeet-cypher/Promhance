@@ -23,9 +23,9 @@ import {
    METADATA
 ───────────────────────────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
-  title: "Free ChatGPT Prompt Enhancer — Better Prompts, Better Answers",
+  title: "Free ChatGPT Prompt Enhancer — Better Prompts Fast",
   description:
-    "Turn vague ideas into expert-level ChatGPT prompts in one click. Adds role context, constraints & output format automatically. Free, no login, instant results.",
+    "Turn vague ideas into expert ChatGPT prompts in one click. Adds role, constraints and output format automatically. Free, no login.",
   keywords: [
     "chatgpt prompt enhancer",
     "chatgpt prompt generator",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     canonical: "https://www.promhance.com/chatgpt-prompt-enhancer",
   },
   openGraph: {
-    title: "Free ChatGPT Prompt Enhancer — Better Prompts, Better Answers",
+    title: "Free ChatGPT Prompt Enhancer — Better Prompts Fast",
     description:
       "Transform rough ideas into powerful ChatGPT prompts instantly. Role context, constraints & output format — added automatically.",
     url: "https://www.promhance.com/chatgpt-prompt-enhancer",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free ChatGPT Prompt Enhancer — Better Prompts, Better Answers",
+    title: "Free ChatGPT Prompt Enhancer — Better Prompts Fast",
     description:
       "Turn vague ideas into expert-level ChatGPT prompts in one click. Free, no login, instant.",
     images: ["/og"],

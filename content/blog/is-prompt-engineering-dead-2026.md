@@ -1,5 +1,6 @@
 ---
 title: "Is Prompt Engineering Dead in 2026? What Still Works (and What to Stop Doing)"
+seoTitle: "Is Prompt Engineering Dead in 2026? What Still Works"
 date: "2026-09-24"
 description: "Prompt engineering isn't dead, but 'think step by step' tricks are fading. See what changed in 2026, what still works, and a checklist for better prompts."
 author: "Promhance Team"

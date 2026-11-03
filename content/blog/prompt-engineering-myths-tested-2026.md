@@ -1,8 +1,9 @@
 ---
 title: "Prompt Engineering Myths 2026: 7 Popular Tricks Tested Against Real Research"
+seoTitle: "Prompt Engineering Myths 2026: 7 Tricks Tested"
 date: "2026-10-07"
 updated: "2026-10-07"
-description: "Does saying please help? Do expert personas work? Is 'think step by step' still useful? We checked 7 popular prompting tricks against Wharton, Penn State and Chroma research. Here's what holds up."
+description: "Does saying please help? Do personas work? Is 'think step by step' still useful? We tested 7 prompting tricks against Wharton, Penn State and Chroma research."
 author: "Promhance Team"
 tags: ["Prompt Engineering", "Prompt Engineering Myths", "ChatGPT", "AI Research", "Prompt Tips"]
 image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1600&auto=format&fit=crop"

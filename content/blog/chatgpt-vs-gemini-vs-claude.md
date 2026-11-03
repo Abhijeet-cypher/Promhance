@@ -1,5 +1,6 @@
 ---
 title: "ChatGPT vs Claude vs Gemini: The Complete Prompt Engineering Guide (2026)"
+seoTitle: "ChatGPT vs Claude vs Gemini Prompting Guide (2026)"
 description: "ChatGPT vs Claude vs Gemini: how each AI interprets prompts differently in 2026, with frameworks, XML tag examples, and copy-paste prompts for all three."
 date: "2026-08-03"
 author: "Promhance Team"

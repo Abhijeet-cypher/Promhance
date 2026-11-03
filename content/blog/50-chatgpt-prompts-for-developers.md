@@ -1,7 +1,8 @@
 ---
 title: "50 ChatGPT Prompts for Developers: Code Faster & Smarter"
+seoTitle: "50 ChatGPT Prompts for Developers: Code Faster"
 date: "2026-03-18"
-description: "A comprehensive collection of 50 structured ChatGPT prompts to help software engineers debug, refactor, architect, and write tests faster. Copy, paste, and ship."
+description: "50 structured ChatGPT prompts to help software engineers debug, refactor, architect, and write tests faster. Copy, paste, and ship."
 author: "Promhance Team"
 tags: ["ChatGPT", "Prompts", "Developer", "Coding", "Software Engineering", "AI", "Prompt Engineering"]
 image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
