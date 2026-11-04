@@ -258,7 +258,7 @@ Then test: run the old and new versions three times each and compare the **worst
 2. Add your style rules and blocklist as constraints, or use a quick action to refine the result.
 3. Click **Try it** to run the enhanced prompt in [PromAI](/promai) and check the output before you take it to ChatGPT.
 
-Comparing models? See [ChatGPT vs Gemini vs Claude](/blog/chatgpt-vs-gemini-vs-claude) for how each one reads prompts differently.
+Using GPT-6 in the ChatGPT app? See [ChatGPT Intelligent UI Prompts](/blog/chatgpt-intelligent-ui-prompts) for getting interactive charts, calculators and tools. Comparing models? See [ChatGPT vs Gemini vs Claude](/blog/chatgpt-vs-gemini-vs-claude) for how each one reads prompts differently.
 
 **[Enhance your next GPT-6 prompt free →](https://www.promhance.com)**
 

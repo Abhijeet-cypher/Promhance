@@ -41,6 +41,10 @@ Transforms a video concept into prompts that produce high-retention scripts, cat
 
 ## Guides and articles
 
+### ChatGPT Intelligent UI Prompts: How to Get Interactive Charts, Calculators and Tools from GPT-6
+https://www.promhance.com/blog/chatgpt-intelligent-ui-prompts
+Published 2026-11-05. Explains ChatGPT's Intelligent UI, launched with GPT-6 on October 7, 2026 (Plus, Pro, Business and Enterprise on GPT-6 Sol; Free and Go from October 8 on GPT-6 Luna). Covers what it renders (images, diagrams, charts, buttons, forms, calculators, bill splitters, games), where it does not run (Pro thinking level, older Mac and Windows desktop apps), how to turn visuals down with the Layout and visuals setting, a 5-part formula for interactive prompts (artifact, controls, defaults, output, guardrails), 10 copy-paste prompts, and troubleshooting when ChatGPT replies in plain text.
+
 ### How to Prompt GPT-6: OpenAI's Tips + Slop-Word Blocklist
 https://www.promhance.com/blog/how-to-prompt-gpt-6
 Published 2026-11-03. How to prompt GPT-6 Astra, based on OpenAI's official developer guidance: grant initiative so it stops over-asking, request plain prose instead of lists and tables, state that user instructions override skill and context files, and set reasoning effort instead of writing "think step by step." Summarizes OpenAI's slop-word blocklist ("delve into," "it's worth noting," "This isn't about X. It's about Y," summary closers), with a before/after rewrite, 5 copy-paste GPT-6 prompts, and a 6-step migration checklist for old prompts.
@@ -146,5 +150,8 @@ No. Promhance is an independent product. It produces prompts that can be used wi
 ### How do you prompt GPT-6?
 State the finished result first, tell the model to make reasonable assumptions and act, ask for plain prose if you don't want lists and tables, add a short blocklist of filler phrases, and say that your instructions override any skill or context files. Set reasoning effort in the model settings rather than writing "think step by step." Full guide: https://www.promhance.com/blog/how-to-prompt-gpt-6
 
+### What is ChatGPT Intelligent UI and how do you prompt it?
+Intelligent UI launched with GPT-6 in ChatGPT on October 7, 2026. ChatGPT can mix images, diagrams, charts, buttons, forms and small working tools into answers, and chooses when to do so. For a useful tool, ask for it by name and specify the inputs and controls, default values, what should update, and units or limits. Turn visuals down with the Layout and visuals setting on the web. Full guide: https://www.promhance.com/blog/chatgpt-intelligent-ui-prompts
+
 ### Last updated
-2026-11-03
+2026-11-05

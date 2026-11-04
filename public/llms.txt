@@ -25,6 +25,7 @@ Promhance applies proven prompt engineering frameworks (role, context, constrain
 
 ## Guides
 
+- [ChatGPT Intelligent UI Prompts: How to Get Interactive Charts, Calculators and Tools from GPT-6](https://www.promhance.com/blog/chatgpt-intelligent-ui-prompts): What ChatGPT's Intelligent UI is (launched with GPT-6 on October 7, 2026), who has it, how to turn visuals on or off, a 5-part formula for interactive prompts, and 10 copy-paste prompts for calculators, planners, quizzes and checklists.
 - [How to Prompt GPT-6: OpenAI's Tips + Slop-Word Blocklist](https://www.promhance.com/blog/how-to-prompt-gpt-6): OpenAI's official GPT-6 Astra prompting guidance summarized (initiative, plain prose, skill-file priority, reasoning effort), its slop-word blocklist, 5 copy-paste prompts, and a migration checklist.
 - [Stop Telling AI to 'Think Step by Step': How to Prompt Reasoning Models in 2026](https://www.promhance.com/blog/how-to-prompt-reasoning-models-2026): What Wharton research shows about chain-of-thought on reasoning models and the outcome-first prompt structure to use instead.
 - [Vibe Coding Prompts in 2026: 8 Copy-Paste Templates](https://www.promhance.com/blog/vibe-coding-prompts-2026): A 5-part anatomy and 8 templates for Cursor, Claude Code, Lovable and Bolt.
@@ -64,6 +65,9 @@ PromptOps is the professional lifecycle management and optimization of AI prompt
 
 ### How do you prompt GPT-6?
 State the finished result first, tell the model to make reasonable assumptions and act, ask for plain prose if you don't want lists and tables, add a short blocklist of filler phrases, and say your instructions override any skill or context files. See [How to Prompt GPT-6](https://www.promhance.com/blog/how-to-prompt-gpt-6).
+
+### What is ChatGPT Intelligent UI?
+A feature that launched with GPT-6 in ChatGPT on October 7, 2026. ChatGPT can answer with images, diagrams, charts, buttons, forms and small interactive tools such as calculators and planners. To get a useful tool, name the artifact, its inputs and controls, default values, and what should update. See [ChatGPT Intelligent UI Prompts](https://www.promhance.com/blog/chatgpt-intelligent-ui-prompts).
 
 ## Optional
 
