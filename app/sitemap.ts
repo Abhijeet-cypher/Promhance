@@ -1,11 +1,20 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/markdown'
 
+// Regenerate the sitemap at most once a day so new/updated posts appear without a redeploy.
+export const revalidate = 86400;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.promhance.com';
 
   // Get all blog posts — use the last-updated date when available for freshness.
   const posts = await getAllPosts();
+
+  // /blog index changes whenever any post is added or updated.
+  const latestPostDate = posts.reduce((latest, post) => {
+    const d = new Date(post.updated || post.date);
+    return !isNaN(d.getTime()) && d > latest ? d : latest;
+  }, new Date('2026-09-22'));
   const blogUrls = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.updated || post.date),
@@ -64,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date('2026-11-05'),
+      lastModified: latestPostDate,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
