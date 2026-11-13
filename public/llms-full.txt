@@ -123,6 +123,7 @@ Published 2026-03-26. Why ChatGPT, Claude, and Gemini prompts fail and the promp
 
 ## Key facts
 
+- Operated by Klave Studio, a registered sole proprietorship based in India. Klave Studio owns the Promhance platform, brand and associated intellectual property.
 - Free: no account or credit card required; fair-use limits apply.
 - Model-agnostic: ChatGPT, Claude, Gemini, Midjourney, Llama, and any instruction-following LLM.
 - Applies role prompting, constraint injection, chain-of-thought guidance, and output-format instructions automatically.
@@ -145,7 +146,7 @@ Yes. No account or credit card is required. Fair-use limits apply.
 Prompts are sent to Google's Gemini API to generate the result. The prompt and result are saved to the user's history (device-based anonymous ID or account) and can be deleted at any time. Promhance does not sell prompts or use them to train AI models.
 
 ### Is Promhance affiliated with OpenAI, Anthropic or Google?
-No. Promhance is an independent product. It produces prompts that can be used with ChatGPT, Claude, Gemini and other models.
+No. Promhance is an independent product operated by Klave Studio, a registered sole proprietorship based in India. It produces prompts that can be used with ChatGPT, Claude, Gemini and other models.
 
 ### How do you prompt GPT-6?
 State the finished result first, tell the model to make reasonable assumptions and act, ask for plain prose if you don't want lists and tables, add a short blocklist of filler phrases, and say that your instructions override any skill or context files. Set reasoning effort in the model settings rather than writing "think step by step." Full guide: https://www.promhance.com/blog/how-to-prompt-gpt-6

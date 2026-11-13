@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "October 1, 2026";
+const LAST_UPDATED = "November 4, 2026";
 
 export default function TermsOfServicePage() {
   return (
@@ -34,10 +34,39 @@ export default function TermsOfServicePage() {
             Please read these Terms of Service (&ldquo;Terms&rdquo;) carefully
             before using Promhance (&ldquo;Promhance,&rdquo; &ldquo;we,&rdquo;
             &ldquo;us,&rdquo; or &ldquo;our&rdquo;), accessible via our website
-            (the &ldquo;Service&rdquo;). By accessing or using the Service, you
-            agree to be bound by these Terms. If you do not agree, please do not
-            use the Service.
+            (the &ldquo;Service&rdquo;). Promhance is operated by{" "}
+            <strong>Klave Studio</strong>, a registered sole proprietorship based
+            in India. References to &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
+            &ldquo;our&rdquo; include Klave Studio as the business responsible
+            for the Service. By accessing or using the Service, you agree to be
+            bound by these Terms. If you do not agree, please do not use the
+            Service.
           </p>
+
+          <blockquote>
+            <p>
+              <strong>Business Information</strong>
+            </p>
+            <p>
+              Promhance is operated by <strong>Klave Studio</strong>, a registered
+              sole proprietorship based in India. Klave Studio is the business
+              responsible for the operation and management of the Promhance
+              platform, including its services, subscriptions and payment
+              processing.
+            </p>
+            <ul>
+              <li>
+                <strong>Business Name</strong>: Klave Studio
+              </li>
+              <li>
+                <strong>Product Name</strong>: Promhance
+              </li>
+              <li>
+                <strong>Website</strong>:{" "}
+                <a href="https://www.promhance.com">https://www.promhance.com</a>
+              </li>
+            </ul>
+          </blockquote>
 
           <h2>1. Overview of the Service</h2>
           <p>
@@ -170,8 +199,15 @@ export default function TermsOfServicePage() {
           <ul>
             <li>
               The Service, including its design, features, branding, and underlying
-              technology, is the property of Promhance and its licensors, protected
-              by intellectual property laws.
+              technology, is the property of Klave Studio (the operator of
+              Promhance) and its licensors, protected by intellectual property laws.
+            </li>
+            <li>
+              <strong>Ownership of Promhance</strong>: Klave Studio owns the
+              Promhance platform and all associated intellectual property,
+              including the Promhance name, logo, brand assets, website, software,
+              and content, except where third-party materials are used under
+              license.
             </li>
             <li>
               These Terms do not grant you any rights to our trademarks, logos, or
@@ -213,8 +249,8 @@ export default function TermsOfServicePage() {
 
           <h2>10. Limitation of Liability</h2>
           <p>
-            To the maximum extent permitted by law, Promhance and its officers,
-            employees, and partners shall not be liable for any indirect,
+            To the maximum extent permitted by law, Promhance, Klave Studio, and
+            their officers, employees, and partners shall not be liable for any indirect,
             incidental, special, consequential, or punitive damages, or any loss
             of profits, data, or goodwill, arising from your use of or inability to
             use the Service, even if advised of the possibility of such damages.
@@ -226,7 +262,7 @@ export default function TermsOfServicePage() {
 
           <h2>11. Indemnification</h2>
           <p>
-            You agree to indemnify and hold harmless Promhance from any claims,
+            You agree to indemnify and hold harmless Promhance and Klave Studio from any claims,
             damages, losses, liabilities, and expenses (including legal fees)
             arising from your use of the Service, violation of these Terms, or
             infringement of any third-party rights.
@@ -300,7 +336,8 @@ export default function TermsOfServicePage() {
             <li>
               <strong>Entire Agreement</strong>: These Terms, together with our{" "}
               <Link href="/privacy">Privacy Policy</Link>, constitute the entire
-              agreement between you and Promhance regarding the Service.
+              agreement between you and Klave Studio (operator of Promhance)
+              regarding the Service.
             </li>
             <li>
               <strong>Severability</strong>: If any provision of these Terms is
@@ -322,6 +359,12 @@ export default function TermsOfServicePage() {
           <h2>17. Contact Us</h2>
           <p>If you have any questions about these Terms, please contact us at:</p>
           <ul>
+            <li>
+              <strong>Business Name</strong>: Klave Studio
+            </li>
+            <li>
+              <strong>Product</strong>: Promhance
+            </li>
             <li>
               <strong>Email</strong>:{" "}
               <a href="mailto:admin@promhance.com">admin@promhance.com</a>
@@ -349,7 +392,7 @@ export default function TermsOfServicePage() {
             url: "https://www.promhance.com/terms",
             description:
               "The terms and conditions for using Promhance, a free AI-powered prompt enhancement tool.",
-            dateModified: "2026-10-01",
+            dateModified: "2026-11-04",
           }),
         }}
       />

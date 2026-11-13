@@ -83,9 +83,14 @@ export default function Footer() {
         </div>
 
         <div className="relative pt-6 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-[#2a2a2a]">
-          <p className="text-xs text-[#525252] font-medium">
-            &copy; {new Date().getFullYear()} Promhance. All rights reserved.
-          </p>
+          <div className="text-xs text-[#525252] font-medium">
+            <p>
+              &copy; {new Date().getFullYear()} Klave Studio. All rights reserved.
+            </p>
+            <p className="mt-1">
+              Promhance is a product of Klave Studio.
+            </p>
+          </div>
           <nav className="flex items-center gap-5">
             <Link
               href="/privacy"
