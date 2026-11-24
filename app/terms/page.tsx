@@ -42,6 +42,19 @@ export default function TermsOfServicePage() {
             not use the Service.
           </p>
 
+          <p>
+            <strong>Your agreement is recorded.</strong> When you create an
+            account, we ask you to tick a box confirming that you have read and
+            agree to these Terms and our Privacy Policy. If you use the Service
+            without an account, a notice next to the Enhance button tells you
+            that by enhancing you agree to them, and your first use after seeing
+            that notice counts as your agreement. We keep a record of the
+            agreement: the version, the date and time, your IP address, your
+            browser details, and your account or anonymous device identifier. If
+            we update these Terms in a material way, we may ask you to agree to
+            the new version again.
+          </p>
+
           <blockquote>
             <p>
               <strong>Business Information</strong>

@@ -34,6 +34,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import FeedbackReaction from "@/components/FeedbackReaction";
+import Link from "next/link";
+import { useTermsConsent } from "@/lib/use-terms-consent";
 import SavePromptModal from "@/components/SavePromptModal";
 import { useAuth } from "@/components/AuthProvider";
 import { getAnonId } from "@/lib/anon-id";
@@ -311,8 +313,14 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
 
   const enhanceInFlight = useRef(false);
 
+  // The Enhance button carries a "By enhancing you agree to our Terms and
+  // Privacy Policy" line. The first time someone enhances after seeing it we
+  // record that (once per browser and terms version), without blocking them.
+  const { isAccepted, accept } = useTermsConsent();
+
   const enhancePrompt = useCallback(async (regen = false) => {
     if (!input.trim()) return;
+    if (!isAccepted()) void accept("enhance_notice");
     // Synchronous guard: state-based `loading` lags a render behind, so a
     // double click / repeated Ctrl+Enter could otherwise fire two requests.
     if (enhanceInFlight.current) return;
@@ -431,7 +439,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
       setIsRegenerating(false);
       if (usedResearch) void refreshAccess();
     }
-  }, [input, mode, intensity, researchOn, refreshAccess]);
+  }, [input, mode, intensity, researchOn, refreshAccess, isAccepted, accept]);
 
   const refinePrompt = useCallback(async (action: QuickAction) => {
     if (!promptId) {
@@ -513,6 +521,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
 
   return (
     <div className="w-full flex flex-col lg:flex-row gap-5 sm:gap-6 items-stretch justify-center lg:h-[700px]">
+
 
       {/* ══════════════ INPUT PANEL ══════════════ */}
       <div className="w-full lg:w-1/2">
@@ -687,6 +696,18 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                 </>
               )}
             </button>
+
+            <p className="text-center text-[11px] leading-relaxed text-[#525252]">
+              By enhancing, you agree to our{" "}
+              <Link href="/terms" target="_blank" rel="noopener" className="text-[#a1a1a1] underline-offset-2 hover:text-white hover:underline">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link href="/privacy" target="_blank" rel="noopener" className="text-[#a1a1a1] underline-offset-2 hover:text-white hover:underline">
+                Privacy Policy
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </div>

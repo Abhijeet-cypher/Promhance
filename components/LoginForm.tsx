@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Loader2, Mail, Lock, ArrowRight, MailCheck, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 import GoogleIcon from "@/components/GoogleIcon";
+import { getAnonId } from "@/lib/anon-id";
+import { TERMS_VERSION, recordConsent, setLocalConsent } from "@/lib/consent";
 
 type Mode = "signin" | "signup";
 
@@ -22,10 +24,18 @@ export default function LoginForm() {
   const [confirmationSent, setConfirmationSent] = useState(false);
   const [newsletterOptIn, setNewsletterOptIn] = useState(true);
   const [newsletterTouched, setNewsletterTouched] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const needsTerms = mode === "signup" && !acceptedTerms;
+
+  /** Remember the agreement here and in the server-side record (anonymous until sign-in links it). */
+  const rememberAgreement = (source: "signup" | "signup_google") => {
+    setLocalConsent();
+    void recordConsent(source, getAnonId());
+  };
 
   useEffect(() => {
     if (!loading && user) {
-      router.replace("/history");
+      router.replace("/");
     }
   }, [loading, user, router]);
 
@@ -35,6 +45,10 @@ export default function LoginForm() {
 
     if (!email.trim() || !password) {
       setError("Enter your email and password.");
+      return;
+    }
+    if (needsTerms) {
+      setError("Please agree to the Terms of Service and Privacy Policy to create an account.");
       return;
     }
 
@@ -50,22 +64,23 @@ export default function LoginForm() {
           setError(signInError);
           return;
         }
-        router.replace("/history");
+        router.replace("/");
         router.refresh();
       } else {
         const { error: signUpError, needsConfirmation } = await signUp(
           email.trim(),
           password,
-          { newsletterOptIn }
+          { newsletterOptIn, termsVersion: TERMS_VERSION }
         );
         if (signUpError) {
           setError(signUpError);
           return;
         }
+        rememberAgreement("signup");
         if (needsConfirmation) {
           setConfirmationSent(true);
         } else {
-          router.replace("/history");
+          router.replace("/");
           router.refresh();
         }
       }
@@ -76,8 +91,15 @@ export default function LoginForm() {
 
   const handleGoogle = async () => {
     setError(null);
+    if (needsTerms) {
+      setError("Please agree to the Terms of Service and Privacy Policy to create an account.");
+      return;
+    }
     setSubmitting(true);
     try {
+      // Google can't carry sign-up metadata, so the agreement is saved locally
+      // and linked to the account right after the redirect (see ConsentSync).
+      if (mode === "signup") rememberAgreement("signup_google");
       const options =
         mode === "signup"
           ? { newsletterOptIn }
@@ -145,7 +167,8 @@ export default function LoginForm() {
       <button
         type="button"
         onClick={handleGoogle}
-        disabled={submitting || !configured}
+        disabled={submitting || !configured || needsTerms}
+        title={needsTerms ? "Tick the box below to agree to the Terms first" : undefined}
         className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#2a2a2a] bg-[#0a0a0a] px-4 py-2.5 text-sm font-medium text-white transition-all hover:border-[#3a3a3a] hover:bg-[#141414] disabled:cursor-not-allowed disabled:opacity-60"
       >
         <GoogleIcon />
@@ -224,6 +247,28 @@ export default function LoginForm() {
           </span>
         </label>
 
+        {mode === "signup" && (
+          <label className="flex items-start gap-3 cursor-pointer select-none rounded-xl border border-[#2a2a2a] bg-[#0a0a0a] px-3.5 py-3 transition-colors hover:border-[#3a3a3a]">
+            <input
+              type="checkbox"
+              checked={acceptedTerms}
+              onChange={(e) => setAcceptedTerms(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-blue-500"
+            />
+            <span className="text-xs text-[#d4d4d4] leading-relaxed">
+              I have read and agree to the{" "}
+              <Link href="/terms" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link href="/privacy" target="_blank" rel="noopener" className="text-blue-400 hover:text-blue-300">
+                Privacy Policy
+              </Link>
+              .
+            </span>
+          </label>
+        )}
+
         {error && (
           <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
             {error}
@@ -232,8 +277,8 @@ export default function LoginForm() {
 
         <button
           type="submit"
-          disabled={submitting || !configured}
-          className="btn-primary btn-shimmer"
+          disabled={submitting || !configured || needsTerms}
+          className="btn-primary btn-shimmer disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting ? (
             <Loader2 className="w-4 h-4 animate-spin" />

@@ -81,6 +81,7 @@ import Header from "@/components/Header";
 import CursorSpotlight from "@/components/CursorSpotlight";
 import { AuthProvider } from "@/components/AuthProvider";
 import FeatureAnnouncementModal from "@/components/FeatureAnnouncementModal";
+import ConsentSync from "@/components/ConsentSync";
 
 export default function RootLayout({
   children,
@@ -190,6 +191,7 @@ export default function RootLayout({
           <Header />
           {children}
           <FeatureAnnouncementModal />
+          <ConsentSync />
         </AuthProvider>
         {isProduction && <Analytics />}
       </body>

@@ -92,6 +92,7 @@ export async function GET(req: Request) {
   const mode = (searchParams.get("mode") ?? "").trim().slice(0, 60);
   const intensity = (searchParams.get("intensity") ?? "").trim().slice(0, 40);
   const identity = (searchParams.get("identity") ?? "").trim();
+  const research = (searchParams.get("research") ?? "").trim();
   const user = (searchParams.get("user") ?? "").trim().slice(0, MAX_SEARCH_LENGTH);
   const from = cleanDate(searchParams.get("from"));
   const to = cleanDate(searchParams.get("to"));
@@ -125,6 +126,8 @@ export async function GET(req: Request) {
 
   if (mode) query = query.eq("mode", mode);
   if (intensity) query = query.eq("intensity", intensity);
+  if (research === "yes") query = query.eq("research_used", true);
+  if (research === "no") query = query.eq("research_used", false);
   if (identity === "anon") query = query.is("user_id", null);
   if (identity === "user") query = query.not("user_id", "is", null);
   if (userIds) query = query.in("user_id", userIds);

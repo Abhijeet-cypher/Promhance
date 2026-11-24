@@ -10,7 +10,7 @@ export const runtime = "nodejs";
  */
 function safeNextPath(value: string | null): string {
   if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\")) {
-    return "/history";
+    return "/";
   }
   return value;
 }

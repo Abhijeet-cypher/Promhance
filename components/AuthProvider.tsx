@@ -13,7 +13,11 @@ import { getAnonId } from "@/lib/anon-id";
 
 type SignInResult = { error: string | null };
 type SignUpResult = { error: string | null; needsConfirmation: boolean };
-type AuthOptions = { newsletterOptIn?: boolean };
+type AuthOptions = {
+  newsletterOptIn?: boolean;
+  /** Terms version the user ticked "I agree" for; saved on the new account. */
+  termsVersion?: string;
+};
 
 const NEWSLETTER_PENDING_KEY = "promhance_newsletter_pending";
 
@@ -170,7 +174,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               : undefined,
           // Picked up by the handle_new_user trigger so the preference is
           // correct even when email confirmation is required.
-          data: { newsletter_opt_in: options?.newsletterOptIn ?? true },
+          data: {
+            newsletter_opt_in: options?.newsletterOptIn ?? true,
+            ...(options?.termsVersion
+              ? {
+                  terms_version: options.termsVersion,
+                  terms_accepted_at: new Date().toISOString(),
+                }
+              : {}),
+          },
         },
       });
 

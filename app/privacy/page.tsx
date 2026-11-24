@@ -135,6 +135,14 @@ export default function PrivacyPolicyPage() {
               spent on the Service, and interaction patterns.
             </li>
             <li>
+              <strong>Agreement Records</strong>: When you agree to our Terms of
+              Service and Privacy Policy (by ticking the box when you sign up, or
+              by using the tool after the notice beside the Enhance button), we
+              record the version, the date and time, your IP address, your browser details (user agent), and your
+              account or anonymous device identifier. We keep this as proof of
+              your agreement and to handle disputes.
+            </li>
+            <li>
               <strong>Usage Counters and Limits</strong>: To apply the monthly
               usage limits of each plan, we keep running counts of how many
               enhancements, refinements, and Deep Research runs are used in a
@@ -209,8 +217,9 @@ export default function PrivacyPolicyPage() {
               <strong>Deep Research (beta)</strong>: If you turn on Deep Research,
               your prompt is sent to the same AI provider for an additional
               research step before the final prompt is written. The research
-              notes are shown to you in the result and are not saved to your
-              history.
+              notes are shown to you in the result and are not saved. We do
+              record that Deep Research was used for that prompt, and count the
+              run toward your monthly allowance.
             </li>
           </ul>
 

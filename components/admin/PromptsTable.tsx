@@ -21,6 +21,7 @@ type PromptRow = {
   enhanced_prompt: string;
   mode: string | null;
   intensity: string | null;
+  research_used?: boolean;
   created_at: string;
 };
 
@@ -49,6 +50,7 @@ export default function PromptsTable() {
   const [mode, setMode] = useState("");
   const [intensity, setIntensity] = useState("");
   const [identity, setIdentity] = useState("");
+  const [research, setResearch] = useState("");
   const [sort, setSort] = useState("newest");
 
   // Debounce the free-text inputs; any filter change resets to page 1.
@@ -76,6 +78,7 @@ export default function PromptsTable() {
       if (mode) params.set("mode", mode);
       if (intensity) params.set("intensity", intensity);
       if (identity) params.set("identity", identity);
+      if (research) params.set("research", research);
       if (sort !== "newest") params.set("sort", sort);
 
       const res = await fetch(`/api/admin/prompts?${params}`, { cache: "no-store" });
@@ -91,7 +94,7 @@ export default function PromptsTable() {
     } finally {
       setLoading(false);
     }
-  }, [page, search, userFilter, from, to, mode, intensity, identity, sort]);
+  }, [page, search, userFilter, from, to, mode, intensity, identity, research, sort]);
 
   useEffect(() => {
     let active = true;
@@ -106,7 +109,7 @@ export default function PromptsTable() {
   }, [load]);
 
   const hasFilters = Boolean(
-    query || userQuery || from || to || mode || intensity || identity || sort !== "newest"
+    query || userQuery || from || to || mode || intensity || identity || research || sort !== "newest"
   );
 
   const reset = () => {
@@ -116,6 +119,7 @@ export default function PromptsTable() {
     setTo("");
     setMode("");
     setIntensity("");
+    setResearch("");
     setIdentity("");
     setSort("newest");
     setPage(0);
@@ -242,6 +246,25 @@ export default function PromptsTable() {
           </div>
 
           <div>
+            <label className={fieldLabel} htmlFor="filter-research">
+              Deep research
+            </label>
+            <select
+              id="filter-research"
+              value={research}
+              onChange={(e) => {
+                setResearch(e.target.value);
+                setPage(0);
+              }}
+              className={fieldClass}
+            >
+              <option value="">Any</option>
+              <option value="yes">Used research</option>
+              <option value="no">No research</option>
+            </select>
+          </div>
+
+          <div>
             <label className={fieldLabel} htmlFor="filter-identity">
               Identity
             </label>
@@ -325,6 +348,11 @@ export default function PromptsTable() {
                       <td className="px-3 py-3 text-xs text-[#a1a1a1]">
                         {row.mode ?? "—"}
                         <span className="ml-1 text-[#525252]">· {row.intensity ?? "—"}</span>
+                        {row.research_used && (
+                          <span className="ml-1.5 rounded-md border border-blue-500/30 bg-blue-500/10 px-1.5 py-px text-[10px] font-semibold text-blue-300">
+                            Research
+                          </span>
+                        )}
                       </td>
                       <td className="max-w-[420px] px-3 py-3 text-xs text-[#a1a1a1]">
                         <p className="line-clamp-2">{row.original_prompt}</p>

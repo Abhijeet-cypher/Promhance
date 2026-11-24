@@ -69,6 +69,7 @@ type Prompt = {
   enhanced_prompt: string;
   mode: string | null;
   intensity: string | null;
+  research_used?: boolean;
   created_at: string;
   versions?: PromptVersion[];
 };
@@ -520,6 +521,11 @@ export default function HistoryClient() {
                           {prompt.intensity && (
                             <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#1a1a1a] text-[#a1a1a1] border border-[#2a2a2a] capitalize">
                               {prompt.intensity}
+                            </span>
+                          )}
+                          {prompt.research_used && (
+                            <span className="text-[11px] px-2 py-0.5 rounded-md bg-blue-500/10 text-blue-300 border border-blue-500/25">
+                              Deep research
                             </span>
                           )}
                           {versions.length > 1 && (

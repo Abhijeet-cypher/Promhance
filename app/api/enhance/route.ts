@@ -371,7 +371,7 @@ async function streamEnhance(args: EnhanceArgs) {
  * never break the enhancement itself, so errors resolve to a null id.
  */
 async function persistEnhancement(
-  { prompt, mode, intensity, anonId }: EnhanceArgs,
+  { prompt, mode, intensity, anonId, research }: EnhanceArgs,
   enhanced: string
 ): Promise<string | null> {
   let promptId: string | null = null;
@@ -380,22 +380,30 @@ async function persistEnhancement(
   if (supabase && anonId) {
     const userId = await resolveUserId();
 
-    const { data, error } = await supabase
+    const row = {
+      anon_id: anonId,
+      user_id: userId,
+      original_prompt: prompt,
+      enhanced_prompt: enhanced.slice(0, MAX_OUTPUT_LENGTH),
+      mode,
+      intensity,
+    };
+
+    // Record whether Deep Research was used for this prompt. If the column
+    // does not exist yet (migration not run), save without it so history
+    // keeps working.
+    let { data, error } = await supabase
       .from("prompts")
-      .insert({
-        anon_id: anonId,
-        user_id: userId,
-        original_prompt: prompt,
-        enhanced_prompt: enhanced.slice(0, MAX_OUTPUT_LENGTH),
-        mode,
-        intensity,
-      })
+      .insert({ ...row, research_used: Boolean(research) })
       .select("id")
       .single();
+    if (error && /research_used/i.test(error.message)) {
+      ({ data, error } = await supabase.from("prompts").insert(row).select("id").single());
+    }
 
     if (error) {
       console.error("Prompt persist failed:", error.message);
-    } else {
+    } else if (data) {
       promptId = data.id;
 
       // Seed v1 of the version history. Best-effort: the enhancement and
