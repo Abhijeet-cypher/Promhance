@@ -35,9 +35,8 @@ export default function PrivacyPolicyPage() {
             &ldquo;us,&rdquo; or &ldquo;our&rdquo;). This Privacy Policy explains
             how we collect, use, store, and protect your information when you use
             our website and prompt enhancement services (the &ldquo;Service&rdquo;).
-            Promhance is operated by <strong>Klave Studio</strong>, a registered
-            sole proprietorship based in India, which is the entity responsible
-            for the Service and the handling of your information.
+            Promhance is responsible for the Service and the handling of your
+            information.
           </p>
           <p>
             By using Promhance, you agree to the collection and use of information
@@ -49,16 +48,11 @@ export default function PrivacyPolicyPage() {
               <strong>Business Information</strong>
             </p>
             <p>
-              Promhance is operated by <strong>Klave Studio</strong>, a registered
-              sole proprietorship based in India. Klave Studio is the business
-              responsible for the operation and management of the Promhance
-              platform, including its services, subscriptions and payment
-              processing.
+              Promhance is responsible for the operation and management of the
+              Promhance platform, including its services, subscriptions and
+              payment processing.
             </p>
             <ul>
-              <li>
-                <strong>Business Name</strong>: Klave Studio
-              </li>
               <li>
                 <strong>Product Name</strong>: Promhance
               </li>
@@ -199,10 +193,10 @@ export default function PrivacyPolicyPage() {
             </li>
             <li>
               <strong>Business Transfers</strong>: In connection with a merger,
-              acquisition, or sale of assets (including a transfer of Klave
-              Studio&apos;s assets or the Promhance platform), where user
-              information may be transferred as part of that transaction, subject
-              to standard confidentiality protections.
+              acquisition, or sale of assets (including a transfer of the
+              Promhance platform), where user information may be transferred as
+              part of that transaction, subject to standard confidentiality
+              protections.
             </li>
             <li>
               <strong>With Your Consent</strong>: In any other case where you have
@@ -285,9 +279,6 @@ export default function PrivacyPolicyPage() {
             data practices, please contact us at:
           </p>
           <ul>
-            <li>
-              <strong>Business Name</strong>: Klave Studio
-            </li>
             <li>
               <strong>Product</strong>: Promhance
             </li>

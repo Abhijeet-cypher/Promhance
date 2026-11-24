@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
-import type { Content } from "@google/genai";
-import {
-  getGoogleGenAI,
-  GEMINI_MODEL,
-  generateContentStreamWithFallback,
-} from "@/lib/ai";
+import type { ModelMessage } from "ai";
+import { generateCompletionStream, isConfigured } from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
 import { preflight, withCors } from "@/lib/cors";
 
@@ -61,9 +57,8 @@ async function handlePost(req: Request) {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
     }
 
-    const ai = getGoogleGenAI();
-    if (!ai) {
-      console.error("GEMINI_API_KEY is not configured.");
+    if (!isConfigured()) {
+      console.error("DEEPSEEK_API_KEY is not configured.");
       return NextResponse.json(
         { error: "The service is temporarily unavailable." },
         { status: 500 }
@@ -83,35 +78,29 @@ async function handlePost(req: Request) {
       )
       .slice(-MAX_HISTORY_TURNS);
 
-    const contents: Content[] = [
+    const messages: ModelMessage[] = [
       ...history.map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content.slice(0, MAX_MESSAGE_LENGTH) }],
+        role: m.role === "assistant" ? ("assistant" as const) : ("user" as const),
+        content: m.content.slice(0, MAX_MESSAGE_LENGTH),
       })),
-      { role: "user", parts: [{ text: trimmed }] },
+      { role: "user", content: trimmed },
     ];
 
     // "test" mode runs the prompt as-is (no assistant persona) so the user
     // sees the raw model output. "answer" mode is a helpful assistant.
-    const stream = await generateContentStreamWithFallback(ai, {
-      model: GEMINI_MODEL,
-      contents,
-      config: {
-        // Stop generating (and paying) when the client disconnects.
-        abortSignal: req.signal,
-        ...(mode === "answer"
-          ? { systemInstruction: ANSWER_SYSTEM_INSTRUCTION }
-          : {}),
-        temperature: mode === "test" ? 0.9 : 0.7,
-      },
+    const stream = await generateCompletionStream({
+      // Stop generating (and paying) when the client disconnects.
+      abortSignal: req.signal,
+      ...(mode === "answer" ? { instructions: ANSWER_SYSTEM_INSTRUCTION } : {}),
+      messages,
+      temperature: mode === "test" ? 0.9 : 0.7,
     });
 
     const encoder = new TextEncoder();
     const readable = new ReadableStream<Uint8Array>({
       async start(controller) {
         try {
-          for await (const chunk of stream) {
-            const text = chunk.text;
+          for await (const text of stream) {
             if (text) controller.enqueue(encoder.encode(text));
           }
         } catch (err) {

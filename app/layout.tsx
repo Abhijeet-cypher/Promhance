@@ -123,7 +123,6 @@ export default function RootLayout({
                 "@type": "Organization",
                 "@id": "https://www.promhance.com/#organization",
                 "name": "Promhance",
-                "legalName": "Klave Studio",
                 "url": "https://www.promhance.com",
                 "foundingDate": "2026",
                 "logo": {
@@ -131,7 +130,7 @@ export default function RootLayout({
                   "@id": "https://www.promhance.com/#logo",
                   "url": "https://www.promhance.com/logo.svg"
                 },
-                "description": "Promhance is a free AI prompt enhancer that turns rough ideas into structured prompts for ChatGPT, Claude, Gemini and Midjourney. Promhance is operated by Klave Studio, a registered sole proprietorship based in India.",
+                "description": "Promhance is a free AI prompt enhancer that turns rough ideas into structured prompts for ChatGPT, Claude, Gemini and Midjourney.",
                 "sameAs": ["https://github.com/Abhijeet-cypher/Promhance"]
               },
               {

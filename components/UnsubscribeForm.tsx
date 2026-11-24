@@ -21,6 +21,10 @@ export default function UnsubscribeForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!hasTokenLink) {
+      setError("Use the unsubscribe link from a newsletter email, or sign in to change your preference.");
+      return;
+    }
     const value = email.trim();
     if (!value) {
       setError("Enter the email address you subscribed with.");
@@ -78,10 +82,7 @@ export default function UnsubscribeForm({
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-2xl border border-[#2a2a2a] bg-[#111111] p-6 sm:p-8 shadow-xl"
-    >
+    <form onSubmit={handleSubmit} className="rounded-2xl border border-[#2a2a2a] bg-[#111111] p-6 sm:p-8 shadow-xl">
       <div className="space-y-2">
         <label
           htmlFor="unsubscribe-email"
@@ -99,6 +100,7 @@ export default function UnsubscribeForm({
             type="email"
             required
             readOnly={hasTokenLink}
+            disabled={!hasTokenLink}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
@@ -106,6 +108,13 @@ export default function UnsubscribeForm({
           />
         </div>
       </div>
+
+      {!hasTokenLink && (
+        <p className="mt-4 text-xs leading-relaxed text-[#a1a1a1]">
+          To protect your subscription, use the personal unsubscribe link in a newsletter email.
+          You can also <Link href="/login" className="text-blue-400 hover:text-blue-300">sign in</Link> and update your preference from the footer.
+        </p>
+      )}
 
       {error && (
         <p
@@ -119,7 +128,7 @@ export default function UnsubscribeForm({
 
       <button
         type="submit"
-        disabled={status === "submitting"}
+        disabled={status === "submitting" || !hasTokenLink}
         className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-[#0a0a0a] shadow-lg transition-colors hover:bg-[#f5f5f5] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "submitting" ? (

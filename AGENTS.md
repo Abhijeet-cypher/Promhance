@@ -20,19 +20,19 @@ Promhance — a Next.js app that enhances rough prompts into engineered prompts 
 
 ## Environment
 
-- `/api/enhance` and `/api/prompts/refine` require `GEMINI_API_KEY` in `.env.local`; without it they return HTTP 500. `.env*` is gitignored.
+- `/api/enhance`, `/api/prompts/refine`, and `/api/promai` require `DEEPSEEK_API_KEY` in `.env.local`; without it they return HTTP 500. `.env*` is gitignored. Optional: `DEEPSEEK_MODEL` (default `deepseek-flash`), `DEEPSEEK_BASE_URL`, `DEEPSEEK_THINKING` (default `disabled`).
 - Supabase env vars (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`) power auth + persistence. Without them, history/refinements are disabled but enhancement still works.
 
 ## Architecture
 
 - API routes (all `runtime = "nodejs"`):
-  - `app/api/enhance/route.ts` — initial enhancement. Single **non-streaming** Gemini call (primary model `gemini-3.1-flash-lite` via `GEMINI_MODEL`, with a fallback chain in `lib/ai.ts`). Persists the prompt and its v1 version.
+  - `app/api/enhance/route.ts` — initial enhanсement. Single **non-streaming** model call (Vercel AI SDK + DeepSeek, primary model `deepseek-flash` via `AI_MODEL`, with a fallback chain in `lib/ai.ts`). Persists the prompt and its v1 version.
   - `app/api/prompts/route.ts` — GET history / single prompt (with versions), DELETE.
   - `app/api/prompts/refine/route.ts` — applies a quick-action refinement to a prompt, stores the next version.
   - `app/api/promai/route.ts` — PromAI chat. **Streaming** `text/plain` response (answer mode = assistant persona; test mode = run the prompt as-is). Ephemeral, no persistence. Uses `lib/ai.ts`.
   - `app/api/feedback/route.ts`, `app/api/auth/claim/route.ts` — feedback + anonymous-history claiming after sign-in.
   - Note: `README.md` is stale and claims `gemini-2.5-flash` + streaming.
-- `lib/ai.ts` — shared `GoogleGenAI` client (`getGoogleGenAI()`) + `GEMINI_MODEL` constant, used by `/api/promai`.
+- `lib/ai.ts` — shared LLM layer built on the Vercel AI SDK (`ai` + `@ai-sdk/deepseek`): `generateCompletion()` / `generateCompletionStream()` with a model fallback chain (`AI_MODEL`), `isConfigured()`, and DeepSeek thinking disabled by default. Provider/model swaps are localized here.
 - `lib/prompt-modes.ts` — mode + intensity system instructions (shared by enhance & refine). `lib/quick-actions.ts` — per-mode refinement actions (`id`/`label`/`instruction`), shared by the refine route and the client.
 - `components/PromptEnhancer.tsx` — the core client tool, reused by every landing page via a `defaultMode` prop. Keep its `MODES` list in sync with `lib/prompt-modes.ts` and the quick-action sets (both `Marketing` and all modes have entries). Its output header has a "Try it" button that deep-links to `/promai?test=<prompt>`.
 - `components/PromaiChat.tsx` + `app/promai/page.tsx` — PromAI chat UI/page (Ask + Test modes, streaming).

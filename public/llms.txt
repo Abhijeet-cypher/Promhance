@@ -6,7 +6,7 @@ Promhance applies proven prompt engineering frameworks (role, context, constrain
 
 ## Key facts
 
-- Operated by Klave Studio, a registered sole proprietorship based in India. Klave Studio owns the Promhance platform, brand and associated intellectual property.
+- Promhance owns the Promhance platform, brand and associated intellectual property.
 - Free to use: no account or credit card required; fair-use limits apply.
 - Works with any instruction-following model, including ChatGPT (GPT-4o/GPT-4), Claude, Gemini, Llama, and Midjourney.
 - Enhancement applies role prompting, constraint injection, chain-of-thought guidance, and explicit output-format instructions automatically.

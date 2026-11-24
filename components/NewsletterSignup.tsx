@@ -10,11 +10,9 @@ type Status = "idle" | "submitting" | "error";
 export default function NewsletterSignup() {
   const { user, loading } = useAuth();
 
-  const [email, setEmail] = useState("");
   const [optIn, setOptIn] = useState<boolean | null>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState<string | null>(null);
-  const [needsAccount, setNeedsAccount] = useState(false);
 
   useEffect(() => {
     if (loading || !user) return;
@@ -49,44 +47,6 @@ export default function NewsletterSignup() {
       if (!res.ok) throw new Error();
       setOptIn(nextOptIn);
       setMessage(nextOptIn ? "You're subscribed." : "You've been unsubscribed.");
-      setStatus("idle");
-    } catch {
-      setMessage("Something went wrong. Please try again.");
-      setStatus("error");
-    }
-  }
-
-  async function subscribeWithEmail(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim()) return;
-
-    setStatus("submitting");
-    setMessage(null);
-    setNeedsAccount(false);
-
-    try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "subscribe", email: email.trim() }),
-      });
-      const data = await res.json().catch(() => null);
-
-      if (!res.ok) {
-        setMessage(data?.error ?? "Something went wrong. Please try again.");
-        setStatus("error");
-        return;
-      }
-
-      if (data?.needsAccount) {
-        setNeedsAccount(true);
-        setMessage("We couldn't find that email. Create a free account to subscribe.");
-        setStatus("idle");
-        return;
-      }
-
-      setMessage("You're subscribed. Check your inbox for updates.");
-      setEmail("");
       setStatus("idle");
     } catch {
       setMessage("Something went wrong. Please try again.");
@@ -135,33 +95,13 @@ export default function NewsletterSignup() {
           )}
         </div>
       ) : (
-        <form onSubmit={subscribeWithEmail} className="space-y-2.5">
-          <div className="relative">
-            <Mail
-              className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#525252]"
-              strokeWidth={1.75}
-            />
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              className="w-full rounded-xl border border-[#2a2a2a] bg-[#111111] pl-10 pr-3 py-2.5 text-sm text-[#f5f5f5] placeholder:text-[#3a3a3a] transition-all focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/40"
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={status === "submitting"}
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-[#0a0a0a] transition-colors hover:bg-[#f5f5f5] disabled:opacity-50"
-          >
-            {status === "submitting" ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              "Subscribe"
-            )}
-          </button>
-        </form>
+        <Link
+          href="/login"
+          className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-[#0a0a0a] transition-colors hover:bg-[#f5f5f5]"
+        >
+          <Mail className="h-4 w-4" />
+          Sign in to subscribe
+        </Link>
       )}
 
       {message && (
@@ -171,14 +111,6 @@ export default function NewsletterSignup() {
           }`}
         >
           {message}
-          {needsAccount && (
-            <>
-              {" "}
-              <Link href="/login" className="text-blue-400 hover:text-blue-300">
-                Sign up free
-              </Link>
-            </>
-          )}
         </p>
       )}
     </div>

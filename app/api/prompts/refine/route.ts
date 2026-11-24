@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { GEMINI_MODEL, generateContentWithFallback, getGoogleGenAI } from "@/lib/ai";
+import type { ModelMessage } from "ai";
+import { generateCompletion, isConfigured } from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { isValidUuid, parseAnonId, resolveUserId } from "@/lib/supabase/identity";
@@ -38,9 +39,8 @@ export async function POST(req: Request) {
     const limited = await enforceRateLimit(req, "refine", 15, 300);
     if (limited) return limited;
 
-    const ai = getGoogleGenAI();
-    if (!ai) {
-      console.error("GEMINI_API_KEY is not configured.");
+    if (!isConfigured()) {
+      console.error("DEEPSEEK_API_KEY is not configured.");
       return NextResponse.json(
         { error: "The service is temporarily unavailable." },
         { status: 500 }
@@ -130,21 +130,20 @@ export async function POST(req: Request) {
     const currentText = sourceText ?? latest?.text ?? prompt.enhanced_prompt;
     const nextVersion = (latest?.version_number ?? 1) + 1;
 
-    const response = await generateContentWithFallback(ai, {
-      model: GEMINI_MODEL,
-      contents: [
-        {
-          role: "user",
-          parts: [{ text: `Refine this prompt:\n\n${currentText}` }],
-        },
-      ],
-      config: {
-        systemInstruction: buildRefineSystemInstruction(prompt.mode, action.instruction),
-        temperature: 0.6,
+    const messages: ModelMessage[] = [
+      {
+        role: "user",
+        content: `Refine this prompt:\n\n${currentText}`,
       },
+    ];
+
+    const response = await generateCompletion({
+      instructions: buildRefineSystemInstruction(prompt.mode, action.instruction),
+      messages,
+      temperature: 0.6,
     });
 
-    const refined = (response.text || "Failed to generate refinement.").trim();
+    const refined = (response || "Failed to generate refinement.").trim();
 
     // Two concurrent refinements can compute the same next version number.
     // The (prompt_id, version_number) unique constraint rejects the loser

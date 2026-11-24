@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import type { GoogleGenAI } from "@google/genai";
+import type { ModelMessage } from "ai";
 import {
-  GEMINI_MODEL,
-  generateContentStreamWithFallback,
-  generateContentWithFallback,
-  getGoogleGenAI,
+  generateCompletion,
+  generateCompletionStream,
+  isConfigured,
+  type CompletionParams,
 } from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
@@ -64,9 +64,8 @@ async function handlePost(req: Request) {
       return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
     }
 
-    const ai = getGoogleGenAI();
-    if (!ai) {
-      console.error("GEMINI_API_KEY is not configured.");
+    if (!isConfigured()) {
+      console.error("DEEPSEEK_API_KEY is not configured.");
       return NextResponse.json(
         { error: "The service is temporarily unavailable." },
         { status: 500 }
@@ -77,15 +76,15 @@ async function handlePost(req: Request) {
     // trailing metadata record carries the saved prompt id. Other callers (the
     // extension) keep the plain JSON response below.
     if (body.stream === true) {
-      return streamEnhance(ai, { prompt, mode, intensity, anonId });
+      return streamEnhance({ prompt, mode, intensity, anonId });
     }
 
     // Identical requests already in flight (double click, client retry, two
-    // extension instances) share one Gemini call and one DB row.
+    // extension instances) share one model call and one DB row.
     const key = `${anonId ?? ""}|${mode}|${intensity}|${prompt}`;
     let job = inFlight.get(key);
     if (!job) {
-      job = runEnhance(ai, { prompt, mode, intensity, anonId }).finally(() => {
+      job = runEnhance({ prompt, mode, intensity, anonId }).finally(() => {
         inFlight.delete(key);
       });
       inFlight.set(key, job);
@@ -113,27 +112,25 @@ type EnhanceResult = { enhanced: string; promptId: string | null };
 
 type EnhanceArgs = { prompt: string; mode: string; intensity: string; anonId: string | null };
 
-function buildEnhanceParams({ prompt, mode, intensity }: EnhanceArgs) {
-  return {
-    model: GEMINI_MODEL,
-    contents: [
-      {
-        role: "user",
-        parts: [{ text: `Enhance this idea into a master-level prompt:\n\n${prompt}` }],
-      },
-    ],
-    config: {
-      systemInstruction: buildEnhanceSystemInstruction(mode, intensity),
-      temperature: 0.7,
+function buildEnhanceParams({ prompt, mode, intensity }: EnhanceArgs): CompletionParams {
+  const messages: ModelMessage[] = [
+    {
+      role: "user",
+      content: `Enhance this idea into a master-level prompt:\n\n${prompt}`,
     },
+  ];
+  return {
+    instructions: buildEnhanceSystemInstruction(mode, intensity),
+    messages,
+    temperature: 0.7,
   };
 }
 
-async function runEnhance(ai: GoogleGenAI, args: EnhanceArgs): Promise<EnhanceResult> {
+async function runEnhance(args: EnhanceArgs): Promise<EnhanceResult> {
   let enhanced: string;
   try {
-    const response = await generateContentWithFallback(ai, buildEnhanceParams(args));
-    enhanced = (response.text ?? "").trim();
+    const response = await generateCompletion(buildEnhanceParams(args));
+    enhanced = (response ?? "").trim();
     if (!enhanced) throw new Error("Model returned an empty response.");
   } catch (error) {
     await persistFailure(args, error);
@@ -177,15 +174,11 @@ async function persistFailure(
 /** Separates streamed text from the trailing JSON metadata record. */
 const META_SEPARATOR = "\u001e";
 
-async function streamEnhance(ai: GoogleGenAI, args: EnhanceArgs) {
+async function streamEnhance(args: EnhanceArgs) {
   const params = buildEnhanceParams(args);
-  let stream;
+  let stream: AsyncIterable<string>;
   try {
-    stream = await generateContentStreamWithFallback(ai, params, {
-      primaryMs: 15_000,
-      attemptMs: 30_000,
-      budgetMs: 54_000,
-    });
+    stream = await generateCompletionStream(params);
   } catch (error) {
     await persistFailure(args, error);
     throw error;
@@ -197,8 +190,7 @@ async function streamEnhance(ai: GoogleGenAI, args: EnhanceArgs) {
       let full = "";
       let meta: { prompt_id: string | null; error?: boolean };
       try {
-        for await (const chunk of stream) {
-          const text = chunk.text;
+        for await (const text of stream) {
           if (text) {
             full += text;
             controller.enqueue(encoder.encode(text));

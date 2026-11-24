@@ -810,7 +810,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                     </p>
                     {!promptId && (
                       <span className="text-[10px] text-[#525252] italic">
-                        Unavailable for unsaved prompts
+                        Login to use quick change
                       </span>
                     )}
                   </div>

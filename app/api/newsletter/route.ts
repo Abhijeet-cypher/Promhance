@@ -53,8 +53,9 @@ export async function GET() {
 /**
  * Supported actions:
  *  - "set"         (signed in): set the current user's preference to `optIn`.
- *  - "subscribe"   (signed out): opt the account matching `email` back in.
- *  - "unsubscribe": opt the account matching `email` out (token optional).
+ *  - "subscribe"   (signed in): opt the current user's account back in.
+ *  - "unsubscribe": opt the current user's account out, or use a valid
+ *                     signed unsubscribe-link token while signed out.
  */
 export async function POST(req: Request) {
   const limited = await enforceRateLimit(req, "newsletter", 10, 60);
@@ -75,17 +76,36 @@ export async function POST(req: Request) {
 
   const action = typeof payload.action === "string" ? payload.action : "";
 
+  // A preference change must always be authorized by the account session or
+  // (for a one-click email link) a capability token issued for that address.
+  // Never use a caller-supplied email as authorization by itself.
+  const userId = await resolveUserId();
+
   if (action === "unsubscribe") {
+    if (userId) {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ newsletter_opt_in: false })
+        .eq("id", userId);
+
+      if (error) {
+        console.error("Newsletter unsubscribe failed:", error.message);
+        return NextResponse.json({ error: "Could not update your preference." }, { status: 500 });
+      }
+
+      return NextResponse.json({ ok: true, optIn: false }, { status: 200 });
+    }
+
     const email = cleanEmail(payload.email);
     if (!email) {
       return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
     }
 
     const token = typeof payload.token === "string" ? payload.token : "";
-    if (token && !verifyUnsubscribeToken(email, token)) {
+    if (!verifyUnsubscribeToken(email, token)) {
       return NextResponse.json(
         { error: "This unsubscribe link is invalid or has expired." },
-        { status: 400 }
+        { status: 403 }
       );
     }
 
@@ -104,44 +124,24 @@ export async function POST(req: Request) {
   }
 
   if (action === "subscribe") {
-    const userId = await resolveUserId();
-    if (userId) {
-      const { error } = await supabase
-        .from("profiles")
-        .update({ newsletter_opt_in: true })
-        .eq("id", userId);
-      if (error) {
-        console.error("Newsletter subscribe failed:", error.message);
-        return NextResponse.json({ error: "Could not subscribe." }, { status: 500 });
-      }
-      return NextResponse.json({ ok: true, optIn: true }, { status: 200 });
+    if (!userId) {
+      return NextResponse.json({ error: "Sign in required." }, { status: 401 });
     }
 
-    const email = cleanEmail(payload.email);
-    if (!email) {
-      return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
-    }
-
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("profiles")
       .update({ newsletter_opt_in: true })
-      .eq("email", email)
-      .select("id");
+      .eq("id", userId);
 
     if (error) {
       console.error("Newsletter subscribe failed:", error.message);
       return NextResponse.json({ error: "Could not subscribe." }, { status: 500 });
     }
 
-    if (!data || data.length === 0) {
-      return NextResponse.json({ ok: false, needsAccount: true }, { status: 200 });
-    }
-
     return NextResponse.json({ ok: true, optIn: true }, { status: 200 });
   }
 
   if (action === "set") {
-    const userId = await resolveUserId();
     if (!userId) {
       return NextResponse.json({ error: "Not signed in." }, { status: 401 });
     }
