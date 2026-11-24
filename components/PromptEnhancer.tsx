@@ -30,6 +30,7 @@ import {
   Bug,
   ListOrdered,
   Play,
+  Telescope,
   type LucideIcon,
 } from "lucide-react";
 import FeedbackReaction from "@/components/FeedbackReaction";
@@ -57,6 +58,18 @@ type PromptVersion = {
   text: string;
   action: string | null;
   action_label: string | null;
+};
+
+type ResearchNotes = {
+  notes: string;
+  sources: { title: string; url: string }[];
+};
+
+type ResearchAccess = {
+  allowed: boolean;
+  unlimited: boolean;
+  limit: number;
+  used: number;
 };
 
 declare global {
@@ -123,6 +136,53 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
   // The mode that produced the current output, so refinements always match it
   // even if the user changes the mode picker afterwards.
   const [outputMode, setOutputMode] = useState(defaultMode);
+
+  // Deep Research (Pro/Power). `access` mirrors what /api/usage says; the
+  // server re-checks everything, this only drives the lock/unlock UI.
+  const [researchOn, setResearchOn] = useState(false);
+  const [access, setAccess] = useState<ResearchAccess | null>(null);
+  const [researchNotes, setResearchNotes] = useState<ResearchNotes | null>(null);
+  const [researchNotice, setResearchNotice] = useState<string | null>(null);
+  const [notesOpen, setNotesOpen] = useState(false);
+
+  const refreshAccess = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/usage?anon_id=${encodeURIComponent(getAnonId())}`, {
+        cache: "no-store",
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data?.research) setAccess(data.research as ResearchAccess);
+    } catch {
+      /* the toggle just stays locked */
+    }
+  }, []);
+
+  useEffect(() => {
+    if (authLoading) return;
+    let active = true;
+    (async () => {
+      // Defer past the synchronous effect body to avoid a cascading render.
+      await Promise.resolve();
+      if (active) await refreshAccess();
+    })();
+    return () => {
+      active = false;
+    };
+  }, [authLoading, user?.id, refreshAccess]);
+
+  // Open to everyone during the beta; the only lock is an exhausted monthly allowance.
+  const researchBlocked =
+    !!access && !access.unlimited && (!access.allowed || access.used >= access.limit);
+
+  const toggleResearch = () => {
+    if (researchBlocked) {
+      setResearchOn(false);
+      return;
+    }
+    setResearchOn((on) => !on);
+    trackEvent("research_toggled", { enabled: !researchOn });
+  };
 
   const activeVersionObj = versions.find((v) => v.version_number === activeVersion) ?? null;
   const output = activeVersionObj?.text ?? "";
@@ -273,11 +333,33 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
     setPromptId(null);
     setFeedback(null);
     setRefineError(null);
+    setResearchNotes(null);
+    setResearchNotice(null);
+    setNotesOpen(false);
+    const usedResearch = researchOn;
     try {
       const res = await fetch("/api/enhance", {
         method: "POST",
-        body: JSON.stringify({ prompt: input, mode, intensity, anonId: getAnonId(), stream: true }),
+        body: JSON.stringify({
+          prompt: input,
+          mode,
+          intensity,
+          anonId: getAnonId(),
+          stream: true,
+          research: usedResearch,
+        }),
       });
+      if (res.status === 402 || res.status === 503) {
+        // Plan limit reached (or research unavailable): show the server's
+        // explanation instead of a generic error.
+        const limit = await res.json().catch(() => null);
+        if (res.status === 402 || limit?.code === "research_unavailable") {
+          throw new Error(
+            typeof limit?.error === "string" ? limit.error : "You've reached your plan limit."
+          );
+        }
+        throw new Error("Enhancement failed");
+      }
       if (!res.ok || !res.body) throw new Error("Enhancement failed");
 
       // The server streams the text, then a record separator followed by JSON
@@ -301,7 +383,12 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
 
       const sepIdx = raw.indexOf(META_SEPARATOR);
       const text = (sepIdx === -1 ? raw : raw.slice(0, sepIdx)).trim();
-      let meta: { prompt_id?: string | null; error?: boolean } = {};
+      let meta: {
+        prompt_id?: string | null;
+        error?: boolean;
+        research?: ResearchNotes;
+        research_failed?: boolean;
+      } = {};
       if (sepIdx !== -1) {
         try {
           meta = JSON.parse(raw.slice(sepIdx + 1));
@@ -314,11 +401,24 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
       setVersions([{ version_number: 1, text, action: "base", action_label: null }]);
       setActiveVersion(1);
       setPromptId(meta.prompt_id ?? null);
-    } catch {
+      if (meta.research?.notes) {
+        setResearchNotes({
+          notes: meta.research.notes,
+          sources: Array.isArray(meta.research.sources) ? meta.research.sources : [],
+        });
+      } else if (meta.research_failed) {
+        setResearchNotice(
+          "Research was unavailable this time, so this is a standard enhancement. No research credit was used."
+        );
+      }
+    } catch (err) {
+      const isLimit = err instanceof Error && err.message !== "Enhancement failed";
       setVersions([
         {
           version_number: 1,
-          text: "An error occurred while enhancing the prompt.",
+          text: isLimit
+            ? (err as Error).message
+            : "An error occurred while enhancing the prompt.",
           action: "base",
           action_label: null,
         },
@@ -329,8 +429,9 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
       setLoading(false);
       setStreaming(false);
       setIsRegenerating(false);
+      if (usedResearch) void refreshAccess();
     }
-  }, [input, mode, intensity]);
+  }, [input, mode, intensity, researchOn, refreshAccess]);
 
   const refinePrompt = useCallback(async (action: QuickAction) => {
     if (!promptId) {
@@ -420,7 +521,7 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
           {/* ── Section: Prompt Type ── */}
           <div className="p-5 sm:p-6 border-b border-[#1f1f1f]">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#525252] mb-3">Prompt Type</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2">
               {MODES.map(({ id, icon: Icon, desc }) => {
                 const active = mode === id;
                 return (
@@ -488,6 +589,55 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
             </div>
           </div>
 
+          {/* ── Section: Deep Research (beta) ── */}
+          <div id="deep-research" className="scroll-mt-28 px-5 sm:px-6 py-4 border-b border-[#1f1f1f]">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={researchOn}
+              onClick={toggleResearch}
+              className="group flex w-full items-center gap-3 text-left"
+            >
+              <span
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors ${
+                  researchOn
+                    ? "border-blue-500/40 bg-blue-500/15 text-blue-300"
+                    : "border-[#2a2a2a] bg-[#0a0a0a] text-[#525252] group-hover:text-[#a1a1a1]"
+                }`}
+              >
+                <Telescope className="h-4 w-4" strokeWidth={1.75} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="flex items-center gap-2 text-xs font-semibold text-white">
+                  Deep research
+                  <span className="rounded-md border border-blue-500/30 bg-blue-500/10 px-1.5 py-px text-[9px] font-bold uppercase tracking-wider text-blue-300">
+                    Beta
+                  </span>
+                </span>
+                <span className="mt-0.5 block text-[11px] leading-snug text-[#525252]">
+                  Researches your topic first, then writes a more complete prompt.
+                </span>
+              </span>
+              <span
+                className={`relative h-5 w-9 shrink-0 rounded-full transition-colors ${
+                  researchOn ? "bg-blue-500" : "bg-[#2a2a2a]"
+                } ${researchBlocked ? "opacity-60" : ""}`}
+              >
+                <span
+                  className={`absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white transition-transform ${
+                    researchOn ? "translate-x-4" : ""
+                  }`}
+                />
+              </span>
+            </button>
+
+            {researchBlocked && (
+              <p className="mt-2 pl-11 text-[11px] text-amber-400/80">
+                You&apos;ve used all your research runs this month.
+              </p>
+            )}
+          </div>
+
           {/* ── Section: Your Prompt ── */}
           <div className="flex flex-col flex-grow p-5 sm:p-6 gap-3">
             <div className="flex items-center justify-between">
@@ -527,12 +677,12 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
-                  <span>Enhancing…</span>
+                  <span>{researchOn ? "Researching…" : "Enhancing…"}</span>
                 </>
               ) : (
                 <>
                   <Wand2 className="w-4 h-4 shrink-0" strokeWidth={2} />
-                  <span>Enhance Prompt</span>
+                  <span>{researchOn ? "Research & Enhance" : "Enhance Prompt"}</span>
                   <span className="ml-1 hidden sm:inline text-blue-200/60 text-[11px] font-mono">⌃↵</span>
                 </>
               )}
@@ -681,6 +831,75 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
 
             {showSaveModal && <SavePromptModal onClose={() => setShowSaveModal(false)} />}
 
+            {/* Deep Research notes: the brief the prompt was built from */}
+            {researchNotes && output && !loading && !streaming && (
+              <div className="shrink-0 border-b border-[#1f1f1f]">
+                <button
+                  onClick={() => setNotesOpen((open) => !open)}
+                  aria-expanded={notesOpen}
+                  className="flex w-full items-center gap-2 px-5 sm:px-6 py-2.5 text-xs font-medium text-[#a1a1a1] transition-colors hover:text-white"
+                >
+                  <Telescope className="h-3.5 w-3.5 text-blue-400" strokeWidth={1.75} />
+                  <span>Research notes</span>
+                  {researchNotes.sources.length > 0 && (
+                    <span className="text-[#525252]">
+                      · {researchNotes.sources.length}{" "}
+                      {researchNotes.sources.length === 1 ? "source" : "sources"}
+                    </span>
+                  )}
+                  <ChevronDown
+                    className={`ml-auto h-3.5 w-3.5 transition-transform ${notesOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {notesOpen && (
+                  <div className="max-h-64 overflow-y-auto px-5 sm:px-6 pb-4 text-xs leading-6 text-[#a1a1a1]">
+                    <ReactMarkdown
+                      components={{
+                        h2: ({ children }) => (
+                          <h3 className="mb-1 mt-3 text-[11px] font-semibold uppercase tracking-wider text-blue-300 first:mt-0">
+                            {children}
+                          </h3>
+                        ),
+                        p: ({ children }) => <p className="mb-2">{children}</p>,
+                        ul: ({ children }) => <ul className="mb-2 list-disc space-y-1 pl-4">{children}</ul>,
+                        ol: ({ children }) => <ol className="mb-2 list-decimal space-y-1 pl-4">{children}</ol>,
+                        strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+                      }}
+                    >
+                      {researchNotes.notes}
+                    </ReactMarkdown>
+                    {researchNotes.sources.length > 0 && (
+                      <div className="mt-3 border-t border-[#1f1f1f] pt-3">
+                        <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#525252]">
+                          Sources
+                        </p>
+                        <ul className="space-y-1">
+                          {researchNotes.sources.map((source) => (
+                            <li key={source.url} className="truncate">
+                              <a
+                                href={source.url}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="text-blue-400 hover:text-blue-300"
+                              >
+                                {source.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {researchNotice && output && !loading && !streaming && (
+              <p className="shrink-0 border-b border-[#1f1f1f] px-5 sm:px-6 py-2.5 text-[11px] text-amber-400/80">
+                {researchNotice}
+              </p>
+            )}
+
             {/* Output Body */}
             <div className="flex-1 min-h-0 overflow-y-auto relative">
               {loading ? (
@@ -697,7 +916,11 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
                   <div className="h-3.5 bg-[#1a1a1a] rounded-full w-4/5" />
                   <div className="mt-4 pt-4 border-t border-[#1f1f1f] flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                    <span className="text-xs text-blue-400 animate-pulse">Enhancing your prompt…</span>
+                    <span className="text-xs text-blue-400 animate-pulse">
+                      {researchOn
+                        ? "Researching your topic, then writing the prompt… this takes a little longer."
+                        : "Enhancing your prompt…"}
+                    </span>
                   </div>
                 </div>
               ) : output ? (

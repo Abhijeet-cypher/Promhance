@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { Check, Loader2, Zap } from "lucide-react";
 import { getAnonId } from "@/lib/anon-id";
+import { Brand } from "@/components/Brand";
 
 const FREQUENCIES = [
   { id: "first_time", label: "This is my first time" },
@@ -86,7 +87,7 @@ function QuestionShell({
   children,
 }: {
   number: number;
-  title: string;
+  title: React.ReactNode;
   hint?: string;
   children: React.ReactNode;
 }) {
@@ -213,7 +214,7 @@ export default function ProSurvey() {
       />
 
       <div className="space-y-8">
-        <QuestionShell number={1} title="How often do you use Promhance?">
+        <QuestionShell number={1} title={<>How often do you use <Brand />?</>}>
           <div className="grid gap-2 sm:grid-cols-2">
             {FREQUENCIES.map((option) => (
               <OptionButton

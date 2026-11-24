@@ -25,13 +25,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: `${baseUrl}/`,
-      lastModified: new Date('2026-09-22'),
+      lastModified: new Date('2026-11-24'),
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/chatgpt-prompt-enhancer`,
-      lastModified: new Date('2026-09-22'),
+      lastModified: new Date('2026-11-24'),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
@@ -63,6 +63,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/promai`,
       lastModified: new Date('2026-09-22'),
       changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/pricing`,
+      lastModified: new Date('2026-11-24'),
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {

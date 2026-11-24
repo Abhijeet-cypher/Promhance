@@ -4,6 +4,7 @@ import { getAllPosts } from "@/lib/markdown";
 import { Metadata } from "next";
 import { Calendar, Zap } from "lucide-react";
 import Footer from "@/components/Footer";
+import { Brand } from "@/components/Brand";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -67,11 +68,11 @@ export default async function BlogIndexPage() {
       <div className="relative z-10 w-[92%] max-w-[1200px] mx-auto flex flex-col flex-grow">
         
         {/* Header */}
-        <div className="mb-16 space-y-4">
+        <div className="mb-16 space-y-4 text-center">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Promhance <span className="text-[#a1a1a1] font-light">Blog</span>
+            <Brand /> <span className="text-[#a1a1a1] font-light">Blog</span>
           </h1>
-          <p className="text-[#a1a1a1] text-lg max-w-2xl">
+          <p className="text-[#a1a1a1] text-lg max-w-2xl mx-auto">
             Master the art of AI communication. Discover prompt engineering tips, tutorials, and strategy guides to supercharge your AI workflows.
           </p>
         </div>

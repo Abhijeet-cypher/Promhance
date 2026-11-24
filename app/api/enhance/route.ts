@@ -7,6 +7,8 @@ import {
   type CompletionParams,
 } from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
+import { reserveQuota, reserveResearch, type QuotaKind, type Reservation } from "@/lib/quota";
+import { buildResearchContext, runResearch, type ResearchResult } from "@/lib/research";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { parseAnonId, resolveUserId } from "@/lib/supabase/identity";
 import {
@@ -72,19 +74,57 @@ async function handlePost(req: Request) {
       );
     }
 
+    const kind: QuotaKind = intensity === "high" ? "detail" : "basic";
+    const wantResearch = body.research === true;
+
     // Opt-in streaming (the web app): text arrives as it is generated, then a
     // trailing metadata record carries the saved prompt id. Other callers (the
     // extension) keep the plain JSON response below.
     if (body.stream === true) {
-      return streamEnhance({ prompt, mode, intensity, anonId });
+      const run = await prepareRun(req, {
+        userId: await resolveUserId(),
+        anonId,
+        kind,
+        wantResearch,
+        prompt,
+        mode,
+      });
+      if (!run.ok) return run.response;
+      return streamEnhance({
+        prompt,
+        mode,
+        intensity,
+        anonId,
+        reservation: run.reservation,
+        research: run.research,
+        researchFailed: run.researchFailed,
+      });
     }
 
     // Identical requests already in flight (double click, client retry, two
-    // extension instances) share one model call and one DB row.
-    const key = `${anonId ?? ""}|${mode}|${intensity}|${prompt}`;
+    // extension instances) share one model call, one DB row and one unit of
+    // quota: only the request that starts the job reserves.
+    const key = `${anonId ?? ""}|${mode}|${intensity}|${wantResearch ? "r" : "-"}|${prompt}`;
     let job = inFlight.get(key);
     if (!job) {
-      job = runEnhance({ prompt, mode, intensity, anonId }).finally(() => {
+      const run = await prepareRun(req, {
+        userId: await resolveUserId(),
+        anonId,
+        kind,
+        wantResearch,
+        prompt,
+        mode,
+      });
+      if (!run.ok) return run.response;
+      job = runEnhance({
+        prompt,
+        mode,
+        intensity,
+        anonId,
+        reservation: run.reservation,
+        research: run.research,
+        researchFailed: run.researchFailed,
+      }).finally(() => {
         inFlight.delete(key);
       });
       inFlight.set(key, job);
@@ -95,6 +135,8 @@ async function handlePost(req: Request) {
       enhanced: result.enhanced,
       prompt_id: result.promptId,
       version_number: result.promptId ? 1 : null,
+      ...(result.research ? { research: result.research } : {}),
+      ...(result.researchFailed ? { research_failed: true } : {}),
     });
 
   } catch (error) {
@@ -108,19 +150,105 @@ async function handlePost(req: Request) {
 
 const inFlight = new Map<string, Promise<EnhanceResult>>();
 
-type EnhanceResult = { enhanced: string; promptId: string | null };
+type EnhanceResult = {
+  enhanced: string;
+  promptId: string | null;
+  research: ResearchResult | null;
+  researchFailed: boolean;
+};
 
-type EnhanceArgs = { prompt: string; mode: string; intensity: string; anonId: string | null };
+type EnhanceArgs = {
+  prompt: string;
+  mode: string;
+  intensity: string;
+  anonId: string | null;
+  /** Quota unit(s) held for this run; refunded when the run fails. */
+  reservation?: Reservation;
+  /** Deep Research brief to ground the enhancement, when requested. */
+  research?: ResearchResult | null;
+  /** Research was requested but failed; the run continued without it (and its credit was refunded). */
+  researchFailed?: boolean;
+};
 
-function buildEnhanceParams({ prompt, mode, intensity }: EnhanceArgs): CompletionParams {
+type PreparedRun =
+  | { ok: false; response: NextResponse }
+  | {
+      ok: true;
+      reservation: Reservation;
+      research: ResearchResult | null;
+      researchFailed: boolean;
+    };
+
+/**
+ * Reserves quota (and the Deep Research credit when asked) and runs the
+ * research step. A research failure is not fatal: its credit is refunded and
+ * the enhancement proceeds without it.
+ */
+async function prepareRun(
+  req: Request,
+  opts: {
+    userId: string | null;
+    anonId: string | null;
+    kind: QuotaKind;
+    wantResearch: boolean;
+    prompt: string;
+    mode: string;
+  }
+): Promise<PreparedRun> {
+  let researchReservation: Reservation | null = null;
+  if (opts.wantResearch) {
+    const gate = await reserveResearch(req, { userId: opts.userId, anonId: opts.anonId });
+    if (!gate.ok) return gate;
+    researchReservation = gate.reservation;
+  }
+
+  const quota = await reserveQuota(req, {
+    userId: opts.userId,
+    anonId: opts.anonId,
+    kind: opts.kind,
+  });
+  if (!quota.ok) {
+    await researchReservation?.release();
+    return quota;
+  }
+
+  let research: ResearchResult | null = null;
+  let researchFailed = false;
+  if (researchReservation) {
+    try {
+      research = await runResearch(opts.prompt, opts.mode);
+    } catch (error) {
+      console.error("Research failed:", error instanceof Error ? error.message : error);
+      await researchReservation.release();
+      researchReservation = null;
+      researchFailed = true;
+    }
+  }
+
+  const held = researchReservation;
+  return {
+    ok: true,
+    // If the enhancement later fails, refund both units.
+    reservation: {
+      release: async () => {
+        await Promise.all([quota.reservation.release(), held?.release()]);
+      },
+    },
+    research,
+    researchFailed,
+  };
+}
+
+function buildEnhanceParams({ prompt, mode, intensity, research }: EnhanceArgs): CompletionParams {
   const messages: ModelMessage[] = [
     {
       role: "user",
       content: `Enhance this idea into a master-level prompt:\n\n${prompt}`,
     },
   ];
+  const system = buildEnhanceSystemInstruction(mode, intensity);
   return {
-    instructions: buildEnhanceSystemInstruction(mode, intensity),
+    instructions: research ? `${system}\n\n${buildResearchContext(research)}` : system,
     messages,
     temperature: 0.7,
   };
@@ -137,17 +265,24 @@ async function runEnhance(args: EnhanceArgs): Promise<EnhanceResult> {
     throw error;
   }
   const promptId = await persistEnhancement(args, enhanced);
-  return { enhanced, promptId };
+  return {
+    enhanced,
+    promptId,
+    research: args.research ?? null,
+    researchFailed: args.researchFailed === true,
+  };
 }
 
 /**
- * Records a failed enhancement so it shows up in the admin Prompts view.
+ * Called on every failed run: refunds the reserved quota unit, then records
+ * the failure so it shows up in the admin Prompts view.
  * Best-effort: never throws, and the failed row is hidden from user history.
  */
 async function persistFailure(
-  { prompt, mode, intensity, anonId }: EnhanceArgs,
+  { prompt, mode, intensity, anonId, reservation }: EnhanceArgs,
   error: unknown
 ): Promise<void> {
+  await reservation?.release();
   try {
     const supabase = getSupabaseAdmin();
     if (!supabase || !anonId) return;
@@ -188,7 +323,12 @@ async function streamEnhance(args: EnhanceArgs) {
   const readable = new ReadableStream<Uint8Array>({
     async start(controller) {
       let full = "";
-      let meta: { prompt_id: string | null; error?: boolean };
+      let meta: {
+        prompt_id: string | null;
+        error?: boolean;
+        research?: ResearchResult;
+        research_failed?: boolean;
+      };
       try {
         for await (const text of stream) {
           if (text) {
@@ -201,7 +341,11 @@ async function streamEnhance(args: EnhanceArgs) {
           await persistFailure(args, new Error("Model returned an empty response."));
           meta = { prompt_id: null, error: true };
         } else {
-          meta = { prompt_id: await persistEnhancement(args, enhanced) };
+          meta = {
+            prompt_id: await persistEnhancement(args, enhanced),
+            ...(args.research ? { research: args.research } : {}),
+            ...(args.researchFailed ? { research_failed: true } : {}),
+          };
         }
       } catch (error) {
         console.error("Enhancement stream error:", error);

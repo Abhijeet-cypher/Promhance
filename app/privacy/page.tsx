@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "November 4, 2026";
+const LAST_UPDATED = "November 24, 2026";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -71,9 +71,8 @@ export default function PrivacyPolicyPage() {
               <strong>Account Information</strong>: When you create an account we
               collect your email address and password. Passwords are hashed and
               managed by our authentication provider — we never store them in
-              plain text. If you sign in through a third-party provider in the
-              future (for example, Google), we may receive basic profile
-              information such as your name and email from that provider.
+              plain text. If you sign in with Google, we receive basic profile
+              information such as your name and email address from Google.
             </li>
             <li>
               <strong>Prompts</strong>: The text prompts you submit to be enhanced.
@@ -92,15 +91,34 @@ export default function PrivacyPolicyPage() {
               contact us for support or feedback.
             </li>
           </ul>
-          <blockquote>
-            <p>
-              <strong>Note</strong>: Promhance is currently offered entirely free
-              of charge. We do not currently collect payment information. In the
-              future, we may introduce paid plans and usage limits, at which point
-              this Privacy Policy will be updated to reflect how any payment
-              information is collected and processed.
-            </p>
-          </blockquote>
+          <h3>1.3 Subscription and Payment Information</h3>
+          <p>
+            Promhance offers a free tier, and we are introducing paid Pro and
+            Power subscription plans (see our <Link href="/terms">Terms of
+            Service</Link>). Paid plans are not available yet. Once they are:
+          </p>
+          <ul>
+            <li>
+              <strong>Payments are handled by a third-party payment
+              processor.</strong> You enter your card or other payment details
+              directly with the processor. We never see or store your full card
+              number or security code.
+            </li>
+            <li>
+              <strong>What we keep</strong>: your plan, subscription status,
+              billing period dates, the processor&apos;s customer and
+              subscription identifiers, and records of charges and refunds, so we
+              can give you the right plan and handle billing questions and
+              refunds.
+            </li>
+            <li>
+              Billing records may be kept for as long as tax, accounting, or other
+              legal obligations require, even after you delete your account.
+            </li>
+            <li>
+              Until paid plans launch, we do not collect any payment information.
+            </li>
+          </ul>
 
           <h3>1.2 Information Collected Automatically</h3>
           <ul>
@@ -117,14 +135,24 @@ export default function PrivacyPolicyPage() {
               spent on the Service, and interaction patterns.
             </li>
             <li>
+              <strong>Usage Counters and Limits</strong>: To apply the monthly
+              usage limits of each plan, we keep running counts of how many
+              enhancements, refinements, and Deep Research runs are used in a
+              period. For signed-in users the count is tied to your account; for
+              visitors who are not signed in it is tied to the anonymous device
+              identifier and, to prevent abuse, to your IP address. These
+              counters contain numbers only, not the content of your prompts.
+            </li>
+            <li>
               <strong>Device and Log Data</strong>: IP address, browser type,
               operating system, device identifiers, and access timestamps.
             </li>
             <li>
               <strong>Cookies and Similar Technologies</strong>: We use cookies and
               similar technologies to maintain sessions, remember preferences, and
-              analyze usage (for example, through Google Analytics). You can
-              control cookies through your browser settings.
+              analyze usage (for example, through Google Analytics and Vercel
+              Analytics on our live website). You can control cookies through
+              your browser settings.
             </li>
           </ul>
 
@@ -133,6 +161,10 @@ export default function PrivacyPolicyPage() {
           <ul>
             <li>Provide, operate, and maintain the Service, including enhancing your prompts.</li>
             <li>Create and manage your account.</li>
+            <li>
+              Apply usage limits, manage subscriptions, process payments, and
+              handle refunds and billing questions.
+            </li>
             <li>Improve, personalize, and expand the Service.</li>
             <li>Communicate with you, including customer support, updates, and marketing (with opt-out options).</li>
             <li>
@@ -166,12 +198,19 @@ export default function PrivacyPolicyPage() {
               within your account for your own reference.
             </li>
             <li>
-              Prompts may be transmitted to third-party AI providers (such as
-              Google Gemini) strictly to generate the enhanced output. Those
+              Prompts may be transmitted to third-party AI providers (currently
+              DeepSeek) strictly to generate the enhanced output. Those
               providers process the data under their own data handling terms, and
               where our agreements with them provide for it, they are restricted
               from using your prompts beyond fulfilling the request. We recommend
               not including sensitive personal information in your prompts.
+            </li>
+            <li>
+              <strong>Deep Research (beta)</strong>: If you turn on Deep Research,
+              your prompt is sent to the same AI provider for an additional
+              research step before the final prompt is written. The research
+              notes are shown to you in the result and are not saved to your
+              history.
             </li>
           </ul>
 
@@ -184,7 +223,8 @@ export default function PrivacyPolicyPage() {
             <li>
               <strong>Service Providers</strong>: With trusted third-party vendors
               who help us operate the Service (e.g., hosting providers, analytics
-              tools, and underlying AI/LLM providers), under confidentiality
+              tools, underlying AI/LLM providers, and, once paid plans are
+              available, our payment processor), under confidentiality
               obligations.
             </li>
             <li>
@@ -220,6 +260,10 @@ export default function PrivacyPolicyPage() {
               We retain your data for as long as your account is active or as
               needed to provide the Service, comply with legal obligations,
               resolve disputes, and enforce agreements.
+            </li>
+            <li>
+              Billing and refund records are retained for as long as tax,
+              accounting, and other legal obligations require.
             </li>
           </ul>
 
@@ -309,7 +353,7 @@ export default function PrivacyPolicyPage() {
             url: "https://www.promhance.com/privacy",
             description:
               "How Promhance collects, uses, stores, and protects your information and prompts.",
-            dateModified: "2026-11-04",
+            dateModified: "2026-11-24",
           }),
         }}
       />

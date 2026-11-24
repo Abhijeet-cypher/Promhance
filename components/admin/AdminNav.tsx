@@ -10,6 +10,7 @@ import {
   ClipboardList,
   Mail,
   Home,
+  Settings,
 } from "lucide-react";
 
 const LINKS = [
@@ -19,6 +20,7 @@ const LINKS = [
   { href: "/admin/feedback", label: "Feedback", icon: MessageSquare },
   { href: "/admin/survey", label: "Survey", icon: ClipboardList },
   { href: "/admin/newsletter", label: "Newsletter", icon: Mail },
+  { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
 export default function AdminNav({ email }: { email?: string }) {

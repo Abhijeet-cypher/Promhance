@@ -4,6 +4,9 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+/** True for `next build` / `next start` and deployments; false for `npm run dev`. */
+const isProduction = process.env.NODE_ENV === "production";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -101,19 +104,26 @@ export default function RootLayout({
           title="Promhance Blog RSS"
           href="/blog/rss.xml"
         />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-CV5SK9CN9S"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-          
-            gtag('config', 'G-CV5SK9CN9S');
-          `}
-        </Script>
+        {/* Analytics only run on built (production) sites, never under `npm run dev`.
+            Without gtag loaded, the app's trackEvent() calls are safe no-ops. */}
+        {isProduction && (
+          <>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-CV5SK9CN9S"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+
+                gtag('config', 'G-CV5SK9CN9S');
+              `}
+            </Script>
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -131,7 +141,7 @@ export default function RootLayout({
                   "url": "https://www.promhance.com/logo.svg"
                 },
                 "description": "Promhance is a free AI prompt enhancer that turns rough ideas into structured prompts for ChatGPT, Claude, Gemini and Midjourney.",
-                "sameAs": ["https://github.com/Abhijeet-cypher/Promhance"]
+                "sameAs": ["https://github.com/Abhijeet-cypher/Promhance", "https://www.linkedin.com/company/145366012"]
               },
               {
                 "@context": "https://schema.org",
@@ -181,7 +191,7 @@ export default function RootLayout({
           {children}
           <FeatureAnnouncementModal />
         </AuthProvider>
-        <Analytics />
+        {isProduction && <Analytics />}
       </body>
     </html>
   );

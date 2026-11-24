@@ -74,7 +74,7 @@ function buildStructuredData(prompts: typeof allPrompts) {
       "@type": "Organization",
       name: "Promhance",
       url: baseUrl,
-      sameAs: ["https://github.com/Abhijeet-cypher/Promhance"],
+      sameAs: ["https://github.com/Abhijeet-cypher/Promhance", "https://www.linkedin.com/company/145366012"],
     },
     keywords: [
       "viral prompts",

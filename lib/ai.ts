@@ -69,8 +69,12 @@ export function isConfigured(): boolean {
   return getDeepSeek() !== null;
 }
 
-/** Single provider-options blob shared by every call to keep thinking off. */
-function providerOptionsForCall() {
+/**
+ * Provider-options blob shared by every call. Thinking stays off unless the
+ * caller explicitly opts in (Deep Research can), or DEEPSEEK_THINKING=enabled.
+ */
+function providerOptionsForCall(thinking?: boolean) {
+  if (thinking) return { deepseek: { thinking: { type: "enabled" as const } } };
   return THINKING_DISABLED
     ? { deepseek: { thinking: { type: "disabled" as const } } }
     : undefined;
@@ -162,6 +166,10 @@ export type CompletionParams = {
   messages: ModelMessage[];
   temperature?: number;
   abortSignal?: AbortSignal;
+  /** Opt in to DeepSeek thinking for this call (billed as output, slower). */
+  thinking?: boolean;
+  /** Overrides the per-attempt timeout of a non-streaming call. */
+  timeoutMs?: number;
 };
 
 /** Applies the optional system instruction only when one is provided. */
@@ -184,14 +192,18 @@ export async function generateCompletion(params: CompletionParams): Promise<stri
         model,
         ...promptParams(params),
         temperature: params.temperature,
-        providerOptions: providerOptionsForCall(),
+        providerOptions: providerOptionsForCall(params.thinking),
         abortSignal: params.abortSignal,
         maxRetries: 0,
         timeout: timeoutMs,
       });
       return text;
     },
-    { attemptMs: REQUEST_TIMEOUT_MS, primaryMs: PRIMARY_TIMEOUT_MS, budgetMs: CHAIN_BUDGET_MS }
+    {
+      attemptMs: params.timeoutMs ?? REQUEST_TIMEOUT_MS,
+      primaryMs: params.timeoutMs ?? PRIMARY_TIMEOUT_MS,
+      budgetMs: CHAIN_BUDGET_MS,
+    }
   );
 }
 

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { ModelMessage } from "ai";
 import { generateCompletion, isConfigured } from "@/lib/ai";
 import { enforceRateLimit } from "@/lib/rate-limit";
+import { reserveQuota, type Reservation } from "@/lib/quota";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { isValidUuid, parseAnonId, resolveUserId } from "@/lib/supabase/identity";
 import { findQuickAction } from "@/lib/quick-actions";
@@ -35,6 +36,7 @@ function parseBody(value: unknown): Record<string, unknown> | null {
  * Body: { prompt_id: string, action: string, anonId: string }
  */
 export async function POST(req: Request) {
+  let reservation: Reservation | null = null;
   try {
     const limited = await enforceRateLimit(req, "refine", 15, 300);
     if (limited) return limited;
@@ -130,6 +132,12 @@ export async function POST(req: Request) {
     const currentText = sourceText ?? latest?.text ?? prompt.enhanced_prompt;
     const nextVersion = (latest?.version_number ?? 1) + 1;
 
+    // Reserve after ownership/validation checks so rejected requests cost
+    // nothing; the outer catch and the save-failure path refund it.
+    const quota = await reserveQuota(req, { userId, anonId, kind: "refine" });
+    if (!quota.ok) return quota.response;
+    reservation = quota.reservation;
+
     const messages: ModelMessage[] = [
       {
         role: "user",
@@ -176,6 +184,7 @@ export async function POST(req: Request) {
 
     if (insertError) {
       console.error("Refinement persist failed:", insertError.message);
+      await reservation.release();
       return NextResponse.json({ error: "Could not save refinement." }, { status: 500 });
     }
 
@@ -198,6 +207,7 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Refinement Error:", error);
+    await reservation?.release();
     return NextResponse.json(
       { error: "An error occurred while refining the prompt." },
       { status: 500 }

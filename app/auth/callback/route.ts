@@ -32,7 +32,12 @@ export async function GET(request: Request) {
       if (!error) {
         return NextResponse.redirect(`${origin}${next}`);
       }
+      console.error("Auth code exchange failed:", error.message);
+    } else {
+      console.error("Auth callback: Supabase env vars are not configured.");
     }
+  } else {
+    console.error("Auth callback: no code in the URL.");
   }
 
   return NextResponse.redirect(`${origin}/login?error=auth`);

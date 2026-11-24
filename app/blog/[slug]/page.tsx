@@ -78,7 +78,10 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     description: post.description,
     keywords: post.tags?.join(', '),
-    image: post.image ? [post.image] : [],
+    // JSON-LD needs an absolute URL; local images are stored as "/blog/…".
+    image: post.image
+      ? [post.image.startsWith("/") ? `https://www.promhance.com${post.image}` : post.image]
+      : [],
     datePublished: post.date,
     dateModified: post.updated || post.date,
     wordCount,
@@ -171,9 +174,9 @@ export default async function BlogPostPage({ params }: Props) {
         </Link>
         
         {/* Post Header */}
-        <header className="mb-10">
+        <header className="mb-10 text-center">
           {post.tags && post.tags.length > 0 && (
-            <div className="flex gap-2 flex-wrap mb-6">
+            <div className="flex gap-2 flex-wrap justify-center mb-6">
               {post.tags.map(tag => (
                 <span key={tag} className="text-xs font-semibold px-3 py-1 bg-white/5 border border-white/10 text-[#a1a1a1] rounded-full">
                   {tag}
@@ -190,7 +193,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.description}
           </p>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm font-medium text-[#525252] border-t border-[#2a2a2a] pt-4">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-[#525252] border-t border-[#2a2a2a] pt-4">
             <div className="flex items-center gap-2">
               <User className="w-4 h-4" />
               <span>{post.author}</span>

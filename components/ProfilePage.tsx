@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Loader2, Save, Globe, Check } from "lucide-react";
 import { useAuth } from "@/components/AuthProvider";
 import { COUNTRIES } from "@/lib/geo";
+import UserAvatar from "@/components/UserAvatar";
+import { createBrowserSupabaseClient } from "@/lib/supabase/client";
+import { getDisplayName, getProviderName } from "@/lib/user-display";
 
 type Profile = {
   email: string | null;
@@ -63,6 +66,21 @@ export default function ProfilePage() {
     };
   }, [authLoading, user, load]);
 
+  // Until the user saves a name of their own, start from the one Google gave us.
+  const providerName = getProviderName(user);
+  useEffect(() => {
+    if (!profile || profile.displayName || !providerName) return;
+    let active = true;
+    (async () => {
+      // Defer past the synchronous effect body to avoid a cascading render.
+      await Promise.resolve();
+      if (active) setDisplayName((current) => current || providerName);
+    })();
+    return () => {
+      active = false;
+    };
+  }, [profile, providerName]);
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -89,6 +107,10 @@ export default function ProfilePage() {
       setNewsletterOptIn(data.profile.newsletterOptIn);
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
+      // Keep the header in step: it reads the name from the auth user's metadata.
+      void createBrowserSupabaseClient()
+        ?.auth.updateUser({ data: { display_name: displayName.trim() } })
+        .catch(() => {});
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save your profile.");
     } finally {
@@ -138,6 +160,14 @@ export default function ProfilePage() {
       </header>
 
       <div className="rounded-2xl border border-[#2a2a2a] bg-[#111111] p-6 space-y-5">
+        <div className="flex items-center gap-4">
+          <UserAvatar user={user} className="h-16 w-16 text-2xl" />
+          <div className="min-w-0">
+            <p className="truncate text-lg font-semibold text-white">{getDisplayName(user)}</p>
+            <p className="truncate text-sm text-[#525252]">{profile?.email ?? user.email}</p>
+          </div>
+        </div>
+
         <div className="space-y-1.5">
           <label className="text-[11px] font-semibold uppercase tracking-widest text-[#525252]">
             Email

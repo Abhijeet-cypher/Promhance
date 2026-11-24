@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import { PLAN_LIMITS, PLANS } from "@/lib/plans";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "The terms and conditions for using Promhance, a free AI-powered prompt enhancement tool.",
+    "The terms and conditions for using Promhance, an AI-powered prompt enhancement tool with free and paid plans, including usage limits and our refund policy.",
   alternates: {
     canonical: "https://www.promhance.com/terms",
   },
 };
 
-const LAST_UPDATED = "November 4, 2026";
+const LAST_UPDATED = "November 24, 2026";
 
 export default function TermsOfServicePage() {
   return (
@@ -68,11 +69,10 @@ export default function TermsOfServicePage() {
             language models.
           </p>
           <p>
-            The Service is currently offered entirely free of charge, with no paid
-            plans or usage limits. We reserve the right to introduce paid
-            subscription plans, usage limits, or other tiers in the future. If we
-            do, we will update these Terms accordingly and provide reasonable
-            notice before any such changes take effect.
+            You can start using the Service for free, with or without an account,
+            subject to monthly usage limits. We are introducing paid Pro and Power
+            subscription plans with higher limits; see Section 4 for the plans,
+            usage limits, billing, and our refund policy.
           </p>
 
           <h2>2. Eligibility</h2>
@@ -106,22 +106,143 @@ export default function TermsOfServicePage() {
             </li>
           </ul>
 
-          <h2>4. Pricing and Future Plans</h2>
+          <h2>4. Plans, Usage Limits, Billing and Refunds</h2>
+
+          <h3>4.1 Plans and pricing</h3>
+          <p>
+            Promhance is offered on the following plans. Prices are in US dollars
+            per month and may exclude applicable taxes.
+          </p>
+          <ul>
+            {PLANS.map((plan) => (
+              <li key={plan.id}>
+                <strong>{plan.name}</strong>:{" "}
+                {plan.priceMonthly === 0 ? "$0" : `$${plan.priceMonthly.toFixed(2)} per month`}
+                {" "}&mdash; {PLAN_LIMITS[plan.id].enhancementsPerMonth.toLocaleString("en-US")}{" "}
+                enhancements per month.
+              </li>
+            ))}
+          </ul>
+          <p>
+            <strong>Paid plans (Pro and Power) are not yet available for
+            purchase.</strong>{" "}
+            Until they launch, the Free plan and the limits below apply, and no
+            payment is taken. The terms in Sections 4.3 to 4.5 apply from the
+            moment you purchase a paid plan.
+          </p>
+
+          <h3>4.2 Usage limits and fair use</h3>
           <ul>
             <li>
-              The Service is currently free to use, with no paid plans or usage
-              limits in place.
+              <strong>Monthly limits</strong>: Each plan includes a monthly
+              allowance. Visitors who are not signed in can run{" "}
+              {PLAN_LIMITS.anonymous.enhancementsPerMonth} enhancements per month
+              and, with a free account, {PLAN_LIMITS.free.enhancementsPerMonth}.
+              Pro includes {PLAN_LIMITS.pro.enhancementsPerMonth.toLocaleString("en-US")} and
+              Power {PLAN_LIMITS.power.enhancementsPerMonth.toLocaleString("en-US")}.
+              Higher-detail runs, refinements, and Deep Research have their own
+              monthly allowances, which we may show on our{" "}
+              <Link href="/pricing">pricing page</Link> or in the app.
             </li>
             <li>
-              We reserve the right to introduce paid subscription plans, usage
-              limits, or other tiers in the future.
+              <strong>Resets</strong>: Free and signed-out allowances reset each
+              calendar month. Paid allowances reset with each billing period.
+              Unused allowance does not roll over.
             </li>
             <li>
-              If and when such plans are introduced, we will update these Terms and
-              provide reasonable advance notice, including details on pricing,
-              billing, and any applicable limits for existing users.
+              <strong>&ldquo;Unlimited&rdquo; features</strong>: Where a plan
+              describes a feature as unlimited, it remains subject to the
+              plan&apos;s monthly enhancement allowance and fair use. We may
+              throttle or restrict usage that is excessive, automated, or that
+              harms the Service for others.
+            </li>
+            <li>
+              <strong>Changes</strong>: We may change plan features and limits
+              from time to time. We will give reasonable advance notice of changes
+              that materially reduce what a paid plan includes during a period you
+              have already paid for.
             </li>
           </ul>
+
+          <h3>4.3 Subscriptions, billing and cancellation</h3>
+          <ul>
+            <li>
+              Paid plans are billed monthly in advance and renew automatically
+              until you cancel. Payments are processed by a third-party payment
+              processor; we do not store your full card details.
+            </li>
+            <li>
+              You can cancel at any time from your account or by emailing{" "}
+              <a href="mailto:admin@promhance.com">admin@promhance.com</a>.
+              Cancellation takes effect at the end of the current billing period;
+              you keep your plan&apos;s features until then, and you will not be
+              charged again.
+            </li>
+            <li>
+              If a payment fails, we may retry it and may restrict your account to
+              the Free plan until payment succeeds.
+            </li>
+            <li>
+              We may change prices. For existing subscribers, a price change
+              applies from the next billing period after we give you reasonable
+              advance notice, and you may cancel before it takes effect.
+            </li>
+            <li>
+              You are responsible for any applicable taxes (such as GST or VAT).
+            </li>
+          </ul>
+
+          <h3 id="refund-policy" className="scroll-mt-28">4.4 Refund policy</h3>
+          <p>
+            This policy applies to paid plans once they are available.
+          </p>
+          <ul>
+            <li>
+              <strong>7-day first-purchase refund</strong>: If you are a new
+              paying customer, you can request a full refund of your first
+              payment within 7 days of being charged, no questions asked. This
+              applies once per customer and does not apply where we reasonably
+              find the Service was used abusively or far beyond normal use during
+              that period.
+            </li>
+            <li>
+              <strong>Renewals</strong>: Renewal payments are generally
+              non-refundable. If you were charged for a renewal you did not
+              intend, contact us within 48 hours of the charge and, if you have
+              not used the new period&apos;s allowance, we will refund it.
+            </li>
+            <li>
+              <strong>Billing errors</strong>: We will always refund duplicate or
+              incorrect charges.
+            </li>
+            <li>
+              <strong>No partial-month refunds</strong>: Outside the cases above,
+              we do not refund unused time or allowance when you cancel or
+              downgrade, and you keep access until the end of the period you paid
+              for.
+            </li>
+            <li>
+              <strong>How to request a refund</strong>: Email{" "}
+              <a href="mailto:admin@promhance.com">admin@promhance.com</a> from
+              your account email with your request. Approved refunds are returned
+              to the original payment method; your bank or payment provider may
+              take several business days to show it.
+            </li>
+            <li>
+              Nothing in this policy limits any refund or consumer rights you have
+              under the law that applies to you.
+            </li>
+          </ul>
+
+          <h3>4.5 Beta features</h3>
+          <p>
+            Some features, such as Deep Research, are labelled &ldquo;Beta.&rdquo;
+            They are provided as is, may be inaccurate or change, be limited, or
+            be withdrawn at any time, and have their own usage limits. A Deep
+            Research run also uses one enhancement from your monthly allowance.
+            Research notes are generated by AI models and may contain errors, so
+            please verify anything important before relying on it.
+          </p>
 
           <h2>5. Your Content and Prompts</h2>
           <ul>
@@ -214,10 +335,12 @@ export default function TermsOfServicePage() {
 
           <h2>8. Third-Party AI Providers</h2>
           <p>
-            Promhance may rely on third-party AI/LLM providers to process and
-            enhance prompts. While we select providers with reasonable data
-            protection standards, we are not responsible for the independent
-            practices or availability of these third-party services.
+            Promhance relies on third-party AI/LLM providers (currently
+            DeepSeek) to process and enhance prompts, and, once paid plans are
+            available, on a third-party payment processor to take payments. While
+            we select providers with reasonable data protection standards, we are
+            not responsible for the independent practices or availability of these
+            third-party services.
           </p>
 
           <h2>9. Disclaimers</h2>
@@ -249,8 +372,8 @@ export default function TermsOfServicePage() {
             use the Service, even if advised of the possibility of such damages.
             Our total liability for any claim arising from these Terms or the
             Service shall not exceed the amount you paid us (if any) in the twelve
-            (12) months preceding the claim. Because the Service is currently free,
-            this amount is zero.
+            (12) months preceding the claim. If you only use the free tier, this
+            amount is zero.
           </p>
 
           <h2>11. Indemnification</h2>
@@ -380,8 +503,8 @@ export default function TermsOfServicePage() {
             name: "Terms of Service",
             url: "https://www.promhance.com/terms",
             description:
-              "The terms and conditions for using Promhance, a free AI-powered prompt enhancement tool.",
-            dateModified: "2026-11-04",
+              "The terms and conditions for using Promhance, including plans, usage limits, billing and refunds.",
+            dateModified: "2026-11-24",
           }),
         }}
       />

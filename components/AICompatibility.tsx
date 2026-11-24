@@ -121,7 +121,7 @@ function LogoCard({
 export default function AICompatibility() {
   return (
     <section className="w-full border-y border-[#1a1a1a]">
-      <div className="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-28">
         <ScrollReveal>
           <div className="flex flex-col items-center text-center">
 

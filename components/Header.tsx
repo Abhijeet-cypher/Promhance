@@ -4,9 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, LogIn, LogOut, History, User } from "lucide-react";
+import { Menu, X, LogIn, LogOut, History, User, ChevronDown } from "lucide-react";
 
 import { useAuth } from "@/components/AuthProvider";
+import UserAvatar from "@/components/UserAvatar";
+import { getDisplayName } from "@/lib/user-display";
 
 export default function Header() {
   const pathname = usePathname();
@@ -14,6 +16,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
 
   // Handle scroll effect
   useEffect(() => {
@@ -24,16 +27,28 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Promhance", href: "/" },
+  const isActivePath = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href));
+
+  // The platform-specific enhancers share one "Tools" dropdown so the bar stays short.
+  const toolLinks = [
     { name: "ChatGPT", href: "/chatgpt-prompt-enhancer" },
     { name: "Midjourney", href: "/midjourney-prompt-generator" },
     { name: "YouTube", href: "/youtube-prompt-generator" },
+  ];
+  const toolsActive = toolLinks.some((l) => isActivePath(l.href));
+
+  const navLinks = [
+    { name: "Promhance", href: "/" },
     { name: "PromAI", href: "/promai" },
-    { name: "Viral Prompts", href: "/viral-prompts" },
+    { name: "Pricing", href: "/pricing" },
     { name: "History", href: "/history" },
+    { name: "Viral Prompts", href: "/viral-prompts" },
     { name: "Blog", href: "/blog" },
   ];
+
+  // Mobile shows everything flat, with the tool pages right after Home.
+  const mobileLinks = [navLinks[0], ...toolLinks, ...navLinks.slice(1)];
 
   return (
     <header
@@ -57,29 +72,73 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-2 bg-[#111111] px-2 py-1.5 rounded-full border border-[#2a2a2a]">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors outline-none ${isActive
-                  ? "text-white"
-                  : "text-[#a1a1a1] hover:text-white hover:bg-white/5"
-                  }`}
-              >
-                {isActive && (
-                  <div className="absolute inset-0 rounded-full border border-blue-500/60 shadow-[0_0_14px_rgba(59,130,246,0.25)]" />
-                )}
-                <span className="relative z-10">{link.name}</span>
-              </Link>
-            );
-          })}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 bg-[#111111] px-2 py-1.5 rounded-full border border-[#2a2a2a]">
+          {navLinks.slice(0, 1).map((link) => (
+            <NavPill key={link.name} href={link.href} active={isActivePath(link.href)}>
+              {link.name}
+            </NavPill>
+          ))}
+
+          {/* Tools dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setToolsOpen(true)}
+            onMouseLeave={() => setToolsOpen(false)}
+          >
+            <button
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded={toolsOpen}
+              onClick={() => setToolsOpen(true)}
+              onKeyDown={(e) => e.key === "Escape" && setToolsOpen(false)}
+              className={`relative flex items-center gap-1 px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-colors outline-none ${toolsActive
+                ? "text-white"
+                : "text-[#a1a1a1] hover:text-white hover:bg-white/5"
+                }`}
+            >
+              {toolsActive && (
+                <div className="absolute inset-0 rounded-full border border-blue-500/60 shadow-[0_0_14px_rgba(59,130,246,0.25)]" />
+              )}
+              <span className="relative z-10">Tools</span>
+              <ChevronDown
+                className={`relative z-10 w-3.5 h-3.5 transition-transform ${toolsOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {toolsOpen && (
+              <div className="absolute left-0 top-full pt-2 z-30">
+                <div
+                  role="menu"
+                  className="w-48 bg-[#111111] border border-[#2a2a2a] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] py-1 overflow-hidden"
+                >
+                  {toolLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      role="menuitem"
+                      onClick={() => setToolsOpen(false)}
+                      className={`block px-4 py-2 text-sm transition-colors hover:bg-[#1a1a1a] ${isActivePath(link.href)
+                        ? "text-white"
+                        : "text-[#a1a1a1] hover:text-white"
+                        }`}
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {navLinks.slice(1).map((link) => (
+            <NavPill key={link.name} href={link.href} active={isActivePath(link.href)}>
+              {link.name}
+            </NavPill>
+          ))}
         </nav>
 
         {/* Right Actions (Desktop) */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <a
             href="https://github.com/Abhijeet-cypher/Promhance"
             target="_blank"
@@ -87,7 +146,7 @@ export default function Header() {
             className="text-sm font-medium text-[#a1a1a1] hover:text-white transition-colors flex items-center gap-2 group"
           >
             <GithubIcon className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
-            <span className="hidden lg:inline-block">Star us</span>
+            <span className="hidden xl:inline-block whitespace-nowrap">Star us</span>
           </a>
 
           {!loading && !user && (
@@ -107,11 +166,9 @@ export default function Header() {
                 className="flex items-center gap-2 pl-1 pr-2.5 py-1 rounded-full bg-[#111111] border border-[#2a2a2a] hover:border-[#3a3a3a] transition-colors"
                 aria-label="Account menu"
               >
-                <span className="w-6 h-6 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-[11px] font-semibold text-blue-300">
-                  {user.email?.[0]?.toUpperCase() ?? "U"}
-                </span>
-                <span className="hidden lg:inline-block max-w-[130px] truncate text-xs text-[#a1a1a1]">
-                  {user.email}
+                <UserAvatar user={user} className="h-7 w-7 text-[11px]" />
+                <span className="hidden xl:inline-block max-w-[130px] truncate text-xs text-[#d4d4d4]">
+                  {getDisplayName(user)}
                 </span>
               </button>
 
@@ -122,9 +179,12 @@ export default function Header() {
                     onClick={() => setUserMenuOpen(false)}
                   />
                   <div className="absolute right-0 mt-2 w-52 bg-[#111111] border border-[#2a2a2a] rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] z-20 flex flex-col overflow-hidden py-1">
-                    <div className="px-3 py-2 border-b border-[#1f1f1f]">
-                      <p className="text-[10px] uppercase tracking-widest text-[#525252]">Signed in as</p>
-                      <p className="text-xs text-white truncate">{user.email}</p>
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 border-b border-[#1f1f1f]">
+                      <UserAvatar user={user} className="h-9 w-9 text-sm" />
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-white truncate">{getDisplayName(user)}</p>
+                        <p className="text-[11px] text-[#525252] truncate">{user.email}</p>
+                      </div>
                     </div>
                     <Link
                       href="/history"
@@ -162,7 +222,7 @@ export default function Header() {
         {/* Mobile Menu Toggle */}
         <button
           title="Toggle Menu"
-          className="md:hidden relative z-50 p-2 -mr-2 text-[#a1a1a1] hover:text-white transition-colors"
+          className="lg:hidden relative z-50 p-2 -mr-2 text-[#a1a1a1] hover:text-white transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -170,13 +230,13 @@ export default function Header() {
 
         {/* Mobile Navigation Menu */}
         <div
-          className={`fixed inset-0 bg-[#0a0a0a]/98 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out md:hidden overflow-y-auto ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          className={`fixed inset-0 bg-[#0a0a0a]/98 backdrop-blur-xl z-40 transition-all duration-500 ease-in-out lg:hidden overflow-y-auto ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
         >
           <div className="flex min-h-full flex-col justify-center items-center gap-8 px-6 py-24">
           <nav className="flex flex-col items-center gap-5">
-            {navLinks.map((link, i) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+            {mobileLinks.map((link, i) => {
+              const isActive = isActivePath(link.href);
               return (
                 <Link
                   key={link.name}
@@ -197,15 +257,32 @@ export default function Header() {
 
           {!loading && (
             user ? (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  void signOut();
-                }}
-                className="text-lg font-semibold tracking-tight text-[#a1a1a1] hover:text-white transition-colors"
-              >
-                Sign out
-              </button>
+              <div className="flex flex-col items-center gap-4">
+                <Link
+                  href="/profile"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-3"
+                >
+                  <UserAvatar user={user} className="h-11 w-11 text-base" />
+                  <span className="text-left">
+                    <span className="block max-w-[220px] truncate text-base font-semibold text-white">
+                      {getDisplayName(user)}
+                    </span>
+                    <span className="block max-w-[220px] truncate text-xs text-[#525252]">
+                      {user.email}
+                    </span>
+                  </span>
+                </Link>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    void signOut();
+                  }}
+                  className="text-lg font-semibold tracking-tight text-[#a1a1a1] hover:text-white transition-colors"
+                >
+                  Sign out
+                </button>
+              </div>
             ) : (
               <Link
                 href="/login"
@@ -221,6 +298,31 @@ export default function Header() {
 
       </div>
     </header>
+  );
+}
+
+function NavPill({
+  href,
+  active,
+  children,
+}: {
+  href: string;
+  active: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`relative whitespace-nowrap px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-colors outline-none ${active
+        ? "text-white"
+        : "text-[#a1a1a1] hover:text-white hover:bg-white/5"
+        }`}
+    >
+      {active && (
+        <div className="absolute inset-0 rounded-full border border-blue-500/60 shadow-[0_0_14px_rgba(59,130,246,0.25)]" />
+      )}
+      <span className="relative z-10">{children}</span>
+    </Link>
   );
 }
 

@@ -2,6 +2,7 @@ import PromptEnhancer from "@/components/PromptEnhancer";
 import TrustStrip from "@/components/TrustStrip";
 import AICompatibility from "@/components/AICompatibility";
 import Footer from "@/components/Footer";
+import { brandify } from "@/components/Brand";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Brain, Palette, Code, PenTool, Megaphone, Clapperboard, Zap, Target, Unlock } from "lucide-react";
 
@@ -12,10 +13,10 @@ function SectionHeader({
   return (
     <div className="text-center mb-12 sm:mb-16">
       <span className="inline-block text-xs font-semibold tracking-[0.18em] uppercase text-blue-400 mb-3">
-        {overline}
+        {brandify(overline)}
       </span>
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
-        {heading}
+        {brandify(heading)}
       </h2>
       <p className="text-[#a1a1a1] max-w-xl mx-auto text-base leading-relaxed">
         {sub}
@@ -47,7 +48,7 @@ const FEATURES = [
   {
     icon: Unlock,
     title: "The Ultimate Prompt Enhancer",
-    desc: "No accounts and no paywalls, with fair-use limits. Start enhancing your prompts using professional prompt engineering frameworks right away.",
+    desc: "Start for free with no account or credit card. Monthly limits apply, and Pro and Power plans bring higher limits. Enhance prompts with professional prompt engineering frameworks right away.",
   },
 ];
 
@@ -61,8 +62,8 @@ const FAQS = [
     a: "Promhance generates prompts optimized for ChatGPT, Claude, Gemini, Midjourney, and most modern LLMs. It is designed to be the ultimate PromptOps tool for any AI workflow.",
   },
   {
-    q: "Is Promhance completely free to use?",
-    a: "Yes, Promhance is a 100% free prompt generator. There are no credit cards, accounts, or paywalls required to start generating production-ready prompts.",
+    q: "Is Promhance free to use?",
+    a: "Yes. You can start generating production-ready prompts for free, with no credit card and no account required. Free usage has monthly limits, and paid Pro and Power plans with higher limits are coming soon.",
   },
   {
     q: "What is PromptOps and how does Promhance help?",

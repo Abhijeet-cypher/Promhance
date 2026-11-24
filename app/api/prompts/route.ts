@@ -178,6 +178,9 @@ export async function GET(req: Request) {
     return NextResponse.json({ prompts: [], total: 0, limit, offset });
   }
 
+  const modeFilter = (searchParams.get("mode") ?? "").trim().slice(0, 50);
+  if (modeFilter) query = query.eq("mode", modeFilter);
+
   if (search) {
     const term = escapeForOrFilter(search);
     query = query.or(

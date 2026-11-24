@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: 'Is the YouTube prompt generator free?',
-    a: 'Yes — Promhance is free, with no account or credit card required. Fair-use limits apply so the service stays fast for everyone.',
+    a: 'Yes — Promhance is free, with no account or credit card required. Monthly usage limits apply so the service stays fast for everyone, and higher-limit Pro and Power plans are coming soon.',
   },
   {
     q: 'Does it work for Shorts and long-form videos?',

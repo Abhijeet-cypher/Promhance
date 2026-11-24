@@ -1,5 +1,6 @@
 import PromptEnhancer from "@/components/PromptEnhancer";
 import Footer from "@/components/Footer";
+import { brandify } from "@/components/Brand";
 import ScrollReveal from "@/components/ScrollReveal";
 import { breadcrumbSchema } from "@/lib/schema";
 import { Metadata } from "next";
@@ -212,8 +213,8 @@ const FAQS = [
     a: "Writing a great prompt requires knowing prompt engineering frameworks — role prompting, chain-of-thought, constraint injection, few-shot patterns. Promhance encodes all of these frameworks and applies them automatically to any input in under a second, saving you the learning curve and trial-and-error.",
   },
   {
-    q: "Is Promhance completely free to use?",
-    a: "Yes — Promhance is free, with no account or credit card required. Fair-use limits apply so the service stays fast for everyone. You can enhance prompts without creating a login.",
+    q: "Is Promhance free to use?",
+    a: "Yes — Promhance is free, with no account or credit card required. Monthly usage limits apply so the service stays fast for everyone, and higher-limit Pro and Power plans are coming soon. You can enhance prompts without creating a login.",
   },
   {
     q: "Which AI models work best with Promhance-enhanced prompts?",
@@ -248,10 +249,10 @@ function SectionHeader({
   return (
     <div className="text-center mb-12 sm:mb-16">
       <span className="inline-block text-xs font-semibold tracking-[0.18em] uppercase text-blue-400 mb-3">
-        {overline}
+        {brandify(overline)}
       </span>
       <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
-        {heading}
+        {brandify(heading)}
       </h2>
       <p className="text-[#a1a1a1] max-w-xl mx-auto text-base leading-relaxed">
         {sub}

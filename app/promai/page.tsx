@@ -61,7 +61,7 @@ const FAQS = [
   },
   {
     q: "Is PromAI free to use?",
-    a: "Yes. PromAI is free with no account or credit card required, and fair-use limits apply. Responses stream in as they are generated.",
+    a: "Yes. PromAI is free with no account or credit card required, and monthly usage limits apply. Responses stream in as they are generated.",
   },
   {
     q: "Does PromAI store my questions or prompts?",

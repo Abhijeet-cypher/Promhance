@@ -2,16 +2,17 @@
 
 > Promhance is a free AI prompt engineering studio that transforms rough ideas into structured, expert-level prompts for ChatGPT, Claude, Gemini, Midjourney, and any modern LLM — instantly and without an account.
 
-Promhance applies proven prompt engineering frameworks (role, context, constraints, output format, few-shot patterns) automatically. It is useful for developers, marketers, writers, researchers, and anyone who uses generative AI daily. The tool is free, requires no sign-up to start, and applies fair-use limits. Prompts are sent to Google's Gemini API to generate results, and history is saved to the user's device (anonymous ID) or account, and can be deleted at any time.
+Promhance applies proven prompt engineering frameworks (role, context, constraints, output format, few-shot patterns) automatically. It is useful for developers, marketers, writers, researchers, and anyone who uses generative AI daily. The tool is free, requires no sign-up to start, and applies fair-use limits. Prompts are sent to a third-party AI model provider (currently DeepSeek) to generate results, and history is saved to the user's device (anonymous ID) or account, and can be deleted at any time.
 
 ## Key facts
 
 - Promhance owns the Promhance platform, brand and associated intellectual property.
-- Free to use: no account or credit card required; fair-use limits apply.
+- Free to start: no account or credit card required; monthly usage limits apply. Pro and Power plans with higher limits are coming soon.
 - Works with any instruction-following model, including ChatGPT (GPT-4o/GPT-4), Claude, Gemini, Llama, and Midjourney.
 - Enhancement applies role prompting, constraint injection, chain-of-thought guidance, and explicit output-format instructions automatically.
+- Deep Research (beta) is available to every user: it researches the topic first, then writes a more complete, detailed prompt, with monthly usage caps.
 - Prompts can be refined with quick actions, and the version history is retained for signed-in users (optional).
-- Prompts are processed by Google's Gemini API. History is saved per device or account and can be deleted by the user. Promhance does not sell prompts or use them to train models (see the Privacy Policy).
+- Prompts are processed by a third-party AI model provider (currently DeepSeek). History is saved per device or account and can be deleted by the user. Promhance does not sell prompts or use them to train models (see the Privacy Policy).
 
 ## Tools
 
@@ -22,10 +23,13 @@ Promhance applies proven prompt engineering frameworks (role, context, constrain
 - [ChatGPT Prompt Enhancer](https://www.promhance.com/chatgpt-prompt-enhancer): Prompt optimization tuned for ChatGPT, with techniques and before/after examples.
 - [Midjourney Prompt Generator](https://www.promhance.com/midjourney-prompt-generator): Adds artistic styles, lighting, camera settings, and aspect ratios for AI image prompts.
 - [YouTube Prompt Generator](https://www.promhance.com/youtube-prompt-generator): Generates high-retention scripts, titles, and descriptions.
+- [Pricing](https://www.promhance.com/pricing): Free, Pro ($4.99/month) and Power ($9.99/month) plans. Paid plans are announced and on a waitlist; they are not available yet.
 - [Viral AI Prompts Collection](https://www.promhance.com/viral-prompts): 410+ hand-curated viral prompts for Midjourney, ChatGPT, Suno, Sora, Instagram, TikTok, and YouTube.
 
 ## Guides
 
+- [Loop Engineering vs Prompt Engineering: What Changes in 2027 (and What Doesn't)](https://www.promhance.com/blog/loop-engineering-vs-prompt-engineering): Loop engineering is the 2026 AI trend replacing manual prompting. See how it differs from prompt engineering and how to write prompts that survive a loop.
+- [Prompt Engineer Salary in 2026: What the Data Really Shows (and What It Doesn't)](https://www.promhance.com/blog/prompt-engineer-salary-2026): Prompt engineer salary in 2026: Indeed, Glassdoor and Levels.fyi figures compared, why sources disagree, and how rare the job title really is.
 - [ChatGPT Intelligent UI Prompts: How to Get Interactive Charts, Calculators and Tools from GPT-6](https://www.promhance.com/blog/chatgpt-intelligent-ui-prompts): What ChatGPT's Intelligent UI is (launched with GPT-6 on October 7, 2026), who has it, how to turn visuals on or off, a 5-part formula for interactive prompts, and 10 copy-paste prompts for calculators, planners, quizzes and checklists.
 - [How to Prompt GPT-6: OpenAI's Tips + Slop-Word Blocklist](https://www.promhance.com/blog/how-to-prompt-gpt-6): OpenAI's official GPT-6 Astra prompting guidance summarized (initiative, plain prose, skill-file priority, reasoning effort), its slop-word blocklist, 5 copy-paste prompts, and a migration checklist.
 - [Stop Telling AI to 'Think Step by Step': How to Prompt Reasoning Models in 2026](https://www.promhance.com/blog/how-to-prompt-reasoning-models-2026): What Wharton research shows about chain-of-thought on reasoning models and the outcome-first prompt structure to use instead.
@@ -53,13 +57,13 @@ Promhance applies proven prompt engineering frameworks (role, context, constrain
 Promhance is a free AI prompt enhancer that restructures a simple idea into a highly detailed, optimized prompt using proven prompt engineering frameworks.
 
 ### Is Promhance free?
-Yes. Promhance is free with no account or credit card required. Fair-use limits apply.
+Yes. You can start for free with no account or credit card required. Free usage has monthly limits, and paid Pro ($4.99/month) and Power ($9.99/month) plans with higher limits are coming soon.
 
 ### Which AI models does Promhance work with?
 Promhance generates prompts for ChatGPT, Claude, Gemini, Midjourney, Llama, and most modern instruction-following LLMs.
 
 ### Does Promhance store my prompts?
-Prompts are sent to Google's Gemini API to generate the result. The prompt and result are saved to the user's history (on their device via an anonymous ID, or to their account if signed in) and can be deleted at any time. Promhance does not sell prompts or use them to train AI models.
+Prompts are sent to a third-party AI model provider (currently DeepSeek) to generate the result. The prompt and result are saved to the user's history (on their device via an anonymous ID, or to their account if signed in) and can be deleted at any time. Promhance does not sell prompts or use them to train AI models.
 
 ### What is PromptOps?
 PromptOps is the professional lifecycle management and optimization of AI prompts. Promhance acts as the first layer of PromptOps by ensuring prompts are structurally sound, contextual, and correctly formatted.

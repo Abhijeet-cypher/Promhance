@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
+import { Github, Linkedin, Wand2, Image as ImageIcon, Video, MessageSquare, Sparkles } from "lucide-react";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
 const toolLinks = [
@@ -33,6 +33,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               {[
                 { icon: Github, href: "https://github.com/Abhijeet-cypher/Promhance", name: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/145366012", name: "LinkedIn" },
               ].map((social, idx) => (
                 <a
                   key={idx}

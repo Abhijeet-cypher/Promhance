@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import { Brand } from "@/components/Brand";
 import ProSurvey from "@/components/ProSurvey";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function SurveyPage() {
               Your input
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
-              Help shape the future of Promhance
+              Help shape the future of <Brand />
             </h1>
             <p className="text-[#a1a1a1] text-base leading-relaxed max-w-lg mx-auto">
               We&apos;re planning advanced features and a possible Pro plan. Five quick

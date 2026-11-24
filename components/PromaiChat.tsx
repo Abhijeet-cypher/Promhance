@@ -9,6 +9,7 @@ import {
 } from "react";
 import { useSearchParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import { Brand } from "@/components/Brand";
 import {
   Bot,
   Sparkles,
@@ -388,7 +389,7 @@ export default function PromaiChat() {
                 )}
               </div>
               <p className="text-sm font-medium text-[#a1a1a1] mb-1.5">
-                {isTest ? "Test a prompt without leaving Promhance" : "How can PromAI help?"}
+                {isTest ? <>Test a prompt without leaving <Brand /></> : "How can PromAI help?"}
               </p>
               <p className="text-xs text-[#525252] leading-relaxed max-w-sm mb-6">
                 {isTest
