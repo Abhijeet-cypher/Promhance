@@ -357,11 +357,11 @@ export default function PromptEnhancer({ defaultMode = "LLM Prompt" }: { default
           research: usedResearch,
         }),
       });
-      if (res.status === 402 || res.status === 503) {
-        // Plan limit reached (or research unavailable): show the server's
-        // explanation instead of a generic error.
+      if (res.status === 402 || res.status === 429 || res.status === 503) {
+        // Plan or rate limit reached (or research unavailable): show the
+        // server's explanation instead of a generic error.
         const limit = await res.json().catch(() => null);
-        if (res.status === 402 || limit?.code === "research_unavailable") {
+        if (res.status !== 503 || limit?.code === "research_unavailable") {
           throw new Error(
             typeof limit?.error === "string" ? limit.error : "You've reached your plan limit."
           );

@@ -7,7 +7,7 @@ import { PENDING_SUBSCRIPTION_KEY, useBilling } from "@/components/billing/use-b
 import { useAuth } from "@/components/AuthProvider";
 import { PLANS } from "@/lib/plans";
 
-type Activation = "idle" | "checking" | "done" | "slow";
+type Activation = "idle" | "checking" | "done" | "slow" | "problem";
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
@@ -47,7 +47,11 @@ export default function BillingSection() {
         }).catch(() => null);
         const body = res?.ok ? await res.json().catch(() => null) : null;
         if (body && body.status !== "pending") {
-          setActivation("done");
+          // Only a live subscription is a success. "superseded" is an old return
+          // link (nothing to report); anything else unlocked no plan.
+          setActivation(
+            body.status === "active" ? "done" : body.status === "superseded" ? "idle" : "problem"
+          );
           window.history.replaceState(null, "", "/profile#billing");
           await refresh();
           return;
@@ -106,6 +110,12 @@ export default function BillingSection() {
         )}
         {activation === "done" && (
           <p className="text-sm text-green-400">Payment received. Thank you!</p>
+        )}
+        {activation === "problem" && (
+          <p className="text-sm text-amber-300">
+            We could not activate a plan from this payment. Do not pay again — email
+            admin@promhance.com.
+          </p>
         )}
         {activation === "slow" && (
           <p className="text-sm text-amber-300">

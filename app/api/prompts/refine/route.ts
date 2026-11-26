@@ -151,7 +151,9 @@ export async function POST(req: Request) {
       temperature: 0.6,
     });
 
-    const refined = (response || "Failed to generate refinement.").trim();
+    // An empty answer must not be saved as a version or use up quota.
+    const refined = (response ?? "").trim();
+    if (!refined) throw new Error("Model returned an empty response.");
 
     // Two concurrent refinements can compute the same next version number.
     // The (prompt_id, version_number) unique constraint rejects the loser
