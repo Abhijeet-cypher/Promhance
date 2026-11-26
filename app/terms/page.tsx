@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import { PLAN_LIMITS, PLANS } from "@/lib/plans";
+import { isBillingPublic } from "@/lib/paypal";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -136,13 +137,22 @@ export default function TermsOfServicePage() {
               </li>
             ))}
           </ul>
-          <p>
-            <strong>Paid plans (Pro and Power) are not yet available for
-            purchase.</strong>{" "}
-            Until they launch, the Free plan and the limits below apply, and no
-            payment is taken. The terms in Sections 4.3 to 4.5 apply from the
-            moment you purchase a paid plan.
-          </p>
+          {isBillingPublic() ? (
+            <p>
+              Paid plans are sold as monthly subscriptions through PayPal. The
+              terms in Sections 4.3 to 4.5 apply from the moment you purchase one.
+              Features marked &ldquo;coming soon&rdquo; on the pricing page are
+              not part of what you are buying today.
+            </p>
+          ) : (
+            <p>
+              <strong>Paid plans (Pro and Power) are not yet available for
+              purchase.</strong>{" "}
+              Until they launch, the Free plan and the limits below apply, and no
+              payment is taken. The terms in Sections 4.3 to 4.5 apply from the
+              moment you purchase a paid plan.
+            </p>
+          )}
 
           <h3>4.2 Usage limits and fair use</h3>
           <ul>
@@ -181,8 +191,14 @@ export default function TermsOfServicePage() {
           <ul>
             <li>
               Paid plans are billed monthly in advance and renew automatically
-              until you cancel. Payments are processed by a third-party payment
-              processor; we do not store your full card details.
+              until you cancel. Payments are processed by PayPal; we do not store
+              your full card details.
+            </li>
+            <li>
+              <strong>Upgrading</strong> from Pro to Power charges the Power price
+              immediately and starts a new billing period. Your Pro subscription
+              is cancelled and its unused time is not refunded. To move from Power
+              to Pro, cancel Power and subscribe to Pro after it ends.
             </li>
             <li>
               You can cancel at any time from your account or by emailing{" "}
@@ -207,7 +223,7 @@ export default function TermsOfServicePage() {
 
           <h3 id="refund-policy" className="scroll-mt-28">4.4 Refund policy</h3>
           <p>
-            This policy applies to paid plans once they are available.
+            This policy applies to paid plans.
           </p>
           <ul>
             <li>

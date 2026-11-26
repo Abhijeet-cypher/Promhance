@@ -49,6 +49,8 @@ export type Plan = {
   priceNote: string;
   audience: string;
   features: string[];
+  /** Advertised but not built yet. Shown as such: never sell these as live. */
+  comingSoon?: string[];
   cta: string;
   highlighted?: boolean;
 };
@@ -83,13 +85,12 @@ export const PLANS: Plan[] = [
       "300 enhancements/month",
       "Unlimited Basic Mode, subject to fair-use limits",
       "Full Detail Mode",
-      "Advanced prompt optimization",
+      "60 refinements/month",
+      "15 Deep Research runs/month (beta)",
       "Save prompt history",
-      "Custom prompt preferences",
-      "Prompt templates",
-      "Faster processing",
       "Access to new Pro features",
     ],
+    comingSoon: ["Custom prompt preferences", "Prompt templates", "Faster processing"],
     cta: "Join the Pro waitlist",
     highlighted: true,
   },
@@ -103,13 +104,17 @@ export const PLANS: Plan[] = [
     features: [
       "1,000 enhancements/month",
       "Everything in Pro",
+      "200 refinements/month",
+      "60 Deep Research runs/month (beta)",
+      "Early access to experimental features",
+    ],
+    comingSoon: [
       "Advanced customization",
       "Multiple prompt variations",
       "Model-specific optimization",
       "Personal prompt library",
       "Export and organize prompts",
       "Priority processing",
-      "Early access to experimental features",
     ],
     cta: "Join the Power waitlist",
   },

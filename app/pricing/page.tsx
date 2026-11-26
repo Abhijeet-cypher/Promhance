@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Check } from "lucide-react";
 import Footer from "@/components/Footer";
+import PricingPlans from "@/components/billing/PricingPlans";
 import { PLANS } from "@/lib/plans";
 
 export const metadata: Metadata = {
@@ -44,70 +43,12 @@ export default function PricingPage() {
               Simple plans, built for how you prompt
             </h1>
             <p className="text-[#a1a1a1] text-base leading-relaxed max-w-xl mx-auto">
-              Start free. Upgrade when you need more enhancements, Detail Mode and a
-              saved prompt library.
+              Start free. Upgrade when you need more enhancements, full Detail Mode and
+              more Deep Research.
             </p>
           </header>
 
-          <div className="grid gap-6 md:grid-cols-3 items-stretch">
-            {PLANS.map((plan) => (
-              <section
-                key={plan.id}
-                className={`relative flex flex-col rounded-2xl p-7 border ${
-                  plan.highlighted
-                    ? "bg-[#111111] border-blue-500/50 shadow-[0_0_40px_rgba(59,130,246,0.15)]"
-                    : "bg-[#111111] border-[#2a2a2a]"
-                }`}
-              >
-                {plan.badge && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-blue-500 px-3 py-1 text-[11px] font-semibold text-white">
-                    {plan.badge}
-                  </span>
-                )}
-                <p className="text-xs uppercase tracking-widest text-[#525252] mb-2">
-                  {plan.tagline}
-                </p>
-                <h2 className="text-xl font-bold text-white">{plan.name}</h2>
-                <p className="mt-4 flex items-baseline gap-1">
-                  <span className="text-4xl font-extrabold text-white">
-                    ${plan.priceMonthly === 0 ? "0" : plan.priceMonthly.toFixed(2)}
-                  </span>
-                  <span className="text-sm text-[#a1a1a1]">{plan.priceNote}</span>
-                </p>
-                <p className="mt-3 text-sm text-[#a1a1a1] min-h-[40px]">{plan.audience}</p>
-
-                <ul className="mt-6 mb-8 space-y-3 flex-1">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex gap-2.5 text-sm text-[#d4d4d4]">
-                      <Check className="w-4 h-4 mt-0.5 shrink-0 text-blue-400" strokeWidth={2.5} />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href={plan.id === "free" ? "/" : "/survey"}
-                  className={`text-center rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
-                    plan.highlighted
-                      ? "bg-blue-500 text-white hover:bg-blue-400"
-                      : "bg-white/5 border border-[#2a2a2a] text-white hover:bg-white/10"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
-              </section>
-            ))}
-          </div>
-
-          <p className="mt-10 text-center text-xs text-[#525252]">
-            Paid plans are not live yet — joining the waitlist is free and non-binding.
-            Fair-use limits apply to unlimited features. Cancel anytime, with a 7-day
-            refund on your first payment — see the{" "}
-            <Link href="/terms#refund-policy" className="text-blue-400 hover:text-blue-300">
-              refund policy
-            </Link>
-            .
-          </p>
+          <PricingPlans />
         </div>
       </main>
       <Footer />

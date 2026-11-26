@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "indexnow": "node scripts/indexnow.mjs",
+    "paypal:setup": "node --env-file=.env.local scripts/paypal-setup.mjs",
     "extension:dev": "npm --prefix extension run dev",
     "extension:build": "npm --prefix extension run build",
     "extension:compile": "npm --prefix extension run compile",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { isBillingPublic } from "@/lib/paypal";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -93,14 +94,13 @@ export default function PrivacyPolicyPage() {
           </ul>
           <h3>1.3 Subscription and Payment Information</h3>
           <p>
-            Promhance offers a free tier, and we are introducing paid Pro and
-            Power subscription plans (see our <Link href="/terms">Terms of
-            Service</Link>). Paid plans are not available yet. Once they are:
+            Promhance offers a free tier and paid Pro and Power subscription
+            plans (see our <Link href="/terms">Terms of Service</Link>).
+            {isBillingPublic() ? " For paid plans:" : " Paid plans are not available yet. Once they are:"}
           </p>
           <ul>
             <li>
-              <strong>Payments are handled by a third-party payment
-              processor.</strong> You enter your card or other payment details
+              <strong>Payments are handled by PayPal.</strong> You enter your card or other payment details
               directly with the processor. We never see or store your full card
               number or security code.
             </li>
@@ -115,9 +115,11 @@ export default function PrivacyPolicyPage() {
               Billing records may be kept for as long as tax, accounting, or other
               legal obligations require, even after you delete your account.
             </li>
-            <li>
-              Until paid plans launch, we do not collect any payment information.
-            </li>
+            {!isBillingPublic() && (
+              <li>
+                Until paid plans launch, we do not collect any payment information.
+              </li>
+            )}
           </ul>
 
           <h3>1.2 Information Collected Automatically</h3>

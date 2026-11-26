@@ -46,6 +46,14 @@ Promhance — a Next.js app that enhances rough prompts into engineered prompts 
 - If `prompt_versions` is missing, `/api/prompts` synthesizes v1 from `enhanced_prompt`, so history keeps working.
 - Identity/ownership: service-role routes; a row is owned when `user_id` matches the session or `anon_id` matches with `user_id IS NULL`.
 
+## Billing (PayPal subscriptions)
+
+- Setup, testing and go-live steps: `docs/paypal-setup.md`. Migration `20261128000000_paypal_billing.sql`. Env: `PAYPAL_*`, `BILLING_ADMIN_ONLY`.
+- `lib/paypal.ts` (REST client), `lib/billing-state.ts` (pure access rules), `lib/billing.ts` (`syncSubscription`, the **only** writer of `subscriptions`). Routes in `app/api/billing/`.
+- Never grant access from a client redirect or a webhook body: always re-read from PayPal. No access until PayPal reports a payment.
+- Rows are tagged with `environment`; sandbox rows never unlock live. `VERCEL_ENV=production` refuses sandbox keys.
+- Features not built yet go in `comingSoon` in `lib/plans.ts`, not `features`.
+
 ## Admin dashboard & profile
 
 - Access is gated by the `ADMIN_EMAILS` env var (comma-separated, case-insensitive). `lib/admin.ts` exposes `getAdmin()` / `adminOrError()`; the `/admin` layout redirects non-admins and every `/api/admin/*` route re-checks server-side. Never trust a client role.

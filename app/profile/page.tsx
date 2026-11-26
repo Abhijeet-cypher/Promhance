@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ProfilePage from "@/components/ProfilePage";
 import Footer from "@/components/Footer";
+import BillingSection from "@/components/billing/BillingSection";
 
 export const metadata: Metadata = {
   title: "Profile",
@@ -22,6 +23,7 @@ export default function ProfileRoute() {
 
       <div className="relative z-10 w-full max-w-xl mx-auto px-6 sm:px-10 flex-grow pb-24">
         <ProfilePage />
+        <BillingSection />
       </div>
 
       <script
